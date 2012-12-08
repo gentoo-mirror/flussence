@@ -43,6 +43,7 @@ RDEPEND=" virtual/opengl
 			media-libs/openal
 			media-sound/pulseaudio
 			net-misc/curl
+			net-print/cups
 			sys-apps/dbus
 			>=sys-devel/gcc-4.6.0
 			>=sys-libs/glibc-2.15
