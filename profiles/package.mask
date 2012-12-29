@@ -1,3 +1,4 @@
 # Anthony Parsons <flussence@gmail.com> (29 Dec 2012)
-# Data-corrupting bugs. Use 1.4.6 or Bukkit for now.
+# Data-corrupting bugs. Use Bukkit.
+=games-server/minecraft-server-1.4.6
 =games-server/minecraft-server-1.4.7
