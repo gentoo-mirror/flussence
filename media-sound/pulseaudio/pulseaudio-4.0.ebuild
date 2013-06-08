@@ -1,10 +1,10 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/pulseaudio/pulseaudio-3.0-r1.ebuild,v 1.1 2013/04/27 03:56:05 ford_prefect Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/pulseaudio/pulseaudio-4.0.ebuild,v 1.1 2013/06/03 19:23:05 ford_prefect Exp $
 
 EAPI="5"
 
-inherit autotools eutils flag-o-matic user versionator toolchain-funcs udev
+inherit eutils flag-o-matic user versionator udev
 
 DESCRIPTION="A networked sound server with an advanced plugin system"
 HOMEPAGE="http://www.pulseaudio.org/"
@@ -40,7 +40,7 @@ RDEPEND=">=media-libs/libsndfile-1.0.20
 	tcpd? ( sys-apps/tcp-wrappers )
 	lirc? ( app-misc/lirc )
 	dbus? ( >=sys-apps/dbus-1.0.0 )
-	gtk? ( x11-libs/gtk+:2 )
+	gtk? ( x11-libs/gtk+:3 )
 	gnome? ( >=gnome-base/gconf-2.4.0 )
 	bluetooth? (
 		>=net-wireless/bluez-4.99
@@ -73,6 +73,8 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	system-wide? ( || ( dev-util/unifdef sys-freebsd/freebsd-ubin ) )
 	dev-util/intltool"
+# This is a PDEPEND to avoid a circular dep
+#PDEPEND="alsa? ( media-plugins/alsa-plugins[pulseaudio] )"
 
 # alsa-utils dep is for the alsasound init.d script (see bug #155707)
 # bluez dep is for the bluetooth init.d script
@@ -100,8 +102,7 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}/${P}-json-c-fix.patch"
-	eautoreconf
+	epatch_user
 }
 
 src_configure() {
@@ -127,7 +128,7 @@ src_configure() {
 		$(use_enable avahi) \
 		$(use_enable dbus) \
 		$(use_enable gnome gconf) \
-		$(use_enable gtk gtk2) \
+		$(use_enable gtk gtk3) \
 		$(use_enable libsamplerate samplerate) \
 		$(use_enable bluetooth bluez) \
 		$(use_enable X x11) \
