@@ -48,7 +48,7 @@ RDEPEND=">=media-libs/libsndfile-1.0.20
 		media-libs/sbc
 	)
 	asyncns? ( net-libs/libasyncns )
-	udev? ( >=virtual/udev-143[hwdb] )
+	udev? ( >=virtual/udev-143[hwdb(+)] )
 	realtime? ( sys-auth/rtkit )
 	equalizer? ( sci-libs/fftw:3.0 )
 	orc? ( >=dev-lang/orc-0.4.9 )
