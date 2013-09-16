@@ -100,6 +100,7 @@ RDEPEND="
 	libv4l? ( media-libs/libv4l )
 	modplug? ( media-libs/libmodplug )
 	openal? ( >=media-libs/openal-1.1 )
+	opencl? ( virtual/opencl )
 	openssl? ( dev-libs/openssl )
 	opus? ( media-libs/opus )
 	pulseaudio? ( media-sound/pulseaudio )
@@ -137,6 +138,7 @@ DEPEND="${RDEPEND}
 REQUIRED_USE="bindist? ( encode? ( !faac !aacplus ) !openssl )
 	libv4l? ( v4l )
 	fftools_cws2fws? ( zlib )
+	opencl? ( threads )
 	test? ( encode )"
 
 S=${WORKDIR}/${P/_/-}
@@ -159,7 +161,7 @@ src_configure() {
 	# This will feed configure with $(use_enable foo bar)
 	# or $(use_enable foo foo) if no :bar is set.
 	local ffuse="bzip2:bzlib cpudetection:runtime-cpudetect debug doc
-			     gnutls hardcoded-tables iconv network openssl sdl:ffplay vaapi vdpau zlib"
+			     gnutls hardcoded-tables iconv network opencl openssl sdl:ffplay vaapi vdpau zlib"
 	use openssl && myconf="${myconf} --enable-nonfree"
 
 	# Encoders
