@@ -45,7 +45,7 @@ src_install() {
 	local ARGS
 	use ipv6 || ARGS="-Djava.net.preferIPv4Stack=true"
 
-	java-pkg_newjar "${DISTDIR}/${P}.jar" "${PN}.jar"
+	java-pkg_newjar "${DISTDIR}/${P}.jar" "${PN}-${MY_PV}.jar"
 	java-pkg_dolauncher "${PN}" -into "${GAMES_PREFIX}" -pre directory.sh \
 		--java_args "-Xmx1024M -Xms512M ${ARGS}" --pkg_args "nogui" \
 		--main net.minecraft.server.MinecraftServer
