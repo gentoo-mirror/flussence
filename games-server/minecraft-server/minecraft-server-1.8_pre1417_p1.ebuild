@@ -5,8 +5,8 @@
 EAPI="5"
 inherit games java-pkg-2
 
-# I don't know a sane way to embed this in the ebuild filename itself
-MY_PV=${PV/9999/14w11b}
+# I don't know a sane way to encode this in the ebuild filename itself. I've tried. Repeatedly.
+MY_PV="14w17a"
 
 # And this is too long
 MY_BASEURI="http://s3.amazonaws.com/Minecraft.Download/versions"
