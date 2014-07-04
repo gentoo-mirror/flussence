@@ -13,8 +13,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND=""
-RDEPEND="app-misc/tmux
-	>=sys-apps/openrc-0.3.0
+RDEPEND=">=sys-apps/openrc-0.12.4
 	!!=games-server/minecraft-server-201*"
 
 S="${WORKDIR}"
@@ -25,7 +24,6 @@ PID="/var/run/minecraft"
 src_prepare() {
 	cp "${FILESDIR}"/{init,console}.sh . || die
 	sed -i "s/@GAMES_USER_DED@/${GAMES_USER_DED}/g" init.sh || die
-	sed -i "s/@GAMES_GROUP@/${GAMES_GROUP}/g" console.sh || die
 }
 
 src_install() {
@@ -34,7 +32,6 @@ src_install() {
 	gamesperms "${D}${DIR}" "${D}${PID}"
 
 	newinitd init.sh minecraft-server
-	newgamesbin console.sh minecraft-server-console
 	systemd_dotmpfilesd "${FILESDIR}/systemd/minecraft.conf"
 
 	prepgamesdirs
