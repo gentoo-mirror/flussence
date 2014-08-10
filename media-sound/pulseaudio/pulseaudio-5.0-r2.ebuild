@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/pulseaudio/pulseaudio-5.0-r2.ebuild,v 1.5 2014/06/15 12:38:27 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/pulseaudio/pulseaudio-5.0-r2.ebuild,v 1.11 2014/07/30 19:29:26 ssuominen Exp $
 
 EAPI="5"
 inherit autotools bash-completion-r1 eutils flag-o-matic linux-info readme.gentoo systemd user versionator udev multilib-minimal
@@ -16,7 +16,7 @@ SRC_URI="http://freedesktop.org/software/pulseaudio/releases/${P}.tar.xz"
 LICENSE="!gdbm? ( LGPL-2.1 ) gdbm? ( GPL-2 )"
 
 SLOT="0"
-KEYWORDS="~alpha amd64 arm hppa ~ia64 ~ppc ~ppc64 ~sh ~sparc x86 ~amd64-linux ~x86-linux"
+KEYWORDS="alpha amd64 arm hppa ia64 ppc ppc64 ~sh sparc x86 ~amd64-linux ~x86-linux"
 
 IUSE="+alsa +asyncns avahi bluetooth +caps dbus doc equalizer +gdbm +glib gnome
 gtk ipv6 jack libsamplerate lirc neon +orc oss qt4 realtime ssl systemd
@@ -88,8 +88,6 @@ DEPEND="${RDEPEND}
 	dev-util/intltool
 	>=sys-devel/gettext-0.18.1
 "
-# This is a PDEPEND to avoid a circular dep
-#PDEPEND="alsa? ( >=media-plugins/alsa-plugins-1.0.27-r1[pulseaudio] )"
 
 # alsa-utils dep is for the alsasound init.d script (see bug #155707)
 # bluez dep is for the bluetooth init.d script
@@ -194,7 +192,7 @@ multilib_src_configure() {
 		--disable-adrian-aec
 		--disable-esound
 		--localstatedir="${EPREFIX}"/var
-		--with-udev-rules-dir="${EPREFIX}/$(udev_get_udevdir)"/rules.d
+		--with-udev-rules-dir="${EPREFIX}/$(get_udevdir)"/rules.d
 	)
 
 	if ! multilib_is_native_abi; then
