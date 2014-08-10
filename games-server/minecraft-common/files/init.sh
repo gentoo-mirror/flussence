@@ -3,6 +3,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
+# These all-caps vars can be overridden by conf.d.
+# RC_SVCNAME is automatically set from filename extension, same as in the net.* initscripts.
 : ${multiverse:=${MULTIVERSE:-${RC_SVCNAME#*.}}}
 : ${multiverse:=main}
 : ${datadir:=${DATADIR:-/var/lib/minecraft}}
@@ -28,11 +30,9 @@ start() {
         return 1
     fi
 
-    # The server keeps this file opened while it's running, so we can find the PID from it.
-    # It's a horrible hack but the previous logfile-based version broke between 14w21-14w27.
-    local open_file="${basedir}"/*/region/r.0.0.mca
-
-    if [ -f "${open_file}" ] && fuser -s "${open_file}"; then
+    # The server always keeps the spawn area loaded while running. The log files are also an option,
+    # but those have broken in snapshots before.
+    if fuser -s "${basedir}"/*/region/r.0.0.mca 2> /dev/null; then
         eend 1 "This multiverse appears to be in use, maybe by another server?"
         return 1
     fi
@@ -40,13 +40,15 @@ start() {
     checkpath -d -m 0750 -o root:games ${rundir}
     checkpath -d -m 0770 -o root:games ${datadir}
 
-    # tmux support has been removed since vanilla now supports rcon.
+    # Vanilla MC now supports rcon, so we can do away with all the tmux stuff. The server is still
+    # fairly stupid and tries to attach to stdin, so we need to give it /dev/null here to avoid
+    # breaking the current terminal.
     start-stop-daemon --start --background --make-pidfile \
         --pidfile ${PIDFILE} \
         --chdir "${basedir}" \
         --user games:games \
         --umask 027 \
-        --exec "${EXE}" -- "${multiverse}" "${datadir}" < /dev/null
+        --exec "${EXE}" -- "${multiverse}" "${datadir}" </dev/null
 
     eend $?
 }
@@ -57,10 +59,4 @@ stop() {
     start-stop-daemon -K -p "${PIDFILE}"
 
     eend $?
-}
-
-_get_an_in_use_file() {
-    local basedir=$1
-
-    echo "${basedir}"/*/region/r.0.0.mca
 }
