@@ -1,0 +1,2 @@
+# These numbers are snapshot versions
+>games-server/minecraft-server-1.99
