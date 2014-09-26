@@ -32,8 +32,10 @@ src_install() {
 	dosym default /etc/runit/runsvdir/current
 	dosym ../etc/runit/runsvdir/current /var/service
 
-	dobin chpst runsv runsvdir sv svlogd
-	dosbin runit runit-init runsvchdir utmpset
+	into /
+	dobin chpst runsv runsvchdir runsvdir sv svlogd
+	dosbin runit runit-init utmpset
+	into /usr
 
 	# make sv command work
 	cat <<-EOF > 20runit
