@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<use>
+		<flag name="id3tag">Support for ID3 tags</flag>
+		<flag name="perl">Prefer MP3::Tag over id3v2 for USE=id3tag (more features)</flag>
+	</use>
+</pkgmetadata>
