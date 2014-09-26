@@ -1,7 +1,6 @@
 #!/sbin/runscript
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
 
 # These all-caps vars can be overridden by conf.d.
 # RC_SVCNAME is automatically set from filename extension, same as in the net.* initscripts.

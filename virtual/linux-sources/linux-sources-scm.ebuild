@@ -1,4 +1,4 @@
-EAPI=4
+EAPI=5
 DESCRIPTION="I know what the hell I'm doing stop pulling kernel ebuilds in"
 HOMEPAGE=""
 SRC_URI=""
