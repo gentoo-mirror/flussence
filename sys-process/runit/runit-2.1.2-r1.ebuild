@@ -92,6 +92,6 @@ pkg_postrm() {
 pkg_config() {
 	elog "Setting up default agetty services on tty1-6"
 	for tty in agetty-tty{1..6}; do
-		dosym ../all/$tty ${ROOT}/etc/runit/runsvdir/default/$tty
+		ln -s ../all/$tty ${ROOT}/etc/runit/runsvdir/default/$tty
 	done
 }
