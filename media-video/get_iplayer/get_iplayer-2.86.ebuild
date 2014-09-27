@@ -9,7 +9,7 @@ SRC_URI="ftp://ftp.infradead.org/pub/get_iplayer/${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="~amd64 ~x86"
 IUSE="+ffmpeg id3tag mplayer +perl"
 
 DEPEND=">=dev-lang/perl-5.8.8

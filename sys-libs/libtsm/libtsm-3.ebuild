@@ -9,7 +9,7 @@ SRC_URI="http://freedesktop.org/software/kmscon/releases/${P}.tar.xz"
 
 LICENSE="MIT LGPL-2.1 BSD-2"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND="x11-libs/libxkbcommon"
