@@ -1,48 +1,51 @@
 # The `::flussence` Gentoo ebuild repository
 
-Some packages of decent quality.
+Some packages of decent quality. These all work for me; if you have any problems
+send them [here][gh-issues].
+
+Requires an EAPI 5 (or higher) package manager.
 
 ## Contents
 
-* `games-server/minecraft-common` and `games-server/minecraft-server`
+* `games-server/minecraft-common` and `games-server/minecraft-server`:
+  Minecraft Vanilla server 1.8
 
-  Heavily modified versions of the files in [the `::java` overlay][java]. These
-  support running from custom directories and don't spawn a tmux session (recent
-  versions of the game support rcon).
+  These are heavily modified/updated versions of the ebuilds in the
+  [`::java`][java] overlay, which support running from custom directories and
+  don't spawn/depend on tmux (recent versions of the game support rcon).
 
 * `media-sound/pulseaudio`
 
-  This is a workaround for [Bug 519530][bgo519530], though I've been using it
-  before that was filed.
+  This is just a workaround for [Bug 519530][bgo519530], though I've been using
+  it before that was filed. This ebuild should go away eventually.
 
-* `media-video/get_iplayer`
+* `media-video/get_iplayer`: get_iplayer 2.86
 
-  get_iplayer 2.86. Tries to have sane, optional dependencies.
+  This exists because the one in another overlay had a mandatory mplayer
+  dependency and I'd switched to mpv.
 
-* `sys-apps/kmscon` and `sys-libs/libtsm`
+* `sys-apps/kmscon` and `sys-libs/libtsm`: kmscon 8, and its libtsm dep
 
-  kmscon 8.
+  Anti-aliased bloat for your consoles. Works but feels slightly buggy to me.
 
-* `sys-process/runit`
+* `sys-process/runit`: runit 2.1.2
 
-  runit 2.1.2.
+  I'm using this ebuild for PID 1 on all of my systems, and consider it to be
+  production-quality.
 
-  If you want to use runit as an init, I *strongly* recommend you try this over
-  the Gentoo-supplied ebuild due to potentially system-breaking bugs and an
-  unresponsive maintainer, who I've heard from the forums is also a systemd
-  pusher.
+  Logging in on console [works][bgo522204], as does [shutdown][bgo521918].
 
-  This fixes the following, and then some:
+  N.B. all binaries are placed into `/bin` and `/sbin`, to avoid manufacturing
+  unnecessary problems regarding `/usr` as a separate mountpoint. Take note of
+  the *elog* output when installing.
 
-  * [Bug 521918][bgo521918]
-  * [Bug 522204][bgo522204]
-  * [Bug 522786][bgo522786]
+  See also my [runit-scripts][runit-scripts] repository for replacements to some
+  OpenRC initscripts.
 
-  See also my [runit-scripts][runit-scripts] repository.
-
-[java]: http://git.overlays.gentoo.org/gitweb/?p=proj/java.git;a=summary
 [bgo519530]: https://bugs.gentoo.org/show_bug.cgi?id=519530
 [bgo521918]: https://bugs.gentoo.org/show_bug.cgi?id=521918
 [bgo522204]: https://bugs.gentoo.org/show_bug.cgi?id=522204
 [bgo522786]: https://bugs.gentoo.org/show_bug.cgi?id=522786
+[gh-issues]: https://github.com/flussence/ebuilds/issues
+[java]: http://git.overlays.gentoo.org/gitweb/?p=proj/java.git;a=summary
 [runit-scripts]: https://github.com/flussence/runit-scripts
