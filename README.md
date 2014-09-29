@@ -14,6 +14,10 @@ Requires an EAPI 5 (or higher) package manager.
   [`::java`][java] overlay, which support running from custom directories and
   don't spawn/depend on tmux (recent versions of the game support rcon).
 
+* `games-util/c10t`: [c10t][c10t] git ebuild
+
+  A minimal ebuild that builds/installs the "c10t" binary. Needs improvement.
+
 * `media-sound/pulseaudio`
 
   This is just a workaround for [Bug 519530][bgo519530], though I've been using
@@ -46,6 +50,7 @@ Requires an EAPI 5 (or higher) package manager.
 [bgo521918]: https://bugs.gentoo.org/show_bug.cgi?id=521918
 [bgo522204]: https://bugs.gentoo.org/show_bug.cgi?id=522204
 [bgo522786]: https://bugs.gentoo.org/show_bug.cgi?id=522786
+[c10t]: https://github.com/udoprog/c10t
 [gh-issues]: https://github.com/flussence/ebuilds/issues
 [java]: http://git.overlays.gentoo.org/gitweb/?p=proj/java.git;a=summary
 [runit-scripts]: https://github.com/flussence/runit-scripts

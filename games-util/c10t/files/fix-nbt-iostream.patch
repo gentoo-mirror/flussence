@@ -1,0 +1,12 @@
+diff --git a/src/nbt/nbt.hpp b/src/nbt/nbt.hpp
+index c26f1e47bfc0..22530f2f7629 100644
+--- a/src/nbt/nbt.hpp
++++ b/src/nbt/nbt.hpp
+@@ -14,6 +14,7 @@
+ #include <string>
+ #include <stack>
+ #include <list>
++#include <iostream>
+ 
+ #include <boost/ptr_container/ptr_vector.hpp>
+ #include <boost/shared_ptr.hpp>
