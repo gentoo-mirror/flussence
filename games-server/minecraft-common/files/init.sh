@@ -11,7 +11,6 @@
 : ${SSD_STARTWAIT:=3000}
 
 PIDFILE="${rundir}/${multiverse}.pid"
-SOCKET="/tmp/tmux-minecraft-${multiverse}"
 
 depend() {
     need net
