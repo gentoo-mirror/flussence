@@ -12,3 +12,5 @@ echo 'Shutdown...'
 test -x /etc/runit/reboot && LAST=6    || LAST=0
 test -x /etc/runit/reboot && RC=reboot || RC=shutdown
 RUNLEVEL=$LAST /sbin/rc $RC
+
+test $LAST = 6 && kexec -e
