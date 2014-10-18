@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<longdescription lang="en">
+		Freedoom is a project to create a complete Doom engine-based game which is free software, in
+		addition to maintaining compatibility with Doom modifications (“mods”) that have been
+		released by the continually-active community since 1993.
+	</longdescription>
+</pkgmetadata>
