@@ -12,7 +12,10 @@ SRC_URI="http://smarden.org/runit/${P}.tar.gz"
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="static"
+IUSE="static +symlink"
+
+# Prevent automatic upgrades to force people to pay attention to elog stuff
+DEPEND="!!<sys-process/runit-2.1.2-r4"
 
 S=${WORKDIR}/admin/${P}/src
 
@@ -29,23 +32,16 @@ src_configure() {
 }
 
 src_install() {
-	dosym default /etc/runit/runsvdir/current
-	dosym ../etc/runit/runsvdir/current /var/service
+	dodir /etc/service
+	use symlink && dosym /etc/service /service
 
 	into /
 	dobin chpst runsv runsvchdir runsvdir sv svlogd
 	dosbin runit runit-init utmpset
 	into /usr
 
-	# make sv command work
-	cat <<-EOF > 20runit
-		#/etc/env.d/20runit
-		SVDIR="/var/service/"
-	EOF
-	doenvd 20runit
-
 	for tty in agetty-tty{1..6}; do
-		exeinto /etc/runit/runsvdir/all/$tty/
+		exeinto /etc/sv/$tty/
 		for script in run finish; do
 			newexe "${FILESDIR}"/${script}.agetty $script
 		done
@@ -54,10 +50,10 @@ src_install() {
 	exeinto /etc/runit
 	doexe "${FILESDIR}"/{1,3,ctrlaltdel}
 
-	# N.B. $S is redefined above
+	# N.B. this is not $WORKDIR, $S is redefined above
 	cd "${S}"/..
 
-	sed -i 's@/service@/var/service@' etc/2 || die 'sed failed'
+	sed -i 's@/service@/etc/service@' etc/2 || die 'sed failed'
 	doexe etc/2
 
 	dodoc package/{CHANGES,README,THANKS,TODO}
@@ -66,20 +62,17 @@ src_install() {
 }
 
 pkg_postinst() {
-	elog "/etc/profile was updated to define SVDIR. If you want 'sv' service"
-	elog "name shortcuts to work in your currently open shells, run:"
-	elog "$ source /etc/profile"
-	elog "(You can still interact with them by specifying the full path.)"
-
-	# We don't do this by default, in case the user's customised their setup to
-	# run mingetty, kmscon or etc.
+	elog "We've installed some agetty scripts into /etc/sv/, but not enabled them by default."
+	elog "If you want these to start at boot, create symlinks in /etc/service/ manually."
+	elog
+	elog "This version of the runit ebuild uses a more upstream/FHS-friendly layout:"
+	elog "  /etc/runit/runsvdir/all --> /etc/sv"
+	elog "  /etc/runit/runsvdir/current (and /var/service symlink) --> /etc/service"
+	elog "If you have USE=symlink, /service will be a symlink to /etc/service. This replaces the"
+	elog "former method of defining \$SVDIR globally via /etc/env.d/."
+	elog "See the discussion in #522786 for more info."
 	if [[ ${REPLACING_VERSIONS} ]] ; then
-		elog ""
-		elog "Reinstalling, not reactivating any agetty services. To do that"
-		elog "manually, run this command (or just symlink them yourself):"
-		elog "# emerge --config =${CATEGORY}/${PF}"
-	else
-		pkg_config
+		ewarn "You should migrate your services to /etc/sv/ *NOW*."
 	fi
 }
 
@@ -87,11 +80,4 @@ pkg_postrm() {
 	if [[ -z ${REPLACED_BY_VERSION} ]] ; then
 		ewarn "runit was uninstalled. Make sure your system is still bootable!"
 	fi
-}
-
-pkg_config() {
-	elog "Setting up default agetty services on tty1-6"
-	for tty in agetty-tty{1..6}; do
-		ln -s ../all/$tty ${ROOT}/etc/runit/runsvdir/default/$tty
-	done
 }

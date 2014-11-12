@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<use>
+		<flag name="symlink">Symlink /service to /etc/service to allow abbreviated `sv` commands</flag>
+	</use>
+</pkgmetadata>
