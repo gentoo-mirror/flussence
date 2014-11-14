@@ -32,6 +32,10 @@ Requires an EAPI 5 (or higher) package manager.
 
   Anti-aliased bloat for your consoles. Works but feels slightly buggy to me.
 
+* `sys-apps/s6`
+
+  Another workaround, this time for [Bug 529180][bgo529180].
+
 * `sys-process/runit`: runit 2.1.2
 
   I'm using this ebuild for PID 1 on all of my systems, and consider it to be
@@ -50,6 +54,7 @@ Requires an EAPI 5 (or higher) package manager.
 [bgo521918]: https://bugs.gentoo.org/show_bug.cgi?id=521918
 [bgo522204]: https://bugs.gentoo.org/show_bug.cgi?id=522204
 [bgo522786]: https://bugs.gentoo.org/show_bug.cgi?id=522786
+[bgo529180]: https://bugs.gentoo.org/show_bug.cgi?id=529180
 [c10t]: https://github.com/udoprog/c10t
 [gh-issues]: https://github.com/flussence/ebuilds/issues
 [java]: http://git.overlays.gentoo.org/gitweb/?p=proj/java.git;a=summary
