@@ -1,5 +1,6 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: $
 
 EAPI=5
 
@@ -12,8 +13,7 @@ SRC_URI="http://www.freedesktop.org/software/${PN}/releases/${P}.tar.xz"
 LICENSE="MIT LGPL-2.1 BSD-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="debug doc drm fbdev +gles2 multiseat +optimizations +pango pixman
-static-libs systemd udev unifont wayland"
+IUSE="debug doc drm fbdev +gles2 multiseat +pango pixman static-libs systemd udev unifont wayland"
 
 COMMON_DEPEND="
 	sys-libs/libtsm
@@ -70,7 +70,6 @@ src_configure() {
 		$(use_enable static-libs static) \
 		$(use_enable udev hotplug) \
 		$(use_enable debug) \
-		$(use_enable optimizations) \
 		$(use_enable multiseat multi-seat) \
 		--htmldir=/usr/share/doc/${PF}/html \
 		--with-video=$USE_VIDEO \
