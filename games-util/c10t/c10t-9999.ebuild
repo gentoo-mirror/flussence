@@ -1,5 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: $
 
 EAPI=5
 
@@ -18,7 +19,7 @@ DEPEND="
 	sys-libs/zlib
 	>=media-libs/libpng-1.2
 	>=media-libs/freetype-2
-	>=dev-libs/boost-1.46[threads,test?]"
+	>=dev-libs/boost-1.46[threads]"
 RDEPEND="${DEPEND}"
 
 src_prepare() {
