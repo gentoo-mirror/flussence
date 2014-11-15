@@ -1,5 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: $
 
 EAPI=5
 
@@ -20,7 +21,7 @@ RDEPEND="${DEPEND}"
 src_install() {
 	insinto "${GAMES_DATADIR}/doom-data"
 	doins *.wad
-	dodoc COPYING CREDITS README.html
+	dodoc CREDITS README.html
 }
 
 pkg_postinst() {
