@@ -1,9 +1,13 @@
 # The `::flussence` Gentoo ebuild repository
 
-Some packages of decent quality. These all work for me; if you have any problems
-send them [here][gh-issues].
+Some packages of exceptionally high quality. I use many of these regularly; if
+you have any problems with installation send them [here][gh-issues].
 
 Requires an EAPI 5 (or higher) package manager.
+
+Note that the 3-line legalese header on each ebuild is required to be present by
+Gentoo's QA programs, and SHOULD NOT be construed as anything other than
+[meaningless boilerplate][gentoo-mistakes].
 
 ## Contents
 
@@ -56,6 +60,7 @@ Requires an EAPI 5 (or higher) package manager.
 [bgo522786]: https://bugs.gentoo.org/show_bug.cgi?id=522786
 [bgo529180]: https://bugs.gentoo.org/show_bug.cgi?id=529180
 [c10t]: https://github.com/udoprog/c10t
+[gentoo-mistakes]: https://devmanual.gentoo.org/ebuild-writing/common-mistakes/index.html#missing/invalid/broken-header
 [gh-issues]: https://github.com/flussence/ebuilds/issues
 [java]: http://git.overlays.gentoo.org/gitweb/?p=proj/java.git;a=summary
 [runit-scripts]: https://github.com/flussence/runit-scripts

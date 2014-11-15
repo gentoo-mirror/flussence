@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
+	<longdescription lang="en">
+		runit is a process supervision suite with a focus on being usable as a sysvinit replacement.
+		It provides similar functionality to other packages like <pkg>sys-apps/s6</pkg> and
+		<pkg>sys-process/daemontools</pkg>, and a compatibility/migration path for the latter.
+	</longdescription>
+	<upstream>
+		<doc>http://smarden.org/runit/</doc>
+	</upstream>
 	<use>
 		<flag name="symlink">Symlink /service to /etc/service to allow abbreviated `sv` commands</flag>
 	</use>
+	<maintainer>
+		<email>flussence@gmail.com</email>
+		<name>Anthony Parsons</name>
+	</maintainer>
 </pkgmetadata>

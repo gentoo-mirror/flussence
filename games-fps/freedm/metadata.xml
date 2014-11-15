@@ -6,4 +6,12 @@
 		addition to maintaining compatibility with Doom modifications (“mods”) that have been
 		released by the continually-active community since 1993.
 	</longdescription>
+	<maintainer>
+		<email>flussence@gmail.com</email>
+		<name>Anthony Parsons</name>
+	</maintainer>
+	<upstream>
+		<bugs-to>https://github.com/freedoom/freedoom/issues</bugs-to>
+		<remote-id type="github">freedoom/freedoom</remote-id>
+	</upstream>
 </pkgmetadata>

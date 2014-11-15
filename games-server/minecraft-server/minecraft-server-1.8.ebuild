@@ -1,5 +1,6 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: $
 
 EAPI=5
 inherit games java-pkg-2
@@ -10,7 +11,7 @@ MY_BASEURI="http://s3.amazonaws.com/Minecraft.Download/versions"
 DESCRIPTION="Official dedicated server for Minecraft"
 HOMEPAGE="http://www.minecraft.net"
 SRC_URI="${MY_BASEURI}/${MY_PV}/minecraft_server.${MY_PV}.jar -> ${PN}-${MY_PV}.jar"
-LICENSE="as-is"
+LICENSE="Minecraft-clickwrap-EULA"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="ipv6"

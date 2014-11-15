@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<longdescription lang="en">
+		kmscon is a DRM-based system console. It can run alongside (or without) the built-in Linux
+		console or graphical environments such as X11, and has many modern features, including
+		internationalization, anti-aliased and runtime-scalable text, multi-seat operation, and
+		OpenGL ES rendering.
+	</longdescription>
+	<maintainer>
+		<email>flussence@gmail.com</email>
+		<name>Anthony Parsons</name>
+	</maintainer>
+	<upstream>
+		<bugs-to>https://bugs.freedesktop.org/enter_bug.cgi?product=kmscon</bugs-to>
+	</upstream>
+	<use>
+		<flag name="drm">Enable the software-only DRM output backend.</flag>
+		<flag name="fbdev">
+			Enable the software-only fbdev output backend. Only needed if you have a legacy driver
+			that doesn't support KMS.
+		</flag>
+		<flag name="gles2">
+			Enable hardware-accelerated rendering and output using OpenGL ES 2.0.
+		</flag>
+		<flag name="multiseat">Enables multi-seat support. Requires systemd-logind.</flag>
+		<flag name="pango">Use <pkg>x11-libs/pango</pkg> for font rendering.</flag>
+		<flag name="pixman">
+			Use <pkg>x11-libs/pixman</pkg> as an alternative to the built-in software renderer.
+		</flag>
+		<flag name="unifont">
+			Use a bundled, compiled-in copy of GNU Unifont for Unicode-capable output.
+		</flag>
+	</use>
+</pkgmetadata>

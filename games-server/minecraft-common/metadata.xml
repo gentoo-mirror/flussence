@@ -5,8 +5,7 @@
 		<email>flussence@gmail.com</email>
 		<name>Anthony Parsons</name>
 	</maintainer>
-	<use>
-		<flag name="id3tag">Support for ID3 tags</flag>
-		<flag name="perl">Prefer MP3::Tag over id3v2 for USE=id3tag (more features)</flag>
-	</use>
+	<upstream>
+		<bugs-to>https://forums.gentoo.org/viewtopic-t-857083.html</bugs-to>
+	</upstream>
 </pkgmetadata>
