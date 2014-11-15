@@ -55,17 +55,10 @@ pkg_postinst() {
 	einfo "instance using /etc/init.d/${PN}. The multiverse files are"
 	einfo "stored in ~/.minecraft/servers or /var/lib/minecraft respectively."
 	echo
-	einfo "The console for system-wide instances can be accessed by any user in"
-	einfo "the ${GAMES_GROUP} group using the minecraft-server-console command. This"
-	einfo "starts a client instance of tmux. The most important key-binding to"
-	einfo "remember is Ctrl-b d, which will detach the console and return you to"
-	einfo "your previous screen without stopping the server."
-	echo
 	einfo "This package allows you to start multiple Minecraft server instances."
 	einfo "You can do this by adding a multiverse name after ${PN} or by"
-	einfo "creating a symlink such as /etc/init.d/${PN}.foo. You would"
-	einfo "then access the console with \"minecraft-server-console foo\". The"
-	einfo "default multiverse name is \"main\"."
+	einfo "creating a symlink such as /etc/init.d/${PN}.foo. The default"
+	einfo "multiverse name is \"main\"."
 	echo
 
 	if has_version games-server/craftbukkit; then
