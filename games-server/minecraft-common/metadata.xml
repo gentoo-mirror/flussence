@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
+	<longdescription lang="en">
+		This package provides a service-multiplex-capable OpenRC init script and a Gentoo java
+		wrapper for running Minecraft servers. By itself it does nothing useful.
+	</longdescription>
 	<maintainer>
 		<email>flussence@gmail.com</email>
 		<name>Anthony Parsons</name>

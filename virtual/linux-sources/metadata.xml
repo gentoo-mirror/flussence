@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
+	<longdescription lang="en">
+		An empty virtual to allow locally-maintained kernel sources without dumb ebuilds trying to
+		pull in other ones.
+	</longdescription>
 	<maintainer>
 		<email>flussence@gmail.com</email>
 		<name>Anthony Parsons</name>

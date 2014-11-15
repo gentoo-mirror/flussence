@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
+	<longdescription lang="en">
+		The PulseAudio sound system. This version of the package only changes what is necessary to
+		work around Gentoo Bug 519530, if that doesn't apply to you then keep using the upstream
+		package.
+	</longdescription>
 	<maintainer>
 		<email>flussence@gmail.com</email>
 		<name>Anthony Parsons</name>

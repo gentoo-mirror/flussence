@@ -6,14 +6,14 @@
 		It provides similar functionality to other packages like <pkg>sys-apps/s6</pkg> and
 		<pkg>sys-process/daemontools</pkg>, and a compatibility/migration path for the latter.
 	</longdescription>
+	<maintainer>
+		<email>flussence@gmail.com</email>
+		<name>Anthony Parsons</name>
+	</maintainer>
 	<upstream>
 		<doc>http://smarden.org/runit/</doc>
 	</upstream>
 	<use>
 		<flag name="symlink">Symlink /service to /etc/service to allow abbreviated `sv` commands</flag>
 	</use>
-	<maintainer>
-		<email>flussence@gmail.com</email>
-		<name>Anthony Parsons</name>
-	</maintainer>
 </pkgmetadata>
