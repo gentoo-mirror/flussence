@@ -26,6 +26,9 @@ src_prepare() {
 	# 2014-09-29 - this file tries to use std::cout/cerr without including <iostream> first
 	epatch "${FILESDIR}/fix-nbt-iostream.patch"
 
+	# 2014-11-15 - light-level rendering code is commented out upstream. This restores and fixes it.
+	epatch "${FILESDIR}/fix-light-rendering.patch"
+
 	cmake-utils_src_prepare
 }
 
