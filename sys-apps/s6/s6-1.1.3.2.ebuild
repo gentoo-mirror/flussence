@@ -1,5 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: $
 
 EAPI=5
 
@@ -38,11 +39,6 @@ src_configure()
 	echo /usr/$(get_libdir) >> conf-compile/path-library
 	echo /$(get_libdir)/skalibs > conf-compile/path-library.so
 	echo /$(get_libdir) >> conf-compile/path-library.so
-}
-
-src_compile()
-{
-	emake -j1
 }
 
 src_install()
