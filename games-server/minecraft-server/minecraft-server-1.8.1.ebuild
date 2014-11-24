@@ -5,7 +5,12 @@
 EAPI=5
 inherit games java-pkg-2
 
-MY_PV="1.8"
+# name the ebuild version e.g. "1433" for snapshot 14w33, "1450c" for 14w50c
+if [[ ${PV} == [0-9][0-9][0-9][0-9]* ]]; then
+	MY_PV="${PV:0:2}w${PV:2:3}"
+else
+	MY_PV=${PV}
+fi
 MY_BASEURI="http://s3.amazonaws.com/Minecraft.Download/versions"
 
 DESCRIPTION="Official dedicated server for Minecraft"
