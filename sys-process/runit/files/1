@@ -1,10 +1,31 @@
 #!/bin/sh
-# system one time tasks
+# /etc/runit/1 - system one-time tasks
+#
+# This file runs OpenRC up to the "boot" runlevel to get your system into a
+# reasonable state. If you need to add system-specific one-shot tasks, consider
+# using OpenRC's existing /etc/local.d/ facility via the boot runlevel instead
+# of editing this file.
 
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 
 RUNLEVEL=S /sbin/rc sysinit
 RUNLEVEL=S /sbin/rc boot
 
-touch /etc/runit/stopit
-chmod 0 /etc/runit/stopit
+# Spawn a login prompt if "single" is passed on the boot command line.
+case " $(</proc/cmdline) " in
+    *" single "* )
+        /sbin/rc single
+        /sbin/sulogin
+    ;;
+esac
+
+# Create semaphore files in /var/run (usually symlinked to tmpfs /run). Runit
+# decides whether to shutdown or reboot based on a file stat; without this, if
+# the rootfs got wedged read-only for any reason we'd lose that control.
+controldir=/var/run/runit
+install -m 700 -d $controldir
+
+for file in reboot stopit; do
+    install -m 000 $controldir/$file
+    [ -L /etc/runit/$file ] || ln -sf $controldir/$file /etc/runit/$file
+done
