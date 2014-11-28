@@ -19,10 +19,10 @@ case " $(</proc/cmdline) " in
     ;;
 esac
 
-# Create semaphore files in /var/run (usually symlinked to tmpfs /run). Runit
+# Create semaphore files somewhere that can be independent of the rootfs. Runit
 # decides whether to shutdown or reboot based on a file stat; without this, if
 # the rootfs got wedged read-only for any reason we'd lose that control.
-controldir=/var/run/runit
+controldir=/tmp/runit
 install -m 700 -d $controldir
 
 for file in reboot stopit; do
