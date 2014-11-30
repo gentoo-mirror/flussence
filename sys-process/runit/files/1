@@ -26,6 +26,6 @@ controldir=/tmp/runit
 install -m 700 -d $controldir
 
 for file in reboot stopit; do
-    install -m 000 $controldir/$file
-    [ -L /etc/runit/$file ] || ln -sf $controldir/$file /etc/runit/$file
+    install -m 000 /dev/null $controldir/$file
+    ln -sfT $controldir/$file /etc/runit/$file
 done
