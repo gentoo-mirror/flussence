@@ -21,16 +21,15 @@ Contents
   overlay`_, which support running from custom directories and don't
   spawn/depend on tmux (recent versions of the game support rcon).
 
+  There are rumours of the Java overlay getting an up-to-date version of this
+  soon, so this may become obsolete.
+
 * ``games-util/c10t``: c10t_ git ebuild
 
-  A minimal ebuild that builds/installs the "c10t" binary. Needs improvement.
+  A minimal ebuild that builds/installs the "c10t" binary. Contains some
+  self-written patches to hack light/height map rendering back in.
 
-* ``media-sound/pulseaudio``
-
-  This is just a workaround for `Bug 519530`_, though I've been using
-  it before that was filed. This ebuild should go away eventually.
-
-* ``media-video/get_iplayer``: get_iplayer 2.86
+* ``media-video/get_iplayer``: get_iplayer 2.90
 
   This exists because the one in another overlay had a mandatory mplayer
   dependency and I'd switched to mpv.
@@ -41,7 +40,7 @@ Contents
 
 * ``sys-apps/s6``
 
-  Another workaround, this time for `Bug 529180`_.
+  A workaround for `Bug 529180`_.
 
 * ``sys-process/runit``: runit 2.1.2
 
@@ -63,7 +62,6 @@ Contents
 .. _c10t: https://github.com/udoprog/c10t
 
 .. gentoo stuff
-.. _Bug 519530: https://bugs.gentoo.org/show_bug.cgi?id=519530
 .. _Bug 529180: https://bugs.gentoo.org/show_bug.cgi?id=529180
 .. _Java overlay: http://git.overlays.gentoo.org/gitweb/?p=proj/java.git;a=summary
 .. _meaningless boilerplate: https://devmanual.gentoo.org/ebuild-writing/common-mistakes/index.html#missing/invalid/broken-header
