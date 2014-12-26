@@ -4,8 +4,6 @@
 
 EAPI=5
 
-inherit games
-
 DESCRIPTION="Free-licensed standalone data file for playing Doom 1&2 deathmatch"
 HOMEPAGE="https://freedoom.github.io/"
 SRC_URI="https://github.com/freedoom/freedoom/releases/download/v${PV}/${P}.zip"
@@ -18,14 +16,15 @@ IUSE=""
 DEPEND=""
 RDEPEND="${DEPEND}"
 
+MY_DATADIR="/usr/share/games/doom"
+
 src_install() {
-	insinto "${GAMES_DATADIR}/doom-data"
+	insinto ${MY_DATADIR}
 	doins *.wad
 	dodoc CREDITS README.html
 }
 
 pkg_postinst() {
-	games_pkg_postinst
-
-	elog "This package only installs freedm.wad, the freedoom1/2 files are in games-fps/freedoom."
+	elog "Note: This package only installs ${MY_DATADIR}/freedm.wad"
+	elog "If you want offline-playable content, install games-fps/freedoom too."
 }
