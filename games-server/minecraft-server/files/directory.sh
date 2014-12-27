@@ -2,7 +2,7 @@ MULTIVERSE=${1:-main}
 [[ -z "$1" ]] && echo -n "Multiverse name not specified. "
 echo "Using multiverse name \"${MULTIVERSE}\"." >&2
 
-if [[ "$(whoami)" == "@GAMES_USER_DED@" ]]; then
+if [[ "$(whoami)" == "minecraft-server" ]]; then
     BASEDIR=${2:-/var/lib/minecraft}
 else
     BASEDIR="${HOME}/.minecraft/servers"

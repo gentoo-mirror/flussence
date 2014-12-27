@@ -24,7 +24,7 @@ RESTRICT="mirror"
 
 DEPEND=">=virtual/jdk-1.6"
 RDEPEND=">=virtual/jre-1.6
-	games-server/minecraft-common"
+	>=games-server/minecraft-common-20141227"
 
 S="${WORKDIR}"
 
@@ -40,7 +40,6 @@ src_unpack() {
 
 java_prepare() {
 	cp "${FILESDIR}"/directory.sh . || die
-	sed -i "s/@GAMES_USER_DED@/${GAMES_USER_DED}/g" directory.sh || die
 }
 
 src_install() {

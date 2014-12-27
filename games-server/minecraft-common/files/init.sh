@@ -44,7 +44,7 @@ start() {
     start-stop-daemon --start --background --make-pidfile \
         --pidfile ${PIDFILE} \
         --chdir "${basedir}" \
-        --user games:games \
+        --user minecraft-server:minecraft-server \
         --umask 027 \
         --exec "${EXE}" -- "${multiverse}" "${datadir}" </dev/null
 
