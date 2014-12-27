@@ -4,7 +4,7 @@
 
 EAPI=5
 
-inherit eutils autotools systemd flag-o-matic
+inherit eutils systemd
 
 DESCRIPTION="KMS/DRM based virtual Console Emulator"
 HOMEPAGE="http://www.freedesktop.org/wiki/Software/kmscon"
@@ -35,10 +35,6 @@ REQUIRED_USE="
 	|| ( drm fbdev gles2 )
 	multiseat? ( systemd )"
 
-src_prepare() {
-	eautoreconf
-}
-
 src_configure() {
 	declare -a VIDEO FONTS RENDER=(bbulk)
 
@@ -63,9 +59,6 @@ src_configure() {
 	USE_RENDER="${RENDER[*]}"
 	IFS=$OLDIFS
 
-	# kmscon sets -ffast-math unconditionally
-	strip-flags
-
 	econf \
 		$(use_enable static-libs static) \
 		$(use_enable udev hotplug) \
@@ -80,9 +73,9 @@ src_configure() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install
+	default
 
-	if use systemd; then
-		systemd_dounit "${S}/docs"/kmscon{,vt@}.service
-	fi
+	systemd_dounit "${S}/docs"/kmscon{,vt@}.service
+
+	prune_libtool_files
 }
