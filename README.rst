@@ -29,7 +29,7 @@ Contents
   A minimal ebuild that builds/installs the "c10t" binary. Contains some
   self-written patches to hack light/height map rendering back in.
 
-* ``media-video/get_iplayer``: get_iplayer 2.90
+* ``media-video/get_iplayer``: get_iplayer
 
   This exists because the one in another overlay had a mandatory mplayer
   dependency and I'd switched to mpv.
@@ -38,9 +38,10 @@ Contents
 
   Anti-aliased bloat for your consoles. Works but feels slightly buggy to me.
 
-* ``sys-apps/s6``
+* ``sys-apps/s6``: s6 1.x
 
-  A workaround for `Bug 529180`_.
+  A workaround for `Bug 529180`_. Version 2.0 is coming out soon so this will
+  need a rewrite anyway.
 
 * ``sys-process/runit``: runit 2.1.2
 
