@@ -3,7 +3,7 @@
 # $Header: $
 
 EAPI=5
-inherit systemd games
+inherit games
 
 DESCRIPTION="Common scripts for Minecraft servers"
 HOMEPAGE="http://www.minecraft.net"
@@ -18,8 +18,7 @@ RDEPEND=">=sys-apps/openrc-0.12.4
 
 S="${WORKDIR}"
 
-DIR="/var/lib/minecraft"
-PID="/var/run/minecraft"
+RUNTIME_DATA_DIR="/var/lib/minecraft"
 
 src_prepare() {
 	cp "${FILESDIR}"/init.sh . || die
@@ -28,11 +27,10 @@ src_prepare() {
 
 src_install() {
 	diropts -o "${GAMES_USER_DED}" -g "${GAMES_GROUP}"
-	keepdir "${DIR}" "${PID}"
-	gamesperms "${D}${DIR}" "${D}${PID}"
+	keepdir "${RUNTIME_DATA_DIR}"
+	gamesperms "${D}${RUNTIME_DATA_DIR}"
 
 	newinitd init.sh minecraft-server
-	systemd_dotmpfilesd "${FILESDIR}/systemd/minecraft.conf"
 
 	prepgamesdirs
 }
