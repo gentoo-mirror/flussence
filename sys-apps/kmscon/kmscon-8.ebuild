@@ -17,7 +17,7 @@ IUSE="debug doc drm fbdev +gles2 multiseat +pango pixman static-libs systemd ude
 
 COMMON_DEPEND="
 	sys-libs/libtsm
-	>=virtual/udev-172
+	virtual/libudev
 	x11-libs/libxkbcommon
 	x11-libs/libdrm
 	gles2? ( >=media-libs/mesa-8.0.3[egl,gbm,gles2] )
