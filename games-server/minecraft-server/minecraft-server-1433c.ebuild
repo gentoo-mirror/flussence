@@ -26,10 +26,12 @@ DEPEND=">=virtual/jdk-1.6"
 RDEPEND=">=virtual/jre-1.6
 	>=games-server/minecraft-common-20141227"
 
+GAMES_USER_DED="minecraft-server"
+GAMES_GROUP="minecraft-server"
+
 S="${WORKDIR}"
 
 pkg_setup() {
-	ewarn "This package is NOT required if you want to run CraftBukkit."
 	java-pkg-2_pkg_setup
 	games_pkg_setup
 }
@@ -64,14 +66,6 @@ pkg_postinst() {
 	einfo "creating a symlink such as /etc/init.d/${PN}.foo. The default"
 	einfo "multiverse name is \"main\"."
 	echo
-
-	if has_version games-server/craftbukkit; then
-		ewarn "You already have CraftBukkit installed. You may run both this and the"
-		ewarn "official server against the same multiverse but not simultaneously."
-		ewarn "This is not recommended though so don't come crying to us if it"
-		ewarn "trashes your world."
-		echo
-	fi
 
 	games_pkg_postinst
 }
