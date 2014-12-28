@@ -16,6 +16,10 @@ DEPEND=""
 RDEPEND=">=sys-apps/openrc-0.12.4
 	!!=games-server/minecraft-server-201*"
 
+# We don't have a source tarball, so the default $S doesn't exist.
+# Default src_install expects to be able to cd to it though.
+S="${WORKDIR}"
+
 pkg_setup() {
 	enewgroup minecraft-server
 	enewuser minecraft-server -1 -1 /dev/null minecraft-server
