@@ -18,7 +18,7 @@ RDEPEND=">=sys-apps/openrc-0.12.4
 
 pkg_setup() {
 	enewgroup minecraft-server
-	enewuser minecraft-server -1 /bin/false /dev/null minecraft-server
+	enewuser minecraft-server -1 -1 /dev/null minecraft-server
 }
 
 src_install() {
