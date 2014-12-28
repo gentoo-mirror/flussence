@@ -3,7 +3,7 @@
 # $Header: $
 
 EAPI=5
-inherit games java-pkg-2
+inherit java-pkg-2
 
 # name the ebuild version e.g. "1433" for snapshot 14w33, "1450c" for 14w50c
 if [[ ${PV} == [0-9][0-9][0-9][0-9]* ]]; then
@@ -26,22 +26,14 @@ DEPEND=">=virtual/jdk-1.6"
 RDEPEND=">=virtual/jre-1.6
 	>=games-server/minecraft-common-20141227"
 
-GAMES_USER_DED="minecraft-server"
-GAMES_GROUP="minecraft-server"
-
 S="${WORKDIR}"
 
 pkg_setup() {
 	java-pkg-2_pkg_setup
-	games_pkg_setup
 }
 
 src_unpack() {
 	true # NOOP!
-}
-
-java_prepare() {
-	cp "${FILESDIR}"/directory.sh . || die
 }
 
 src_install() {
@@ -49,11 +41,9 @@ src_install() {
 	use ipv6 || ARGS="-Djava.net.preferIPv4Stack=true"
 
 	java-pkg_newjar "${DISTDIR}/${PN}-${MY_PV}.jar"
-	java-pkg_dolauncher "${PN}" -into "${GAMES_PREFIX}" -pre directory.sh \
+	java-pkg_dolauncher "${PN}" -pre "${FILESDIR}"/directory.sh \
 		--java_args "-Xmx1024M -Xms512M ${ARGS}" --pkg_args "nogui" \
 		--main net.minecraft.server.MinecraftServer
-
-	prepgamesdirs
 }
 
 pkg_postinst() {
@@ -66,6 +56,4 @@ pkg_postinst() {
 	einfo "creating a symlink such as /etc/init.d/${PN}.foo. The default"
 	einfo "multiverse name is \"main\"."
 	echo
-
-	games_pkg_postinst
 }
