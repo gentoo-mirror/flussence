@@ -63,17 +63,23 @@ src_install() {
 }
 
 pkg_postinst() {
-	elog "We've installed some agetty scripts into /etc/sv/, but not enabled them by default."
-	elog "If you want these to start at boot, create symlinks in /etc/service/ manually."
-	elog
-	elog "This version of the runit ebuild uses a more upstream/FHS-friendly layout:"
+	elog "We've installed some agetty scripts into /etc/sv/, but not enabled"
+	elog "them by default in order to not disturb any existing configuration."
+	elog "If you want these to start at boot, create symlinks in /etc/service/."
+	echo
+	elog "This version of the runit ebuild uses a more upstream/FHS-friendly"
+	elog "layout than older ones:"
 	elog "  /etc/runit/runsvdir/all --> /etc/sv"
-	elog "  /etc/runit/runsvdir/current (and /var/service symlink) --> /etc/service"
-	elog "If you have USE=symlink, /service will be a symlink to /etc/service. This replaces the"
-	elog "former method of defining \$SVDIR globally via /etc/env.d/."
-	elog "See the discussion in #522786 for more info."
+	elog "  /etc/runit/runsvdir/current --> /etc/service"
+	elog "  /var/service --> /service"
+	echo
+	elog "/service will be a symlink to /etc/service iff you have USE=symlink."
+	elog "This replaces the former method of defining \$SVDIR globally via"
+	elog "/etc/env.d/. See the discussion in #522786 for more info."
 	if [[ ${REPLACING_VERSIONS} ]] ; then
-		ewarn "You should migrate your services to /etc/sv/ *NOW*."
+		echo
+		ewarn "A pre-existing runit version was detected. Make sure /etc/sv/ is"
+		ewarn "what you expect to be running next boot!"
 	fi
 }
 
