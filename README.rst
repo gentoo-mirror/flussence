@@ -42,6 +42,10 @@ Contents
   This exists because the one in another overlay had a mandatory mplayer
   dependency and I'd switched to mpv.
 
+* ``net-irc/irssi``: irssi git ebuild
+
+  This is the ``::gentoo`` ebuild but with 300% added rice. Don't use it.
+
 * ``sys-apps/kmscon`` and ``dev-libs/libtsm``: kmscon 8, and its libtsm dep
 
   Anti-aliased bloat for your consoles. Works but feels slightly buggy to me.
