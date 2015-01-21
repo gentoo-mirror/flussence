@@ -1,0 +1,257 @@
+#!/bin/bash
+
+. /usr/lib/java-config-wrapper/functions.sh
+
+EXCLUDED_JARS="
+/usr/share/hibernate-annotations-3.0/lib/hibernate-annotations.jar
+/usr/share/hibernate-annotations-3.1/lib/hibernate-annotations.jar
+/usr/share/jace/lib/jace.jar
+/usr/share/spring-2.0/lib/spring.jar
+/usr/share/spring-2.0/lib/spring-hibernate3.jar
+/usr/share/spring-2.0/lib/spring-jpa.jar
+/usr/share/spring-2.0/lib/spring-aop.jar
+/usr/share/spring-2.0/lib/spring-beans.jar
+/usr/share/spring-2.0/lib/spring-core.jar
+/usr/share/spring-2.0/lib/spring-dao.jar
+/usr/share/spring-2.0/lib/spring-jdbc.jar
+/usr/share/spring-2.0/lib/spring-support.jar
+/usr/share/spring/lib/spring-dao.jar
+/usr/share/spring/lib/spring-hibernate.jar
+/usr/share/spring/lib/spring-support.jar
+/usr/share/spring/lib/spring.jar
+/usr/share/xwork-1.1/lib/xwork-tiger.jar
+"
+
+# TODO should be checking that we're not using a 1.5 VM!
+#QUIET=1 java-check-environment check_generation_1_system_15_vm  > /dev/null
+#if [[ $? != 0 ]]; then
+#	eerror "You're using a 1.5 System VM! Please use a 1.4 VM instead!"
+#	exit 1
+#fi
+
+has() {
+	local list=${1}
+	local target=${2}
+
+	local item
+	for item in ${list}; do
+		if [[ ${item} == ${target} ]]; then
+			return 0;
+		fi
+	done
+	return 1;
+}
+
+debug_print() {
+	local mesgs=$@
+	[[ -n ${FIXER_DEBUG} ]] && echo ${mesgs} 1>&2
+
+}
+
+# check for 1.5 bytecode... returns 1 for 1.5 bytecode, otherwise 0
+has_bad_bytecode() {
+	local jar=${1}
+	local output=$("${ROOT}"/usr/bin/class-version-verify.py -t 1.4 ${jar} -f)
+
+	if [[ -z ${output} ]]; then
+		return 1
+	else
+		return 0
+	fi
+}
+
+# $1 - package.env file
+# $2 - name of VAR=foo variable
+get_value_from_package_env() {
+	# get the VAR line from package.env
+	local line="$(grep ${2} ${1})"
+	
+	# strip VAR=
+	local value="${line#${2}=}"
+	
+	# strip quotes
+	value="${value//\"/}"
+	
+	echo ${value}
+}
+
+get_jars_from_package_env() {
+	local package_env=${1}
+
+	# keep track of the original classpath
+	local save_classpath=${CLASSPATH}
+
+	# get classpath from package.env
+	package_classpath=$(get_value_from_package_env ${package_env} CLASSPATH)
+
+	echo ${package_classpath//:/ }
+}
+
+check_package_env_valid_gen2_target_15() {
+	local generation=$(get_value_from_package_env ${1} GENERATION)
+	
+	debug_print "${1} generation: ${generation}"
+	
+	# packages with generation 1 or without generation won't have TARGET and shouldn't be 1.5
+	if [[ "${generation}" != "2" ]]; then
+	    return 1
+	fi
+	
+	local target=$(get_value_from_package_env ${1} TARGET)
+	
+	debug_print "${1} target: $target"
+	
+	# packages with target 1.5 or 1.6 are valid to have 1.5+ bytecode, skip them
+	if [[ "${target}" = "1.5" || "${target}" = "1.6" ]]; then
+	    return 0
+	fi
+	
+	# bytecode should be under 1.5, check it
+	return 1
+}
+
+get_jars() {
+	local package_envs=$@
+	local package_env
+	local all_jars
+	# for each package.env file
+	for package_env in ${package_envs}; do
+	if [[ -f ${package_env} ]]; then
+		#check if package is valid gen2 with 1.5+ target
+		if $(check_package_env_valid_gen2_target_15 ${package_env}); then
+		    debug_print "skipping ${package_env}"
+		    continue
+		fi
+    		debug_print "parsing ${package_env}"
+    		# figure out what jars are in it
+    		local jars=$(get_jars_from_package_env ${package_env})
+    		all_jars="${all_jars} ${jars}"
+        else
+            debug_print "${package_env} doesn't exist... skipping"
+        fi
+	done
+
+	echo ${all_jars}
+}
+
+get_broken_packages() {
+	local jars=$@
+	local jar package broken_packages
+	# for each jar...
+	for jar in ${jars}; do
+		# check if it has >1.4 bytecode
+		debug_print "checking ${jar}"
+		if has "${EXCLUDED_JARS}" ${jar}; then
+			debug_print "skipping ${jar}"
+			continue
+		fi
+		if has_bad_bytecode ${jar}; then
+			debug_print "${jar} has bad bytecode!"
+			package="$(print_owning_spec ${jar})"
+			broken_packages="${broken_packages} ${package}"
+		fi
+	done
+
+	sed -e 'y/ /\n/' <<< ${broken_packages} | sort | uniq
+}
+
+fix_packages() {
+	local broken_packages=$@
+	local this_run last_run
+
+	while [[ -n ${broken_packages} ]]; do
+		local this_run="${broken_packages}"
+		if [[ "${this_run}" == "${last_run}" ]]; then
+			eerror "Detected a repeat run. Something is probably wrong."
+			eerror "Aborting..."
+			break
+		fi
+
+		last_run="${broken_packages}"
+		broken_packages=""
+
+		einfo "Packages to fix this run:"
+		echo ${this_run}
+		einfo "Starting in 5 seconds..."
+		sleep 5
+
+		local package
+		for package in ${this_run}; do
+			einfo "Attempting to fix ${package}"
+			reinstall_spec ${package}
+			local result=$?
+
+			if [[ ${result} != 0 ]]; then
+				eerror "Failed to fix ${package}"
+				eerror "Putting it in the queue for next run"
+				broken_packages="${broken_packages} ${package}"
+			else
+				einfo "Successfully fixed ${package}"
+			fi
+		done
+	done
+
+	# if no more broken packages... hurrah!
+	if [[ -z ${broken_packages} ]]; then
+		return 0
+	else
+		return 1
+	fi
+	
+}
+
+if [[ ${UID} != 0 ]]; then
+	ewarn "You aren't root, so we'll just show what packages we'd emerge"
+fi
+
+ebegin "Generating a list of jars which ant uses"
+ant_packages="log4j xerces-2 xalan junit antlr bcel bsh commons-beanutils-1.6 commons-collections commons-logging commons-net jakarta-oro-2.0 jdepend jsch jakarta-regexp-1.3 rhino-1.5 jython jta sun-jaf-bin sun-javamail-bin"
+ant_package_envs=""
+# build a list of package.env files
+for ant_dep in ${ant_packages}; do
+	package_env="${ROOT}/usr/share/${ant_dep}/package.env"
+	ant_package_envs="${ant_package_envs} ${package_env}"
+done
+# get jars from these envs
+ant_jars=$(get_jars ${ant_package_envs})
+eend 0
+
+ebegin "Checking for > 1.4 bytecode in ant jars"
+broken_ant_packages=$(get_broken_packages ${ant_jars})
+eend 0
+
+if [[ -n ${broken_ant_packages} ]]; then
+	if [[ ${UID} == 0 ]]; then
+		ebegin "Removing broken ant dependencies"
+		emerge -C ${broken_ant_packages}
+		result=$?
+		eend ${result}
+	fi
+fi
+
+ebegin "Generating a list of jars in the system"
+all_jars=$(get_jars ${ROOT}/usr/share/*/package.env)
+eend 0
+
+ebegin "Checking for > 1.4 bytecode in system jars"
+broken_packages="$(get_broken_packages ${all_jars})"
+eend 0
+
+if [[ -n ${broken_packages} || -n ${broken_ant_packages} ]]; then
+	if [[ ${UID} == 0 ]]; then
+		ebegin "Attempting to fix broken packages"
+		fix_packages ${broken_ant_packages} ${broken_packages}
+		result=$?
+		if [[ ${result} != 0 ]]; then
+			eerror "There was a problem fixing all the broken packages!"
+			exit 1
+		else
+			einfo "Congratulations! System jars seem to have been fixed."
+		fi
+		eend $result
+		exit $result
+	fi
+else
+	einfo "Congratulations! All system jars seem to have been sanely built already."
+	exit 0
+fi

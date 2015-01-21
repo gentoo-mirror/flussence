@@ -19,6 +19,16 @@ Gentoo's QA programs, and SHOULD NOT be construed as anything other than
 Contents
 ========
 
+* ``dev-java/java-config-wrapper``:
+  java-config-wrapper without the hardcoded Portage deps
+
+  Modernized versions of Gentoo's Java scripts to play nice with other package
+  managers, like ``perl-cleaner`` and ``python-updater`` already do. Doesn't
+  support pkgcore yet; I'll add it if someone sends a patch.
+
+  Also fixes `Bug 193305`_, `Bug 504124`_ and `Bug 505098`_, because they took
+  about 10 seconds each to fix. This stuff is evidently abandonware.
+
 * ``games-server/minecraft-common`` and ``games-server/minecraft-server``:
   Minecraft server ebuilds
 
@@ -31,26 +41,31 @@ Contents
   soon, so this may become obsolete. Or it may not, depending on how well their
   version goes.
 
-* ``games-util/c10t``: c10t_ git ebuild
+* ``games-util/c10t``:
+  c10t_ git ebuild
 
   A minimal ebuild that builds/installs the "c10t" binary. Contains some
   self-written patches to hack light/height map rendering back in. Not sure if
   upstream is dead, this may stop working if it turns out not to be.
 
-* ``media-video/get_iplayer``: get_iplayer
+* ``media-video/get_iplayer``:
+  get_iplayer
 
   This exists because the one in another overlay had a mandatory mplayer
   dependency and I'd switched to mpv.
 
-* ``net-irc/irssi``: irssi git ebuild
+* ``net-irc/irssi``:
+  irssi git ebuild
 
   This is the ``::gentoo`` ebuild but with 300% added rice. Don't use it.
 
-* ``sys-apps/kmscon`` and ``dev-libs/libtsm``: kmscon 8, and its libtsm dep
+* ``sys-apps/kmscon`` and ``dev-libs/libtsm``:
+  kmscon 8, and its libtsm dep
 
   Anti-aliased bloat for your consoles. Works but feels slightly buggy to me.
 
-* ``sys-apps/s6``: s6 1.x
+* ``sys-apps/s6``:
+  s6 1.x
 
   A workaround for `Bug 529180`_ because both Gentoo and Paludis upstream hate
   their users or something.
@@ -58,7 +73,8 @@ Contents
   I gave up before I actually got to use this, and will probably drop it when
   2.0 is released.
 
-* ``sys-process/runit``: runit 2.1.2
+* ``sys-process/runit``:
+  runit 2.1.2
 
   A heavily improved runit ebuild, adopted after Gentoo failed to respond to
   multiple bugs for several months. Has a few nice additions like working
@@ -85,6 +101,9 @@ Contents
 .. _c10t: https://github.com/udoprog/c10t
 
 .. gentoo stuff
+.. _Bug 193305: https://bugs.gentoo.org/show_bug.cgi?id=193305
+.. _Bug 504124: https://bugs.gentoo.org/show_bug.cgi?id=504124
+.. _Bug 505098: https://bugs.gentoo.org/show_bug.cgi?id=505098
 .. _Bug 529180: https://bugs.gentoo.org/show_bug.cgi?id=529180
 .. _Java overlay: http://git.overlays.gentoo.org/gitweb/?p=proj/java.git;a=summary
 .. _meaningless boilerplate: https://devmanual.gentoo.org/ebuild-writing/common-mistakes/index.html#missing/invalid/broken-header

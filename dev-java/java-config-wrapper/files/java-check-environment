@@ -1,0 +1,360 @@
+#!/bin/bash
+
+. /usr/lib/java-config-wrapper/functions.sh
+
+# Used to update the global result.
+update_result() {
+	local new_result=${1}
+
+	# Only update if result was good so far
+	[[ ${RESULT} == 0 ]] &&  RESULT=${new_result}
+}
+
+#
+# some wrapper functions, so we can be quiet if we want
+#
+
+# quiet echo
+qecho() {
+	[[ -z ${QUIET} ]] && echo ${@}
+}
+
+# quiet einfo
+qeinfo() {
+	[[ -z ${QUIET} ]] && einfo ${@}
+}
+
+# quiet ewarn
+qewarn() {
+	[[ -z ${QUIET} ]] && ewarn ${@}
+}
+
+# quiet eerror
+qeerror() {
+	[[ -z ${QUIET} ]] && eerror ${@}
+}
+
+# quiet ebegin
+qebegin() {
+	[[ -z ${QUIET} ]] && ebegin ${@}
+}
+
+# quiet eend
+qeend() {
+	[[ -z ${QUIET} ]] && eend ${@}
+}
+
+# Here are our checks. The names should prefixed with 'check_'
+
+# Check environment files in /etc/env.d/java:
+# Generation-2 have GENERATION="2" in them.
+# Generation-1 don't have anything.
+check_vm_environment_files() {
+	local this_result=0
+
+	local packages_to_merge old_configs
+
+	# We need to unset GENERATION, because this ends up being in 
+	# the environment.
+	local OLD_GENERATION=${GENERATION}
+	unset GENERATION
+
+	# Check /etc/env.d/java for old env files
+	for env in $(ls /etc/env.d/java/20* 2>/dev/null); do
+		generation=$(source ${env}; echo $GENERATION)
+		version=$(source ${env}; echo $VERSION)
+		handle=${env#*20}
+	
+		if [[ "${generation}z" != "2z" ]]; then
+			local ATOM
+            if [[ ${handle} =~ "^kaffe" ]]; then
+				ATOM=">=dev-java/kaffe-1.1.7"
+			elif [[ ${handle} =~ "^blackdown-jdk" ]]; then
+				ATOM=">=dev-java/blackdown-jdk-1.4.2.03-r12"
+			elif [[ ${handle} =~ "^blackdown-jre" ]]; then
+				ATOM=">=dev-java/blackdown-jre-1.4.2.03-r11"
+			elif [[ ${handle} =~ "^ibm-jdk-bin-1.4" ]]; then
+				ATOM="=dev-java/ibm-jdk-bin-1.4.2.5*"
+			elif [[ ${handle} =~ "^ibm-jre-bin" ]]; then
+				ATOM="=dev-java/ibm-jre-bin-1.4.2.5*"
+			elif [[ ${handle} =~ "^sun-jdk-1.4" ]]; then
+				ATOM="=dev-java/sun-jdk-1.4.2.12*"
+			elif [[ ${handle} =~ "^sun-jre-bin-1.4" ]]; then
+				ATOM="=dev-java/sun-jre-bin-1.4.2.12*"
+			elif [[ ${handle} =~ "^jrockit-jdk-bin-1.4" ]]; then
+				ATOM="=dev-java/jrockit-jdk-bin-1.4.2.11*"
+			elif [[ ${handle} =~ "^(\w+-)+[0-9]+\.[0-9]+" ]]; then 
+			    ATOM="=${BASH_REMATCH}*"
+			fi
+			packages_to_merge="${packages_to_merge} '${ATOM}'"
+			old_configs="${old_configs} ${env}"
+			this_result=1
+		fi
+	done
+
+	if [[ -n ${old_configs} ]]; then
+		qeerror "Generation-1 configuration files were found in /etc/env.d/java"
+		qeerror "Please run the following to remove them:"
+
+		qecho "# rm ${old_configs}"
+		qecho
+
+		qeerror "You must then update your VMs to Generation-2 by running:"
+		qecho "# emerge -autv1 ${packages_to_merge}"
+		qecho
+		qeerror "If you've done this already, but java-check-environment"
+		qeerror "still prompts you to emerge the same stuff, be sure that you"
+		qeerror "have each package keyworded properly to get the latest version."
+		qeerror "Refer to the Gentoo Java upgrade guide for complete list of"
+		qeerror "packages to put into package.keywords."
+	fi
+
+	GENERATION=${OLD_GENERATION}
+
+	update_result ${this_result}
+	return ${this_result}
+}
+
+# Checks environment files in current user's home directory:
+# For Generation-1, these files sat in ~/.gentoo
+check_user_settings() {
+	local this_result=0
+	# Check .gentoo/ for old env files for non-root users
+	if [[ ${UID} != 0 ]]; then
+		# this equates to java, java.csh, java-env, java-env.csh
+		local user_configs=$(ls ~/.gentoo/java{,.csh,-env{,.csh}} 2>/dev/null)
+		if [[ -n ${user_configs} ]]; then
+			qeerror "Generation-1 configurations found in ~/.gentoo"
+			qeerror "Please run the following to remove them:"
+			qecho \$ rm ${user_configs}
+			qecho
+	
+			qewarn "You may also need update your ~/.bash_profile "
+			qewarn "or ~/.bashrc if they reference these file"
+		
+			qewarn "If you choose, you can select a new user VM."
+			qewarn "Otherwise, the system-vm will be used."
+			qewarn "Run 'java-config -L' to see a list of available VMs"
+			qewarn "Then run 'java-config -s <VM choice>'"
+
+			this_result=1
+		fi
+	else
+		qeinfo "Running as root. Don't need to check user settings."
+	fi
+
+	update_result ${this_result}
+	return ${this_result}
+}
+
+# Checks that a system-vm for generation-1 is set
+check_generation_1_system_vm() {
+	local this_result=0
+	local env="/etc/env.d/20java"
+	# Make sure that no generation-1 VM is set
+	if [[ -f "${env}" ]]; then
+		qeerror "You have a generation-1 system VM set. (${env} exists)"
+		qeerror "It is deprecated, no longer needed and may pollute the environment."
+		qeerror "You should remove the env.d file:"
+		
+		qecho \$ rm ${env}
+		qecho \$ "env-update && source /etc/profile"
+		
+		this_result=1
+	fi
+
+	update_result ${this_result}
+	return ${this_result}
+}
+
+# Checks if java-config-1 is installed
+check_java_config_1() {
+	local jc="/usr/bin/java-config-1"
+	if [[ -f "${jc}" ]]; then
+		qewarn "dev-java/java-config:0 (version 1.x) seems to be installed"
+		qewarn "It is no longer needed, you can uninstall it."
+		
+		qecho \$ emerge -av --depclean dev-java/java-config:0
+	fi
+}
+
+# Checks for global classpath in env.d which is deprecated
+check_global_classpath() {
+	if grep -q "^CLASSPATH=" /etc/env.d/*; then
+		qewarn "Following global CLASSPATH settings found in /etc/env.d/"
+		qecho
+		grep "^CLASSPATH=" /etc/env.d/*
+		qecho
+		qewarn "Setting global CLASSPATH is deprecated and should be removed."
+		qewarn "Note that:"
+		qewarn "30java-finalclasspath belongs to dev-java/java-config:0 (see previous check)"
+		qewarn "21java-classpath is manipulated by java-config -A or -B and can be removed by java-config -X"
+		qecho
+		qewarn "Please file bugs for any packages that own other files setting CLASSPATH"
+		qewarn "You can determine them by running:"
+		qecho "\$ portageq owners / /etc/env.d/<file>"
+	fi
+}
+
+check_virtual_provides() {
+	local this_result=0
+	local provides=$(find /var/db/pkg -name PROVIDE | xargs egrep -l 'virtual/jdk|virtual/jre')
+	if [[ -n ${provides} ]]; then
+		qeerror "Found PROVIDE files from old-style virtuals. Please remove them:"
+		qecho "# rm ${provides}"
+
+		this_result=1
+    fi
+	if grep "virtual/\(jre\|jdk\)" /etc/portage/profile/virtuals >/dev/null 2>&1; then
+		qeerror "Found virtual/{jre,jdk} entries in /etc/portage/profile/virtuals"
+		qeerror "Please remove them"
+		
+		this_result=1
+	fi
+	update_result ${this_result}
+	return ${this_result}
+}
+
+check_overlays_eclasses() {
+	local overlays=$(print_overlay_dirs)
+	local eclasses_found=""
+	for o in $overlays; do
+		local eclasses=""
+		[[ -d "${o}/eclass" ]] && eclasses=`find ${o}/eclass -name 'java*.eclass'`
+		if [[ -n "${eclasses}" ]]; then
+			[[ -z "${eclasses_found}" ]] && ewarn "Java eclasses found in the following overlay(s):"
+			ewarn "${o}"
+			eclasses_found=1
+		fi
+    done
+    
+    if [[ -n "${eclasses_found}" ]]; then
+		echo ""
+		qewarn "This may or not be desired. Make sure you don't use any obsolete overlays."
+		ewarn "Especially any overlays (migration etc) from www.gentooexperimental.org/svn/java/"
+		qewarn "Overlays (except axxo-overlay and gcj-overlay that are deprecated)"
+		qewarn "from http://overlays.gentoo.org/proj/java/ should be fine"
+		qewarn "If you experience any problems, remove it from your PORTDIR_OVERLAY and try again"
+		qecho
+	fi
+}
+
+check_package_env() {
+	local result=0
+	local pkg owner failed
+	for penv in /usr/share/*/package.env; do
+		if [ ${penv} = "/usr/share/*/package.env" ]; then
+			break
+		fi
+		if grep DEPEND ${penv} | grep , > /dev/null; then
+			owner=$(print_owning_spec ${penv})
+			qeerror "Syntax error in ${owner}:"
+			qeerror "DEPEND has commas in it"
+			qeerror "Please reinstall ${owner}"
+			result=1
+		fi
+		if grep 'GENERATION="2"' ${penv} > /dev/null; then
+			failed=0
+			(
+				source $penv
+				for atom in ${DEPEND//:/ }; do
+					if [[ ${atom} = *@* ]]; then
+						pkg=$(echo $atom | cut -d @ -f 2)
+					else
+						pkg=${atom}
+					fi
+					if [[ ! -e /usr/share/${pkg}/package.env && ! -e "/usr/share/java-config-2/virtuals/${pkg}" ]]; then
+						return 1
+					fi
+				done
+				return 0
+			) || failed=1
+			if [[ ${failed} = 1 ]]; then
+				java-config --with-dependencies -p $(basename $(dirname ${penv})) > /dev/null
+				owner=$(print_owning_spec ${penv})
+				qeerror "Broken dependencies for ${owner}"
+				qeerror "Please try emerge -uD1 =${owner}"
+				result=1
+			fi
+		fi
+	done
+	return ${result}
+}
+
+check_fastjar() {
+	local fjar=/usr/bin/fastjar
+	local result=0
+	if [[ -x ${fjar} ]]; then
+		local tmpdir="$(mktemp -d)"
+		if [[ ! -e ${tmpdir} ]]; then
+			qeerror "Failed to create temporary directory."
+			qeerror "There is a problem with your mktemp."
+			return 1
+		fi
+		pushd "${tmpdir}" > /dev/null
+		local testfile="test.txt"
+		echo "fastjartest" >> ${testfile}
+		${fjar} cf test.jar ${testfile}
+		rm ${testfile}
+		${fjar} xf test.jar
+		if ! grep fastjartest ${testfile} > /dev/null; then
+			qeerror "Your ${fjar} was not able to create a jar file."
+			qeerror "See https://bugs.gentoo.org/show_bug.cgi?id=135688"
+			qeerror "for details. If you have had eselect-compiler installed"
+			qeerror "just delete ${fjar}. Otherwise report this to"
+			qeerror "http://bugs.gentoo.org."
+			result=1
+		fi
+		rm -fr ${tmpdir}
+		popd > /dev/null
+	fi
+	return ${result}
+}
+
+check_proc_mounted() {
+	[[ -e /proc/self/exe ]] || {
+		qeerror "/proc/self/exe does not exist. Many JDKs use this to find"
+		qeerror "out where they are installed. Do you have /proc mounted?"
+	}
+}
+
+qeinfo "=== Java Environment Checker ==="
+qeinfo "The purpose of this script is to check the sanity of your Java Environment."
+qeinfo "We have significantly changed and improved the way Java is handled in many"
+qeinfo "respects."
+qeinfo "Please refer to our upgrade guide for details:" 
+qeinfo "http://www.gentoo.org/proj/en/java/java-upgrade.xml"
+qecho
+
+RESULT=0
+
+
+# Get the list of checks to perform from the command line
+checks=$@
+# or use our default
+checks=${checks:="fastjar vm_environment_files user_settings generation_1_system_vm
+	java_config_1 global_classpath virtual_provides overlays_eclasses package_env proc_mounted"}
+
+for check in ${checks}; do
+	if [ "$(type -t check_${checks})" == "function" ]; then
+		qebegin "Checking ${check}"
+		check_${check}
+		result=$?
+		qeend ${result}
+        qecho
+	else
+		eerror "Could not find function 'check_${check}'"
+		exit 1
+	fi
+
+	if [[ ${result} != 0 ]]; then
+		qeerror "Some problems were found. Please follow the instructions above, and rerun java-check-environment"
+		exit ${result}
+	fi
+done
+
+if [[ ${RESULT} == 0 ]]; then
+	qeinfo "Java environment is sane. Congratulations!"
+fi
+
+exit ${RESULT}
