@@ -1,2 +1,5 @@
-# These numbers are snapshot versions
+# These numbers are snapshot versions; unmask manually if wanted.
 >games-server/minecraft-server-1.99
+
+# Fails to build from source, upstream seems dead.
+=games-util/c10t-9999
