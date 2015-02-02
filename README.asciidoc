@@ -1,0 +1,96 @@
+The `::flussence` Gentoo ebuild repository
+==========================================
+
+Some packages I'm using or have used. There's patched versions of other people's
+ebuilds, and a few I made myself because they didn't exist anywhere else at the
+time.
+
+All of these are supposed to work. If you find any problems with the ebuilds
+themselves, or anything that doesn't look like an upstream bug, please take it
+to https://github.com/flussence/ebuilds/issues[this repo's Github Issues page].
+
+Requires an EAPI 5 (or higher) package manager.
+
+Contents
+--------
+`dev-java/java-config-wrapper`::
+    java-config-wrapper without the hardcoded Portage deps.
+
+Modernized versions of Gentoo's Java scripts to play nice with other package
+managers, like `perl-cleaner` and `python-updater` already do. Doesn't
+support pkgcore yet; I'll add it if someone sends a patch.
+
+Fixes the following:
+--
+* https://bugs.gentoo.org/193305
+* https://bugs.gentoo.org/504124
+* https://bugs.gentoo.org/505098
+--
+
+`games-server/minecraft-common`::
+`games-server/minecraft-server`::
+    Maintained minecraft-server ebuilds
+
+These are heavily modified versions of the ebuilds in the
+http://git.overlays.gentoo.org/gitweb/?p=proj/java.git;a=summary[Java overlay]
+(which hadn't been updated since around 1.4). These support running from custom
+directories and don't spawn/depend on tmux (recent versions of the game support
+rcon).
+
+`games-util/c10t`::
+    git ebuild for https://github.com/udoprog/c10t[c10t]
+
+Builds/installs the "c10t" binary. Contains some self-written patches to hack
+light/height map rendering back in. Due for removal at end of Feb 2015, as it's
+no longer compiling.
+
+`media-video/get_iplayer`::
+    Lightweight get_iplayer ebuild
+
+Imported from another repository (`::ikelos`, iirc). That version had an
+unnecessary mplayer dependency, this doesn't. Also has more id3tag support.
+
+`net-irc/irssi`::
+    Riced irssi ebuild
+
+`irssi::gentoo` git ebuild but with too many configure flags exposed.
+
+`sys-apps/kmscon`::
+`dev-libs/libtsm`::
+    kmscon 8, and its libtsm dep
+
+Anti-aliased bloat for your consoles. Works but feels slightly buggy to me.
+
+`sys-apps/s6`::
+    s6 1.x
+
+A workaround because both Gentoo and Paludis upstream hate their users or
+something. I gave up before I actually got to use this, and will probably drop
+it when 2.0 is released.
+
+Fixes:
+--
+* https://bugs.gentoo.org/529180
+--
+
+`sys-process/runit`::
+My own rewrite of the Gentoo runit ebuild, because they took several months to
+fix trivial bugs I was reporting. Supports separate-root-and-usr partitions and
+kexec rebooting.
+
+Take a look at https://github.com/flussence/runit-scripts[my runit-scripts
+repository] for replacements to some OpenRC initscripts. *DO NOT* file bugs on
+Gentoo sites about either those nor the ebuild, as I've unfortunately noticed
+some people doing.
+
+[NOTE]
+.Boilerplate headers and copyright attribution
+================================================================================
+The 3-line legalese header on each ebuild is required to be present, verbatim,
+by Gentoo's QA programs. Other than the GPL-2 statement, the rest of it should
+not be relied on as legally valid. Correct attribution for sources can be found
+in the git logs or this document.
+
+Reference:
+https://devmanual.gentoo.org/ebuild-writing/common-mistakes/index.html
+================================================================================
