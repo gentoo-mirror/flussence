@@ -40,6 +40,12 @@ Builds/installs the "c10t" binary. Contains some self-written patches to hack
 light/height map rendering back in. Due for removal at end of Feb 2015, as it's
 no longer compiling.
 
+`gnome-extra/gucharmap` — GTK+2 gucharmap::
+A good character map program (much nicer than KCharSelect, which is a Windows
+clone). The Gentoo ebuild for this is deliberately crippled to try and force you
+to install GTK+3, so I wrote a better one from scratch. Make sure to add
+`gucharmap::gentoo` to your `package.mask`.
+
 `media-video/get_iplayer` — Lightweight get_iplayer ebuild::
 Imported from another repository (`::ikelos`, iirc). That version had an
 unnecessary mplayer dependency, this doesn't. Also has more id3tag support.
