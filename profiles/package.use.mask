@@ -1,1 +1,5 @@
+# "symbol lookup error: libval-threads.so.14: undefined symbol: ns_name_pton"
+net-irc/irssi dane
+
+# Segfaults
 =net-irc/irssi-9999 boehm-gc
