@@ -50,8 +50,9 @@ to install GTK+3, so I wrote a better one from scratch. Make sure to add
 Imported from another repository (`::ikelos`, iirc). That version had an
 unnecessary mplayer dependency, this doesn't. Also has more id3tag support.
 
-`net-irc/irssi` — Riced irssi ebuild::
-`irssi::gentoo` git ebuild but with too many configure flags exposed.
+`net-irc/irssi` — Riced irssi ebuilds::
+Tweaked `irssi::gentoo` ebuilds; stable version with DANE and 256-color terminal
+support, and a git ebuild with far too many USE flags.
 
 `sys-apps/kmscon` — kmscon 8::
 `dev-libs/libtsm` — kmscon 8's dependency::
