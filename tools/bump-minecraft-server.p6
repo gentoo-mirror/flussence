@@ -22,11 +22,11 @@ sub get-current-version() returns Pair {
     my Regex $ebuild-name = rx/'minecraft-server-' (\d\d)(\d\d)(\w) '.ebuild'$/;
 
     # This is _horrible_.
-    my $ebuild-dir = $*PROGRAM_NAME.path;
-    $ebuild-dir.=child($_) for <.. .. games-server minecraft-server>;
+    my $ebuild-dir = $*PROGRAM_NAME.IO.parent.parent;
+    $ebuild-dir.=child($_) for <games-server minecraft-server>;
     $ebuild-dir.=cleanup(:parent);
 
-    my $ebuild = $ebuild-dir.contents(test => $ebuild-name);
+    my $ebuild = $ebuild-dir.dir(test => $ebuild-name);
     # You shouldn't have more than one snapshot ebuild in here
     die if $ebuild.elems != 1;
 
@@ -40,9 +40,9 @@ sub get-newest-version() returns Pair {
     my $year = $now.year - 2000;
     my $newest-version;
 
-    for $now.week-number.pred X- ^4 -> $week {
+    for $now.week-number.pred X- ^5 -> $week {
         for 'a'..'z' -> $letter {
-            my $version = $year ~ 'w' ~ $week ~ $letter;
+            my $version = sprintf('%02dw%02d%s', $year, $week, $letter);
 
             if get-url-for-version($version) -> $url {
                 $newest-version = [$year, $week, $letter] => $url;
@@ -69,6 +69,7 @@ sub get-url-for-version(Str $version) {
         return "http://{$host}{$url}";
     }
     else {
+        note "Didn't receive a good reply";
         return False;
     }
 }
@@ -81,6 +82,7 @@ sub HEAD(Str $host, Str $url) returns Buf {
         "",
     ;
 
+    note "Trying @headers[0]";
     my $sock = IO::Socket::INET.new(:$host, :port(80));
     $sock.send($_ ~ "\r\n") for @headers;
 
