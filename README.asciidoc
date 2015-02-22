@@ -58,18 +58,6 @@ support, and a git ebuild with far too many USE flags.
 `dev-libs/libtsm` — kmscon 8's dependency::
 Anti-aliased bloat for your consoles. Works but feels slightly buggy to me.
 
-`sys-apps/s6` — s6 1.x::
-+
---
-A workaround because both Gentoo and Paludis upstream hate their users or
-something. I gave up before I actually got to use this, and will probably drop
-it when 2.0 is released.
-
-Fixes these upstream bugs:
-
-* https://bugs.gentoo.org/529180
---
-
 `sys-process/runit` — My own rewrite of the Gentoo runit ebuild::
 +
 --
