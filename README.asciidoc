@@ -63,8 +63,14 @@ Imported from another repository (`::ikelos`, iirc). That version had an
 unnecessary mplayer dependency, this doesn't. Also has more id3tag support.
 
 `net-irc/irssi` — Riced irssi ebuilds::
-Tweaked `irssi::gentoo` ebuilds; stable version with DANE and 256-color terminal
-support, and a git ebuild with far too many USE flags.
++
+--
+Tweaked `irssi::gentoo` ebuilds; stable version with optional DANE and 256-color
+terminal support, and a git ebuild with far too many USE flags.
+
+Avoid using anything but the 256-color support for now; `USE=dane` in particular
+will build fine but crash at runtime.
+--
 
 `sys-apps/kmscon` — kmscon 8::
 `dev-libs/libtsm` — kmscon 8's dependency::
