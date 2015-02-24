@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -17,7 +17,7 @@ IUSE="test"
 
 DEPEND="
 	sys-libs/zlib
-	>=media-libs/libpng-1.2
+	>=media-libs/libpng-1.2:0
 	>=media-libs/freetype-2
 	>=dev-libs/boost-1.46[threads]"
 RDEPEND="${DEPEND}"

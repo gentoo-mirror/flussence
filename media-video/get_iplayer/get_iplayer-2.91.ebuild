@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -16,7 +16,7 @@ IUSE="+ffmpeg id3tag mplayer +perl"
 DEPEND=">=dev-lang/perl-5.8.8
 dev-perl/libwww-perl
 media-video/rtmpdump
-ffmpeg? ( media-video/ffmpeg )
+ffmpeg? ( media-video/ffmpeg:0 )
 id3tag? ( perl? ( dev-perl/MP3-Tag ) !perl? ( media-sound/id3v2 ) )
 mplayer? ( media-video/mplayer )"
 RDEPEND="${DEPEND}"

@@ -24,7 +24,7 @@ CDEPEND="
 	dane? ( <net-dns/dnssec-validator-2.1[threads] )
 	perl? ( dev-lang/perl )
 	socks5? ( >=net-proxy/dante-1.1.18 )
-	ssl? ( dev-libs/openssl )
+	ssl? ( dev-libs/openssl:0 )
 	"
 DEPEND="${CDEPEND}
 	virtual/pkgconfig"

@@ -23,7 +23,7 @@ CDEPEND="
 	ncurses? ( sys-libs/ncurses )
 	perl? ( dev-lang/perl )
 	socks5? ( >=net-proxy/dante-1.1.18 )
-	ssl? ( dev-libs/openssl )
+	ssl? ( dev-libs/openssl:0 )
 	"
 DEPEND="${CDEPEND}
 	virtual/pkgconfig
