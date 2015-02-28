@@ -19,8 +19,8 @@ case "$PACKAGE_MANAGER" in
 			emerge --oneshot $1
 		}
 		print_overlay_dirs() {
-			portageq repositories_configuration ${ROOT:-/} | \
-				awk -F = '/^location/ { print $2 }'
+			portageq get_repo_path ${ROOT:-/} \
+				$(portageq get_repos ${ROOT:-/})
 		}
 		;;
 
