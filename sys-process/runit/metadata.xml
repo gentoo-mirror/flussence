@@ -15,5 +15,6 @@
 	</upstream>
 	<use>
 		<flag name="symlink">Symlink /service to /etc/service to allow abbreviated `sv` commands</flag>
+		<flag name="sysv-compat">Install /sbin/{reboot,poweroff} scripts for compatibility with sysvinit</flag>
 	</use>
 </pkgmetadata>

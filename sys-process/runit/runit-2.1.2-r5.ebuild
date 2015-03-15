@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -13,10 +13,11 @@ SRC_URI="http://smarden.org/runit/${P}.tar.gz"
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="static +symlink"
+IUSE="static +symlink sysv-compat"
 
 # Prevent automatic upgrades to force people to pay attention to elog stuff
-DEPEND="!!<sys-process/runit-2.1.2-r4"
+DEPEND="!!<sys-process/runit-2.1.2-r4
+	sysv-compat? ( !sys-apps/sysvinit )"
 
 S=${WORKDIR}/admin/${P}/src
 
@@ -39,8 +40,12 @@ src_install() {
 	into /
 	dobin chpst runsv runsvchdir runsvdir sv svlogd
 	dosbin runit runit-init utmpset
-	into /usr
+	if use sysv-compat; then
+		dosbin "${FILESDIR}"/poweroff
+		dosbin "${FILESDIR}"/reboot
+	fi
 
+	into /usr
 	for tty in agetty-tty{1..6}; do
 		exeinto /etc/sv/$tty/
 		for script in run finish; do
