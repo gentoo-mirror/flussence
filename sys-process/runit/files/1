@@ -19,13 +19,9 @@ case " $(</proc/cmdline) " in
     ;;
 esac
 
-# Create semaphore files somewhere that can be independent of the rootfs. Runit
-# decides whether to shutdown or reboot based on a file stat; without this, if
-# the rootfs got wedged read-only for any reason we'd lose that control.
-controldir=/tmp/runit
-install -m 700 -d $controldir
-
+# Runit decides whether to shutdown or reboot based on statting these files (and
+# making them symlinks doesn't work). In the worst case, having the rootfs
+# wedged read-only, you'll end up with a poweroff instead of a reboot.
 for file in reboot stopit; do
-    install -m 000 /dev/null $controldir/$file
-    ln -sfT $controldir/$file /etc/runit/$file
+    install -m 000 /dev/null /etc/runit/$file
 done
