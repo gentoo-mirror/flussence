@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE repositories SYSTEM "http://www.gentoo.org/dtd/repositories.dtd">
+<repositories xmlns="" version="1.0">
+  <repo quality="experimental" status="unofficial">
+    <name>flussence</name>
+    <description lang="en">Personal overlay, including a custom sys-apps/runit</description>
+    <homepage>https://github.com/flussence/ebuilds</homepage>
+    <owner type="person">
+      <email>flussence+github@gmail.com</email>
+      <name>Anthony Parsons</name>
+    </owner>
+    <source type="git">https://github.com/flussence/ebuilds.git</source>
+    <source type="git">git://github.com/flussence/ebuilds.git</source>
+    <source type="git">git@github.com:flussence/ebuilds.git</source>
+    <feed>https://github.com/flussence/ebuilds/commits/master.atom</feed>
+  </repo>
+</repositories>
