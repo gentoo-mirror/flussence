@@ -1,15 +1,30 @@
-The `::flussence` Gentoo ebuild repository
-==========================================
+The `flussence` overlay for Gentoo
+==================================
 
 Some packages I'm using or have used. There's patched versions of other people's
 ebuilds, and a few I made myself because they didn't exist anywhere else at the
 time.
 
-All of these are supposed to work. If you find any problems with the ebuilds
-themselves, or anything that doesn't look like an upstream bug, please take it
-to https://github.com/flussence/ebuilds/issues[this repo's Github Issues page].
+I try not to add anything with known bugs. If you find an ebuild here that
+doesn't compile, or anything that doesn't look like an upstream bug, please
+mention it on https://github.com/flussence/ebuilds/issues[this repo's Github
+Issues page].
 
 Requires an EAPI 5 (or higher) package manager.
+
+Installing
+----------
+
+This is for modern versions of Portage. If you don't have that, it's assumed you
+already know what you're doing.
+
+    # cd /etc/portage; mkdir repos.conf && cat > repos.conf/flussence.conf
+    [flussence]
+    location = /var/db/repositories/flussence
+    sync-type = git
+    sync-uri = https://github.com/flussence/ebuilds.git
+    ^D
+    # emerge --sync flussence
 
 Contents
 --------
