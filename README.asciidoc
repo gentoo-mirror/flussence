@@ -28,20 +28,6 @@ already know what you're doing.
 
 Contents
 --------
-`dev-java/java-config-wrapper` — java-config-wrapper without the hardcoded Portage deps::
-+
---
-Modernized versions of Gentoo's Java scripts to play nice with other package
-managers, like `perl-cleaner` and `python-updater` already do. Doesn't
-support pkgcore yet; I'll add it if someone sends a patch.
-
-Fixes these upstream bugs:
-
-* https://bugs.gentoo.org/193305
-* https://bugs.gentoo.org/504124
-* https://bugs.gentoo.org/505098
---
-
 `games-server/minecraft-server` — Maintained minecraft-server ebuilds::
 `games-server/minecraft-common` — dependency for minecraft-server::
 These are heavily modified versions of the ebuilds in the
