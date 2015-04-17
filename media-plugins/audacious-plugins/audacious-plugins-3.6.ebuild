@@ -21,7 +21,7 @@ RDEPEND="app-arch/unzip
 	>=dev-libs/dbus-glib-0.60
 	dev-libs/libxml2:2
 	media-libs/libmodplug
-	~media-sound/audacious-3.6_beta1
+	~media-sound/audacious-${PV}
 	>=net-libs/neon-0.26.4
 	x11-libs/gtk+:2
 	( || ( >=dev-libs/glib-2.32.2[utils] dev-util/gdbus-codegen ) )
