@@ -50,11 +50,6 @@ http://git.overlays.gentoo.org/gitweb/?p=proj/java.git;a=summary[Java overlay]
 directories and don't spawn/depend on tmux (recent versions of the game support
 rcon).
 
-`games-util/c10t` — git ebuild for https://github.com/udoprog/c10t[c10t]::
-Builds/installs the "c10t" binary. Contains some self-written patches to hack
-light/height map rendering back in. Due for removal at end of Feb 2015, as it's
-no longer compiling.
-
 `gnome-extra/gucharmap` — GTK+2 gucharmap::
 A good character map program (much nicer than KCharSelect, which is a Windows
 clone). The Gentoo ebuild for this is deliberately crippled to try and force you
