@@ -40,7 +40,7 @@ sub get-newest-version() returns Pair {
     my $year = $now.year - 2000;
     my $newest-version;
 
-    for $now.week-number.pred X- ^5 -> $week {
+    for $now.week-number X- ^5 -> $week {
         for 'a'..'z' -> $letter {
             my $version = sprintf('%02dw%02d%s', $year, $week, $letter);
 
