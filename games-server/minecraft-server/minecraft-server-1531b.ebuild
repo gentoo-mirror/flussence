@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -17,14 +17,14 @@ DESCRIPTION="Official dedicated server for Minecraft"
 HOMEPAGE="http://www.minecraft.net"
 SRC_URI="${MY_BASEURI}/${MY_PV}/minecraft_server.${MY_PV}.jar -> ${PN}-${MY_PV}.jar"
 LICENSE="Minecraft-clickwrap-EULA"
-SLOT="0"
+SLOT=${MY_PV}
 KEYWORDS="~amd64 ~x86"
 IUSE="ipv6"
 RESTRICT="mirror"
 
 DEPEND=">=virtual/jdk-1.6"
 RDEPEND=">=virtual/jre-1.6
-	>=games-server/minecraft-common-20141227"
+	>=games-server/minecraft-common-20141227-r1"
 
 S="${WORKDIR}"
 
@@ -41,8 +41,8 @@ src_install() {
 	use ipv6 || ARGS="-Djava.net.preferIPv4Stack=true"
 
 	java-pkg_newjar "${DISTDIR}/${PN}-${MY_PV}.jar"
-	java-pkg_dolauncher "${PN}" -pre "${FILESDIR}"/directory.sh \
-		--java_args "-Xmx1024M -Xms512M ${ARGS}" --pkg_args "nogui" \
+	java-pkg_dolauncher "${PN}-${MY_PV}" -pre "${FILESDIR}"/directory.sh \
+		--java_args "-Xmx1G -Xms1G ${ARGS}" --pkg_args "nogui" \
 		--main net.minecraft.server.MinecraftServer
 }
 

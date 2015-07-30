@@ -24,7 +24,7 @@ RESTRICT="mirror"
 
 DEPEND=">=virtual/jdk-1.6"
 RDEPEND=">=virtual/jre-1.6
-	>=games-server/minecraft-common-20141227"
+	>=games-server/minecraft-common-20141227-r1"
 
 S="${WORKDIR}"
 
