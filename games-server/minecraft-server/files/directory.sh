@@ -32,3 +32,7 @@ if [[ ! -d "$gjl_pwd" ]]; then
     exit 1
 fi
 
+# Unset our command line args or else gentoo's java launcher stuff will blindly
+# append them to the java command line
+shift $#
+
