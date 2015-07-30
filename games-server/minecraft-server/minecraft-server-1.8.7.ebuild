@@ -42,7 +42,7 @@ src_install() {
 
 	java-pkg_newjar "${DISTDIR}/${PN}-${MY_PV}.jar"
 	java-pkg_dolauncher "${PN}-${MY_PV}" -pre "${FILESDIR}"/directory.sh \
-		--java_args "-Xmx1024M -Xms512M ${ARGS}" --pkg_args "nogui" \
+		--java_args "-Xmx1G -Xms1G ${ARGS}" --pkg_args "nogui" \
 		--main net.minecraft.server.MinecraftServer
 }
 
