@@ -1,5 +1,5 @@
 # These numbers are snapshot versions; unmask manually if wanted.
 >games-server/minecraft-server-1.99
 
-# Fails to build from source, upstream seems dead.
-=games-util/c10t-9999
+# Experimental slotted version; not suitable for daily use yet
+>=games-server/minecraft-server-1.8.7
