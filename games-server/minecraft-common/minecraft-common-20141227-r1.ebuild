@@ -22,7 +22,7 @@ S="${WORKDIR}"
 
 pkg_setup() {
 	enewgroup minecraft-server
-	enewuser minecraft-server -1 -1 /dev/null minecraft-server
+	enewuser minecraft-server -1 -1 /var/lib/minecraft minecraft-server
 }
 
 src_install() {
