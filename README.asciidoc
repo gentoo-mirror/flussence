@@ -42,18 +42,6 @@ clone). The Gentoo ebuild for this is deliberately crippled to try and force you
 to install GTK+3, so I wrote a better one from scratch. Make sure to add
 `gucharmap::gentoo` to your `package.mask`.
 
-`media-sound/audacious` — GTK+2 audacious media player::
-`media-plugins/audacious-plugins` — dependency for audacious::
-+
---
-Temporary ebuilds from https://bugs.gentoo.org/538414 (with fix in comment 4
-applied). Will be removed once `audacious-3.6*::gentoo` becomes available.
-
-Yes, upstream went back to GTK+2.
-
-_#suddenoutbreakofcommonsense_
---
-
 `media-video/get_iplayer` — Lightweight get_iplayer ebuild::
 Imported from another repository (`::ikelos`, iirc). That version had an
 unnecessary mplayer dependency, this doesn't. Also has more id3tag support.
