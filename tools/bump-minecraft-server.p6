@@ -7,28 +7,44 @@ sub MAIN {
     my Pair $newest = get-newest-version;
     say "{$newest.key} is the newest version ({$newest.value})";
 
-    exit unless $newest.key ge $current.key
-            and prompt('Update? [Y/n] ') !~~ /^[Nn]/;
+    say 'Current looks newest; exiting' and exit
+        if ~$current.key ge ~$newest.key;
+
+    exit unless prompt('Update? [y/N] ') ~~ rx:i{^y[es]?};
 
     given $current.value {
-        shell("git mv {$_.Str} {.parent.child("minecraft-server-{$newest.key.join}.ebuild")}");
+        run(<git mv>,
+            .Str,
+            .parent.child("minecraft-server-{$newest.key.join}.ebuild")
+        );
     }
 
-    shell('cave digest minecraft-server flussence');
-    shell('git commit -a');
+    chdir(get-repo-dir);
+    run(<repoman manifest>);
+    run(<git commit -a>);
 }
 
-sub get-current-version() returns Pair {
+sub get-repo-dir() returns IO::Path {
+    $*PROGRAM-NAME.IO.parent.parent;
+}
+
+sub get-ebuild-dir() returns IO::Path {
+    # This is _still_ horrible.
+    my $dir = get-repo-dir;
+    $dir.=child($_) for <games-server minecraft-server>;
+    $dir.=cleanup(:parent);
+    $dir;
+}
+
+sub get-current-version() returns Pair #`(version number bits => filehandle) {
     my Regex $ebuild-name = rx/'minecraft-server-' (\d\d)(\d\d)(\w) '.ebuild'$/;
 
-    # This is _horrible_.
-    my $ebuild-dir = $*PROGRAM_NAME.IO.parent.parent;
-    $ebuild-dir.=child($_) for <games-server minecraft-server>;
-    $ebuild-dir.=cleanup(:parent);
+    my $ebuild-dir = get-ebuild-dir();
 
     my $ebuild = $ebuild-dir.dir(test => $ebuild-name);
-    # You shouldn't have more than one snapshot ebuild in here
-    die if $ebuild.elems != 1;
+
+    die qq{You shouldn't have more than one $ebuild-name in here}
+        if $ebuild.elems != 1;
 
     my $version = $ebuild.Str.match($ebuild-name).list.item;
 
@@ -84,7 +100,7 @@ sub HEAD(Str $host, Str $url) returns Buf {
 
     note "Trying @headers[0]";
     my $sock = IO::Socket::INET.new(:$host, :port(80));
-    $sock.send($_ ~ "\r\n") for @headers;
+    $sock.print($_ ~ "\r\n") for @headers;
 
     my Buf $head = Buf.new;
     until $head.bytes >= 'HTTP/1.1 200'.chars {
