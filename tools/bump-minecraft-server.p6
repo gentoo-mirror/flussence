@@ -1,5 +1,4 @@
 #!/usr/bin/env perl6
-use lib $*PROGRAM.parent.child('lib');
 use Minecraft::VersionCheck;
 
 sub MAIN {
