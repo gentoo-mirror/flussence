@@ -1,5 +1,5 @@
 #!/usr/bin/env perl6
-use lib $*PROGRAM-NAME.IO.parent.child('lib'); # is this really such a good idea
+use lib $*PROGRAM.parent.child('lib');
 use Minecraft::VersionCheck;
 
 sub MAIN {
@@ -27,7 +27,7 @@ sub MAIN {
 }
 
 sub get-repo-dir() returns IO::Path {
-    $*PROGRAM-NAME.IO.parent.parent;
+    $*PROGRAM.parent.parent;
 }
 
 sub get-ebuild-dir() returns IO::Path {

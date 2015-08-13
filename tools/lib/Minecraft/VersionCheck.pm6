@@ -1,4 +1,5 @@
 use v6;
+# XXX brace form is working around broken MAIN-inside-module
 module Minecraft::VersionCheck:auth<github:flussence>:ver<1.0.0> {
 
 #| Returns ([+year,+week,~letter] => ~jar-url) of newest snapshot on success.
