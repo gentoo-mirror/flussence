@@ -42,12 +42,12 @@ sub get-current-snapshot() returns Pair #`(version number bits => filehandle) {
 
     my $ebuild-dir = get-ebuild-dir();
 
-    my $ebuild = $ebuild-dir.dir(test => $ebuild-name);
+    my $ebuild = $ebuild-dir.dir(test => $ebuild-name).cache;
 
     die qq{You shouldn't have more than one $ebuild-name in here}
         if $ebuild.elems != 1;
 
-    my $version = $ebuild.Str.match($ebuild-name).list.item;
+    my $version = $ebuild.match($ebuild-name).cache;
 
     return $version => $ebuild[0];
 }
