@@ -20,7 +20,7 @@ CDEPEND="
 	>=dev-libs/glib-2.6.0
 	dane? ( <net-dns/dnssec-validator-2.1[threads] )
 	boehm-gc? ( dev-libs/boehm-gc )
-	ncurses? ( sys-libs/ncurses )
+	ncurses? ( sys-libs/ncurses:5 )
 	perl? ( dev-lang/perl )
 	socks5? ( >=net-proxy/dante-1.1.18 )
 	ssl? ( dev-libs/openssl:0 )
