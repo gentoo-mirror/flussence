@@ -8,8 +8,10 @@ inherit java-pkg-2
 # name the ebuild version e.g. "1433" for snapshot 14w33, "1450c" for 14w50c
 if [[ ${PV} == [0-9][0-9][0-9][0-9]* ]]; then
 	MY_PV="${PV:0:2}w${PV:2:3}"
+	SLOT="snapshot-${MY_PV}"
 else
 	MY_PV=${PV}
+	SLOT="stable/${MY_PV}"
 fi
 MY_BASEURI="http://s3.amazonaws.com/Minecraft.Download/versions"
 
@@ -17,7 +19,6 @@ DESCRIPTION="Official dedicated server for Minecraft"
 HOMEPAGE="http://www.minecraft.net"
 SRC_URI="${MY_BASEURI}/${MY_PV}/minecraft_server.${MY_PV}.jar -> ${PN}-${MY_PV}.jar"
 LICENSE="Minecraft-clickwrap-EULA"
-SLOT=${MY_PV}
 KEYWORDS="~amd64 ~x86"
 IUSE="ipv6"
 RESTRICT="mirror"
