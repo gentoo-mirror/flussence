@@ -10,31 +10,30 @@ doesn't compile, or anything that doesn't look like an upstream bug, please
 mention it on https://github.com/flussence/ebuilds/issues[this repo's Github
 Issues page].
 
-Requires an EAPI 5 (or higher) package manager.
-
 Installing
 ----------
 
-This is for modern versions of Portage. If you don't have that, it's assumed you
-already know what you're doing.
+Put this in your `repos.conf`, then do `emerge --sync flussence`:
 
-    # cd /etc/portage; mkdir repos.conf && cat > repos.conf/flussence.conf
     [flussence]
     location = /var/db/repositories/flussence
     sync-type = git
     sync-uri = https://github.com/flussence/ebuilds.git
-    ^D
-    # emerge --sync flussence
 
 Contents
 --------
-`games-server/minecraft-server` — Maintained minecraft-server ebuilds::
-`games-server/minecraft-common` — dependency for minecraft-server::
+`games-server/minecraft-server` — minecraft-server ebuilds::
++
+--
 These are heavily modified versions of the ebuilds in the
 http://git.overlays.gentoo.org/gitweb/?p=proj/java.git;a=summary[Java overlay]
-(which hadn't been updated since around 1.4). These support running from custom
-directories and don't spawn/depend on tmux (recent versions of the game support
-rcon).
+(which hadn't been updated since around 1.4).
+
+The OpenRC initscript was removed as I'm not using it any more and can't vouch
+for its usability. Versions are slotted so you can have latest stable and any
+number of snapshots installed at the same time (only the latest snapshot is kept
+in this tree though).
+--
 
 `gnome-extra/gucharmap` — GTK+2 gucharmap::
 A good character map program (much nicer than KCharSelect, which is a Windows
