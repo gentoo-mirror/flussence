@@ -45,15 +45,3 @@ src_install() {
 		--java_args "-Xmx1G -Xms1G ${ARGS}" --pkg_args "nogui" \
 		--main net.minecraft.server.MinecraftServer
 }
-
-pkg_postinst() {
-	einfo "You may run ${PN} as a regular user or start a system-wide"
-	einfo "instance using /etc/init.d/${PN}. The multiverse files are"
-	einfo "stored in ~/.minecraft/servers or /var/lib/minecraft respectively."
-	echo
-	einfo "This package allows you to start multiple Minecraft server instances."
-	einfo "You can do this by adding a multiverse name after ${PN} or by"
-	einfo "creating a symlink such as /etc/init.d/${PN}.foo. The default"
-	einfo "multiverse name is \"main\"."
-	echo
-}
