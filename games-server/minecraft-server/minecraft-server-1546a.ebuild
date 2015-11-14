@@ -11,7 +11,7 @@ if [[ ${PV} == [0-9][0-9][0-9][0-9]* ]]; then
 	SLOT="snapshot-${MY_PV}"
 else
 	MY_PV=${PV}
-	SLOT="stable/${MY_PV}"
+	SLOT="stable-${MY_PV%.*}"
 fi
 MY_BASEURI="http://s3.amazonaws.com/Minecraft.Download/versions"
 
