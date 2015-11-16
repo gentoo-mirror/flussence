@@ -70,6 +70,10 @@ Gentoo sites about either those nor the ebuild, as I've unfortunately noticed
 some people doing.
 --
 
+`x11-misc/tint2` — slightly more up to date tint2 ebuild::
+tint2 moved from Google Code to GitLab a long time ago and released new versions
+fairly recently. This addresses both.
+
 
 [NOTE]
 .Boilerplate headers and copyright attribution
