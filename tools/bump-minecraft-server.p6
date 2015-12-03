@@ -1,5 +1,5 @@
 #!/usr/bin/env perl6
-use Minecraft::VersionCheck;
+use Net::Minecraft::VersionCheck;
 
 sub MAIN {
     my Pair $current = get-current-snapshot;
