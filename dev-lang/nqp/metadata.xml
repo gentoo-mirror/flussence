@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<longdescription lang="en">
+		NQP is a small subset of Perl 6 used as a foundational tool to help
+		write compilers (including Rakudo Perl 6) (<pkg>dev-lang/rakudo</pkg>)
+		and libraries.
+	</longdescription>
+	<maintainer>
+		<email>flussence@gmail.com</email>
+		<name>Anthony Parsons</name>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">perl6/nqp</remote-id>
+		<bugs-to>https://github.com/perl6/nqp/issues</bugs-to>
+	</upstream>
+	<use>
+		<flag name="java">Build the JVM backend (experimental/broken)</flag>
+		<flag name="moar">Build the MoarVM backend (recommended)</flag>
+	</use>
+</pkgmetadata>

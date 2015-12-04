@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<longdescription lang="en">
+		Short for "Metamodel On A Runtime", MoarVM is a virtual machine built
+		especially for Rakudo Perl 6 (<pkg>dev-lang/rakudo</pkg>) and the NQP
+		Compiler Toolchain (<pkg>dev-lang/nqp</pkg>).
+	</longdescription>
+	<maintainer>
+		<email>flussence@gmail.com</email>
+		<name>Anthony Parsons</name>
+	</maintainer>
+	<upstream>
+		<changelog>http://moarvm.org/releases.html</changelog>
+		<remote-id type="github">MoarVM/MoarVM</remote-id>
+		<bugs-to>https://github.com/MoarVM/MoarVM/issues</bugs-to>
+	</upstream>
+</pkgmetadata>
