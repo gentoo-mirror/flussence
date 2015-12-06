@@ -18,7 +18,7 @@ REQUIRED_USE="|| ( java moar )"
 
 RDEPEND="java? ( virtual/jdk )
 	moar? ( dev-lang/moarvm )"
-DEPEND="${DEPEND}
+DEPEND="${RDEPEND}
 	>=dev-lang/perl-5.10"
 
 src_configure() {
