@@ -13,11 +13,11 @@ EGIT_REPO_URI="https://github.com/perl6/nqp.git"
 LICENSE="Artistic-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="java +moar"
-REQUIRED_USE="|| ( java moar )"
+# TODO: add USE="java javascript" here once those backends are in working order
+IUSE="+moar test"
+REQUIRED_USE="|| ( moar )"
 
-RDEPEND="java? ( virtual/jdk )
-	moar? ( dev-lang/moarvm )"
+RDEPEND="moar? ( dev-lang/moarvm )"
 DEPEND="${RDEPEND}
 	>=dev-lang/perl-5.10"
 
@@ -25,9 +25,11 @@ src_configure() {
 	declare -a BACKENDS
 	local IFS=","
 
-	# The order of this list determines which gets installed as "nqp"
+	# The order of this list determines which gets installed as "nqp", and
+	# rakudo inherits it, so it's sorted by stability.
 	use moar && BACKENDS+=(moar)
-	use java && BACKENDS+=(jvm)
+	#use java && BACKENDS+=(jvm)
+	#use javascript && BACKENDS+=(js)
 
 	perl Configure.pl --prefix=/usr \
 		--backends=$BACKENDS

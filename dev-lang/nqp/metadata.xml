@@ -15,7 +15,7 @@
 		<bugs-to>https://github.com/perl6/nqp/issues</bugs-to>
 	</upstream>
 	<use>
-		<flag name="java">Build the JVM backend (experimental/broken)</flag>
+		<!-- <flag name="java">Build the JVM backend (experimental/broken)</flag> -->
 		<flag name="moar">Build the MoarVM backend (recommended)</flag>
 	</use>
 </pkgmetadata>
