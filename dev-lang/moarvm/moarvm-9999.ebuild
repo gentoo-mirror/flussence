@@ -29,8 +29,3 @@ src_configure() {
 		--has-libuv \
 		--has-libatomic_ops
 }
-
-src_compile() {
-	# Workaround: GCC deadlocks when compiling JIT source without this
-	emake -j1
-}
