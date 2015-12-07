@@ -15,4 +15,15 @@
 		<remote-id type="github">MoarVM/MoarVM</remote-id>
 		<bugs-to>https://github.com/MoarVM/MoarVM/issues</bugs-to>
 	</upstream>
+	<use>
+		<flag name="system-libatomic_ops">
+			Use <pkg>dev-libs/libatomic_ops</pkg> instead of bundled copy
+		</flag>
+		<flag name="system-libtommath">
+			Use <pkg>dev-libs/libtommath</pkg> instead of bundled copy
+		</flag>
+		<flag name="system-libuv">
+			Use <pkg>dev-libs/libuv</pkg> instead of bundled copy
+		</flag>
+	</use>
 </pkgmetadata>

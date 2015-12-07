@@ -3,3 +3,6 @@ net-irc/irssi dane
 
 # Segfaults
 =net-irc/irssi-9999 boehm-gc
+
+# libtommath 0.42.0 is too old
+dev-lang/moarvm system-libtommath
