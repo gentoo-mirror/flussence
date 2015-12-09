@@ -1,22 +1,25 @@
 #!/usr/bin/env perl6
-use Net::Minecraft::VersionCheck;
+use Net::Minecraft::Version;
 
 sub MAIN {
-    my Pair $current = get-current-snapshot;
-    say "{$current.key} is the current version ({$current.value})";
+    my Pair $current = get-current-ebuild;
+    my $current-vstr = Version.new($current.key).parts[0,1].join;
 
-    my Pair $newest = get-newest-snapshot;
-    say "{$newest.key} is the newest version ({$newest.value})";
+    my $newest = get-versions<latest><snapshot>;
+    my $newest-vstr = Version.new($newest).parts[0,2,3].join;
+
+    say "$current-vstr is the current version ({$current.value})";
+    say "$newest-vstr is the newest version ({server-jar-for($newest)})";
 
     say 'Current looks newest; exiting' and exit
-        if ~$current.key ge ~$newest.key;
+        if $current-vstr ge $newest-vstr;
 
     exit unless prompt('Update? [y/N] ') ~~ rx:i{^y[es]?};
 
     given $current.value {
         run(<git mv>,
             .Str,
-            .parent.child("minecraft-server-{$newest.key.join}.ebuild")
+            .parent.child("minecraft-server-{$newest-vstr}.ebuild")
         );
     }
 
@@ -37,17 +40,16 @@ sub get-ebuild-dir() returns IO::Path {
     $dir;
 }
 
-sub get-current-snapshot() returns Pair #`(version number bits => filehandle) {
-    my Regex $ebuild-name = rx/'minecraft-server-' (\d\d)(\d\d)(\w) '.ebuild'$/;
+sub get-current-ebuild() returns Pair #`(version number => filehandle) {
+    my Regex $test = rx/'minecraft-server-' (\d\d\d\d\w) '.ebuild'$/;
 
     my $ebuild-dir = get-ebuild-dir();
 
-    my $ebuild = $ebuild-dir.dir(test => $ebuild-name).cache;
+    my $ebuild = $ebuild-dir.dir(:$test).cache;
 
-    die qq{You shouldn't have more than one $ebuild-name in here}
+    die qq{Expected one ebuild but you have $ebuild}
         if $ebuild.elems != 1;
 
-    my $version = $ebuild.match($ebuild-name).cache;
-
-    return $version => $ebuild[0];
+    $_ => $ebuild[0]
+        with $ebuild.match($test)[0];
 }
