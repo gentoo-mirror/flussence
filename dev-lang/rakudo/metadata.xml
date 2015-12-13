@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<longdescription lang="en">
+		Rakudo is a compiler for the Perl 6 programming language.
+	</longdescription>
+	<maintainer>
+		<email>flussence@gmail.com</email>
+		<name>Anthony Parsons</name>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">rakudo/rakudo</remote-id>
+		<bugs-to>https://rt.perl.org</bugs-to>
+	</upstream>
+	<use>
+		<!-- <flag name="java">Build the JVM backend (experimental/broken)</flag> -->
+		<flag name="moar">Build the MoarVM backend (recommended)</flag>
+	</use>
+</pkgmetadata>
