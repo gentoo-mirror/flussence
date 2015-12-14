@@ -2,4 +2,4 @@
 >games-server/minecraft-server-10
 
 # Broken upstream; tries to mkdir at root-owned locations during `make install`
-dev-lang/rakudo
+>=dev-lang/rakudo-2015.12
