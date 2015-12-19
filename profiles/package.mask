@@ -1,5 +1,2 @@
 # These numbers are snapshot versions; unmask manually if wanted.
 >games-server/minecraft-server-10
-
-# Broken upstream; tries to mkdir at root-owned locations during `make install`
->=dev-lang/rakudo-2015.12
