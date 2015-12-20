@@ -49,6 +49,9 @@ Will be removed once `audacious-3.7*::gentoo` becomes available.
 Imported from another repository (`::ikelos`, iirc). That version had an
 unnecessary mplayer dependency, this doesn't. Also has more id3tag support.
 
+`media-video/obs-studio` — https://github.com/jp9000/obs-studio[OBS Studio]::
+Builds OBS from Git. Probably has too many `USE` flags, but it works.
+
 `net-irc/irssi` — Riced irssi ebuilds::
 +
 --

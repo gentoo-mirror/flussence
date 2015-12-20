@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer>
+		<email>flussence@gmail.com</email>
+		<name>Anthony Parsons</name>
+	</maintainer>
+	<upstream>
+		<bugs-to>https://obsproject.com/mantis/</bugs-to>
+	</upstream>
+	<use>
+		<flag name="fdk">Use <pkg>media-libs/fdk-aac</pkg> for AAC encoding</flag>
+		<flag name="imagemagick">Prefer ImageMagick for image loading instead of FFmpeg</flag>
+		<flag name="qt5">Build the main OBS UI (you probably want this)</flag>
+	</use>
+</pkgmetadata>
