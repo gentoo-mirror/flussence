@@ -22,11 +22,6 @@ Put this in your `repos.conf`, then do `emerge --sync flussence`:
 
 Contents
 --------
-`dev-lang/moarvm` — VM for NQP::
-`dev-lang/nqp` — runtime for Rakudo Perl 6::
-Git ebuilds for MoarVM/NQP. Rakudo itself is missing because it demands write
-access to the installation path. I'm trying to send fixes for that upstream.
-
 `games-server/minecraft-server` — minecraft-server ebuilds::
 +
 --
