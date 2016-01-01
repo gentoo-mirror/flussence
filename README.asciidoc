@@ -78,8 +78,8 @@ If you're brave, you can install this and disable fbcon in your kernel entirely.
 Supports separate-root-and-usr partitions and kexec rebooting.
 Solid and reliable; exists because upstream's ebuild wasn't.
 
-Take a look at https://github.com/flussence/runit-scripts[my runit-scripts
-repository] for replacements to some OpenRC initscripts.
+For replacements to some OpenRC initscripts, take a look at
+https://gitlab.com/flussence/runit-scripts[my runit-scripts repository].
 --
 
 [NOTE]

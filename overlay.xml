@@ -4,12 +4,13 @@
   <repo quality="experimental" status="unofficial">
     <name>flussence</name>
     <description lang="en">Personal overlay</description>
-    <homepage>https://github.com/flussence/ebuilds</homepage>
+    <homepage>https://gitlab.com/flussence/overlay</homepage>
     <owner type="person">
-      <email>flussence+github@gmail.com</email>
+      <email>flussence@gmail.com</email>
       <name>Anthony Parsons</name>
     </owner>
+    <source type="git">https://gitlab.com/flussence/overlay.git</source>
     <source type="git">https://github.com/flussence/ebuilds.git</source>
-    <feed>https://github.com/flussence/ebuilds/commits/master.atom</feed>
+    <feed>https://gitlab.com/flussence/overlay.atom</feed>
   </repo>
 </repositories>
