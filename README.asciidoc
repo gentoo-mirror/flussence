@@ -1,14 +1,16 @@
-The `flussence` overlay for Gentoo
-==================================
+`flussence` overlay for Gentoo
+==============================
 
-Some packages I'm using or have used. There's patched versions of other people's
-ebuilds, and a few I made myself because they didn't exist anywhere else at the
-time.
+Packages for things that:
+aren't in the main tree at all,
+aren't as up-to-date as I'd like there,
+or where the official ebuilds deviate too much from vanilla for my liking.
 
-I try not to add anything with known bugs. If you find an ebuild here that
-doesn't compile, or anything that doesn't look like an upstream bug, please
-mention it on https://github.com/flussence/ebuilds/issues[this repo's Github
-Issues page].
+I try not to add anything with known bugs,
+but be aware this is a personal, opinionated set of ebuilds
+and there's no plans to push things back to gentoo.git.
+Feel free to report issues if you want,
+or even to add these things to Gentoo yourself.
 
 Installing
 ----------
@@ -29,16 +31,16 @@ These are heavily modified versions of the ebuilds in the
 http://git.overlays.gentoo.org/gitweb/?p=proj/java.git;a=summary[Java overlay]
 (which hadn't been updated since around 1.4).
 
-The OpenRC initscript was removed as I'm not using it any more and can't vouch
-for its usability. Versions are slotted so you can have any number of major
-versions and snapshots installed at the same time.
+The OpenRC initscript was removed and versions are individually slotted;
+it's up to you to decide how you want to run a game server.
 --
 
 `gnome-extra/gucharmap` — GTK+2 gucharmap::
-A good character map program (much nicer than KCharSelect, which is a Windows
-clone). The Gentoo ebuild for this is deliberately crippled to try and force you
-to install GTK+3, so I wrote a better one from scratch. Make sure to add
-`gucharmap::gentoo` to your `package.mask`.
+A good character map program (nicer than KCharSelect, which is a Windows clone).
+The Gentoo ebuild for this is GTK+3-only for no good reason,
+so I wrote a better one from scratch that respects the user's choice.
+Make sure to add `gucharmap::gentoo` to your `package.mask`.
+Caveat: only supports old versions of Unicode. I may try to fix this.
 
 `media-sound/audacious` — GTK+2 audacious media player::
 `media-plugins/audacious-plugins` — dependency for audacious::
@@ -46,36 +48,38 @@ Temporary ebuilds for https://bugs.gentoo.org/566150.
 Will be removed once `audacious-3.7*::gentoo` becomes available.
 
 `media-video/get_iplayer` — Lightweight get_iplayer ebuild::
-Imported from another repository (`::ikelos`, iirc). That version had an
-unnecessary mplayer dependency, this doesn't. Also has more id3tag support.
+Imported from another repository (`::ikelos`, iirc).
+That version had an unnecessary mplayer dependency, this doesn't.
+Also has (optional) improved id3tag support.
 
 `media-video/obs-studio` — https://github.com/jp9000/obs-studio[OBS Studio]::
-Builds OBS from Git. Probably has too many `USE` flags, but it works.
+Builds OBS from Git.
+Probably has too many `USE` flags, but it works and does what I need from it.
 
 `net-irc/irssi` — Riced irssi ebuilds::
 +
 --
-Tweaked `irssi::gentoo` ebuilds; stable version with optional DANE and 256-color
-terminal support, and a git ebuild with far too many USE flags.
+Tweaked `irssi::gentoo` ebuilds:
+a stable version with optional DANE and 256-color terminal support,
+and a git ebuild with far too many USE flags.
 
-Avoid using anything but the 256-color support for now; `USE=dane` in particular
-will build fine but crash at runtime.
+This is known broken!
+`USE=dane` built fine last time I tried it, but had runtime segfaults.
 --
 
 `sys-apps/kmscon` — kmscon 8::
 `dev-libs/libtsm` — kmscon 8's dependency::
 Anti-aliased bloat for your consoles. Works but feels slightly buggy to me.
+If you're brave, you can install this and disable fbcon in your kernel entirely.
 
 `sys-process/runit` — My own rewrite of the Gentoo runit ebuild::
 +
 --
-Supports separate-root-and-usr partitions and kexec rebooting. Solid and
-reliable; exists because upstream's ebuild wasn't.
+Supports separate-root-and-usr partitions and kexec rebooting.
+Solid and reliable; exists because upstream's ebuild wasn't.
 
 Take a look at https://github.com/flussence/runit-scripts[my runit-scripts
-repository] for replacements to some OpenRC initscripts. *DO NOT* file bugs on
-Gentoo sites about either those nor the ebuild, as I've unfortunately noticed
-some people doing.
+repository] for replacements to some OpenRC initscripts.
 --
 
 [NOTE]
