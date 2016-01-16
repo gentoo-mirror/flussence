@@ -6,7 +6,7 @@ sub MAIN {
     my $current-vstr = Version.new($current.key).parts[0,1].join;
 
     my $newest = get-versions<latest><snapshot>;
-    my $newest-vstr = Version.new($newest).parts[0,2,3].join;
+    my $newest-vstr = sprintf('%02d%02d%s', Version.new($newest).parts[0,2,3]);
 
     say "$current-vstr is the current version ({$current.value})";
     say "$newest-vstr is the newest version ({server-jar-for($newest)})";
