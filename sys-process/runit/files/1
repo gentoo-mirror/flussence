@@ -20,9 +20,34 @@ case " $(</proc/cmdline) " in
     ;;
 esac
 
-# Runit decides whether to shutdown or reboot based on statting these files (and
-# making them symlinks doesn't work). In the worst case, having the rootfs
-# wedged read-only, you'll end up with a poweroff instead of a reboot.
-for file in reboot stopit; do
-    install -m 000 /dev/null /etc/runit/$file
+# Try to put runtime state into a common runtime location,
+# so that /etc may be mounted readonly.
+tmpstate="/run/runit"
+
+findmnt -nt tmpfs /run > /dev/null && install -m 0755 -d "$tmpstate"
+[ -d "$tmpstate" ] || exit 0 # may fail, that's fine.
+
+
+tmpify() {
+    [ -L supervise -a -d supervise ] && continue
+    rm -rfv supervise
+    ln -Ts "$tmpstate"/"${PWD##*/}" supervise
+}
+
+# Attempt to symlink each $sv's supervise/ directory to /run/runit/$sv,
+# in order to avoid disk writes in /etc. Existing directories are replaced,
+# existing symlinks and log services are untouched.
+for sv in /etc/service/*/; do
+    pushd "$sv" > /dev/null || break
+    tmpify
+    popd > /dev/null
+done
+
+# Do the same for shutdown control files.
+# In the worst case (the filesystem these reside on being wedged read-only)
+# you'll still be able to poweroff, just not reboot.
+for fn in reboot stopit; do
+    [ -L /etc/runit/$fn ] && continue
+    rm -fv /etc/runit/$fn
+    ln -Ts "$tmpstate"/$fn /etc/runit/$fn
 done
