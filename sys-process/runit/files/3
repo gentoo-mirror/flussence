@@ -4,17 +4,18 @@
 exec >/dev/console 2>&1
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 
-# This will work with any service with "getty" in its name, in case you decide
-# not to use the provided agetty scripts. Note that if you're logged in on a
-# tty it normally won't respond to this, giving you 5 minutes to log out.
+# This will work with any service with "getty" in its name,
+# in case you decide # not to use the provided agetty scripts.
+# Note that if you're logged in on a tty it will block to this,
+# giving you 5 minutes to log out.
 echo 'Shutting down login consoles...'
 sv -v exit /etc/service/*getty*
 
 echo 'Giving remaining services up to 5 minutes to exit...'
 sv -w 300 force-shutdown /etc/service/*
 
-# If kexec is in a runnable state, this will cause it to do the reboot. If not,
-# it'll just fall through here and runit will do so itself.
+# If kexec is in a runnable state, this will cause it to do the reboot.
+# If not, it'll just fall through here and runit will do so itself.
 echo 'Doing OpenRC shutdown sequence...'
 if test -x /etc/runit/reboot; then
     RUNLEVEL=6 /sbin/rc reboot
