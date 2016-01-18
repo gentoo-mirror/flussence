@@ -4,7 +4,7 @@
 # This file runs OpenRC up to the "boot" runlevel to get your system into a
 # reasonable state. If you need to add system-specific one-shot tasks, consider
 # using OpenRC's existing /etc/local.d/ facility via the boot runlevel instead
-# of editing this file.
+# of editing this file, as it will be overwritten on upgrades.
 
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 
@@ -16,6 +16,7 @@ case " $(</proc/cmdline) " in
     *" single "* )
         /sbin/rc single
         /sbin/sulogin
+        exit 100
     ;;
 esac
 
