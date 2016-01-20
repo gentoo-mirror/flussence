@@ -29,7 +29,7 @@ findmnt -nt tmpfs /run > /dev/null && install -m 0755 -d "$tmpstate"
 
 
 tmpify() {
-    [ -L supervise -a -d supervise ] && continue
+    [ -L supervise ] && return
     rm -rfv supervise
     ln -Ts "$tmpstate"/"${PWD##*/}" supervise
 }
