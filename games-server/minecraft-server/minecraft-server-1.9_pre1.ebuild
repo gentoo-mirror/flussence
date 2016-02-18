@@ -5,10 +5,13 @@
 EAPI=5
 inherit java-pkg-2
 
-# name the ebuild version e.g. "1433" for snapshot 14w33, "1450c" for 14w50c
+# snapshot versions are mangled: "1433" for snapshot 14w33, "1450c" for 14w50c
 if [[ ${PV} == [0-9][0-9][0-9][0-9]* ]]; then
 	MY_PV="${PV:0:2}w${PV:2:3}"
 	SLOT="snapshot-${MY_PV}"
+elif [[ ${PV} == [0-9]*_pre[0-9]* ]]; then
+	MY_PV="${PV/_/-}"
+	SLOT="prerelease-${MY_PV}"
 else
 	MY_PV=${PV}
 	SLOT="stable-${MY_PV%.*}"

@@ -6,23 +6,36 @@ sub MAIN {
     my $current-vstr = Version.new($current.key).parts[0,1].join;
 
     my $newest = get-versions<latest><snapshot>;
-    my $newest-vstr = sprintf('%02d%02d%s', Version.new($newest).parts[0,2,3]);
+    my $newest-vstr = do given $newest {
+        # "15w48b" style weekly
+        when /^ (\d ** 2) w (\d ** 2) (\w) $/ {
+            sprintf('%02d%02d%s', @($/));
+        }
+        # "1.9-pre1" style prerelease
+        when /^ \d+ '.' \d+ '-pre' \d+ $/ {
+            .subst: |<- _>;
+        }
+        default {
+            ??? $_
+        }
+    }
 
     say "$current-vstr is the current version ({$current.value})";
     say "$newest-vstr is the newest version ({server-jar-for($newest)})";
 
     say 'Current looks newest; exiting' and exit
-        if $current-vstr ge $newest-vstr;
+        if $current-vstr eq $newest-vstr;
+
+    my @cmd = flat
+        <git mv>,
+        ~$current.value,
+        ~$current.value.parent.child("minecraft-server-{$newest-vstr}.ebuild");
+
+    note "Would run: {@cmd.perl}";
 
     exit unless prompt('Update? [y/N] ') ~~ rx:i{^y[es]?};
 
-    given $current.value {
-        run(<git mv>,
-            .Str,
-            .parent.child("minecraft-server-{$newest-vstr}.ebuild")
-        );
-    }
-
+    run(|@cmd);
     chdir(get-repo-dir);
     run(<repoman manifest>);
     run(<git commit -a>);
