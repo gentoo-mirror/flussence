@@ -35,9 +35,9 @@ sub MAIN {
 
     exit unless prompt('Update? [y/N] ') ~~ rx:i{^y[es]?};
 
-    run(|@cmd);
+    run(|@cmd) or die q{Couldn't git mv (dirty working copy?)};
     chdir(get-repo-dir);
-    run(<repoman manifest>);
+    run(<repoman manifest>) or die q{repoman failed (FIX IT)};
     run(<git commit -a>);
 }
 
