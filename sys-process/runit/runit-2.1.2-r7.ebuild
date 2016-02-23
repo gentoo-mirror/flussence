@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -18,6 +18,9 @@ IUSE="static +symlink sysv-compat"
 # Prevent automatic upgrades to force people to pay attention to elog stuff
 DEPEND="!!<sys-process/runit-2.1.2-r4
 	sysv-compat? ( !sys-apps/sysvinit )"
+
+RDEPEND="${DEPEND}
+	sys-apps/openrc"
 
 S=${WORKDIR}/admin/${P}/src
 
