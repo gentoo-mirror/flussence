@@ -10,7 +10,6 @@
       <name>Anthony Parsons</name>
     </owner>
     <source type="git">https://gitlab.com/flussence/overlay.git</source>
-    <source type="git">https://github.com/flussence/ebuilds.git</source>
     <feed>https://gitlab.com/flussence/overlay.atom</feed>
   </repo>
 </repositories>
