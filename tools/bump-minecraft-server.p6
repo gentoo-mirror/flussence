@@ -1,35 +1,31 @@
 #!/usr/bin/env perl6
 use Net::Minecraft::Version;
 
-sub MAIN {
-    my Pair $current = get-current-ebuild;
-    my $current-vstr = Version.new($current.key).parts[0,1].join;
+my Regex $snapshot      = /^(\d ** 2) w (\d ** 2) (\w)$/;
+my Regex $snapshot-fn   = / \d ** 4 \w /;
+my Regex $prerelease    = /^\d+ '.' \d+ '-pre' \d+$/;
+my Regex $prerelease-fn = / \d+ '.' \d+ '_pre' \d+ /;
 
-    my $newest = get-versions<latest><snapshot>;
-    my $newest-vstr = do given $newest {
-        # "15w48b" style weekly
-        when /^ (\d ** 2) w (\d ** 2) (\w) $/ {
-            sprintf('%02d%02d%s', @($/));
-        }
-        # "1.9-pre1" style prerelease
-        when /^ \d+ '.' \d+ '-pre' \d+ $/ {
-            .subst: |<- _>;
-        }
-        default {
-            ??? $_
-        }
+sub MAIN {
+    my ($current, $current-file) = get-current-ebuild.kv;
+    say "$current is the current version ($current-file)";
+
+    my $newest    = get-versions<latest><snapshot>;
+    my $newest-fn = do given $newest {
+        when $snapshot   { sprintf('%02d%02d%s', @($/)) }
+        when $prerelease { .subst: |<- _> }
+        default { ??? $_ }
     }
 
-    say "$current-vstr is the current version ({$current.value})";
-    say "$newest-vstr is the newest version ({server-jar-for($newest)})";
+    say "$newest is the newest version ({server-jar-for($newest)})";
 
     say 'Current looks newest; exiting' and exit
-        if $current-vstr eq $newest-vstr;
+        if $current eq $newest-fn;
 
     my @cmd = flat
         <git mv>,
-        ~$current.value,
-        ~$current.value.parent.child("minecraft-server-{$newest-vstr}.ebuild");
+        ~$current-file,
+        ~$current-file.parent.child("minecraft-server-{$newest-fn}.ebuild");
 
     note "Would run: {@cmd.perl}";
 
@@ -54,13 +50,13 @@ sub get-ebuild-dir() returns IO::Path {
 }
 
 sub get-current-ebuild() returns Pair #`(version number => filehandle) {
-    my Regex $test = rx/'minecraft-server-' (\d\d\d\d\w) '.ebuild'$/;
+    my Regex $test = rx/'minecraft-server-'
+        ($snapshot-fn | $prerelease-fn) '.ebuild'$/;
 
     my $ebuild-dir = get-ebuild-dir();
-
     my $ebuild = $ebuild-dir.dir(:$test).cache;
 
-    die qq{Expected one ebuild but you have $ebuild}
+    die qq[Expected one ebuild but you have {$ebuild.perl}]
         if $ebuild.elems != 1;
 
     $_ => $ebuild[0]
