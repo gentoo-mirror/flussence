@@ -16,7 +16,7 @@ SRC_URI="http://irssi.org/files/${MY_P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="dane ipv6 +perl selinux ssl socks5 +proxy true-color"
+IUSE="dane ipv6 libressl +perl selinux ssl socks5 +proxy true-color"
 
 # dnssec-validator 2.1 is missing val_dane_check(), and upstream's bug tracker is broken.
 CDEPEND="
@@ -24,8 +24,11 @@ CDEPEND="
 	dane? ( <net-dns/dnssec-validator-2.1[threads] )
 	perl? ( dev-lang/perl )
 	socks5? ( >=net-proxy/dante-1.1.18 )
-	ssl? ( dev-libs/openssl:0 )
-	"
+	ssl? (
+		!libressl? ( dev-libs/openssl:0 )
+		libressl? ( dev-libs/libressl:= )
+	)
+"
 DEPEND="${CDEPEND}
 	virtual/pkgconfig"
 RDEPEND="${CDEPEND}

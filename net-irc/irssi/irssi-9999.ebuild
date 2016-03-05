@@ -13,7 +13,7 @@ HOMEPAGE="http://irssi.org/"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE="boehm-gc bot dane ipv6 +perl +ncurses selinux ssl socks5 +proxy true-color"
+IUSE="boehm-gc bot dane ipv6 libressl +perl +ncurses selinux ssl socks5 +proxy true-color"
 
 # dnssec-validator 2.1 is missing val_dane_check(), and upstream's bug tracker is broken.
 CDEPEND="
@@ -23,8 +23,11 @@ CDEPEND="
 	ncurses? ( sys-libs/ncurses:5 )
 	perl? ( dev-lang/perl )
 	socks5? ( >=net-proxy/dante-1.1.18 )
-	ssl? ( dev-libs/openssl:0 )
-	"
+	ssl? (
+		!libressl? ( dev-libs/openssl:0 )
+		libressl? ( dev-libs/libressl:= )
+	)
+"
 DEPEND="${CDEPEND}
 	virtual/pkgconfig
 	>=sys-devel/autoconf-2.58
