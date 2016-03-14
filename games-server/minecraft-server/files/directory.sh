@@ -1,9 +1,9 @@
+# games-server/minecraft-server - Wrapper script for gentoo java launcher
 # Usage: minecraft-server-<$version> [$directory]
 # $directory may either be an existing directory path or a basename; if the
 # latter then the rest will be filled in based on the running user.
 
 SERVER_NAME=${1:-main}
-[[ -z "$1" ]] && echo "Using default server name '$SERVER_NAME'."
 
 mc_uid='minecraft-server'
 
@@ -17,11 +17,9 @@ else
     err_cmd="$ mkdir -p '$gjl_pwd'"
 fi
 
-echo "Server data directory set to '$gjl_pwd'."
-
 if [[ ! -d "$gjl_pwd" ]]; then
-    echo
-    echo "ERROR: Data directory does not exist."
+    exec >&2
+    echo "$0: ERROR: Data directory does not exist."
     echo "This launcher script will not create it automatically for security"
     echo "reasons. You can do it manually using the following command, but"
     echo "verify its sanity first:"
