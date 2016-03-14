@@ -1,17 +1,20 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
 EAPI=5
 inherit java-pkg-2
 
-# name the ebuild version e.g. "1433" for snapshot 14w33, "1450c" for 14w50c
+# snapshot versions are mangled: "1433" for snapshot 14w33, "1450c" for 14w50c
 if [[ ${PV} == [0-9][0-9][0-9][0-9]* ]]; then
 	MY_PV="${PV:0:2}w${PV:2:3}"
 	SLOT="snapshot-${MY_PV}"
+elif [[ ${PV} == *_pre* ]]; then
+	MY_PV="${PV/_/-}"
+	SLOT="snapshot-${MY_PV}"
 else
-	MY_PV=${PV}
-	SLOT="stable-${MY_PV%.*}"
+	MY_PV="${PV}"
+	SLOT="stable"
 fi
 MY_BASEURI="http://s3.amazonaws.com/Minecraft.Download/versions"
 
@@ -23,7 +26,6 @@ KEYWORDS="~amd64 ~x86"
 IUSE="ipv6"
 RESTRICT="mirror"
 
-DEPEND=">=virtual/jdk-1.6"
 RDEPEND=">=virtual/jre-1.6"
 
 S="${WORKDIR}"

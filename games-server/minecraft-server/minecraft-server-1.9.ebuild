@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -9,12 +9,12 @@ inherit java-pkg-2
 if [[ ${PV} == [0-9][0-9][0-9][0-9]* ]]; then
 	MY_PV="${PV:0:2}w${PV:2:3}"
 	SLOT="snapshot-${MY_PV}"
-elif [[ ${PV} == [0-9]*_pre[0-9]* ]]; then
+elif [[ ${PV} == *_pre* ]]; then
 	MY_PV="${PV/_/-}"
-	SLOT="prerelease-${MY_PV}"
+	SLOT="snapshot-${MY_PV}"
 else
-	MY_PV=${PV}
-	SLOT="stable-${MY_PV%.*}"
+	MY_PV="${PV}"
+	SLOT="stable"
 fi
 MY_BASEURI="http://s3.amazonaws.com/Minecraft.Download/versions"
 
@@ -26,7 +26,6 @@ KEYWORDS="~amd64 ~x86"
 IUSE="ipv6"
 RESTRICT="mirror"
 
-DEPEND=">=virtual/jdk-1.6"
 RDEPEND=">=virtual/jre-1.6"
 
 S="${WORKDIR}"
