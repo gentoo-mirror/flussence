@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -13,12 +13,10 @@ HOMEPAGE="http://irssi.org/"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE="boehm-gc bot dane ipv6 libressl +perl +ncurses selinux ssl socks5 +proxy true-color"
+IUSE="boehm-gc bot ipv6 libressl +perl +ncurses selinux ssl socks5 +proxy true-color"
 
-# dnssec-validator 2.1 is missing val_dane_check(), and upstream's bug tracker is broken.
 CDEPEND="
 	>=dev-libs/glib-2.6.0
-	dane? ( <net-dns/dnssec-validator-2.1[threads] )
 	boehm-gc? ( dev-libs/boehm-gc )
 	ncurses? ( sys-libs/ncurses:5 )
 	perl? ( dev-lang/perl )
@@ -39,7 +37,6 @@ DEPEND="${CDEPEND}
 RDEPEND="${CDEPEND}
 	selinux? ( sec-policy/selinux-irc )
 	perl? ( !net-im/silc-client )"
-REQUIRED_USE="dane? ( ssl )"
 
 src_prepare() {
 	sed -i -e /^autoreconf/d autogen.sh || die
@@ -59,7 +56,6 @@ src_configure() {
 		$(use_with perl) \
 		$(use_with proxy) \
 		$(use_with socks5 socks) \
-		$(use_enable dane) \
 		$(use_enable ipv6) \
 		$(use_enable ssl) \
 		$(use_enable true-color)

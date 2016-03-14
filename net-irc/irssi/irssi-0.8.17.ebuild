@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -16,12 +16,10 @@ SRC_URI="http://irssi.org/files/${MY_P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="dane ipv6 libressl +perl selinux ssl socks5 +proxy true-color"
+IUSE="ipv6 libressl +perl selinux ssl socks5 +proxy true-color"
 
-# dnssec-validator 2.1 is missing val_dane_check(), and upstream's bug tracker is broken.
 CDEPEND="
 	>=dev-libs/glib-2.6.0
-	dane? ( <net-dns/dnssec-validator-2.1[threads] )
 	perl? ( dev-lang/perl )
 	socks5? ( >=net-proxy/dante-1.1.18 )
 	ssl? (
@@ -34,7 +32,6 @@ DEPEND="${CDEPEND}
 RDEPEND="${CDEPEND}
 	selinux? ( sec-policy/selinux-irc )
 	perl? ( !net-im/silc-client )"
-REQUIRED_USE="dane? ( ssl )"
 S=${WORKDIR}/${MY_P}
 
 src_prepare() {
@@ -53,7 +50,6 @@ src_configure() {
 		$(use_with perl) \
 		$(use_with proxy) \
 		$(use_with socks5 socks) \
-		$(use_enable dane) \
 		$(use_enable ipv6) \
 		$(use_enable ssl) \
 		$(use_enable true-color)

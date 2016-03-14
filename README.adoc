@@ -55,11 +55,8 @@ Probably has too many `USE` flags, but it works and does what I need from it.
 +
 --
 Tweaked `irssi::gentoo` ebuilds:
-a stable version with optional DANE and 256-color terminal support,
+a stable version with optional 256-color terminal support,
 and a git ebuild with far too many USE flags.
-
-This is known broken!
-`USE=dane` built fine last time I tried it, but had runtime segfaults.
 --
 
 `sys-apps/kmscon` — kmscon 8::

@@ -4,7 +4,6 @@
 	<use>
 		<flag name="boehm-gc">Enable garbage-collected memory management</flag>
 		<flag name="bot">Build the bot frontend (/usr/bin/botti)</flag>
-		<flag name="dane">Use DNSSEC to validate IRC server TLS certificates</flag>
 		<flag name="ncurses">Build the textui frontend: you almost certainly want this</flag>
 		<flag name="proxy">Enable the irssi IRC proxy module</flag>
 		<flag name="true-color">Add 256- and 24bit-color support (on compatible terminals)</flag>
