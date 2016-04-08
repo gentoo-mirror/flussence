@@ -20,7 +20,7 @@ Put this in your `repos.conf`, then do `emerge --sync flussence`:
     [flussence]
     location = /var/db/repositories/flussence
     sync-type = git
-    sync-uri = https://gitlab.com/flussence/ebuilds.git
+    sync-uri = https://gitlab.com/flussence/overlay.git
 
 Contents
 --------
