@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
 inherit autotools perl-module git-r3
 
@@ -38,11 +38,14 @@ RDEPEND="${CDEPEND}
 	selinux? ( sec-policy/selinux-irc )
 	perl? ( !net-im/silc-client )"
 
+PATCHES=(${FILESDIR}/${PN}-0.8.15-tinfo.patch)
+
 src_prepare() {
 	sed -i -e /^autoreconf/d autogen.sh || die
 	NOCONFIGURE=1 ./autogen.sh || die
 
 	eautoreconf
+	default
 }
 
 src_configure() {

@@ -2,16 +2,16 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
-inherit autotools-utils eutils flag-o-matic perl-module toolchain-funcs
+inherit autotools eutils flag-o-matic perl-module toolchain-funcs
 
 # Keep for _rc compability
 MY_P="${P/_/-}"
 
 DESCRIPTION="A modular textUI IRC client with IPv6 support"
 HOMEPAGE="http://irssi.org/"
-SRC_URI="http://irssi.org/files/${MY_P}.tar.bz2"
+SRC_URI="https://github.com/irssi/irssi/releases/download/${PV/_/-}/${MY_P}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -34,12 +34,11 @@ RDEPEND="${CDEPEND}
 	perl? ( !net-im/silc-client )"
 S=${WORKDIR}/${MY_P}
 
+PATCHES=(${FILESDIR}/${PN}-0.8.15-tinfo.patch)
+
 src_prepare() {
-	cd m4
-	epatch "${FILESDIR}/${PN}-0.8.15-tinfo.patch"
-	cd ..
-	AUTOTOOLS_AUTORECONF=1
-	autotools-utils_src_prepare
+	eautoreconf
+	default
 }
 
 src_configure() {
