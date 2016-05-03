@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -19,6 +19,7 @@ DEPEND="app-arch/unzip !games-fps/freedoom"
 RDEPEND="${DEPEND}"
 
 MY_DATADIR="/usr/share/games/doom"
+S="${WORKDIR}/${MY_P}"
 
 src_install() {
 	insinto ${MY_DATADIR}
