@@ -8,13 +8,13 @@
 
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 
-RUNLEVEL=S /sbin/rc sysinit
-RUNLEVEL=S /sbin/rc boot
+RUNLEVEL=S /sbin/openrc sysinit
+RUNLEVEL=S /sbin/openrc boot
 
 # Spawn a login prompt if "single" is passed on the boot command line.
 case " $(</proc/cmdline) " in
     *" single "* )
-        /sbin/rc single
+        /sbin/openrc single
         /sbin/sulogin
         exit 100
     ;;

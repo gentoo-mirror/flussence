@@ -18,8 +18,8 @@ sv -w 300 force-shutdown /etc/service/*
 # If not, it'll just fall through here and runit will do so itself.
 echo 'Doing OpenRC shutdown sequence...'
 if test -x /etc/runit/reboot; then
-    RUNLEVEL=6 /sbin/rc reboot
+    RUNLEVEL=6 /sbin/openrc reboot
     kexec -e
 else
-    RUNLEVEL=0 /sbin/rc shutdown
+    RUNLEVEL=0 /sbin/openrc shutdown
 fi
