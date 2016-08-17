@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<maintainer>
+	<maintainer type="person">
 		<email>flussence@gmail.com</email>
 		<name>Anthony Parsons</name>
 	</maintainer>
@@ -12,5 +12,6 @@
 		<flag name="fdk">Use <pkg>media-libs/fdk-aac</pkg> for AAC encoding</flag>
 		<flag name="imagemagick">Prefer ImageMagick for image loading instead of FFmpeg</flag>
 		<flag name="qt5">Build the main OBS UI (you probably want this)</flag>
+		<flag name="ssl">Use <pkg>dev-libs/openssl</pkg> for RTMPS support</flag>
 	</use>
 </pkgmetadata>
