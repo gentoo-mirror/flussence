@@ -42,11 +42,6 @@ so I wrote a better one from scratch that respects the user's choice.
 Make sure to add `gucharmap::gentoo` to your `package.mask`.
 Caveat: only supports old versions of Unicode. I may try to fix this.
 
-`media-video/get_iplayer` — Lightweight get_iplayer ebuild::
-Imported from another repository (`::ikelos`, iirc).
-That version had an unnecessary mplayer dependency, this doesn't.
-Also has (optional) improved id3tag support.
-
 `media-video/obs-studio` — https://github.com/jp9000/obs-studio[OBS Studio]::
 Builds OBS from Git.
 Probably has too many `USE` flags, but it works and does what I need from it.
