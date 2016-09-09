@@ -5,7 +5,7 @@
 		This package installs the official vanilla Minecraft server and all dependencies required to
 		run it.
 	</longdescription>
-	<maintainer>
+	<maintainer type="person">
 		<email>flussence@gmail.com</email>
 		<name>Anthony Parsons</name>
 	</maintainer>

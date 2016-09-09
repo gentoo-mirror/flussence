@@ -5,7 +5,7 @@
 		libtsm is a headless state machine for terminal emulators and other applications. It's used
 		as the backend for <pkg>sys-apps/kmscon</pkg>.
 	</longdescription>
-	<maintainer>
+	<maintainer type="person">
 		<email>flussence@gmail.com</email>
 		<name>Anthony Parsons</name>
 	</maintainer>

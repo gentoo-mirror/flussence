@@ -6,7 +6,7 @@
 		It provides similar functionality to other packages like <pkg>sys-apps/s6</pkg> and
 		<pkg>sys-process/daemontools</pkg>, and a compatibility/migration path for the latter.
 	</longdescription>
-	<maintainer>
+	<maintainer type="person">
 		<email>flussence@gmail.com</email>
 		<name>Anthony Parsons</name>
 	</maintainer>

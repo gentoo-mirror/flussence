@@ -7,7 +7,7 @@
 		internationalization, anti-aliased and runtime-scalable text, multi-seat operation, and
 		OpenGL ES rendering.
 	</longdescription>
-	<maintainer>
+	<maintainer type="person">
 		<email>flussence@gmail.com</email>
 		<name>Anthony Parsons</name>
 	</maintainer>

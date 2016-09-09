@@ -6,7 +6,7 @@
 		addition to maintaining compatibility with Doom modifications (“mods”) that have been
 		released by the continually-active community since 1993.
 	</longdescription>
-	<maintainer>
+	<maintainer type="person">
 		<email>flussence@gmail.com</email>
 		<name>Anthony Parsons</name>
 	</maintainer>
