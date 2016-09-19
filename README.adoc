@@ -1,5 +1,5 @@
-`flussence` overlay for Gentoo
-==============================
+Some ebuilds for Gentoo
+=======================
 
 Packages for things that:
 aren't in the main tree at all,
@@ -11,6 +11,10 @@ but be aware this is a personal, opinionated set of ebuilds
 and there's no plans to push things back to gentoo.git.
 Feel free to report issues if you want,
 or even to add these things to Gentoo yourself.
+
+You may also be interested in
+https://gitlab.com/flussence/perl6-overlay[my perl6 ebuilds] or
+https://gitlab.com/flussence/runit-scripts[my runit-scripts repository].
 
 Installing
 ----------
