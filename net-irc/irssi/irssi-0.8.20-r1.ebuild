@@ -16,29 +16,38 @@ SRC_URI="https://github.com/irssi/irssi/releases/download/${PV/_/-}/${MY_P}.tar.
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="ipv6 libressl +perl selinux ssl socks5 +proxy true-color"
+IUSE="ipv6 +perl selinux ssl socks5 +proxy libressl true-color"
 
-CDEPEND="
+CDEPEND="sys-libs/ncurses:0=
 	>=dev-libs/glib-2.6.0
-	perl? ( dev-lang/perl )
-	socks5? ( >=net-proxy/dante-1.1.18 )
 	ssl? (
-		!libressl? ( dev-libs/openssl:0 )
+		!libressl? ( dev-libs/openssl:= )
 		libressl? ( dev-libs/libressl:= )
 	)
+	perl? ( dev-lang/perl )
+	socks5? ( >=net-proxy/dante-1.1.18 )
 "
-DEPEND="${CDEPEND}
+DEPEND="
+	${CDEPEND}
 	virtual/pkgconfig"
-RDEPEND="${CDEPEND}
+
+RDEPEND="
+	${CDEPEND}
 	selinux? ( sec-policy/selinux-irc )
 	perl? ( !net-im/silc-client )"
-S=${WORKDIR}/${MY_P}
 
-PATCHES=(${FILESDIR}/${PN}-0.8.15-tinfo.patch)
+RESTRICT="test"
+
+S="${WORKDIR}/${MY_P}"
+
+PATCHES=(
+	"${FILESDIR}/${P}-tinfo.patch"
+	"${FILESDIR}/${P}-buf.pl-2.20-CVE-2016-7553.patch" # bug #595172
+)
 
 src_prepare() {
-	eautoreconf
 	default
+	eautoreconf
 }
 
 src_configure() {
@@ -46,19 +55,16 @@ src_configure() {
 		--with-ncurses="${EPREFIX}"/usr \
 		--with-perl-lib=vendor \
 		--enable-static \
-		$(use_with perl) \
 		$(use_with proxy) \
+		$(use_with perl) \
 		$(use_with socks5 socks) \
-		$(use_enable ipv6) \
 		$(use_enable ssl) \
+		$(use_enable ipv6) \
 		$(use_enable true-color)
 }
 
 src_install() {
-	emake \
-		DESTDIR="${D}" \
-		docdir="${EPREFIX}"/usr/share/doc/${PF} \
-		install
+	emake DESTDIR="${D}" install
 
 	use perl && perl_delete_localpod
 
