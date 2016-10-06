@@ -56,11 +56,6 @@ Tweaked `irssi::gentoo` ebuilds:
 a stable version with optional 256-color terminal support,
 and a git ebuild with far too many USE flags.
 
-`sys-apps/kmscon` — kmscon 8::
-`dev-libs/libtsm` — kmscon 8's dependency::
-Anti-aliased bloat for your consoles. Works but feels slightly buggy to me.
-If you're brave, you can install this and disable fbcon in your kernel entirely.
-
 `sys-process/runit` — My own rewrite of the Gentoo runit ebuild::
 +
 --

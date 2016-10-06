@@ -1,2 +1,9 @@
 # These numbers are snapshot versions; unmask manually if wanted.
 >games-server/minecraft-server-10
+
+# Anthony Parsons <flussence@gmail.com> (6 Oct 2016)
+# Upstream's been dead for 30 months; I haven't used this for a long time, and
+# most of the useflags have never actually been compile-tested.
+# Masked for removal at end of 2016.
+=dev-libs/libtsm-3
+=sys-apps/kmscon-8
