@@ -42,5 +42,13 @@ src_configure() {
 	econf \
 		--enable-dbus \
 		$(use_enable nls) \
+		$(use_enable gtk gtk) \
 		$(use_enable qt5 qt)
+}
+
+pkg_postinst() {
+	if use_if_iuse qt5 && use_if_iuse gtk; then
+		einfo "You have enabled both GTK+ and Qt interfaces. To use the Qt"
+		einfo "frontend, you need to start Audacious with the -Q flag"
+	fi
 }
