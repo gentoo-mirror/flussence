@@ -14,18 +14,18 @@ SRC_URI="http://distfiles.audacious-media-player.org/${MY_P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="aac adplug alsa bs2b cdda cue ffmpeg flac fluidsynth gnome http +gtk jack
-lame libnotify libsamplerate lirc mms mp3 nls pulseaudio qt5 scrobbler sdl sid sndfile vorbis wavpack"
-REQUIRED_USE="|| ( alsa flac lame jack pulseaudio qt5 sdl )"
+IUSE="aac alsa bs2b cdda cue ffmpeg flac fluidsynth gnome http +gtk jack lame
+libnotify libsamplerate lirc mms mp3 nls oss pulseaudio qt5 scrobbler sdl sid
+sndfile sox vorbis wavpack"
+REQUIRED_USE="|| ( alsa jack oss pulseaudio qt5 sdl )"
 
 RDEPEND="app-arch/unzip
 	>=dev-libs/dbus-glib-0.60
 	dev-libs/libxml2:2
 	media-libs/libmodplug
-	~media-sound/audacious-${PV}
+	~media-sound/audacious-${PV}[gtk?,qt5?]
 	( || ( >=dev-libs/glib-2.32.2[utils] dev-util/gdbus-codegen ) )
 	aac? ( >=media-libs/faad2-2.7 )
-	adplug? ( >=dev-cpp/libbinio-1.4 )
 	alsa? ( >=media-libs/alsa-lib-1.0.16 )
 	bs2b? ( media-libs/libbs2b )
 	cdda? ( >=media-libs/libcddb-1.2.1
@@ -54,6 +54,7 @@ RDEPEND="app-arch/unzip
 	sdl? ( media-libs/libsdl[sound] )
 	sid? ( >=media-libs/libsidplayfp-1.0.0 )
 	sndfile? ( >=media-libs/libsndfile-1.0.17-r1 )
+	sox? ( media-libs/soxr )
 	vorbis? ( >=media-libs/libvorbis-1.2.0
 		  >=media-libs/libogg-1.1.3 )
 	wavpack? ( >=media-sound/wavpack-4.50.1-r1 )"
@@ -89,15 +90,14 @@ src_configure() {
 		--enable-modplug \
 		--enable-statusicon \
 		--disable-soxr \
-		$(use_enable adplug) \
 		$(use_enable aac) \
 		$(use_enable alsa) \
 		$(use_enable bs2b) \
 		$(use_enable cdda cdaudio) \
 		$(use_enable cue) \
-		$(use_enable flac flacng) \
+		$(use_enable flac flac) \
 		$(use_enable fluidsynth amidiplug) \
-		$(use_enable flac filewriter_flac) \
+		$(use_enable gtk gtk) \
 		$(use_enable http neon) \
 		$(use_enable jack) \
 		$(use_enable gnome gnomeshortcuts) \
@@ -114,6 +114,7 @@ src_configure() {
 		$(use_enable sdl sdlout) \
 		$(use_enable sid) \
 		$(use_enable sndfile) \
+		$(use_enable sox soxr) \
 		$(use_enable vorbis) \
 		$(use_enable wavpack)
 }
