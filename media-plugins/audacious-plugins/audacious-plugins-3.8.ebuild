@@ -106,7 +106,7 @@ src_configure() {
 		$(use_enable libsamplerate resample) \
 		$(use_enable lirc) \
 		$(use_enable mms) \
-		$(use_enable mp3) \
+		$(use_enable mp3 mpg123) \
 		$(use_enable nls) \
 		$(use_enable pulseaudio pulse) \
 		$(use_enable qt5 qt) \
