@@ -13,14 +13,9 @@ SRC_URI="http://smarden.org/runit/${P}.tar.gz"
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="static +symlink sysv-compat"
+IUSE="static +symlink"
 
-# Prevent automatic upgrades to force people to pay attention to elog stuff
-DEPEND="!!<sys-process/runit-2.1.2-r4
-	sysv-compat? ( !sys-apps/sysvinit )"
-
-RDEPEND="${DEPEND}
-	sys-apps/openrc"
+RDEPEND="sys-apps/openrc"
 
 S=${WORKDIR}/admin/${P}/src
 
@@ -43,10 +38,6 @@ src_install() {
 	into /
 	dobin chpst runsv runsvchdir runsvdir sv svlogd
 	dosbin runit runit-init utmpset
-	if use sysv-compat; then
-		dosbin "${FILESDIR}"/poweroff
-		dosbin "${FILESDIR}"/reboot
-	fi
 
 	into /usr
 	for tty in agetty-tty{1..6}; do
