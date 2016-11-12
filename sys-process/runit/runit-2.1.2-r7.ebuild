@@ -20,7 +20,7 @@ DEPEND="!!<sys-process/runit-2.1.2-r4
 	sysv-compat? ( !sys-apps/sysvinit )"
 
 RDEPEND="${DEPEND}
-	<sys-apps/openrc-0.21.7"
+	sys-apps/openrc"
 
 S=${WORKDIR}/admin/${P}/src
 
