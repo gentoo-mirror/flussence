@@ -14,10 +14,12 @@ SRC_URI="http://distfiles.audacious-media-player.org/${MY_P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="aac alsa bs2b cdda cue ffmpeg flac fluidsynth gnome http +gtk jack lame
-libnotify libsamplerate lirc mms mp3 nls oss pulseaudio qt5 scrobbler sdl sid
+IUSE="aac alsa bs2b cdda cue ffmpeg filewriter flac fluidsynth gnome http +gtk
+jack lame libnotify libsamplerate lirc mms mp3 nls oss pulseaudio qt5 scrobbler
+sdl sid
 sndfile sox vorbis wavpack"
-REQUIRED_USE="|| ( alsa jack oss pulseaudio qt5 sdl )"
+REQUIRED_USE="|| ( alsa jack oss pulseaudio qt5 sdl )
+	filewriter? ( || ( flac vorbis ) )"
 
 RDEPEND="app-arch/unzip
 	>=dev-libs/dbus-glib-0.60
@@ -95,9 +97,10 @@ src_configure() {
 		$(use_enable bs2b) \
 		$(use_enable cdda cdaudio) \
 		$(use_enable cue) \
-		$(use_enable flac flac) \
+		$(use_enable filewriter) \
+		$(use_enable flac) \
 		$(use_enable fluidsynth amidiplug) \
-		$(use_enable gtk gtk) \
+		$(use_enable gtk) \
 		$(use_enable http neon) \
 		$(use_enable jack) \
 		$(use_enable gnome gnomeshortcuts) \

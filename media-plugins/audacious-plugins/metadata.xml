@@ -2,9 +2,9 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<use>
-		<flag name='adplug'>Build with AdPlug (Adlib sound card emulation) support</flag>
 		<flag name='bs2b'>Enable Bauer Bauer stereophonic-to-binaural headphone filter</flag>
 		<flag name='cue'>Support CUE sheets using the libcue library</flag>
+		<flag name='filewriter'>Enable filewriter output plugin</flag>
 		<flag name='fluidsynth'>Support FluidSynth as MIDI synth backend</flag>
 		<flag name='http'>Support HTTP streams through neon</flag>
 		<flag name='scrobbler'>Build with scrobbler/LastFM submission support</flag>
