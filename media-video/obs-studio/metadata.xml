@@ -9,9 +9,10 @@
 		<bugs-to>https://obsproject.com/mantis/</bugs-to>
 	</upstream>
 	<use>
-		<flag name="fdk">Use <pkg>media-libs/fdk-aac</pkg> for AAC encoding</flag>
+		<flag name="fdk">Use <pkg>media-libs/fdk-aac</pkg> for high-quality AAC encoding</flag>
 		<flag name="imagemagick">Prefer ImageMagick for image loading instead of FFmpeg</flag>
 		<flag name="qt5">Build the main OBS UI (you probably want this)</flag>
-		<flag name="ssl">Use <pkg>dev-libs/openssl</pkg> for RTMPS support</flag>
+		<flag name="ssl">Adds RTMPS (encrypted RTMP) support</flag>
+		<flag name="vlc">Add video source plugin using <pkg>media-video/vlc</pkg></flag>
 	</use>
 </pkgmetadata>

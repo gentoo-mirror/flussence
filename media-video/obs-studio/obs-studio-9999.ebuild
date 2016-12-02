@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
 inherit cmake-utils git-r3
 
@@ -13,49 +13,54 @@ EGIT_REPO_URI="https://github.com/jp9000/obs-studio.git"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="alsa fdk jack imagemagick pulseaudio +qt5 ssl truetype udev v4l +x264"
+IUSE="alsa fdk jack imagemagick libressl pulseaudio +qt5 ssl truetype udev v4l vlc"
 
 DEPEND="
 	dev-libs/jansson
-	sys-libs/zlib
-	x11-libs/libxcb
-	x11-libs/libXinerama
-	x11-libs/libXrandr
+	media-libs/x264
 	net-misc/curl
 	sys-apps/dbus
+	sys-libs/zlib
+	virtual/opengl
+	x11-libs/libXinerama
+	x11-libs/libXrandr
+	x11-libs/libxcb
 	alsa? ( media-libs/alsa-lib )
 	fdk? ( media-libs/fdk-aac )
 	imagemagick? ( media-gfx/imagemagick )
 	!imagemagick? ( virtual/ffmpeg )
 	jack? ( media-sound/jack-audio-connection-kit )
+	ssl? (
+		libressl? ( dev-libs/libressl )
+		!libressl? ( dev-libs/openssl:0 )
+	)
 	qt5? (
 		dev-qt/qtcore:5
 		dev-qt/qtwidgets:5
 		dev-qt/qtx11extras:5
 	)
-	ssl? ( dev-libs/openssl:0 )
 	truetype? (
 		media-libs/fontconfig
 		media-libs/freetype
 	)
 	udev? ( virtual/udev )
 	v4l? ( media-libs/libv4l )
-	x264? ( media-libs/x264 )"
+	vlc? ( media-video/vlc )"
 RDEPEND="${DEPEND}"
 
 src_configure() {
-	local mycmakeargs=(
-		$(cmake-utils_use_enable alsa ALSA)
-		$(cmake-utils_use_enable truetype FREETYPE)
-		$(cmake-utils_use_enable pulseaudio PULSEAUDIO)
-		$(cmake-utils_use_enable qt5 UI)
-		$(cmake-utils_use_enable ssl SSL)
-		$(cmake-utils_use_disable fdk LIBFDK)
-		$(cmake-utils_use_disable jack JACK)
-		$(cmake-utils_use_find_package imagemagick ImageMagick)
-		$(cmake-utils_use_find_package udev LibUDev)
-		$(cmake-utils_use_find_package v4l Libv4l2)
-		$(cmake-utils_use_find_package x264 Libx264)
+	mycmakeargs+=(
+		-DDISABLE_ALSA=$(usex !alsa)
+		-DDISABLE_FREETYPE=$(usex !truetype)
+		-DDISABLE_JACK=$(usex !jack)
+		-DDISABLE_LIBFDK=$(usex !fdk)
+		-DDISABLE_PULSEAUDIO=$(usex !pulseaudio)
+		-DDISABLE_UDEV=$(usex !udev)
+		-DDISABLE_UI=$(usex !qt5)
+		-DDISABLE_V4L2=$(usex !v4l)
+		-DDISABLE_VLC=$(usex !vlc)
+		-DLIBOBS_PREFER_IMAGEMAGICK=$(usex imagemagick)
+		-DUSE_SSL=$(usex ssl)
 	)
 
 	cmake-utils_src_configure
