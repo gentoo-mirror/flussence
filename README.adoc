@@ -28,6 +28,9 @@ Put this in your `repos.conf`, then do `emerge --sync flussence`:
 
 Contents
 --------
+N.B. anything not listed here is considered “temporary”,
+and may be removed at any time.
+
 `games-server/minecraft-server` — minecraft-server ebuilds::
 +
 --
