@@ -1,0 +1,11 @@
+DEFINED_PHASES=-
+DEPEND=x11-libs/libxkbcommon
+DESCRIPTION=TSM is a state machine for DEC VT100-VT520 compatible terminal emulators.
+EAPI=5
+HOMEPAGE=http://www.freedesktop.org/wiki/Software/kmscon/libtsm/
+KEYWORDS=~amd64 ~x86
+LICENSE=MIT LGPL-2.1 BSD-2
+RDEPEND=x11-libs/libxkbcommon
+SLOT=0
+SRC_URI=http://freedesktop.org/software/kmscon/releases/libtsm-3.tar.xz
+_md5_=6918e3a0264ddaa8be41b0cfee21fce4

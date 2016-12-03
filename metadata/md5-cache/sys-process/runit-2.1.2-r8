@@ -1,0 +1,12 @@
+DEFINED_PHASES=configure install postinst postrm prepare
+DESCRIPTION=A UNIX init scheme with service supervision
+EAPI=5
+HOMEPAGE=http://smarden.org/runit/
+IUSE=static +symlink
+KEYWORDS=~amd64 ~x86
+LICENSE=BSD
+RDEPEND=sys-apps/openrc
+SLOT=0
+SRC_URI=http://smarden.org/runit/runit-2.1.2.tar.gz
+_eclasses_=eutils	b83a2420b796f7c6eff682679d08fe25	flag-o-matic	7366202dd55cb8f018f5d450d54e7749	multilib	165fc17c38d1b11dac2008280dab6e80	toolchain-funcs	1b1da0c45c555989dc5d832b54880783
+_md5_=f2e4ba4398264ff4f506daf433f04f3c

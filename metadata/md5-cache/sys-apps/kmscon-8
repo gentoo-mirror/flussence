@@ -1,0 +1,14 @@
+DEFINED_PHASES=configure install
+DEPEND=dev-libs/libtsm virtual/libudev x11-libs/libxkbcommon x11-libs/libdrm gles2? ( >=media-libs/mesa-8.0.3[egl,gbm,gles2] ) pango? ( x11-libs/pango ) pixman? ( x11-libs/pixman ) systemd? ( sys-apps/systemd ) virtual/pkgconfig x11-proto/xproto doc? ( dev-util/gtk-doc ) virtual/pkgconfig
+DESCRIPTION=KMS/DRM based virtual Console Emulator
+EAPI=5
+HOMEPAGE=http://www.freedesktop.org/wiki/Software/kmscon
+IUSE=debug doc drm fbdev +gles2 multiseat +pango pixman static-libs systemd udev unifont wayland
+KEYWORDS=~amd64 ~x86
+LICENSE=MIT LGPL-2.1 BSD-2
+RDEPEND=dev-libs/libtsm virtual/libudev x11-libs/libxkbcommon x11-libs/libdrm gles2? ( >=media-libs/mesa-8.0.3[egl,gbm,gles2] ) pango? ( x11-libs/pango ) pixman? ( x11-libs/pixman ) systemd? ( sys-apps/systemd ) x11-misc/xkeyboard-config
+REQUIRED_USE=|| ( drm fbdev gles2 ) multiseat? ( systemd )
+SLOT=0
+SRC_URI=http://www.freedesktop.org/software/kmscon/releases/kmscon-8.tar.xz
+_eclasses_=eutils	b83a2420b796f7c6eff682679d08fe25	multilib	165fc17c38d1b11dac2008280dab6e80	systemd	5b6ca8b2fc1307ca593223f327342c96	toolchain-funcs	1b1da0c45c555989dc5d832b54880783
+_md5_=e21e686d56dfb2d0c18d74403c6842cc

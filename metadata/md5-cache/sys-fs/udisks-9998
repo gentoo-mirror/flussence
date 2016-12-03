@@ -1,0 +1,8 @@
+DEFINED_PHASES=-
+DESCRIPTION=Dummy udisks ebuild
+EAPI=6
+HOMEPAGE=https://forums.gentoo.org/viewtopic-t-1046086.html
+KEYWORDS=~amd64 ~x86
+LICENSE=WTFPL-2
+SLOT=2
+_md5_=8ad88e07950e43a6a5e08acd02b1ccec
