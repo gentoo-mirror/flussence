@@ -4,20 +4,17 @@
 
 EAPI=6
 
-DIST_AUTHOR="FELIPE"
+DIST_AUTHOR="JONOZZZ"
+DIST_VERSION=0.16
 inherit perl-module
 
-DESCRIPTION="Conversion utilities for encryption applications"
+DESCRIPTION="Perl extension to OpenSSL's PKCS10 API."
 
 LICENSE="|| ( Artistic GPL-1+ )"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="test"
+IUSE=""
 
-RDEPEND="virtual/perl-MIME-Base64"
+RDEPEND="dev-perl/Crypt-OpenSSL-RSA"
 DEPEND="${RDEPEND}
-	virtual/perl-ExtUtils-MakeMaker
-	test? (
-		dev-perl/Test-Exception
-		virtual/perl-Test-Simple
-	)"
+	>=virtual/perl-ExtUtils-MakeMaker-6.580"

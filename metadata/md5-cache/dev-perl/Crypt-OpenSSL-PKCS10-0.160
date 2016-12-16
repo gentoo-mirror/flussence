@@ -1,5 +1,5 @@
 DEFINED_PHASES=compile configure install prepare test
-DEPEND=dev-perl/Crypt-OpenSSL-RSA virtual/perl-ExtUtils-MakeMaker dev-lang/perl:=
+DEPEND=dev-perl/Crypt-OpenSSL-RSA >=virtual/perl-ExtUtils-MakeMaker-6.580 dev-lang/perl:=
 DESCRIPTION=Perl extension to OpenSSL's PKCS10 API.
 EAPI=6
 HOMEPAGE=http://search.cpan.org/dist/Crypt-OpenSSL-PKCS10/
@@ -7,6 +7,6 @@ KEYWORDS=~amd64 ~x86
 LICENSE=|| ( Artistic GPL-1+ )
 RDEPEND=dev-perl/Crypt-OpenSSL-RSA dev-lang/perl:=
 SLOT=0
-SRC_URI=mirror://cpan/authors/id/J/JO/JONOZZZ/Crypt-OpenSSL-PKCS10-0.15.tar.gz
+SRC_URI=mirror://cpan/authors/id/J/JO/JONOZZZ/Crypt-OpenSSL-PKCS10-0.16.tar.gz
 _eclasses_=multiprocessing	e32940a7b2a9992ad217eccddb84d548	perl-functions	aac50de73be0a80ebe780e0b20850130	perl-module	f6549146ea31a902e20b5f2e6f244358
-_md5_=6f1b3c5bb83e5df06c720f1b6497836e
+_md5_=a270126f23f56de2ed57a0e2a94241cb
