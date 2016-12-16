@@ -27,7 +27,6 @@ RDEPEND="
 	virtual/perl-MIME-Base64
 	virtual/perl-Scalar-List-Utils"
 DEPEND="${RDEPEND}
-	dev-perl/Pod-Readme
 	>=virtual/perl-ExtUtils-MakeMaker-6.580
 	>=virtual/perl-Text-Tabs+Wrap-2005.82.401
 	test? (
