@@ -10,12 +10,6 @@ media-plugins/audacious-plugins:fluidsynth - Support FluidSynth as MIDI synth ba
 media-plugins/audacious-plugins:http - Support HTTP streams through neon
 media-plugins/audacious-plugins:scrobbler - Build with scrobbler/LastFM submission support
 media-plugins/audacious-plugins:sid - Build with SID (Commodore 64 Audio) support
-media-sound/lmms:fluidsynth - Enables the SF2Player plugin (soundfonts)
-media-sound/lmms:libgig - Enables the GigPlayer plugin (soundfonts)
-media-sound/lmms:qt5 - Builds using Qt5 instead of Qt4
-media-sound/lmms:soundio - Enables media-sound/libsoundio output backend
-media-sound/lmms:stk - Enables the Mallet plugin
-media-sound/lmms:vst - Enables the VeSTige plugin to run VST plugins through Wine
 media-video/obs-studio:fdk - Use media-libs/fdk-aac for high-quality AAC encoding
 media-video/obs-studio:imagemagick - Prefer ImageMagick for image loading instead of FFmpeg
 media-video/obs-studio:qt5 - Build the main OBS UI (you probably want this)
