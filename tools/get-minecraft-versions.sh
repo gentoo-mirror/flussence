@@ -1,3 +1,4 @@
 #!/bin/sh
-curl -s http://s3.amazonaws.com/Minecraft.Download/versions/versions.json | \
-    perl -ne 'print if /\Q"latest": {\E/ .. /\Q},\E/'
+json-glib-format --prettify \
+    <(curl -s https://launchermeta.mojang.com/mc/game/version_manifest.json) \
+    | perl -ne 'print if /\Q"latest"\E/ .. /\Q},\E/'
