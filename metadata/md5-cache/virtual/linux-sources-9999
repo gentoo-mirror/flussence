@@ -1,6 +1,0 @@
-DEFINED_PHASES=-
-DESCRIPTION=Dummy kernel sources virtual
-EAPI=5
-KEYWORDS=~amd64 ~x86
-SLOT=0
-_md5_=d0164880de142f1aa931668edc9ab5f7
