@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>flussence@gmail.com</email>
+		<name>Anthony Parsons</name>
+	</maintainer>
+	<use>
+		<flag name="filter-audio">
+			Use the <pkg>media-libs/filter_audio</pkg> library for better audio call quality
+		</flag>
+	</use>
+</pkgmetadata>
