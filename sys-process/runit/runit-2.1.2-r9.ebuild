@@ -22,6 +22,8 @@ S=${WORKDIR}/admin/${P}/src
 src_prepare() {
 	# we either build everything or nothing static
 	sed -i -e 's:-static: :' Makefile
+
+	default
 }
 
 src_configure() {
