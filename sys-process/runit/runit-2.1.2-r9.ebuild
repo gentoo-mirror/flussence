@@ -1,8 +1,8 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
 inherit toolchain-funcs flag-o-matic
 
@@ -50,14 +50,13 @@ src_install() {
 	exeinto /etc/runit
 	doexe "${FILESDIR}"/{1,3,ctrlaltdel}
 
-	# N.B. this is not $WORKDIR, $S is redefined above
+	# N.B. this is not $WORKDIR because $S is redefined above
 	cd "${S}"/..
 
 	sed -i 's@/service@/etc/service@' etc/2 || die 'sed failed'
 	doexe etc/2
 
-	dodoc package/{CHANGES,README,THANKS,TODO}
-	dohtml doc/*.html
+	dodoc package/{CHANGES,README,THANKS,TODO} doc/*.html
 	doman man/*.[18]
 }
 
