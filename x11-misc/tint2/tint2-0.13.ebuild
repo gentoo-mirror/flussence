@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -13,6 +13,7 @@ if [[ ${PV} == "9999" ]]; then
 	inherit git-r3
 else
 	SRC_URI="https://gitlab.com/o9000/${PN}/repository/archive.tar.gz?ref=v${PV} -> ${P}.tar.gz"
+	inherit vcs-snapshot
 fi
 
 LICENSE="GPL-2"
@@ -36,21 +37,6 @@ DEPEND="
 	startup-notification? ( x11-libs/startup-notification )
 	"
 RDEPEND="${DEPEND}"
-
-S="${WORKDIR}/${PN}-v${PV}"
-
-PATCHES=(
-	"${FILESDIR}/${PV}-no-hardcode-update-icon-cache.patch"
-	"${FILESDIR}/${PV}-compilation-without-svg-fix.patch"
-)
-
-src_unpack() {
-	default
-	if [[ ${PV} != "9999" ]]; then
-		# Chop off the SHA1 gitlab's automated tarballs inject
-		mv "${PN}-v${PV}-"* "${PN}-v${PV}"
-	fi
-}
 
 src_configure() {
 	mycmakeargs+=(
