@@ -18,6 +18,8 @@ IUSE="dbus debug filter-audio"
 # no idea if these are correct
 RDEPEND="net-libs/tox[av]
 	media-libs/freetype
+	media-libs/libv4l
+	media-libs/openal
 	x11-libs/libX11
 	dbus? ( sys-apps/dbus )
 	filter-audio? ( media-libs/filter_audio )"
