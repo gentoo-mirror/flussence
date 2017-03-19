@@ -55,9 +55,7 @@ Probably has too many `USE` flags, but it works and does what I need from it.
 You can even build it with no GUI at all, if you're into that sort of thing.
 
 `net-irc/irssi` — Riced irssi ebuilds::
-Tweaked `irssi::gentoo` ebuilds:
-a stable version with optional 256-color terminal support,
-and a git ebuild with far too many USE flags.
+A git ebuild with far too many USE flags.
 
 `sys-process/runit` — My own rewrite of the Gentoo runit ebuild::
 +
