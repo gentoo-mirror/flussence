@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>flussence@gmail.com</email>
+		<name>Anthony Parsons</name>
+	</maintainer>
+	<longdescription lang="en">
+		Simple Revision Control is RCS/SCCS reloaded with a modern UI, designed to manage
+		single-file solo projects kept more than one to a directory. Use it for FAQs, ~/bin
+		directories, config files, and the like. Features integer sequential revision numbers, a
+		command set that will seem familiar to Subversion/Git/hg users, and no binary blobs
+		anywhere.
+	</longdescription>
+</pkgmetadata>
