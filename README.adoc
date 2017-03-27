@@ -28,8 +28,11 @@ Put this in your `repos.conf`, then do `emerge --sync flussence`:
 
 Contents
 --------
-N.B. anything not listed here is considered “temporary”,
+N.B. anything not listed here is considered temporary,
 and may be removed at any time.
+
+`dev-vcs/src` — Simple Revision Control::
+A version control tool suitable for all those loose scripts you have lying around.
 
 `games-server/minecraft-server` — minecraft-server ebuilds::
 +
