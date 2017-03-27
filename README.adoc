@@ -31,7 +31,7 @@ Contents
 N.B. anything not listed here is considered temporary,
 and may be removed at any time.
 
-`dev-vcs/src` — Simple Revision Control::
+`dev-vcs/src` — https://gitlab.com/esr/src[Simple Revision Control]::
 A version control tool suitable for all those loose scripts you have lying around.
 
 `games-server/minecraft-server` — minecraft-server ebuilds::
@@ -57,9 +57,6 @@ Builds OBS from Git.
 Probably has too many `USE` flags, but it works and does what I need from it.
 You can even build it with no GUI at all, if you're into that sort of thing.
 
-`net-irc/irssi` — Riced irssi ebuilds::
-A git ebuild with far too many USE flags.
-
 `net-p2p/go-ipfs-bin` — Updated versions of Gentoo IPFS ebuilds::
 The in-tree one is 5 versions behind as of this writing, proxy-maintainer seems to not care.
 
@@ -76,10 +73,10 @@ https://gitlab.com/flussence/runit-scripts[my runit-scripts repository].
 [NOTE]
 .Boilerplate headers and copyright attribution
 ================================================================================
-The 3-line legalese header on each ebuild is required to be present, verbatim,
-by Gentoo's QA programs. Other than the GPL-2 statement, the rest of it should
-not be relied on as legally valid. Correct attribution for sources can be found
-in the git logs or this document.
+The 2-line legalese header on each ebuild is required to be present, verbatim,
+by Gentoo's “repoman” QA tool.
+Other than the GPL-2 statement, the rest of it should not be considered valid.
+Correct attribution for sources can be found in the git logs or this document.
 
 Reference:
 https://devmanual.gentoo.org/ebuild-writing/common-mistakes/index.html
