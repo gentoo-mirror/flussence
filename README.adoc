@@ -31,6 +31,10 @@ Contents
 N.B. anything not listed here is considered temporary,
 and may be removed at any time.
 
+`app-crypt/signify` — https://github.com/aperezdc/signify[OpenBSD Signify]::
+Signify is a strong cryptographic signature tool that fits on a floppy disk, with public
+keys that fit in 140 characters, and a manpage that fits on one screen.
+
 `dev-vcs/src` — https://gitlab.com/esr/src[Simple Revision Control]::
 A version control tool suitable for all those loose scripts you have lying around.
 
