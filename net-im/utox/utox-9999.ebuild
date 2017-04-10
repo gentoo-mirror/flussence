@@ -30,8 +30,8 @@ src_configure() {
 	mycmakeargs+=(
 		-DENABLE_ASAN=$(usex debug)
 		-DENABLE_DBUS=$(usex dbus)
+		-DENABLE_FILTERAUDIO=$(usex filter_audio)
 		-DENABLE_TESTS=$(usex test)
-		-DFILTER_AUDIO=$(usex filter-audio)
 	)
 
 	cmake-utils_src_configure
