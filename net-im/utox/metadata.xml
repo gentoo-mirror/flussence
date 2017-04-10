@@ -6,7 +6,7 @@
 		<name>Anthony Parsons</name>
 	</maintainer>
 	<use>
-		<flag name="filter-audio">
+		<flag name="filter_audio">
 			Use the <pkg>media-libs/filter_audio</pkg> library for better audio call quality
 		</flag>
 	</use>

@@ -12,7 +12,7 @@ EGIT_REPO_URI="https://github.com/uTox/uTox.git"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="dbus debug filter-audio test"
+IUSE="dbus debug filter_audio test"
 
 # no idea if these are correct
 RDEPEND="net-libs/tox[av]
@@ -21,7 +21,7 @@ RDEPEND="net-libs/tox[av]
 	media-libs/openal
 	x11-libs/libX11
 	dbus? ( sys-apps/dbus )
-	filter-audio? ( media-libs/filter_audio )"
+	filter_audio? ( media-libs/filter_audio )"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	test? ( >=dev-libs/check-0.11.0 )"
