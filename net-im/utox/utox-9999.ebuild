@@ -12,7 +12,7 @@ EGIT_REPO_URI="https://github.com/uTox/uTox.git"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="dbus debug filter-audio"
+IUSE="dbus debug filter-audio test"
 
 # no idea if these are correct
 RDEPEND="net-libs/tox[av]
@@ -23,18 +23,20 @@ RDEPEND="net-libs/tox[av]
 	dbus? ( sys-apps/dbus )
 	filter-audio? ( media-libs/filter_audio )"
 DEPEND="${RDEPEND}
-	virtual/pkgconfig"
+	virtual/pkgconfig
+	test? ( >=dev-libs/check-0.11.0 )"
 
 src_configure() {
 	mycmakeargs+=(
 		-DENABLE_ASAN=$(usex debug)
+		-DENABLE_DBUS=$(usex dbus)
+		-DENABLE_TESTS=$(usex test)
 		-DFILTER_AUDIO=$(usex filter-audio)
 	)
 
 	cmake-utils_src_configure
 }
 
-src_compile() {
-	cmake-utils_src_compile \
-		$(use dbus 'C_DEFINES="-DHAVE_DBUS"')
+pkg_postinst() {
+	elog "${PN} requires x11-libs/gtk+:3 for a filepicker (setting avatar, sending files)."
 }
