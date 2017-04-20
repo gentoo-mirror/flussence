@@ -32,6 +32,7 @@ src_configure() {
 		-DENABLE_DBUS=$(usex dbus)
 		-DENABLE_FILTERAUDIO=$(usex filter_audio)
 		-DENABLE_TESTS=$(usex test)
+		-DENABLE_LTO=OFF # if you want this on as a user, use package.use+CFLAGS.
 	)
 
 	cmake-utils_src_configure
