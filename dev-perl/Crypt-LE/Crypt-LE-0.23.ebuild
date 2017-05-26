@@ -4,7 +4,7 @@
 EAPI=6
 
 DIST_AUTHOR="LEADER"
-DIST_VERSION=0.19
+DIST_VERSION=0.23
 inherit perl-module
 
 DESCRIPTION="Let's Encrypt API interfacing module."
@@ -15,11 +15,10 @@ KEYWORDS="~amd64 ~x86"
 IUSE="test"
 
 RDEPEND="
+	>=dev-perl/Convert-ASN1-0.200
 	>=dev-perl/Crypt-Format-0.20
 	>=dev-perl/Crypt-OpenSSL-Bignum-0.60
-	>=dev-perl/Crypt-OpenSSL-PKCS10-0.150
 	>=dev-perl/Crypt-OpenSSL-RSA-0.280
-	>=dev-perl/Crypt-PKCS10-1.500
 	virtual/perl-Digest-SHA
 	virtual/perl-File-Temp
 	>=virtual/perl-HTTP-Tiny-0.42

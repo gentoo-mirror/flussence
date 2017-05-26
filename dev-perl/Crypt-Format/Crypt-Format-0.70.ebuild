@@ -4,7 +4,7 @@
 EAPI=6
 
 DIST_AUTHOR="FELIPE"
-DIST_VERSION=0.06
+DIST_VERSION=0.07
 inherit perl-module
 
 DESCRIPTION="Conversion utilities for encryption applications"
