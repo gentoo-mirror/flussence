@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>flussence@gmail.com</email>
+		<name>Anthony Parsons</name>
+	</maintainer>
+	<longdescription lang="en">
+		LibSass is a C++ port of the original Ruby Sass CSS compiler with a C API.
+	</longdescription>
+	<upstream>
+		<remote-id type="github">sass/libsass</remote-id>
+	</upstream>
+</pkgmetadata>

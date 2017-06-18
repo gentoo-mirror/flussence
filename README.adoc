@@ -35,6 +35,11 @@ and may be removed at any time.
 Signify is a strong cryptographic signature tool that fits on a floppy disk, with public
 keys that fit in 140 characters, and a manpage that fits on one screen.
 
+`dev-libs/libsass` — https://github.com/sass/libsass[libsass]::
+`dev-util/sassc` — https://github.com/sass/sassc[SassC]::
+C++ implementation of SASS stylesheet preprocessor.
+The perl5 CSS::Sass is too broken to package as an ebuild so I use this instead now.
+
 `dev-vcs/src` — https://gitlab.com/esr/src[Simple Revision Control]::
 A version control tool suitable for all those loose scripts you have lying around.
 

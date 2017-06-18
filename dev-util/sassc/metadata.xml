@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>flussence@gmail.com</email>
+		<name>Anthony Parsons</name>
+	</maintainer>
+	<longdescription lang="en">
+		SassC is a command-line frontend to <pkg>dev-libs/libsass</pkg>.
+	</longdescription>
+	<upstream>
+		<remote-id type="github">sass/sassc</remote-id>
+	</upstream>
+</pkgmetadata>
