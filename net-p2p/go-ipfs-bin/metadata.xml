@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
+	<upstream>
+		<changelog>https://github.com/ipfs/go-ipfs/blob/master/CHANGELOG.md</changelog>
+		<bugs-to>https://github.com/ipfs/go-ipfs/issues</bugs-to>
+		<remote-id type="github">ipfs/go-ipfs</remote-id>
+	</upstream>
 	<maintainer type="person">
 		<email>flussence@gmail.com</email>
 		<name>Anthony Parsons</name>
