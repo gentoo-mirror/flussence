@@ -16,3 +16,8 @@ KEYWORDS="~amd64 ~x86"
 REQUIRED_USE="$PYTHON_REQUIRED_USE"
 
 RDEPEND="dev-vcs/rcs"
+
+src_install() {
+	emake DESTDIR="${D}" prefix=/usr install
+	dodoc README TODO NEWS
+}
