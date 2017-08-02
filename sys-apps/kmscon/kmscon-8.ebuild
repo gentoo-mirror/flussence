@@ -6,8 +6,8 @@ EAPI=5
 inherit eutils systemd
 
 DESCRIPTION="KMS/DRM based virtual Console Emulator"
-HOMEPAGE="http://www.freedesktop.org/wiki/Software/kmscon"
-SRC_URI="http://www.freedesktop.org/software/${PN}/releases/${P}.tar.xz"
+HOMEPAGE="https://www.freedesktop.org/wiki/Software/kmscon"
+SRC_URI="https://www.freedesktop.org/software/${PN}/releases/${P}.tar.xz"
 
 LICENSE="MIT LGPL-2.1 BSD-2"
 SLOT="0"
