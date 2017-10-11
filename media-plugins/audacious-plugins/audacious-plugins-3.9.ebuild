@@ -14,9 +14,8 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="aac alsa bs2b cdda cue ffmpeg filewriter flac fluidsynth gnome http +gtk
-jack lame libnotify libsamplerate lirc mms mp3 nls oss pulseaudio qt5 scrobbler
-sdl sid
-sndfile sox vorbis wavpack"
+	jack lame libnotify libsamplerate lirc mms mp3 nls oss pulseaudio qt5 scrobbler
+	sdl sid sndfile sox vorbis wavpack"
 REQUIRED_USE="|| ( alsa jack oss pulseaudio qt5 sdl )
 	filewriter? ( || ( flac vorbis ) )"
 
