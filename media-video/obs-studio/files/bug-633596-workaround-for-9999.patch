@@ -1,0 +1,51 @@
+diff --git a/plugins/rtmp-services/rtmp-services-main.c b/plugins/rtmp-services/rtmp-services-main.c
+index 584a56dc2c3a..dd1fddf4777e 100644
+--- a/plugins/rtmp-services/rtmp-services-main.c
++++ b/plugins/rtmp-services/rtmp-services-main.c
+@@ -76,7 +76,7 @@ bool obs_module_load(void)
+ 	proc_handler_add(ph, "void twitch_ingests_refresh(int seconds)",
+ 			refresh_callback, NULL);
+ 
+-#if !defined(_WIN32) || CHECK_FOR_SERVICE_UPDATES
++#if 0
+ 	char *local_dir = obs_module_file("");
+ 	char *cache_dir = obs_module_config_path("");
+ 
+diff --git a/plugins/rtmp-services/twitch.c b/plugins/rtmp-services/twitch.c
+index 6e26cd5f120f..e01d203dd78c 100644
+--- a/plugins/rtmp-services/twitch.c
++++ b/plugins/rtmp-services/twitch.c
+@@ -7,7 +7,9 @@
+ 
+ #include "twitch.h"
+ 
++#if 0
+ static update_info_t *twitch_update_info = NULL;
++#endif
+ static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+ static bool ingests_refreshed = false;
+ static bool ingests_refreshing = false;
+@@ -167,11 +169,13 @@ void twitch_ingests_refresh(int seconds)
+ 	if (!os_atomic_load_bool(&ingests_refreshing)) {
+ 		os_atomic_set_bool(&ingests_refreshing, true);
+ 
++#if 0
+ 		twitch_update_info = update_info_create_single(
+ 				"[twitch ingest update] ",
+ 				get_module_name(),
+ 				"https://ingest.twitch.tv/api/v2/ingests",
+ 				twitch_ingest_update, NULL);
++#endif
+ 	}
+ 
+ 	/* wait five seconds max when loading ingests for the first time */
+@@ -218,7 +222,9 @@ void load_twitch_data(void)
+ 
+ void unload_twitch_data(void)
+ {
++#if 0
+ 	update_info_destroy(twitch_update_info);
++#endif
+ 	free_ingests();
+ 	pthread_mutex_destroy(&mutex);
+ }

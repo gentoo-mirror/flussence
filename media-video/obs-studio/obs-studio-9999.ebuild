@@ -54,6 +54,8 @@ DEPEND="
 	vlc? ( media-video/vlc )"
 RDEPEND="${DEPEND}"
 
+PATCHES=( "${FILESDIR}"/bug-633596-workaround-for-"${PV}".patch )
+
 src_configure() {
 	local libdir=$(get_libdir)
 	local mycmakeargs+=(
