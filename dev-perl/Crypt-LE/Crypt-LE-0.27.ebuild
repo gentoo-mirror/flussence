@@ -4,7 +4,7 @@
 EAPI=6
 
 DIST_AUTHOR="LEADER"
-DIST_VERSION=0.23
+DIST_VERSION=0.27
 inherit perl-module
 
 DESCRIPTION="Let's Encrypt API interfacing module."
