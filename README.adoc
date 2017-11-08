@@ -54,6 +54,10 @@ The OpenRC initscript was removed and versions are individually slotted;
 it's up to you to decide how you want to run a game server.
 --
 
+`games-util/friidump` — GameCube/Wii disc ripping utility::
+Allows a computer with the right kind of drive to rip these discs natively.
+Turns out I had one of those, so I made an ebuild out of it.
+
 `gnome-extra/gucharmap` — GTK+2 gucharmap::
 A good character map program (nicer than KCharSelect, which is a Windows clone).
 The Gentoo ebuild for this is GTK+3-only for no good reason,
