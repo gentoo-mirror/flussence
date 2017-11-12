@@ -1,13 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
+	<maintainer type="person">
+		<email>flussence@gmail.com</email>
+		<name>Anthony Parsons</name>
+	</maintainer>
+	<upstream>
+		<bugs-to>http://redmine.audacious-media-player.org/projects/audacious/issues</bugs-to>
+	</upstream>
 	<use>
-		<flag name='bs2b'>Enable Bauer Bauer stereophonic-to-binaural headphone filter</flag>
-		<flag name='cue'>Support CUE sheets using the libcue library</flag>
-		<flag name='filewriter'>Enable filewriter output plugin</flag>
-		<flag name='fluidsynth'>Support FluidSynth as MIDI synth backend</flag>
-		<flag name='http'>Support HTTP streams through neon</flag>
-		<flag name='scrobbler'>Build with scrobbler/LastFM submission support</flag>
-		<flag name='sid'>Build with SID (Commodore 64 Audio) support</flag>
+		<flag name="ampache">Add remote control support via <pkg>www-apps/ampache</pkg></flag>
+		<flag name="aosd">Enable the on-screen-display plugin</flag>
+		<flag name="bs2b">Enable Bauer stereophonic-to-binaural headphone filter</flag>
+		<flag name="cue">Support CUE sheets using the libcue library</flag>
+		<flag name="ffmpeg">Use <pkg>virtual/ffmpeg</pkg> to play audio from most files</flag>
+		<flag name="filewriter">Enable FLAC/Vorbis filewriter output plugin</flag>
+		<flag name="fluidsynth">Support MIDI playback using Fluidsynth</flag>
+		<flag name="gnome">Enable GNOME shortcuts integration</flag>
+		<flag name="hotkeys">Enable global hotkey control plugin</flag>
+		<flag name="http">Support HTTP streams through <pkg>net-libs/neon</pkg></flag>
+		<flag name="lame">Enable MP3 filewriter output plugin</flag>
+		<flag name="libsamplerate">Enable resample, speed and pitch plugins</flag>
+		<flag name="mpg123">Enable standalone MP3 plugin using <pkg>media-sound/mpg123</pkg></flag>
+		<flag name="mpris">Enable MPRIS2 support (dbus-based player remote control)</flag>
+		<flag name="opengl">Enable the glspectrum visualiser plugin</flag>
+		<flag name="scrobbler">Build with scrobbler/LastFM submission support</flag>
+		<flag name="sdl2">Use libsdl2 instead of 1.2 (when USE=sdl is enabled)</flag>
+		<flag name="sid">Build with SID (Commodore 64 Audio) support</flag>
 	</use>
 </pkgmetadata>
