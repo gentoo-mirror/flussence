@@ -30,3 +30,10 @@ src_configure() {
 	)
 	cmake-utils_src_configure
 }
+
+src_install() {
+	cmake-utils_src_install
+
+	fowners root:cdrom /usr/bin/friidump
+	fperms 4750 /usr/bin/friidump
+}
