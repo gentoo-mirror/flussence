@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>flussence@gmail.com</email>
+		<name>Anthony Parsons</name>
+	</maintainer>
+	<longdescription lang="en">
+		A libpurple/Pidgin plugin for Discord (temporary until Bug 618688 is fixed)
+	</longdescription>
+	<upstream>
+		<bugs-to>https://github.com/EionRobb/purple-discord/issues</bugs-to>
+		<remote-id type="github">EionRobb/purple-discord</remote-id>
+	</upstream>
+</pkgmetadata>
