@@ -238,4 +238,3 @@ pkg_postinst() {
 		fi
 	fi
 }
-
