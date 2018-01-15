@@ -12,7 +12,8 @@ RUNLEVEL=S /sbin/openrc sysinit
 RUNLEVEL=S /sbin/openrc boot
 
 # Spawn a login prompt if "single" is passed on the boot command line.
-case " $(</proc/cmdline) " in
+read -r kcmdline </proc/cmdline
+case " $kcmdline " in
     *" single "* )
         /sbin/openrc single
         /sbin/sulogin
@@ -29,18 +30,26 @@ findmnt -nt tmpfs /run > /dev/null && install -m 0755 -d "$tmpstate"
 
 
 tmpify() {
-    [ -L supervise ] && return
-    rm -rfv supervise
-    ln -Ts "$tmpstate"/"${PWD##*/}" supervise
+    cd "$1" || return
+
+    if [ ! -L ./supervise ]; then
+        rm -rfv ./supervise
+        ln -Ts "$tmpstate"/"${PWD##*/}" ./supervise
+    fi
+
+    if [ -d ./log ] && [ ! -L ./log/supervise ]; then
+        rm -rfv ./log/supervise
+        ln -Ts "$tmpstate"/log."${PWD##*/}" ./log/supervise
+    fi
+
+    cd "$OLDPWD" || return
 }
 
 # Attempt to symlink each $sv's supervise/ directory to /run/runit/$sv,
 # in order to avoid disk writes in /etc. Existing directories are replaced,
 # existing symlinks and log services are untouched.
 for sv in /etc/service/*/; do
-    pushd "$sv" > /dev/null || break
-    tmpify
-    popd > /dev/null
+    tmpify "$sv"
 done
 
 # Do the same for shutdown control files.

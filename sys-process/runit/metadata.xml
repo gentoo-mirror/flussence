@@ -5,6 +5,8 @@
 		runit is a process supervision suite with a focus on being usable as a sysvinit replacement.
 		It provides similar functionality to other packages like <pkg>sys-apps/s6</pkg> and
 		<pkg>sys-process/daemontools</pkg>, and a compatibility/migration path for the latter.
+		As this package only provides an init and service manager, it still depends on
+		<pkg>sys-apps/openrc</pkg> for the rc layer inbetween.
 	</longdescription>
 	<maintainer type="person">
 		<email>flussence@gmail.com</email>
@@ -14,6 +16,8 @@
 		<doc>http://smarden.org/runit/</doc>
 	</upstream>
 	<use>
-		<flag name="symlink">Symlink /service to /etc/service to allow abbreviated `sv` commands</flag>
+		<flag name="symlink">
+			Create /service symlink to allow abbreviated `sv` commands without setting $SVDIR
+		</flag>
 	</use>
 </pkgmetadata>
