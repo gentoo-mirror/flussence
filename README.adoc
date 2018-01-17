@@ -63,7 +63,7 @@ A good character map program (nicer than KCharSelect, which is a Windows clone).
 The Gentoo ebuild for this is GTK+3-only for no good reason,
 so I wrote a better one from scratch that respects the user's choice.
 Make sure to add `gucharmap::gentoo` to your `package.mask`.
-Caveat: only supports old versions of Unicode. I may try to fix this.
+Now supports modern Unicode versions! (just leave `system-unicode` enabled, which is the default)
 
 `media-video/obs-studio` — https://github.com/jp9000/obs-studio[OBS Studio]::
 Builds OBS from Git.

@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
+	<maintainer type="person">
+		<email>flussence@gmail.com</email>
+		<name>Anthony Parsons</name>
+	</maintainer>
 	<use>
 		<flag name="gconf">Use GConf to save gucharmap settings</flag>
+		<flag name="system-unicode">Regenerate unicode metadata using <pkg>app-i18n/unicode-data</pkg> instead of using old bundled copies</flag>
 	</use>
 </pkgmetadata>
