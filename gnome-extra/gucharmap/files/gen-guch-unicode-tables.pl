@@ -1,203 +1,158 @@
 #!/usr/bin/env perl
-#
-# $Id$ 
-#
-# generates in the current directory:
-#  - unicode-blocks.h
-#  - unicode-names.h
-#  - unicode-nameslist.h
-#  - unicode-unihan.h
-#  - unicode-categories.h
-#  - unicode-scripts.h
-#  - unicode-versions.h
-#
-# usage: ./gen-guch-unicode-tables.pl UNICODE-VERSION DIRECTORY
-# where DIRECTORY contains UnicodeData.txt Unihan.zip NamesList.txt Blocks.txt Scripts.txt
-#
-# NOTE! Some code copied from glib/glib/gen-unicode-tables.pl; keep in sync!
-
-use strict;
+use v5.26;
 use warnings;
+use utf8;
+use autodie qw(:all);
+use experimental qw(signatures);
+use IO::Uncompress::Unzip;
 
-use Env qw($PROG_UNZIP);
-$PROG_UNZIP = "unzip" unless (defined $PROG_UNZIP);
+=encoding UTF-8
 
-$| = 1;  # flush stdout buffer
+=head1 NAME
 
-if (@ARGV != 2 && @ARGV != 3)
-{
-    $0 =~ s@.*/@@;
-    die <<EOF
+gen-guch-unicode-tables.pl - Generate gucharmap unicode header files
 
-Usage: $0 UNICODE-VERSION DIRECTORY [--i18n]
+=head1 SYNOPSIS
 
-DIRECTORY should contain the following Unicode data files:
-UnicodeData.txt Unihan.zip NamesList.txt Blocks.txt Scripts.txt
+    gen-guch-unicode-tables.pl [datadir]
 
-which can be found at http://www.unicode.org/Public/UNIDATA/
+=head1 ARGUMENTS
 
-EOF
+B<datadir>: should point to where the UCD data tables are on your system.
+If omitted, defaults to C</usr/share/unicode-data>.
+
+=head1 DESCRIPTION
+
+This script parses Unicode data tables and generates gucharmap's header files.
+The following files will be written (or overwritten) in the current working directory:
+
+ - unicode-blocks.h
+ - unicode-names.h
+ - unicode-nameslist.h
+ - unicode-unihan.h
+ - unicode-categories.h
+ - unicode-scripts.h
+ - unicode-versions.h
+
+The data directory needs to contain at least the following files:
+
+ - Blocks.txt
+ - DerivedAge.txt
+ - NamesList.txt
+ - Scripts.txt
+ - UnicodeData.txt
+ - Unihan.zip
+
+=head1 DEPENDENCIES
+
+L<IO::Uncompress::Unzip> is needed for Unihan.zip
+
+=head1 COPYRIGHT
+
+    Copyright © 2018 Anthony Parsons <flussence@gmail.com>
+    Derived from the gucharmap 10.0.0 gen-guch-unicode-tables.pl script
+     - © the gucharmap authors
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+=cut
+
+sub MAIN {
+    { my $oldfh = select(STDERR); $| = 1; select($oldfh); binmode(STDERR, ':utf8'); }
+
+    my $data_dir = shift(@ARGV) // q{/usr/share/unicode-data};
+    my %directory = (
+        "$data_dir/Blocks.txt"      => \&process_blocks_txt,
+        "$data_dir/NamesList.txt"   => \&process_nameslist_txt,
+        "$data_dir/Scripts.txt"     => \&process_scripts_txt,
+        "$data_dir/UnicodeData.txt" => \&process_unicode_data_txt,
+        "$data_dir/DerivedAge.txt"  => \&process_derived_age_txt,
+        "$data_dir/Unihan.zip"      => \&process_unihan_zip,
+    );
+
+    for ( keys %directory ) {
+        next if -r;
+        eval { require Pod::Usage; };
+        if ($@) {
+            sub pod2usage { die $_[1] };
+        }
+        pod2usage(-message => "File '$_' is missing or not readable", -exitval => 1);
+    }
+
+    while ( my ($filename, $func) = each(%directory) ) {
+        print STDERR "Processing $filename… ";
+
+        open(my $fh_in, q{<}, $filename);
+        $func->($fh_in);
+        close($fh_in);
+
+        say STDERR 'done.';
+    }
 }
 
-my ($unicodedata_txt, $unihan_zip, $nameslist_txt, $blocks_txt, $scripts_txt, $versions_txt);
-
-my $v = $ARGV[0];
-my $d = $ARGV[1];
-
-my $gen_translatable_strings = 0;
-if (@ARGV == 3)
-{
-    $gen_translatable_strings = 1 if ($ARGV[2] eq "--i18n") or die "Unknown option \"$ARGV[2]\"\n";
-}
-
-opendir (my $dir, $d) or die "Cannot open Unicode data dir $d: $!\n";
-for my $f (readdir ($dir))
-{
-    $unicodedata_txt = "$d/$f" if ($f =~ /UnicodeData.*\.txt/);
-    $unihan_zip = "$d/$f" if ($f =~ /Unihan.*\.zip/);
-    $nameslist_txt = "$d/$f" if ($f =~ /NamesList.*\.txt/);
-    $blocks_txt = "$d/$f" if ($f =~ /Blocks.*\.txt/);
-    $scripts_txt = "$d/$f" if ($f =~ /Scripts.*\.txt/);
-    $versions_txt = "$d/$f" if ($f =~ /DerivedAge.*\.txt/);
-}
-
-defined $unicodedata_txt or die "Did not find $d/UnicodeData.txt";
-defined $unihan_zip or die "Did not find $d/Unihan.zip";
-defined $nameslist_txt or die "Did not find $d/NamesList.txt";
-defined $blocks_txt or die "Did not find $d/Blocks.txt";
-defined $scripts_txt or die "Did not find $d/Scripts.txt";
-defined $versions_txt or die "Did not find $d/DerivedAge.txt";
-
-if ($gen_translatable_strings)
-{
-    process_translatable_strings ($blocks_txt, $scripts_txt);
-}
-else
-{
-    process_unicode_data_txt ($unicodedata_txt);
-    process_nameslist_txt ($nameslist_txt);
-    process_blocks_txt ($blocks_txt);
-    process_scripts_txt ($scripts_txt);
-    process_versions_txt ($versions_txt);
-    process_unihan_zip ($unihan_zip);
-}
-
+MAIN;
 exit;
 
+sub new_headerfile($filename, $extra_header = '') {
+    print STDERR "creating $filename… ";
+
+    open(my $fh_out, q{>}, $filename);
+    my $guard_define = uc($filename =~ tr[a-z][_]cr);
+
+    print $fh_out <<~"EOT", $extra_header;
+    /* $filename
+     * This file was generated by $0
+     * Changes will be overwritten
+     */
+
+    #ifndef $guard_define
+    #define $guard_define
+
+    #include <glib.h>
+    #include <glib/gi18n-lib.h>
+
+    EOT
+
+    return $fh_out, sub {
+        print $fh_out <<~"EOT";
+        };
+
+        #endif  /* #ifndef $guard_define */
+        EOT
+
+        close($fh_out);
+    }
+}
 
 #------------------------#
 
-sub process_unicode_data_txt
-{
-    my ($unicodedata_txt) = @_;
+sub process_unicode_data_txt($fh_unicode_data_txt) {
+    my ($fh_cats_h, $eof) = new_headerfile 'unicode-categories.h', <<~EOT;
+    typedef struct _UnicodeCategory UnicodeCategory;
 
-    # part 1: names
-
-    open (my $unicodedata, $unicodedata_txt) or die;
-    open (my $out, "> unicode-names.h") or die;
-
-    print "processing $unicodedata_txt...";
-
-    print $out "/* unicode-names.h */\n";
-    print $out "/* THIS IS A GENERATED FILE. CHANGES WILL BE OVERWRITTEN. */\n";
-    print $out "/* Generated by $0 */\n";
-    print $out "/* Generated from UCD version $v */\n\n";
-
-    print $out "#ifndef UNICODE_NAMES_H\n";
-    print $out "#define UNICODE_NAMES_H\n\n";
-
-    print $out "#include <glib.h>\n";
-    print $out "#include <glib/gi18n-lib.h>\n\n";
-
-    my @unicode_pairs;
-    my %names;
-
-    while (my $line = <$unicodedata>)
+    static const struct _UnicodeCategory
     {
-        chomp $line;
-        $line =~ /^([^;]+);([^;]+)/ or die;
-
-        my $hex = $1;
-        my $name = $2;
-
-        # Skip items where we can easily reconstruct the name programmatically
-        next if ($name =~ /^CJK UNIFIED IDEOGRAPH-[0-9A-F]{4,6}$/);
-        next if ($name =~ /^CJK COMPATIBILITY IDEOGRAPH-[0-9A-F]{4,6}$/);
-        next if ($name =~ /^TANGUT IDEOGRAPH-[0-9A-F]{4,6}$/);
-        next if ($name =~ /^TANGUT COMPONENT-[0-9]+$/);
-
-        # Skip unwanted items
-        next if ($name =~ /^<.+, (First|Last)>$/);
-
-        $names{$name} = 1;
-        push @unicode_pairs, [$hex, $name];
+      gunichar start;
+      gunichar end;
+      GUnicodeType category;
     }
-
-    print $out "static const char unicode_names_strings[] = \\\n";
-
-    my $offset = 0;
-
-    foreach my $name (sort keys %names) {
-	print $out "  \"$name\\0\"\n";
-	$names{$name} = $offset;
-	$offset += length($name) + 1;
-    }
-
-    undef $offset;
-
-    print $out ";\n";
-
-    print $out "typedef struct _UnicodeName UnicodeName;\n\n";
-
-    print $out "static const struct _UnicodeName\n";
-    print $out "{\n";
-    print $out "  gunichar index;\n";
-    print $out "  guint32 name_offset;\n";
-    print $out "} \n";
-    print $out "unicode_names[] =\n";
-    print $out "{\n";
-
-    my $first_line = 1;
-
-    foreach my $pair (@unicode_pairs) {
-	if (!$first_line) {
-	    print $out ",\n";
-	} else {
-	    $first_line = 0;
-	}
-
-	my ($hex, $name) = @{$pair};
-	my $offset = $names{$name};
-	print $out "  {0x$hex, $offset}";
-    }
-
-    print $out "\n};\n\n";
-
-    print $out <<EOT;
-static inline const char * unicode_name_get_name(const UnicodeName *entry)
-{
-  guint32 offset = entry->name_offset;
-  return unicode_names_strings + offset;
-}
-
-EOT
-
-    print $out "#endif  /* #ifndef UNICODE_NAMES_H */\n";
-
-    undef %names;
-    undef @unicode_pairs;
-
-    close ($unicodedata);
-    close ($out);
-
-    # part 2: categories
-
-    open ($unicodedata, $unicodedata_txt) or die;
-    open ($out, "> unicode-categories.h") or die;
+    unicode_categories[] =
+    {
+    EOT
 
     # Map general category code onto symbolic name.
-    my %mappings =
-    (
+    my %mappings = (
         # Normative.
         'Lu' => "G_UNICODE_UPPERCASE_LETTER",
         'Ll' => "G_UNICODE_LOWERCASE_LETTER",
@@ -230,842 +185,512 @@ EOT
         'Sm' => "G_UNICODE_MATH_SYMBOL",
         'Sc' => "G_UNICODE_CURRENCY_SYMBOL",
         'Sk' => "G_UNICODE_MODIFIER_SYMBOL",
-        'So' => "G_UNICODE_OTHER_SYMBOL"
+        'So' => "G_UNICODE_OTHER_SYMBOL",
     );
 
-    # these shouldn't be -1
-    my ($codepoint, $last_codepoint, $start_codepoint) = (-999, -999, -999);
+    # State vars for unicode-categories.h
+    my %cat_range = (category => '');
 
-    my ($category, $last_category) = ("G_FAKE1", "G_FAKE2");
-    my ($started_range, $finished_range) = (undef, undef);
+    # Accumulators for unicode-names.h
+    my @unicode_pairs;
+    my %names;
 
-    print $out "/* unicode-categories.h */\n";
-    print $out "/* THIS IS A GENERATED FILE. CHANGES WILL BE OVERWRITTEN. */\n";
-    print $out "/* Generated by $0 */\n";
-    print $out "/* Generated from UCD version $v */\n\n";
+    while ( <$fh_unicode_data_txt> ) {
+        /(?^nx)
+        ^ (?<codepoint>[[:xdigit:]]{4,6})
+        ; (?<name>[^;]+)
+        ; (?<category>[^;]+)
+        ; / or die 'Malformed input';
+        $_ = $+{name}; # preserve for bottom of block
 
-    print $out "#ifndef UNICODE_CATEGORIES_H\n";
-    print $out "#define UNICODE_CATEGORIES_H\n\n";
+        # Fill unicode-categories.h with contiguous spans of a given category
+        # This file is binary searched to look up a letter's category
+        if ( $+{category} ne $cat_range{category} ) {
+            if ( $cat_range{prev} ) {
+                say $fh_cats_h sprintf('0x%s, %s },',
+                    $cat_range{prev}, $mappings{$cat_range{category}});
+            }
 
-    print $out "#include <glib.h>\n";
-    print $out "#include <glib/gi18n-lib.h>\n\n";
-
-    print $out "typedef struct _UnicodeCategory UnicodeCategory;\n\n";
-
-    print $out "static const struct _UnicodeCategory\n";
-    print $out "{\n";
-    print $out "  gunichar start;\n";
-    print $out "  gunichar end;\n";
-    print $out "  GUnicodeType category;\n";
-    print $out "}\n";
-    print $out "unicode_categories[] =\n";
-    print $out "{\n";
-
-    while (my $line = <$unicodedata>)
-    {
-        $line =~ /^([0-9A-F]*);([^;]*);([^;]*);/ or die;
-        my $codepoint = hex ($1);
-        my $name = $2;
-        my $category = $mappings{$3};
-
-        if ($finished_range 
-            or ($category ne $last_category) 
-            or (not $started_range and $codepoint != $last_codepoint + 1))
-        {
-            if ($last_codepoint >= 0) {
-                printf $out ("  { 0x%4.4X, 0x%4.4X, \%s },\n", $start_codepoint, $last_codepoint, $last_category);
-            } 
-
-            $start_codepoint = $codepoint;
+            print $fh_cats_h "  { 0x$+{codepoint}, ";
+            %cat_range = (start => $+{codepoint}, category => $+{category});
         }
 
-        if ($name =~ /^<.*First>$/) {
-            $started_range = 1;
-            $finished_range = undef;
-        }
-        elsif ($name =~ /^<.*Last>$/) {
-            $started_range = undef;
-            $finished_range = 1;
-        }
-        elsif ($finished_range) {
-            $finished_range = undef;
-        }
+        $cat_range{prev} = $+{codepoint};
 
-        $last_codepoint = $codepoint;
-        $last_category = $category;
+        # Accumulate lookup table for unicode-names.h, skipping items where:
+        # - The names are programmatically generated to begin with
+        #   (The program reconstructs these at runtime)
+        # - Unwanted lines
+        unless (
+            /(?^nx) ^
+            ( ( CJK \s (UNIFIED|COMPATIBILITY)
+              | TANGUT
+              ) \s IDEOGRAPH-[[:xdigit:]]{4,6}
+            | TANGUT \s COMPONENT-[0-9]+
+            | <.+, \s (First|Last)>
+            ) $ /
+        ) {
+            $names{$_}++;
+            push @unicode_pairs, [@+{qw{codepoint name}}];
+        }
     }
-    printf $out ("  { 0x%4.4X, 0x%4.4X, \%s },\n", $start_codepoint, $last_codepoint, $last_category);
+    say $fh_cats_h sprintf('0x%s, %s },', $cat_range{prev}, $mappings{$cat_range{category}});
 
-    print $out "};\n\n";
+    $eof->();
 
-    print $out "#endif  /* #ifndef UNICODE_CATEGORIES_H */\n";
+    write_unicode_names(\%names, \@unicode_pairs);
+}
 
-    close ($out);
-    print " done.\n";
+sub write_unicode_names($names, $unicode_pairs) {
+    my ($fh_names_h, undef) = new_headerfile 'unicode-names.h', <<~EOT;
+    static const char unicode_names_strings[] =
+    EOT
+
+    my $offset = 0;
+    for ( sort keys %$names ) {
+        say $fh_names_h qq{  "$_\\0"};
+        $names->{$_} = $offset;
+        $offset += 1 + length($_);
+    }
+
+    print $fh_names_h <<~EOT;
+    ;
+    typedef struct _UnicodeName UnicodeName;
+
+    static const struct _UnicodeName
+    {
+      gunichar index;
+      guint32 name_offset;
+    }
+    unicode_names[] =
+    {
+    EOT
+
+    say $fh_names_h "  {0x$_->[0], $names->{$_->[1]}},"
+        for @$unicode_pairs;
+
+    print $fh_names_h <<~EOT;
+    };
+
+    static inline const char * unicode_name_get_name(const UnicodeName *entry)
+    {
+      guint32 offset = entry->name_offset;
+      return unicode_names_strings + offset;
+    }
+
+    #endif  /* #ifndef UNICODE_NAMES_H */
+    EOT
+}
+
+#------------------------#
+
+sub process_nameslist_txt($fh_nameslist_txt) {
+    my %counters = do { no warnings 'qw'; map { $_ => 0 } qw(= * # : x) };
+    my $nameslist_hash;
+
+    LINE: while ( <$fh_nameslist_txt> ) {
+        state $wc = 0;
+
+        if ( /^@\+/ ) {
+            # multiline comment continuation
+            while ( <$fh_nameslist_txt> ) {
+                next if /^\t/;
+                redo LINE;
+            }
+        }
+        elsif ( /^@/ ) {
+            next;
+        }
+        elsif ( /(?^nx) ^ (?<value>[[:xdigit:]]{4,6}) / ) {
+            $wc = hex($+{value});
+        }
+        elsif (
+            /(?^nx) ^
+            ( \s+ (?<token>[=*#:]) \s+     (?<value>.+)
+            | \s+ (?<token>x)      \s+ .*? (?<value>[[:xdigit:]]{4,6}) \)
+            ) $ /
+        ) {
+              my $hash = $nameslist_hash->{$wc}{$+{token}} //= {};
+                 $hash->{index} //= $counters{$+{token}};
+            push $hash->{values}->@*, ($+{token} eq 'x' ? hex($+{value}) : $+{value});
+            $counters{$+{token}}++;
+        }
+    }
+
+    my ($fh_names_h, $eof) = new_headerfile 'unicode-nameslist.h', <<~EOT;
+    typedef struct _UnicharStringIndex UnicharStringIndex;
+    typedef struct _UnicharUnichar UnicharUnichar;
+    typedef struct _NamesList NamesList;
+
+    struct _UnicharStringIndex
+    {
+      gunichar index;
+      guint32 string_index;
+    };
+
+    struct _UnicharUnichar
+    {
+      gunichar index;
+      gunichar value;
+    };
+
+    struct _NamesList
+    {
+      gunichar index;
+      gint16 equals_index;  /* -1 means */
+      gint16 stars_index;   /* this character */
+      gint16 exes_index;    /* doesn't */
+      gint16 pounds_index;  /* have any */
+      gint16 colons_index;
+    };
+
+    EOT
+
+    print_names_list($fh_names_h, $nameslist_hash, @$_)
+        for ( [equals => '='], [stars  => '*'], [pounds => '#'], [colons => ':'] );
+
+    print $fh_names_h <<~EOT;
+    static const UnicharUnichar names_list_exes[] =
+    {
+    EOT
+
+    for my $wc ( sort {$a <=> $b} keys %$nameslist_hash ) {
+        my $hash = $nameslist_hash->{$wc};
+        next if not exists $hash->{x};
+        for ( $hash->{x}{values}->@* ) {
+            say $fh_names_h sprintf('  { 0x%04X, 0x%04X },', $wc, $_);
+        }
+    }
+
+    print $fh_names_h <<~EOT;
+      { (gunichar)(-1), 0 }
+    };
+
+    static const NamesList names_list[] =
+    {
+    EOT
+
+    for my $wc ( sort {$a <=> $b} keys %$nameslist_hash ) {
+        my $hash = $nameslist_hash->{$wc};
+        say $fh_names_h sprintf('  { 0x%04X, %d, %d, %d, %d, %d },',
+            $wc, do { no warnings 'qw'; map { $hash->{$_}{index} // -1 } qw(= * x # :) });
+    }
+
+    $eof->();
+}
+
+sub print_names_list($fh_names_h, $nameslist_hash, $variable_name, $token) {
+    print $fh_names_h <<~"EOT";
+    static const char names_list_${variable_name}_strings[] =
+    EOT
+
+    my @names_pairs;
+    my %names_offsets;
+    my $offset = 0;
+    for my $wc ( sort { $a <=> $b } keys %$nameslist_hash ) {
+        my $hash = $nameslist_hash->{$wc};
+        next unless exists $hash->{$token};
+
+        for my $value ( $hash->{$token}{values}->@* ) {
+            push @names_pairs, [sprintf('%04X', $wc), $value];
+            next if exists $names_offsets{$value};
+
+            my $print_value = $value =~ s/\\/\\\\/gr =~ s/\"/\\"/gr;
+
+            say $fh_names_h qq{  "$print_value\\0"};
+            $names_offsets{$value} = $offset;
+            $offset += 1 + length($value);
+        }
+    }
+
+    print $fh_names_h <<~"EOT";
+      ;
+
+    static const UnicharStringIndex names_list_${variable_name}[] =
+    {
+    EOT
+
+    say $fh_names_h "  { 0x$_->[0], $names_offsets{$_->[1]} },"
+        for @names_pairs;
+
+    say $fh_names_h <<~EOT;
+      { (gunichar)(-1), 0 } /* end marker */
+    };
+    EOT
+}
+
+#------------------------#
+
+sub process_blocks_txt($fh_blocks_txt) {
+    my ($fh_blocks_h, $eof) = new_headerfile 'unicode-blocks.h', <<~EOT;
+    static const char unicode_blocks_strings[] =
+    EOT
+
+    my @blocks;
+    my %block_renames = (
+      NKo => q{N'Ko}
+    );
+
+    my $offset = 0;
+    while ( <$fh_blocks_txt> ) {
+        next unless /(?^nx)
+            ^ (?<start>[[:xdigit:]]{4,6}) \.\. (?<end>[[:xdigit:]]{4,6})
+            ; \s (?<block>.+)
+            $ /;
+
+        my $block_name = $block_renames{$+{block}} // $+{block};
+
+        say $fh_blocks_h qq{  "$block_name\\0"};
+        push @blocks, [@+{qw{start end}}, $offset];
+        $offset += 1 + length($block_name);
+    }
+
+    print $fh_blocks_h <<~EOT;
+      ;
+
+    typedef struct _UnicodeBlock UnicodeBlock;
+
+    static const struct _UnicodeBlock
+    {
+      gunichar start;
+      gunichar end;
+      guint16 block_name_index;
+    }
+    unicode_blocks[] =
+    {
+    EOT
+
+    say $fh_blocks_h sprintf('  { 0x%s, 0x%s, %d },', @$_) for @blocks;
+
+    $eof->();
+}
+
+#------------------------#
+
+sub process_scripts_txt($fh_scriptstxt) {
+    my @script_list;
+    my %scripts;
+    my %script_renames = (
+      Nko => q{N'Ko}
+    );
+
+    while ( <$fh_scriptstxt> ) {
+        next unless /(?^nx)
+            ^ (?<start>[[:xdigit:]]{4,6})
+              ( \.\. (?<end>[[:xdigit:]]{4,6}) )? \s+
+            ; \s+ (?<raw_script>\S+) /;
+
+        my @values = @+{qw{start end raw_script}};
+        push @script_list, \@values;
+        $values[1] //= $+{start};
+
+        # Format for display: underscores to spaces and titlecase, then apply renames
+        my $mangled = $values[2] =~ tr[_][ ]r =~ s/(\w+)/\u\L$1/gr;
+        $values[2] = $script_renames{$mangled} // $mangled;
+
+        $scripts{$values[2]}++;
+    }
+
+    my ($fh_scripts, $eof) = new_headerfile 'unicode-scripts.h', <<~EOT;
+    typedef struct _UnicodeScript UnicodeScript;
+
+    static const gchar unicode_script_list_strings[] =
+    EOT
+
+    # Write alphabetised list of scripts
+    my $offset = 0;
+    for ( sort keys %scripts ) {
+        say $fh_scripts qq{  "$_\\0"};
+        $scripts{$_} = [$offset, (state $i++)];
+        $offset += 1 + length($_);
+    }
+
+    print $fh_scripts <<~EOT;
+      ;
+
+    static const guint16 unicode_script_list_offsets[] =
+    {
+    EOT
+
+    say $fh_scripts sprintf('  %d,', $scripts{$_}[0])
+        for sort keys %scripts;
+
+    print $fh_scripts <<~EOT;
+    };
+
+    static const struct _UnicodeScript
+    {
+      gunichar start;
+      gunichar end;
+      guint8 script_index;   /* index into unicode_script_list_offsets */
+    }
+    unicode_scripts[] =
+    {
+    EOT
+
+    say $fh_scripts sprintf('  { 0x%s, 0x%s, %2d },',
+        $_->@[0,1], $scripts{$_->[2]}[1])
+        for sort { hex $a->[0] <=> hex $b->[0] } @script_list;
+
+    $eof->();
+}
+
+#------------------------#
+
+sub process_derived_age_txt($fh_derived_age_txt) {
+    my @version_list;
+    my %versions;
+
+    while ( <$fh_derived_age_txt> ) {
+        next unless /(?^nx)
+            ^ (?<start>[[:xdigit:]]{4,6})
+              ( \.\. (?<end>[[:xdigit:]]{4,6}) )? \s+
+            ; \s+ (?<version>[0-9.]+) /;
+
+        push @version_list, my $tail = [@+{qw{start end version}}];
+        $tail->[1] //= $+{start};
+        $versions{$+{version}}++;
+    }
+
+    my ($fh_versions_h, $eof) = new_headerfile 'unicode-versions.h', <<~EOT;
+    typedef struct {
+      gunichar start;
+      gunichar end;
+      GucharmapUnicodeVersion version;
+    } UnicodeVersion;
+
+    static const UnicodeVersion unicode_versions[] =
+    {
+    EOT
+
+    say $fh_versions_h sprintf('  { 0x%s, 0x%s, GUCHARMAP_UNICODE_VERSION_%s },',
+        $_->@[0,1], $_->[2] =~ tr[.][_]r)
+        for sort { hex $a->[0] <=> hex $b->[0] } @version_list;
+
+    print $fh_versions_h  <<~EOT;
+    };
+
+    static const gchar unicode_version_strings[] =
+    EOT
+
+    my $offset = 0;
+    for ( sort { $a <=> $b } keys %versions ) {
+        say $fh_versions_h qq{  "$_\\0"};
+        $versions{$_} = [$offset, (state $i++)];
+        $offset += 1 + length($_);
+    }
+
+    print $fh_versions_h <<~EOT;
+      ;
+
+    static const guint16 unicode_version_string_offsets[] =
+    {
+    EOT
+
+    say $fh_versions_h sprintf('  %d,', $versions{$_}[0])
+        for sort { $a <=> $b } keys %versions;
+
+    $eof->();
 }
 
 #------------------------#
 
 # XXX should do kFrequency too
-sub process_unihan_zip
-{
-    my ($unihan_zip) = @_;
+sub process_unihan_zip($fh_unihan_zip) {
+    print STDERR '(please be patient, this step will take a while) ';
 
-    print "processing $unihan_zip.";
+    my @keys = qw<
+        kDefinition
+        kCantonese kMandarin kTang kKorean
+        kJapaneseKun kJapaneseOn kHangul kVietnamese
+    >;
+    my $keys_regex   = join(q{|}, map { quotemeta } @keys);
+    my $stats_format = q[  { 0x%s].(q[, %d] x @keys).q[ },];
 
-    open (my $unihan, "$PROG_UNZIP -c '$unihan_zip' |") or die;
-    open (my $out, "> unicode-unihan.h") or die;
+    my ($fh_unihan_h, $eof) = new_headerfile 'unicode-unihan.h', <<~EOT;
+    typedef struct _Unihan Unihan;
 
-    print $out "/* unicode-unihan.h */\n";
-    print $out "/* THIS IS A GENERATED FILE. CHANGES WILL BE OVERWRITTEN. */\n";
-    print $out "/* Generated by $0 */\n";
-    print $out "/* Generated from UCD version $v */\n\n";
+    static const struct _Unihan
+    {
+      gunichar index;
+    EOT
 
-    print $out "#ifndef UNICODE_UNIHAN_H\n";
-    print $out "#define UNICODE_UNIHAN_H\n\n";
+    say $fh_unihan_h "  gint32 $_;" for @keys;
 
-    print $out "#include <glib.h>\n";
-    print $out "#include <glib/gi18n-lib.h>\n\n";
-
-    print $out "typedef struct _Unihan Unihan;\n\n";
-
-    print $out "static const struct _Unihan\n";
-    print $out "{\n";
-    print $out "  gunichar index;\n";
-    print $out "  gint32 kDefinition;\n";
-    print $out "  gint32 kCantonese;\n";
-    print $out "  gint32 kMandarin;\n";
-    print $out "  gint32 kTang;\n";
-    print $out "  gint32 kKorean;\n";
-    print $out "  gint32 kJapaneseKun;\n";
-    print $out "  gint32 kJapaneseOn;\n";
-    print $out "  gint32 kHangul;\n";
-    print $out "  gint32 kVietnamese;\n";
-    print $out "} \n";
-    print $out "unihan[] =\n";
-    print $out "{\n";
+    print $fh_unihan_h <<~EOT;
+    }
+    unihan[] =
+    {
+    EOT
 
     my @strings;
     my $offset = 0;
-
     my $wc = 0;
-    my ($kDefinition, $kCantonese, $kMandarin, $kTang, $kKorean, $kJapaneseKun, $kJapaneseOn, $kHangul, $kVietnamese);
+    my %stats;
 
-    my $i = 0;
-    while (my $line = <$unihan>)
-    {
-        chomp $line;
-        $line =~ /^U\+([0-9A-F]+)\s+([^\s]+)\s+(.+)$/ or next;
+    my $zip = IO::Uncompress::Unzip->new($fh_unihan_zip, MultiStream => 1);
 
-        my $new_wc = hex ($1);
-        my $field = $2;
+    while ( <$zip> ) {
+        next unless /(?^nx)
+                    ^ U\+(?<codepoint>[[:xdigit:]]{4,6})
+                    \s+ (?<field>$keys_regex)
+                    \s+ (?<value>.+)
+                    $ / or $zip->eof;
 
-        my $value = $3;
-        $value =~ s/\\/\\\\/g;
-        $value =~ s/\"/\\"/g;
+        if ( $zip->eof or $+{codepoint} ne $wc ) {
+            say $fh_unihan_h sprintf($stats_format, $wc, (map { $stats{$_} // -1 } @keys))
+                if %stats;
 
-        if ($new_wc != $wc)
+            last if $zip->eof;
+
+            $wc = $+{codepoint};
+            %stats = ();
+        }
+
+        push @strings, $+{value};
+        my $last_offset = $offset;
+        $offset += 1 + length($+{value});
+        $stats{$+{field}} = $last_offset;
+    }
+
+    print $fh_unihan_h <<~EOT;
+    };
+
+    static const char unihan_strings[] =
+    EOT
+
+    say $fh_unihan_h qq{  "$_\\0"} for @strings;
+
+    print $fh_unihan_h <<~EOT;
+    ;
+
+    static const Unihan *_get_unihan (gunichar uc)
+    ;
+    EOT
+
+    for my $name ( @keys ) {
+        say $fh_unihan_h <<~"EOT";
+        static inline const char * unihan_get_$name (const Unihan *uh)
         {
-            if (defined $kDefinition or defined $kCantonese or defined $kMandarin 
-                or defined $kTang or defined $kKorean or defined $kJapaneseKun
-                or defined $kJapaneseOn or defined $kHangul or defined $kVietnamese)
-            {
-                printf $out ("  { 0x%04X, \%d, \%d, \%d, \%d, \%d, \%d, \%d, \%d, \%d },\n",
-                             $wc,
-                             (defined($kDefinition) ? $kDefinition : -1),
-                             (defined($kCantonese) ? $kCantonese: -1),
-                             (defined($kMandarin) ? $kMandarin : -1),
-                             (defined($kTang) ? $kTang : -1),
-                             (defined($kKorean) ? $kKorean : -1),
-                             (defined($kJapaneseKun) ? $kJapaneseKun : -1),
-                             (defined($kJapaneseOn) ? $kJapaneseOn : -1),
-                             (defined($kHangul) ? $kHangul : -1),
-                             (defined($kVietnamese) ? $kVietnamese : -1));
-            }
-
-            $wc = $new_wc;
-
-            undef $kDefinition;
-            undef $kCantonese;
-            undef $kMandarin;
-            undef $kTang;
-            undef $kKorean;
-            undef $kJapaneseKun;
-            undef $kJapaneseOn;
-            undef $kHangul;
-            undef $kVietnamese;
+            gint32 offset = uh->$name;
+            if (offset == -1)
+              return NULL;
+            return unihan_strings + offset;
         }
 
-        for my $f (qw(kDefinition kCantonese kMandarin
-                     kTang kKorean kJapaneseKun kJapaneseOn kHangul kVietnamese)) {
-
-            if ($field eq $f) {
-	        push @strings, $value;
-		my $last_offset = $offset;
-		$offset += length($value) + 1;
-		$value = $last_offset;
-		last;
-	    }
-	}
-
-        if ($field eq "kDefinition") {
-            $kDefinition = $value;
-        }
-        elsif ($field eq "kCantonese") {
-            $kCantonese = $value;
-        }
-        elsif ($field eq "kMandarin") {
-            $kMandarin = $value;
-        }
-        elsif ($field eq "kTang") {
-            $kTang = $value;
-        }
-        elsif ($field eq "kKorean") {
-            $kKorean = $value;
-        }
-        elsif ($field eq "kJapaneseKun") {
-            $kJapaneseKun = $value;
-        }
-        elsif ($field eq "kJapaneseOn") {
-            $kJapaneseOn = $value;
-        }
-        elsif ($field eq "kHangul") {
-            $kHangul = $value;
-        }
-        elsif ($field eq "kVietnamese") {
-            $kVietnamese = $value;
-        }
-
-        if ($i++ % 32768 == 0) {
-            print ".";
-        }
-    }
-
-    print $out "};\n\n";
-
-    print $out "static const char unihan_strings[] = \\\n";
-
-    for my $s (@strings) {
-	print $out "  \"$s\\0\"\n";
-    }
-    print $out ";\n\n";
-
-    print $out "static const Unihan *_get_unihan (gunichar uc)\n;";
-
-    for my $name (qw(kDefinition kCantonese kMandarin
-		    kTang kKorean kJapaneseKun kJapaneseOn kHangul kVietnamese)) {
-    print $out <<EOT;
-
-static inline const char * unihan_get_$name (const Unihan *uh)
-{
-    gint32 offset = uh->$name;
-    if (offset == -1)
-      return NULL;
-    return unihan_strings + offset;
-}
-
-const gchar * 
-gucharmap_get_unicode_$name (gunichar uc)
-{
-  const Unihan *uh = _get_unihan (uc);
-  if (uh == NULL)
-    return NULL;
-  else
-    return unihan_get_$name (uh);
-}
-
-EOT
-    }
-
-    print $out "#endif  /* #ifndef UNICODE_UNIHAN_H */\n";
-
-    close ($unihan);
-    close ($out);
-
-    print " done.\n";
-}
-
-#------------------------#
-
-# $nameslist_hash = 
-# {
-#     0x0027 => { '=' => { 
-#                          'index'  => 30, 
-#                          'values' => [ 'APOSTROPHE-QUOTE', 'APL quote' ]
-#                        }
-#                 '*' => {
-#                          'index'  => 50,
-#                          'values' => [ 'neutral (vertical) glyph with mixed usage',
-#                                        '2019 is preferred for apostrophe',
-#                                        'preferred characters in English for paired quotation marks are 2018 & 2019'
-#                                      ]
-#                         }
-#                  # etc
-#                }
-#     # etc 
-# };
-# 
-
-sub print_names_list
-{
-    my ($out, $nameslist_hash, $token, $variable_name) = @_;
-
-    print $out "static const char ", $variable_name, "_strings[] = \n";
-
-    my @names_pairs;
-    my %names_offsets;
-    my $offset = 0;
-
-    for my $wc (sort {$a <=> $b} keys %{$nameslist_hash})
-    {
-        next if not exists $nameslist_hash->{$wc}->{$token};
-        for my $value (@{$nameslist_hash->{$wc}->{$token}->{'values'}}) {
-            push @names_pairs, [$wc, $value];
-            next if exists $names_offsets{$value};
-
-            $names_offsets{$value} = $offset;
-            $offset += length($value) + 1;
-
-            my $printvalue = $value;
-            $printvalue =~ s/\\/\\\\/g;
-            $printvalue =~ s/\"/\\"/g;
-
-            printf $out (qq/  "\%s\\0"\n/, $printvalue);
-        }
-    }
-
-    print $out "  ;\n\n";
-
-    print $out "static const UnicharStringIndex ", $variable_name, "[] = \n";
-    print $out "{\n";
-    foreach my $pair (@names_pairs) {
-	my ($wc, $value) = @{$pair};
-        printf $out (qq/  { 0x%04X, %d },\n/, $wc, $names_offsets{$value});
-    }
-    print $out "  { (gunichar)(-1), 0 } /* end marker */ \n";
-    print $out "};\n\n";
-}
-
-sub process_nameslist_txt
-{
-    my ($nameslist_txt) = @_;
-
-    open (my $nameslist, $nameslist_txt) or die;
-
-    print "processing $nameslist_txt...";
-
-    my ($equal_i, $ex_i, $star_i, $pound_i, $colon_i) = (0, 0, 0, 0, 0);
-    my $wc = 0;
-
-    my $nameslist_hash;
-    my $in_multiline_comment = 0;
-
-    while (my $line = <$nameslist>)
-    {
-        if ($in_multiline_comment && $line =~ /^\t/)
+        const gchar * 
+        gucharmap_get_unicode_$name (gunichar uc)
         {
-            next;
+          const Unihan *uh = _get_unihan (uc);
+          if (uh == NULL)
+            return NULL;
+          else
+            return unihan_get_$name (uh);
         }
-
-        chomp ($line);
-
-        $in_multiline_comment = 0;
-
-        if ($line =~ /^@\+/)
-        {
-            $in_multiline_comment = 1;
-            next;
-        }
-        elsif ($line =~ /^@/)
-        {
-            next;
-        }
-        elsif ($line =~ /^([0-9A-F]+)/)
-        {
-            $wc = hex ($1);
-        }
-        elsif ($line =~ /^\s+=\s+(.+)$/)
-        {
-            my $value = $1;
-
-            if (not defined $nameslist_hash->{$wc}->{'='}->{'index'}) {
-                $nameslist_hash->{$wc}->{'='}->{'index'} = $equal_i;
-            }
-            push (@{$nameslist_hash->{$wc}->{'='}->{'values'}}, $value);
-
-            $equal_i++;
-        }
-        elsif ($line =~ /^\s+\*\s+(.+)$/)
-        {
-            my $value = $1;
-
-            if (not defined $nameslist_hash->{$wc}->{'*'}->{'index'}) {
-                $nameslist_hash->{$wc}->{'*'}->{'index'} = $star_i;
-            }
-            push (@{$nameslist_hash->{$wc}->{'*'}->{'values'}}, $value);
-
-            $star_i++;
-        }
-        elsif ($line =~ /^\s+#\s+(.+)$/)
-        {
-            my $value = $1;
-
-            if (not defined $nameslist_hash->{$wc}->{'#'}->{'index'}) {
-                $nameslist_hash->{$wc}->{'#'}->{'index'} = $pound_i;
-            }
-            push (@{$nameslist_hash->{$wc}->{'#'}->{'values'}}, $value);
-
-            $pound_i++;
-        }
-        elsif ($line =~ /^\s+:\s+(.+)$/)
-        {
-            my $value = $1;
-
-            if (not defined $nameslist_hash->{$wc}->{':'}->{'index'}) {
-                $nameslist_hash->{$wc}->{':'}->{'index'} = $colon_i;
-            }
-            push (@{$nameslist_hash->{$wc}->{':'}->{'values'}}, $value);
-
-            $colon_i++;
-        }
-        elsif ($line =~ /^\s+x\s+.*?([0-9A-F]{4,6})\)$/)  # this one is different
-        {
-            my $value = hex ($1);
-
-            if (not defined $nameslist_hash->{$wc}->{'x'}->{'index'}) {
-                $nameslist_hash->{$wc}->{'x'}->{'index'} = $ex_i;
-            }
-            push (@{$nameslist_hash->{$wc}->{'x'}->{'values'}}, $value);
-
-            $ex_i++;
-        }
+        EOT
     }
 
-    close ($nameslist);
-
-    open (my $out, "> unicode-nameslist.h") or die;
-
-    print $out "/* unicode-nameslist.h */\n";
-    print $out "/* THIS IS A GENERATED FILE. CHANGES WILL BE OVERWRITTEN. */\n";
-    print $out "/* Generated by $0 */\n";
-    print $out "/* Generated from UCD version $v */\n\n";
-
-    print $out "#ifndef UNICODE_NAMESLIST_H\n";
-    print $out "#define UNICODE_NAMESLIST_H\n\n";
-
-    print $out "#include <glib.h>\n";
-    print $out "#include <glib/gi18n-lib.h>\n\n";
-
-    print $out "typedef struct _UnicharStringIndex UnicharStringIndex;\n";
-    print $out "typedef struct _UnicharUnichar UnicharUnichar;\n";
-    print $out "typedef struct _NamesList NamesList;\n\n";
-
-    print $out "struct _UnicharStringIndex\n";
-    print $out "{\n";
-    print $out "  gunichar index;\n";
-    print $out "  guint32 string_index;\n";
-    print $out "}; \n\n";
-
-    print $out "struct _UnicharUnichar\n";
-    print $out "{\n";
-    print $out "  gunichar index;\n";
-    print $out "  gunichar value;\n";
-    print $out "}; \n\n";
-
-    print $out "struct _NamesList\n";
-    print $out "{\n";
-    print $out "  gunichar index;\n";
-    print $out "  gint16 equals_index;  /* -1 means */\n";
-    print $out "  gint16 stars_index;   /* this character */\n";
-    print $out "  gint16 exes_index;    /* doesn't */\n";
-    print $out "  gint16 pounds_index;  /* have any */\n";
-    print $out "  gint16 colons_index;\n";
-    print $out "};\n\n";
-
-    print_names_list($out, $nameslist_hash, '=', "names_list_equals");
-    print_names_list($out, $nameslist_hash, '*', "names_list_stars");
-    print_names_list($out, $nameslist_hash, '#', "names_list_pounds");
-    print_names_list($out, $nameslist_hash, ':', "names_list_colons");
-
-    print $out "static const UnicharUnichar names_list_exes[] = \n";
-    print $out "{\n";
-    for $wc (sort {$a <=> $b} keys %{$nameslist_hash})
-    {
-        next if not exists $nameslist_hash->{$wc}->{'x'};
-        for my $value (@{$nameslist_hash->{$wc}->{'x'}->{'values'}}) {
-            printf $out (qq/  { 0x%04X, 0x%04X },\n/, $wc, $value);
-        }
-    }
-    print $out "  { (gunichar)(-1), 0 }\n";
-    print $out "};\n\n";
-
-    print $out "static const NamesList names_list[] =\n";
-    print $out "{\n";
-    for $wc (sort {$a <=> $b} keys %{$nameslist_hash})
-    {
-        my $eq    = exists $nameslist_hash->{$wc}->{'='}->{'index'} ? $nameslist_hash->{$wc}->{'='}->{'index'} : -1;
-        my $star  = exists $nameslist_hash->{$wc}->{'*'}->{'index'} ? $nameslist_hash->{$wc}->{'*'}->{'index'} : -1;
-        my $ex    = exists $nameslist_hash->{$wc}->{'x'}->{'index'} ? $nameslist_hash->{$wc}->{'x'}->{'index'} : -1;
-        my $pound = exists $nameslist_hash->{$wc}->{'#'}->{'index'} ? $nameslist_hash->{$wc}->{'#'}->{'index'} : -1;
-        my $colon = exists $nameslist_hash->{$wc}->{':'}->{'index'} ? $nameslist_hash->{$wc}->{':'}->{'index'} : -1;
-
-        printf $out ("  { 0x%04X, \%d, \%d, \%d, \%d, \%d },\n", $wc, $eq, $star, $ex, $pound, $colon);
-    }
-    print $out "};\n\n";
-
-    print $out "#endif  /* #ifndef UNICODE_NAMESLIST_H */\n";
-
-    close ($out);
-
-    print " done.\n";
-}
-
-#------------------------#
-
-sub read_blocks_txt
-{
-    my ($blocks_txt, $blocks) = @_;
-
-    # Override script names
-    my %block_overrides =
-    (
-      "NKo" => "N\'Ko"
-    );
-
-    open (my $blocks_file, $blocks_txt) or die;
-
-    my $offset = 0;
-
-    while (my $line = <$blocks_file>)
-    {
-        $line =~ /^([0-9A-F]+)\.\.([0-9A-F]+); (.+)$/ or next;
-
-        my ($start,$end,$block) = ($1, $2, $3);
-
-        if (exists $block_overrides{$block}) {
-                $block = $block_overrides{$block};
-        }
-
-        push @$blocks, [$start, $end, $block, $offset];
-        $offset += length($block) + 1;
-    }
-
-    close ($blocks_file);
-}
-
-sub process_blocks_txt
-{
-    my ($blocks_txt) = @_;
-
-    print "processing $blocks_txt...";
-
-    open (my $out, "> unicode-blocks.h") or die;
-
-    print $out "/* unicode-blocks.h */\n";
-    print $out "/* THIS IS A GENERATED FILE. CHANGES WILL BE OVERWRITTEN. */\n";
-    print $out "/* Generated by $0 */\n";
-    print $out "/* Generated from UCD version $v */\n\n";
-
-    print $out "#ifndef UNICODE_BLOCKS_H\n";
-    print $out "#define UNICODE_BLOCKS_H\n\n";
-
-    print $out "#include <glib.h>\n";
-    print $out "#include <glib/gi18n-lib.h>\n\n";
-
-    my @blocks;
-    read_blocks_txt ($blocks_txt, \@blocks);
-
-    print $out "static const char unicode_blocks_strings[] =\n";
-    foreach my $block (@blocks)
-    {
-        my ($start, $end, $name, $offset) = @{$block};
-        print $out qq/  "$name\\0"\n/;
-    }
-    print $out "  ;\n\n";
-
-    print $out "typedef struct _UnicodeBlock UnicodeBlock;\n";
-    print $out "\n";
-    print $out "static const struct _UnicodeBlock\n";
-    print $out "{\n";
-    print $out "  gunichar start;\n";
-    print $out "  gunichar end;\n";
-    print $out "  guint16 block_name_index;\n";
-    print $out "}\n";
-    print $out "unicode_blocks[] =\n";
-    print $out "{\n";
-    foreach my $block (@blocks)
-    {
-        my ($start, $end, $name, $offset) = @{$block};
-        print $out qq/  { 0x$start, 0x$end, $offset },\n/;
-    }
-    print $out "};\n\n";
-
-    print $out "#endif  /* #ifndef UNICODE_BLOCKS_H */\n";
-
-    close ($out);
-
-    print " done.\n";
-}
-
-#------------------------#
-
-sub read_scripts_txt
-{
-    my ($scripts_txt, $script_hash, $scripts) = @_;
-
-    # Override script names
-    my %script_overrides =
-    (
-      "Nko" => "N\'Ko"
-    );
-
-    open (my $scripts_file, $scripts_txt) or die;
-
-    while (my $line = <$scripts_file>)
-    {
-        my ($start, $end, $raw_script);
-
-        if ($line =~ /^([0-9A-F]+)\.\.([0-9A-F]+)\s+;\s+(\S+)/)
-        {
-            $start = hex ($1);
-            $end = hex ($2);
-            $raw_script = $3;
-        }
-        elsif ($line =~ /^([0-9A-F]+)\s+;\s+(\S+)/)
-        {
-            $start = hex ($1);
-            $end = $start;
-            $raw_script = $2;
-        }
-        else 
-        {
-            next;
-        }
-
-        my $script = $raw_script;
-        $script =~ tr/_/ /;
-        $script =~ s/(\w+)/\u\L$1/g;
-
-        if (exists $script_overrides{$script}) {
-                $script = $script_overrides{$script};
-        }
-
-        $script_hash->{$start} = { 'end' => $end, 'script' => $script };
-        $scripts->{$script} = 1;
-    }
-
-    close ($scripts_file);
-
-    # Adds Common to make sure works with UCD <= 4.0.0
-    $scripts->{"Common"} = 1; 
-}
-
-sub process_scripts_txt
-{
-    my ($scripts_txt) = @_;
-
-    print "processing $scripts_txt...";
-
-    my %script_hash;
-    my %scripts;
-
-    read_scripts_txt ($scripts_txt, \%script_hash, \%scripts);
-
-    open (my $out, "> unicode-scripts.h") or die;
-
-    print $out "/* unicode-scripts.h */\n";
-    print $out "/* THIS IS A GENERATED FILE. CHANGES WILL BE OVERWRITTEN. */\n";
-    print $out "/* Generated by $0 */\n";
-    print $out "/* Generated from UCD version $v */\n\n";
-
-    print $out "#ifndef UNICODE_SCRIPTS_H\n";
-    print $out "#define UNICODE_SCRIPTS_H\n\n";
-
-    print $out "#include <glib.h>\n";
-    print $out "#include <glib/gi18n-lib.h>\n\n";
-
-    print $out "typedef struct _UnicodeScript UnicodeScript;\n\n";
-
-    print $out "static const gchar unicode_script_list_strings[] =\n";
-    my $offset = 0;
-    my $i = 0;
-    my %script_offsets;
-    for my $script (sort keys %scripts)
-    {
-        printf $out (qq/  "\%s\\0"\n/, $script);
-        $scripts{$script} = $i;
-        $i++;
-	$script_offsets{$script} = $offset;
-	$offset += length($script) + 1;
-    }
-    print $out "  ;\n\n";
-    undef $offset;
-
-    print $out "static const guint16 unicode_script_list_offsets[] =\n";
-    print $out "{\n";
-    for my $script (sort keys %scripts)
-    {
-        printf $out (qq/  \%d,\n/, $script_offsets{$script});
-    }
-    print $out "};\n\n";
-
-    print $out "static const struct _UnicodeScript\n";
-    print $out "{\n";
-    print $out "  gunichar start;\n";
-    print $out "  gunichar end;\n";
-    print $out "  guint8 script_index;   /* index into unicode_script_list_offsets */\n";
-    print $out "}\n";
-    print $out "unicode_scripts[] =\n";
-    print $out "{\n";
-    for my $start (sort { $a <=> $b } keys %script_hash) 
-    {
-        printf $out (qq/  { 0x%04X, 0x%04X, \%2d },\n/, 
-                     $start, $script_hash{$start}->{'end'}, $scripts{$script_hash{$start}->{'script'}});
-    }
-    print $out "};\n\n";
-
-    print $out "#endif  /* #ifndef UNICODE_SCRIPTS_H */\n";
-
-    close ($out);
-    print " done.\n";
-}
-
-#------------------------#
-
-sub process_translatable_strings
-{
-    my ($blocks_txt, $scripts_txt) = @_;
-
-    print "processing $blocks_txt and $scripts_txt...";
-
-    my @blocks;
-    read_blocks_txt ($blocks_txt, \@blocks);
-
-    my %script_hash;
-    my %scripts;
-
-    read_scripts_txt ($scripts_txt, \%script_hash, \%scripts);
-
-    open (my $out, "> unicode-i18n.h") or die;
-
-    print $out "unicode-i18n.h for extraction by gettext\n";
-    print $out "THIS IS A GENERATED FILE. CHANGES WILL BE OVERWRITTEN.\n";
-    print $out "Generated by $0\n";
-    print $out "Generated from UCD version $v\n\n";
-
-    foreach my $block (@blocks)
-    {
-        my ($start, $end, $name, $offset) = @{$block};
-        print $out qq/N_("$name")\n/;
-    }
-
-    print $out "\n";
-
-    my $i = 0;
-    for my $script (sort keys %scripts)
-    {
-        print $out qq/N_("$script")\n/;
-    }
-
-    close ($out);
-    print " done.\n";
-}
-
-#------------------------#
-
-sub process_versions_txt
-{
-    my ($versions_txt) = @_;
-
-    my %version_hash;
-    my %versions;
-
-    open (my $versions, $versions_txt) or die;
-    open (my $out, "> unicode-versions.h") or die;
-
-    print "processing $versions_txt...";
-
-    while (my $line = <$versions>)
-    {
-        my ($start, $end, $raw_version);
-
-        if ($line =~ /^([0-9A-F]+)\.\.([0-9A-F]+)\s+;\s+(\S+)/)
-        {
-            $start = hex ($1);
-            $end = hex ($2);
-            $raw_version = $3;
-        }
-        elsif ($line =~ /^([0-9A-F]+)\s+;\s+(\S+)/)
-        {
-            $start = hex ($1);
-            $end = $start;
-            $raw_version = $2;
-        }
-        else 
-        {
-            next;
-        }
-
-        my $version = $raw_version;
-        $version =~ tr/_/ /;
-        $version =~ s/(\w+)/\u\L$1/g;
-
-        $versions{$version} = 1;
-
-        $version =~ s/\./_/g;
-        $version_hash{$start} = { 'end' => $end, 'version' => $version };
-    }
-
-    close ($versions);
-
-    print $out "/* unicode-versions.h */\n";
-    print $out "/* THIS IS A GENERATED FILE. CHANGES WILL BE OVERWRITTEN. */\n";
-    print $out "/* Generated by $0 */\n";
-    print $out "/* Generated from UCD version $v */\n\n";
-
-    print $out "#ifndef UNICODE_VERSIONS_H\n";
-    print $out "#define UNICODE_VERSIONS_H\n\n";
-
-    print $out "#include <glib.h>\n";
-    print $out "#include <glib/gi18n-lib.h>\n\n";
-
-    print $out "typedef struct {\n";
-    print $out "  gunichar start;\n";
-    print $out "  gunichar end;\n";
-    print $out "  GucharmapUnicodeVersion version;\n";
-    print $out "} UnicodeVersion;\n\n";
-
-    print $out "static const UnicodeVersion unicode_versions[] =\n";
-    print $out "{\n";
-    for my $start (sort { $a <=> $b } keys %version_hash)
-    {
-        printf $out (qq/  { 0x%04X, 0x%04X, GUCHARMAP_UNICODE_VERSION_\%s },\n/,
-                     $start, $version_hash{$start}->{'end'}, $version_hash{$start}->{'version'});
-    }
-    print $out "};\n\n";
-
-    print $out "static const gchar unicode_version_strings[] =\n";
-    my $offset = 0;
-    my %version_offsets;
-    for my $version (sort { $a <=> $b } keys %versions)
-    {
-        printf $out (qq/  "\%s\\0"\n/, $version);
-	$version_offsets{$version} = $offset;
-	$offset += length($version) + 1;
-    }
-    print $out "  ;\n\n";
-    undef $offset;
-
-    print $out "static const guint16 unicode_version_string_offsets[] =\n";
-    print $out "{\n";
-    for my $version (sort { $a <=> $b } keys %versions)
-    {
-        printf $out (qq/  \%d,\n/, $version_offsets{$version});
-    }
-    print $out "};\n\n";
-
-    print $out "#endif  /* #ifndef UNICODE_VERSIONS_H */\n";
-
-    close ($out);
-    print " done.\n";
+    print $fh_unihan_h <<~EOT;
+    #endif  /* #ifndef UNICODE_UNIHAN_H */
+    EOT
 }
