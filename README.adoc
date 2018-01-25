@@ -6,20 +6,19 @@ aren't in the main tree at all,
 aren't as up-to-date as I'd like there,
 or where the official ebuilds deviate too much from vanilla for my liking.
 
-I try not to add anything with known bugs,
-but be aware this is a personal, opinionated set of ebuilds
-and there's no plans to push things back to gentoo.git.
+I try not to add anything with known bugs
+but keep in mind the license disclaimer.
 Feel free to report issues if you want,
 or even to add these things to Gentoo yourself.
+If you do that a heads-up is appreciated (but not required)
+so I can carry less weight in here.
 
-You may also be interested in
-https://gitlab.com/flussence/perl6-overlay[my perl6 ebuilds] or
-https://gitlab.com/flussence/runit-scripts[my runit-scripts repository].
+SPDX-License-Identifier: GPL-2+
 
 Installing
 ----------
 
-Put this in your `repos.conf`, then do `emerge --sync flussence`:
+Put this (or something like it) in your `repos.conf`, then do `emerge --sync flussence`:
 
     [flussence]
     location = /var/db/repositories/flussence
