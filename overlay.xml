@@ -3,13 +3,13 @@
 <repositories xmlns="" version="1.0">
   <repo quality="experimental" status="unofficial">
     <name>flussence</name>
-    <description lang="en">Personal overlay</description>
+    <description lang="en">Ant P.'s personal overlay</description>
     <homepage>https://gitlab.com/flussence/overlay</homepage>
     <owner type="person">
-      <email>flussence@gmail.com</email>
+      <email>ant+gentoo.bugs@flussence.eu</email>
       <name>Anthony Parsons</name>
     </owner>
     <source type="git">https://gitlab.com/flussence/overlay.git</source>
-    <feed>https://gitlab.com/flussence/overlay.atom</feed>
+    <feed>https://gitlab.com/flussence/overlay/commits/master.atom</feed>
   </repo>
 </repositories>

@@ -1,22 +1,23 @@
 Some ebuilds for Gentoo
 =======================
 
-Packages for things that:
-aren't in the main tree at all,
-aren't as up-to-date as I'd like there,
-or where the official ebuilds deviate too much from vanilla for my liking.
+These are my packages for things that:
 
-I try not to add anything with known bugs
-but keep in mind the license disclaimer.
-Feel free to report issues if you want,
-or even to add these things to Gentoo yourself.
-If you do that a heads-up is appreciated (but not required)
-so I can carry less weight in here.
+* aren't in the main tree at all,
+* aren't as up-to-date as I'd like there,
+* or where the Gentoo ebuilds deviate too much from upstream for my liking.
 
-SPDX-License-Identifier: GPL-2+
+I use everything I add but keep in mind the license disclaimer - no warranty.
+Feel free to report issues if you want, or even to add these things to Gentoo yourself.
+If you do that a heads-up is appreciated (but not required) so I can carry less weight in here.
+
+Keywords are all `~amd64 ~x86` because I don't run Gentoo on anything else yet,
+but if you'd like me to add other arches just ask.
 
 Installing
 ----------
+
+You should already know how this works, but here's a reminder…
 
 Put this (or something like it) in your `repos.conf`, then do `emerge --sync flussence`:
 
@@ -27,17 +28,21 @@ Put this (or something like it) in your `repos.conf`, then do `emerge --sync flu
 
 Contents
 --------
-N.B. anything not listed here is considered temporary,
-and may be removed at any time.
+N.B.: Anything not listed here is considered *very experimental*!
 
 `app-crypt/signify` — https://github.com/aperezdc/signify[OpenBSD Signify]::
 Signify is a strong cryptographic signature tool that fits on a floppy disk, with public
 keys that fit in 140 characters, and a manpage that fits on one screen.
 
 `dev-libs/libsass` — https://github.com/sass/libsass[libsass]::
-`dev-util/sassc` — https://github.com/sass/sassc[SassC]::
-C++ implementation of SASS stylesheet preprocessor.
-The perl5 CSS::Sass is too broken to package as an ebuild so I use this instead now.
+`dev-util/sassc` — https://github.com/sass/sassc[SASS Compiler]::
+C++ SASS stylesheet preprocessor, so you don't have to install Ruby for one.
+Perl 5 has a `CSS::Sass` but it was too buggy to successfully package as an ebuild.
+
+`dev-perl/Crypt-LE` — http://search.cpan.org/dist/Crypt-LE[Crypt::LE]::
+`dev-perl/Crypt-Format` — Crypt-LE dependency::
+A Perl 5 ACME/Let's Encrypt client with lightweight dependencies.
+Not the most user-friendly option, but it gets the job done.
 
 `dev-vcs/src` — https://gitlab.com/esr/src[Simple Revision Control]::
 A version control tool suitable for all those loose scripts you have lying around.
@@ -45,7 +50,7 @@ A version control tool suitable for all those loose scripts you have lying aroun
 `games-server/minecraft-server` — minecraft-server ebuilds::
 +
 --
-These are heavily modified versions of the ebuilds in the
+These are heavily modified derivatives of the ebuilds in the
 http://git.overlays.gentoo.org/gitweb/?p=proj/java.git;a=summary[Java overlay]
 (which hadn't been updated since around 1.4).
 
@@ -53,47 +58,64 @@ The OpenRC initscript was removed and versions are individually slotted;
 it's up to you to decide how you want to run a game server.
 --
 
-`games-util/friidump` — GameCube/Wii disc ripping utility::
+`games-util/friidump` — https://github.com/bradenmcd/friidump[GameCube/Wii disc ripping utility]::
 Allows a computer with the right kind of drive to rip these discs natively.
 Turns out I had one of those, so I made an ebuild out of it.
+It crashes at runtime but maybe it'll work for someone else.
 
-`gnome-extra/gucharmap` — GTK+2 gucharmap::
-A good character map program (nicer than KCharSelect, which is a Windows clone).
-The Gentoo ebuild for this is GTK+3-only for no good reason,
-so I wrote a better one from scratch that respects the user's choice.
-Make sure to add `gucharmap::gentoo` to your `package.mask`.
-Now supports modern Unicode versions! (just leave `system-unicode` enabled, which is the default)
+`gnome-extra/gucharmap` — GTK+2 version of gucharmap::
++
+--
+The last released GTK+2 version of gucharmap, with added Unicode 10 support.
+Contains far fewer dependencies than the current GNOME 3 version forces upon you,
+and is more robust than `kde-apps/kcharselect` (17.12 still doesn't support font fallbacks!)
+
+Make sure to install this as `gnome-extra/gucharmap::flussence` (i.e. with the repo ID),
+or else the higher version number of the GTK+3 one will override it.
+You may need to run `emerge --deselect gnome-extra/gucharmap` first if you have it already.
+--
 
 `media-video/obs-studio` — https://github.com/jp9000/obs-studio[OBS Studio]::
 Builds OBS from Git.
 Probably has too many `USE` flags, but it works and does what I need from it.
 You can even build it with no GUI at all, if you're into that sort of thing.
 
-`net-im/dino` — GTK+3 XMPP program::
-Pretty good in spite of being a thoroughly GNOME 3 program.
-Very few deps, supports modern E2E crypto.
+`net-im/dino` — https://github.com/dino/dino[GTK+3 XMPP program]::
+Pretty good in spite of being a thoroughly GNOME 3 app.
+Very few dependencies and supports modern E2E crypto.
 
-`net-p2p/go-ipfs-bin` — Updated versions of Gentoo IPFS ebuilds::
-The in-tree one is 5 versions behind as of this writing, proxy-maintainer seems to not care.
-
-`sys-process/runit` — My own rewrite of the Gentoo runit ebuild::
+`sys-process/runit` — http://smarden.org[An init system you can trust]::
 +
 --
-Supports separate-root-and-usr partitions and kexec rebooting.
-Solid and reliable; exists because Gentoo's ebuild wasn't.
+Here's the main attraction.
+
+Most of Gentoo's plumbing-layer packages have fallen under questionable stewardship.
+Many forumgoers decided to circle the wagons and stick to OpenRC 0.17 in response;
+I hope that works out for them, but I chose another option.
+
+This ebuild and its upstream code rarely needs to change, but Safety Not Guaranteed™.
+This is not an “install and forget” thing. Familiarise yourself with Busybox disaster recovery
+before you decide to invest in this, and remember to RTFM.
+Support requests should go in the Unsupported Software forum, if anywhere.
 
 For replacements to some OpenRC initscripts, take a look at
 https://gitlab.com/flussence/runit-scripts[my runit-scripts repository].
+At some time in the distant future I plan to drop the OpenRC dep for something new.
+If that happens I'll give you plenty of advance warning.
 --
 
-[NOTE]
-.Boilerplate headers and copyright attribution
-================================================================================
-The 2-line legalese header on each ebuild is required to be present, verbatim,
-by Gentoo's “repoman” QA tool.
-Other than the GPL-2 statement, the rest of it should not be considered valid.
-Correct attribution for sources can be found in the git logs or this document.
+Copyright
+---------
 
-Reference:
-https://devmanual.gentoo.org/ebuild-writing/common-mistakes/index.html
-================================================================================
+The 2-line legalese header on each ebuild is required to be present, verbatim,
+by Gentoo's “repoman” QA tool. Don't read too much into it.
+All original work here is licensed under the GNU GPL version 2 *or later*, i.e.:
+
+    SPDX-License-Identifier: GPL-2+
+
+    Copyright © 2012-2018 Anthony Parsons <flussence@gmail.com>
+
+    This is free software; you can redistribute it and/or modify it
+    under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
