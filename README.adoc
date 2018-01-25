@@ -70,6 +70,10 @@ Builds OBS from Git.
 Probably has too many `USE` flags, but it works and does what I need from it.
 You can even build it with no GUI at all, if you're into that sort of thing.
 
+`net-im/dino` — GTK+3 XMPP program::
+Pretty good in spite of being a thoroughly GNOME 3 program.
+Very few deps, supports modern E2E crypto.
+
 `net-p2p/go-ipfs-bin` — Updated versions of Gentoo IPFS ebuilds::
 The in-tree one is 5 versions behind as of this writing, proxy-maintainer seems to not care.
 
