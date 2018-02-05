@@ -34,6 +34,10 @@ N.B.: Anything not listed here is considered *very experimental*!
 Signify is a strong cryptographic signature tool that fits on a floppy disk, with public
 keys that fit in 140 characters, and a manpage that fits on one screen.
 
+`app-shells/oil` — https://github.com/oilshell/oil[Oil Shell]::
+Advertised as an upgrade path away from bash.
+Expect this to become fairly significant now that Gentoo's abandoned libbash.
+
 `dev-libs/libsass` — https://github.com/sass/libsass[libsass]::
 `dev-util/sassc` — https://github.com/sass/sassc[SASS Compiler]::
 C++ SASS stylesheet preprocessor, so you don't have to install Ruby for one.
