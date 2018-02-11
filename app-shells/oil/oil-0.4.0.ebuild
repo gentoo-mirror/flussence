@@ -16,9 +16,10 @@ IUSE="+readline"
 
 RDEPEND="readline? ( sys-libs/readline:0 )"
 DEPEND="${RDEPEND}
-	=sys-libs/glibc-2.25-r9"
-# This only works with stable glibc due to bug 575232.
-# The problem file is in a bundled python 2.7.13, if that gives anyone ideas on how to fix this
+	|| (
+		sys-libs/musl
+		sys-libs/glibc[vanilla(-)]
+	)"
 
 S="${WORKDIR}/${MY_P}"
 

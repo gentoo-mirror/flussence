@@ -11,3 +11,8 @@
 # Anthony Parsons <flussence@gmail.com> (30 May 2017)
 # Miscompiles when portage builds it; no idea how to fix.
 dev-perl/CSS-Sass
+
+# Anthony Parsons <flussence@gmail.com> (11 Feb 2018)
+# Requires a sane glibc, which Gentoo does not provide out of the box for non-reasons.
+# Bug 575232, bug 337561, bug 529984 etc.
+app-shells/oil
