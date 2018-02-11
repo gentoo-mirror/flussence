@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -16,7 +16,6 @@ IUSE="test"
 
 RDEPEND="
 	>=dev-perl/Convert-ASN1-0.200
-	>=dev-perl/Crypt-Format-0.20
 	>=dev-perl/Crypt-OpenSSL-Bignum-0.60
 	>=dev-perl/Crypt-OpenSSL-RSA-0.280
 	virtual/perl-Digest-SHA
