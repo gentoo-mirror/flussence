@@ -14,7 +14,7 @@ MY_REPO_URI="https://github.com/dino/dino"
 
 LICENSE="GPL-3"
 SLOT="0"
-IUSE="+gnupg http +omemo"
+IUSE="+gnupg +http +omemo"
 
 if [[ ${PV} == "9999" ]]; then
 	EGIT_REPO_URI="${MY_REPO_URI}.git"
