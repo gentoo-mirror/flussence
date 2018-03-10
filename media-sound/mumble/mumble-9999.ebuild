@@ -40,7 +40,7 @@ src_configure() {
 		$(usex g15 g15 no-g15)
 		$(usex oss oss no-oss)
 		$(usex portaudio portaudio no-portaudio)
-		$(usex pulseaudio portaudio no-portaudio)
+		$(usex pulseaudio pulseaudio no-pulseaudio)
 		$(usex speech speechd no-speechd)
 		$(usex zeroconf bonjour no-bonjour)
 		# Does not build with celt 0.11.3
