@@ -1,46 +1,50 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-inherit eutils
 
 MY_P="${P/_/-}"
-S="${WORKDIR}/${MY_P}"
+
 DESCRIPTION="Audacious Player - Your music, your way, no exceptions"
-HOMEPAGE="http://audacious-media-player.org/"
-SRC_URI="http://distfiles.audacious-media-player.org/${MY_P}.tar.bz2"
+HOMEPAGE="https://audacious-media-player.org/"
+SRC_URI="https://distfiles.audacious-media-player.org/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="aac alsa ampache aosd bs2b cdda cue ffmpeg filewriter flac fluidsynth gnome hotkeys http +gtk
-	jack lame libnotify libsamplerate lirc mms modplug mpg123 mpris nls opengl oss pulseaudio qt5
+	jack lame libnotify libsamplerate lirc mms modplug mp3 mpris nls opengl oss pulseaudio qt5
 	scrobbler sdl sdl2 sid sndfile sox vorbis wavpack"
-REQUIRED_USE="|| ( alsa jack oss pulseaudio qt5 sdl )
-	ampache? ( qt5 )
+REQUIRED_USE="
+	|| ( alsa jack oss pulseaudio qt5 sdl )
+	ampache? ( qt5 http )
 	aosd? ( gtk )
 	filewriter? ( || ( flac vorbis ) )
 	hotkeys? ( gtk )
 	opengl? ( || ( gtk qt5 ) )"
 
-RDEPEND="app-arch/unzip
+RDEPEND="
+	app-arch/unzip
 	dev-libs/libxml2:2
 	~media-sound/audacious-${PV}[gtk?,qt5?]
 	aac? ( >=media-libs/faad2-2.7 )
 	alsa? ( >=media-libs/alsa-lib-1.0.16 )
-	ampache? ( www-apps/ampache )
+	ampache? ( =media-libs/ampache_browser-1* )
 	aosd? (
 		x11-libs/libXrender
 		x11-libs/libXcomposite
 	)
-	bs2b? ( >=media-libs/libbs2b-3.0.0 )
+	bs2b? ( media-libs/libbs2b )
 	cdda? (
-		>=dev-libs/libcdio-paranoia-0.70
 		>=media-libs/libcddb-1.2.1
+		dev-libs/libcdio-paranoia
 	)
 	cue? ( media-libs/libcue )
 	ffmpeg? ( >=virtual/ffmpeg-0.7.3 )
-	flac? ( >=media-libs/flac-1.2.1 )
+	flac? (
+		>=media-libs/libvorbis-1.0
+		>=media-libs/flac-1.2.1-r1
+	)
 	fluidsynth? ( media-sound/fluidsynth )
 	http? ( >=net-libs/neon-0.27 )
 	gnome? ( >=dev-libs/dbus-glib-0.60 )
@@ -51,60 +55,51 @@ RDEPEND="app-arch/unzip
 		dev-qt/qtmultimedia:5
 		dev-qt/qtwidgets:5
 	)
-	jack? ( >=media-sound/jack-audio-connection-kit-0.120.1 )
-	lame? ( media-sound/lame )
-	libnotify? (
-		>=x11-libs/libnotify-0.7
-		>=x11-libs/gdk-pixbuf-2.26:2
+	jack? (
+		>=media-libs/bio2jack-0.4
+		virtual/jack
 	)
-	libsamplerate? ( media-libs/libsamplerate )
+	lame? ( media-sound/lame )
+	libnotify? ( x11-libs/libnotify )
+	libsamplerate? ( media-libs/libsamplerate:= )
 	lirc? ( app-misc/lirc )
 	mms? ( >=media-libs/libmms-0.3 )
 	modplug? ( media-libs/libmodplug )
 	mpris? ( dev-util/gdbus-codegen )
-	mpg123? ( >=media-sound/mpg123-1.12.1 )
+	mp3? ( >=media-sound/mpg123-1.12.1 )
 	opengl? (
 		virtual/opengl
 		x11-libs/libX11
 	)
 	pulseaudio? ( >=media-sound/pulseaudio-0.9.5 )
-	scrobbler? ( >=net-misc/curl-7.9.7 )
+	scrobbler? ( net-misc/curl )
 	sdl? (
 		sdl2? ( >=media-libs/libsdl2-2.0[sound] )
 		!sdl2? ( >=media-libs/libsdl-1.2.11[sound] )
 	)
-	sid? ( >=media-libs/libsidplayfp-1.0 )
+	sid? ( >=media-libs/libsidplayfp-1.0.0 )
 	sndfile? ( >=media-libs/libsndfile-1.0.19 )
 	sox? ( media-libs/soxr )
-	vorbis? ( >=media-libs/libvorbis-1.2.0
-		  >=media-libs/libogg-1.1.3 )
-	wavpack? ( >=media-sound/wavpack-4.31 )"
+	vorbis? (
+		>=media-libs/libvorbis-1.2.0
+		>=media-libs/libogg-1.1.3
+	)
+	wavpack? ( >=media-sound/wavpack-4.50.1-r1 )"
 
 DEPEND="${RDEPEND}
-	nls? ( dev-util/intltool )
-	virtual/pkgconfig"
+	virtual/pkgconfig
+	nls? ( dev-util/intltool )"
 
+S="${WORKDIR}/${MY_P}"
 src_configure() {
-	if use ffmpeg; then
-		if has_version media-video/ffmpeg; then
-			ffmpeg="ffmpeg"
-		elif has_version media-video/libav; then
-			ffmpeg="libav"
-		fi
-	fi
-
-	if use sdl; then
-		if has_version media-libs/libsdl2; then
-			sdl="2"
-		else
-			sdl="1"
-		fi
-	fi
-
 	econf \
-		--with-ffmpeg="${ffmpeg:-none}" \
+		--enable-songchange \
+		--disable-coreaudio \
+		--disable-sndio \
 		$(use_enable aac) \
 		$(use_enable alsa) \
+		$(use_enable ampache) \
+		$(use_enable aosd) \
 		$(use_enable bs2b) \
 		$(use_enable cdda cdaudio) \
 		$(use_enable cue) \
@@ -124,7 +119,7 @@ src_configure() {
 		$(use_enable lirc) \
 		$(use_enable mms) \
 		$(use_enable modplug) \
-		$(use_enable mpg123) \
+		$(use_enable mp3 mpg123) \
 		$(use_enable nls) \
 		$(use_enable oss oss4) \
 		$(use_enable pulseaudio pulse) \
@@ -138,5 +133,6 @@ src_configure() {
 		$(use_enable sndfile) \
 		$(use_enable sox soxr) \
 		$(use_enable vorbis) \
-		$(use_enable wavpack)
+		$(use_enable wavpack) \
+		$(use_with ffmpeg ffmpeg $(usex libav libav ffmpeg))
 }

@@ -21,7 +21,7 @@
 		<flag name="http">Support HTTP streams through <pkg>net-libs/neon</pkg></flag>
 		<flag name="lame">Enable MP3 filewriter output plugin</flag>
 		<flag name="libsamplerate">Enable resample, speed and pitch plugins</flag>
-		<flag name="mpg123">Enable standalone MP3 plugin using <pkg>media-sound/mpg123</pkg></flag>
+		<flag name="mp3">Enable standalone MP3 plugin using <pkg>media-sound/mpg123</pkg></flag>
 		<flag name="mpris">Enable MPRIS2 support (dbus-based player remote control)</flag>
 		<flag name="opengl">Enable the glspectrum visualiser plugin</flag>
 		<flag name="scrobbler">Build with scrobbler/LastFM submission support</flag>
