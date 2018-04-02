@@ -13,7 +13,7 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="aac alsa ampache aosd bs2b cdda cue ffmpeg filewriter flac fluidsynth gnome hotkeys http +gtk
-	jack lame libnotify libsamplerate lirc mms modplug mp3 mpris nls opengl oss pulseaudio qt5
+	jack lame libav libnotify libsamplerate lirc mms modplug mp3 mpris nls opengl oss pulseaudio qt5
 	scrobbler sdl sdl2 sid sndfile sox vorbis wavpack"
 REQUIRED_USE="
 	|| ( alsa jack oss pulseaudio qt5 sdl )
@@ -40,7 +40,7 @@ RDEPEND="
 		dev-libs/libcdio-paranoia
 	)
 	cue? ( media-libs/libcue )
-	ffmpeg? ( >=virtual/ffmpeg-0.7.3 )
+	ffmpeg? ( virtual/ffmpeg[libav?] )
 	flac? (
 		>=media-libs/libvorbis-1.0
 		>=media-libs/flac-1.2.1-r1
