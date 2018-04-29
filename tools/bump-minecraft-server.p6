@@ -2,9 +2,9 @@
 use Net::Minecraft::Version;
 
 my Regex $snapshot      = /^(\d ** 2) w (\d ** 2) (\w)$/;
-my Regex $snapshot-fn   = / \d ** 4 \w /;
+my Regex $snapshot-fn   = / \d ** 4 \w /; #= e.g. minecraft-server-1816a.ebuild
 my Regex $prerelease    = /^\d+ '.' \d+ '-pre' \d+$/;
-my Regex $prerelease-fn = / \d+ '.' \d+ '_pre' \d+ /;
+my Regex $prerelease-fn = / \d+ '.' \d+ '_pre' \d+ /; #= e.g. minecraft-server-1.12_pre.ebuild
 
 sub MAIN {
     my ($current, $current-file) = get-current-ebuild().kv;
@@ -37,20 +37,19 @@ sub MAIN {
     run(<git commit -a>);
 }
 
-sub get-repo-dir() returns IO::Path {
+sub get-repo-dir(--> IO::Path) {
     $*PROGRAM.parent.parent;
 }
 
-sub get-ebuild-dir() returns IO::Path {
+sub get-ebuild-dir(--> IO::Path) {
     get-repo-dir()
         .child('games-server')
         .child('minecraft-server')
         .cleanup(:parent);
 }
 
-sub get-current-ebuild() returns Pair #`(version number => filehandle) {
-    my Regex $test = rx/'minecraft-server-'
-        ($snapshot-fn | $prerelease-fn) '.ebuild'$/;
+sub get-current-ebuild(--> Pair) #`(version number => filehandle) {
+    my Regex $test = rx/'minecraft-server-' ($snapshot-fn | $prerelease-fn) '.ebuild'$/;
 
     my $ebuild-dir = get-ebuild-dir();
     my $ebuild = $ebuild-dir.dir(:$test).cache;
