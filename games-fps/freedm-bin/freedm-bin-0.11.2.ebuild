@@ -1,7 +1,7 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 
 MY_P=${P/-bin/}
 
@@ -22,8 +22,8 @@ S="${WORKDIR}/${MY_P}"
 
 src_install() {
 	insinto ${MY_DATADIR}
-	doins *.wad
-	dodoc CREDITS README.html
+	doins ./*.wad
+	dodoc CREDITS.txt README.html
 }
 
 pkg_postinst() {
