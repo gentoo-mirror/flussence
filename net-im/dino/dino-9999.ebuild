@@ -5,7 +5,6 @@ EAPI=6
 
 CMAKE_MAKEFILE_GENERATOR="ninja"
 VALA_MIN_API_VERSION="0.34"
-
 inherit cmake-utils gnome2-utils vala
 
 DESCRIPTION="Modern Jabber/XMPP Client using GTK+/Vala"
@@ -42,23 +41,27 @@ src_prepare() {
 
 src_configure() {
 	# this is dumb but setting -DPLUGINS didn't work
+	# shellcheck disable=SC2207
 	local disabled_plugins=(
 		$(usex gnupg "" "openpgp")
 		$(usex omemo "" "omemo")
 		$(usex http  "" "http-files")
 	)
 	local mycmakeargs+=(
-		-DDISABLED_PLUGINS="$(local IFS=";"; echo "${disabled_plugins[*]}")"
+		"-DDISABLED_PLUGINS=$(local IFS=";"; echo "${disabled_plugins[*]}")"
 	)
 	cmake-utils_src_configure
 }
 
-pkg_postinst() {
+update_caches() {
 	gnome2_icon_cache_update
 	xdg_desktop_database_update
 }
 
+pkg_postinst() {
+	update_caches
+}
+
 pkg_postrm() {
-	gnome2_icon_cache_update
-	xdg_desktop_database_update
+	update_caches
 }

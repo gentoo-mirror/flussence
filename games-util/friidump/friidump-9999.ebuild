@@ -1,8 +1,7 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-
 inherit cmake-utils
 
 DESCRIPTION="Dump Nintendo Wii and GameCube discs"
@@ -26,7 +25,7 @@ RDEPEND="${DEPEND}"
 src_configure() {
 	# can't be bothered dealing with multilib nonsense
 	local mycmakeargs+=(
-		-DBUILD_STATIC_BINARY=1
+		'-DBUILD_STATIC_BINARY=1'
 	)
 	cmake-utils_src_configure
 }

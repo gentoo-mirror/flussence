@@ -1,8 +1,7 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-
 inherit git-r3
 
 DESCRIPTION="Pidgin/Purple PRotocol PLugin for Discord"
@@ -15,6 +14,5 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND="net-im/pidgin
-dev-vcs/git
-dev-libs/json-glib"
+	dev-libs/json-glib"
 RDEPEND="${DEPEND}"

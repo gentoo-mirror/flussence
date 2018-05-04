@@ -91,48 +91,51 @@ DEPEND="${RDEPEND}
 	nls? ( dev-util/intltool )"
 
 S="${WORKDIR}/${MY_P}"
+
 src_configure() {
+	# Upstream bundles several input plugin libs and hardcodes some of those to on.
+	# Some of them (libgme) have known vulns. I can't help you with that. Good luck.
 	econf \
 		--enable-songchange \
 		--disable-coreaudio \
 		--disable-sndio \
-		$(use_enable aac) \
-		$(use_enable alsa) \
-		$(use_enable ampache) \
-		$(use_enable aosd) \
-		$(use_enable bs2b) \
-		$(use_enable cdda cdaudio) \
-		$(use_enable cue) \
-		$(use_enable filewriter) \
-		$(use_enable flac) \
-		$(use_enable fluidsynth amidiplug) \
-		$(use_enable gtk) \
-		$(use gtk && use_enable opengl glspectrum) \
-		$(use_enable hotkeys hotkey) \
-		$(use_enable http neon) \
-		$(use_enable jack) \
-		$(use_enable gnome gnomeshortcuts) \
-		$(use_enable lame filewriter_mp3) \
-		$(use_enable libnotify notify) \
-		$(use_enable libsamplerate resample) \
-		$(use_enable libsamplerate speedpitch) \
-		$(use_enable lirc) \
-		$(use_enable mms) \
-		$(use_enable modplug) \
-		$(use_enable mp3 mpg123) \
-		$(use_enable nls) \
-		$(use_enable oss oss4) \
-		$(use_enable pulseaudio pulse) \
-		$(use_enable qt5 qt) \
-		$(use_enable qt5 qtaudio) \
-		$(use qt5 && use_enable opengl qtglspectrum) \
-		$(use_enable scrobbler scrobbler2) \
-		$(use_enable sdl sdlout) \
-		$(use_with sdl sdl $(usex sdl2 2 1)) \
-		$(use_enable sid) \
-		$(use_enable sndfile) \
-		$(use_enable sox soxr) \
-		$(use_enable vorbis) \
-		$(use_enable wavpack) \
-		$(use_with ffmpeg ffmpeg $(usex libav libav ffmpeg))
+		"$(use_enable aac)" \
+		"$(use_enable alsa)" \
+		"$(use_enable ampache)" \
+		"$(use_enable aosd)" \
+		"$(use_enable bs2b)" \
+		"$(use_enable cdda cdaudio)" \
+		"$(use_enable cue)" \
+		"$(use_enable filewriter)" \
+		"$(use_enable flac)" \
+		"$(use_enable fluidsynth amidiplug)" \
+		"$(use_enable gtk)" \
+		"$(use gtk && use_enable opengl glspectrum)" \
+		"$(use_enable hotkeys hotkey)" \
+		"$(use_enable http neon)" \
+		"$(use_enable jack)" \
+		"$(use_enable gnome gnomeshortcuts)" \
+		"$(use_enable lame filewriter_mp3)" \
+		"$(use_enable libnotify notify)" \
+		"$(use_enable libsamplerate resample)" \
+		"$(use_enable libsamplerate speedpitch)" \
+		"$(use_enable lirc)" \
+		"$(use_enable mms)" \
+		"$(use_enable modplug)" \
+		"$(use_enable mp3 mpg123)" \
+		"$(use_enable nls)" \
+		"$(use_enable oss oss4)" \
+		"$(use_enable pulseaudio pulse)" \
+		"$(use_enable qt5 qt)" \
+		"$(use_enable qt5 qtaudio)" \
+		"$(use qt5 && use_enable opengl qtglspectrum)" \
+		"$(use_enable scrobbler scrobbler2)" \
+		"$(use_enable sdl sdlout)" \
+		"$(usex sdl "--with-libsdl=" "" "$(usex sdl2 2 1)")" \
+		"$(use_enable sid)" \
+		"$(use_enable sndfile)" \
+		"$(use_enable sox soxr)" \
+		"$(use_enable vorbis)" \
+		"$(use_enable wavpack)" \
+		"$(use_with ffmpeg ffmpeg "$(usex libav libav ffmpeg)")"
 }

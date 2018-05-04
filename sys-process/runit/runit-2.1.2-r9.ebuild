@@ -1,8 +1,7 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-
 inherit toolchain-funcs flag-o-matic
 
 DESCRIPTION="A UNIX init scheme with service supervision"
@@ -52,7 +51,7 @@ src_install() {
 	doexe "${FILESDIR}"/{1,3,ctrlaltdel}
 
 	# N.B. this is not $WORKDIR because $S is redefined above
-	cd "${S}"/..
+	cd "${S}"/.. || die
 
 	sed -i 's@/service@/etc/service@' etc/2 || die 'sed failed'
 	doexe etc/2

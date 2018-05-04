@@ -1,8 +1,7 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-
 inherit cmake-utils multilib
 
 DESCRIPTION="FOSS software for video recording and live streaming"
@@ -57,20 +56,21 @@ RDEPEND="${DEPEND}"
 PATCHES=( "${FILESDIR}"/bug-633596-workaround-for-"${PV}".patch )
 
 src_configure() {
-	local libdir=$(get_libdir)
+	local libdir
+	libdir="$(get_libdir)"
 	local mycmakeargs+=(
-		-DDISABLE_ALSA=$(usex !alsa)
-		-DDISABLE_FREETYPE=$(usex !truetype)
-		-DDISABLE_JACK=$(usex !jack)
-		-DDISABLE_LIBFDK=$(usex !fdk)
-		-DDISABLE_PULSEAUDIO=$(usex !pulseaudio)
-		-DDISABLE_UDEV=$(usex !udev)
-		-DDISABLE_UI=$(usex !qt5)
-		-DDISABLE_V4L2=$(usex !v4l)
-		-DDISABLE_VLC=$(usex !vlc)
-		-DLIBOBS_PREFER_IMAGEMAGICK=$(usex imagemagick)
-		-DUSE_SSL=$(usex ssl)
-		-DOBS_MULTIARCH_SUFFIX=${libdir#lib}
+		"-DDISABLE_ALSA=$(usex !alsa)"
+		"-DDISABLE_FREETYPE=$(usex !truetype)"
+		"-DDISABLE_JACK=$(usex !jack)"
+		"-DDISABLE_LIBFDK=$(usex !fdk)"
+		"-DDISABLE_PULSEAUDIO=$(usex !pulseaudio)"
+		"-DDISABLE_UDEV=$(usex !udev)"
+		"-DDISABLE_UI=$(usex !qt5)"
+		"-DDISABLE_V4L2=$(usex !v4l)"
+		"-DDISABLE_VLC=$(usex !vlc)"
+		"-DLIBOBS_PREFER_IMAGEMAGICK=$(usex imagemagick)"
+		"-DUSE_SSL=$(usex ssl)"
+		"-DOBS_MULTIARCH_SUFFIX=${libdir#lib}"
 	)
 
 	cmake-utils_src_configure

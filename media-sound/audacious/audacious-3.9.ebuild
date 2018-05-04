@@ -1,8 +1,7 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-inherit eutils
 
 MY_P="${P/_/-}"
 S="${WORKDIR}/${MY_P}"
@@ -33,20 +32,17 @@ DEPEND="${RDEPEND}
 PDEPEND="~media-plugins/audacious-plugins-${PV}"
 
 src_configure() {
-	# D-Bus is a mandatory dependency, remote control,
-	# session management and some plugins depend on this.
-	# Building without D-Bus is *unsupported* and a USE-flag
-	# will not be added due to the bug reports that will result.
-	# Bugs #197894, #199069, #207330, #208606
+	# Audacious is barely usable without DBus, therefore it's hardcoded here
+	# but I'm open to making it optional if you can give a good use case for it
 	econf \
 		--enable-dbus \
-		$(use_enable nls) \
-		$(use_enable gtk gtk) \
-		$(use_enable qt5 qt)
+		"$(use_enable nls)" \
+		"$(use_enable gtk gtk)" \
+		"$(use_enable qt5 qt)"
 }
 
 pkg_postinst() {
-	if use_if_iuse qt5 && use_if_iuse gtk; then
+	if use gtk && use qt5; then
 		einfo "You have enabled both GTK+ and Qt interfaces. To use the Qt"
 		einfo "frontend, you need to start Audacious with the -Q flag"
 	fi

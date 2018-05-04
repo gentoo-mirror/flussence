@@ -28,15 +28,12 @@ src_prepare() {
 	default
 
 	if use system-unicode; then
-		cd -- "${S}"/gucharmap
+		cd -- "${S}"/gucharmap || die
 		rm unicode-{blocks,names{,list},unihan,categories,scripts,versions}.h
 		perl "${FILESDIR}"/gen-guch-unicode-tables.pl
 	fi
 }
 
 src_configure() {
-	econf --with-gtk=2.0 \
-		--disable-scrollkeeper \
-		$(use_enable nls) \
-		$(use_enable gconf)
+	econf --with-gtk=2.0 --disable-scrollkeeper "$(use_enable nls)" "$(use_enable gconf)"
 }
