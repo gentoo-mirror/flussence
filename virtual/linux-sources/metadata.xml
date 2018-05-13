@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>flussence@gmail.com</email>
+		<name>Anthony Parsons</name>
+	</maintainer>
+	<longdescription lang="en">
+		This is an empty virtual that doesn't install any kernel source package.
+	</longdescription>
+	<use>
+		<flag name="firmware"> Add a dependency on <pkg>sys-kernel/linux-firmware</pkg>, for those
+			packages that need it</flag>
+	</use>
+</pkgmetadata>
