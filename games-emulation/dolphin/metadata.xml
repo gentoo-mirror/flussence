@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>ant+gentoo.bugs@flussence.eu</email>
+		<name>Anthony Parsons</name>
+	</maintainer>
+	<longdescription lang="en">
+		Dolphin is an emulator for running GameCube and Wii games on Windows, Linux, macOS, and recent Android devices.
+	</longdescription>
+	<use>
+		<flag name="bluez">Use <pkg>net-wireless/bluez</pkg> for native Wii peripheral support</flag>
+		<flag name="discord">Enable automatically reporting the current game to <pkg>net-im/discord-bin</pkg></flag>
+		<flag name="egl">Enable EGL API (OpenGL without X11, mainly for movie rendering)</flag>
+		<flag name="evdev">Enable evdev joypad input backend</flag>
+		<flag name="llvm">Enable runtime debugging of emulated software using <pkg>sys-devel/llvm</pkg></flag>
+		<flag name="log">Turn on debug logging</flag>
+		<flag name="lto">Build with link-time optimization</flag>
+		<flag name="web-report">Build the emulator with analytics reporting</flag>
+	</use>
+</pkgmetadata>
