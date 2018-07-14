@@ -19,10 +19,10 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	system-unicode? (
 		>=dev-lang/perl-5.26.0
-		<=app-i18n/unicode-data-10.0.0
+		<=app-i18n/unicode-data-11.0.0
 	)"
 
-PATCHES=( "${FILESDIR}"/unicode-10-defines.patch )
+PATCHES=( "${FILESDIR}"/unicode-11-defines.patch )
 
 src_prepare() {
 	default
