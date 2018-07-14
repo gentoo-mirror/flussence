@@ -1,10 +1,10 @@
 # These numbers are snapshot versions; unmask manually if wanted.
 >games-server/minecraft-server-10
 
-# Anthony Parsons <flussence@gmail.com> (30 May 2017)
+# Anthony Parsons <ant+gentoo.bugs@flussence.eu> (30 May 2017)
 # Miscompiles when portage builds it; no idea how to fix.
 dev-perl/CSS-Sass
 
-# Anthony Parsons <flussence@gmail.com> (13 May 2018)
+# Anthony Parsons <ant+gentoo.bugs@flussence.eu> (13 May 2018)
 # This is only for people who know why they need it.
 =virtual/linux-sources-9999
