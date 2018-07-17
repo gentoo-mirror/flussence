@@ -51,6 +51,18 @@ Not the most user-friendly option, but it gets the job done.
 `dev-vcs/src` — https://gitlab.com/esr/src[Simple Revision Control]::
 A version control tool suitable for all those loose scripts you have lying around.
 
+`games-fps/ut2004-bonuspack-*` — UT2004 map packs via IPFS::
++
+--
+The mirror URLs for these have proved chronically unreliable, so these ebuilds use IPFS.
+You'll need to configure your local IPFS node as a distfiles mirror,
+by adding a line like `ipfs http://localhost:8080` to `/etc/portage/mirrors`.
+
+Help preserving these files (and more) would be appreciated.
+The Manifest files contain additional SHA1 hashes (should be easily web searchable),
+and the IPFS hashes were generated using 0.4.15 defaults: `--hash sha2-256 --chunker size-262144`.
+--
+
 `games-server/minecraft-server` — minecraft-server ebuilds::
 +
 --
