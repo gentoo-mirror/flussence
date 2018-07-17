@@ -9,6 +9,7 @@
 		<bugs-to>http://redmine.audacious-media-player.org/projects/audacious/issues</bugs-to>
 	</upstream>
 	<use>
+		<flag name="adplug">Enable AdLib (OPL2/3 synthesizer) sound card emulation via <pkg>media-libs/adplug</pkg></flag>
 		<flag name="ampache">Add remote control support via <pkg>www-apps/ampache</pkg></flag>
 		<flag name="aosd">Enable the on-screen-display plugin</flag>
 		<flag name="bs2b">Enable Bauer stereophonic-to-binaural headphone filter</flag>
