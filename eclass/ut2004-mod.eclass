@@ -15,6 +15,8 @@ EXPORT_FUNCTIONS src_install
 SLOT="0"
 RESTRICT="mirror strip"
 DEPEND="app-arch/unzip"
+KEYWORDS="~amd64 ~x86"
+S="${WORKDIR}"
 
 GAME_DATADIR="/usr/share/games/ut2004"
 GAME_SUBDIRS=(Animations Help Maps Music Sounds StaticMeshes System Textures)

@@ -12,10 +12,7 @@ SRC_URI="mirror://ipfs/ipfs/QmXcU3L3yhq4aVBdP9Lx7Ego9vH63D5Kx1PouvTuh8orz4 -> ${
 	mirror://ipfs/ipfs/QmQCpjBGdMYof2yNF5cQHrQNSzjvGkXh15uZN2RbS1HJjz -> ${MY_P[1]}"
 
 LICENSE="ut2003"
-KEYWORDS="~amd64 ~x86"
 IUSE=""
-
-S="${WORKDIR}"
 
 src_unpack() {
 	unpack "${MY_P[0]}"
@@ -24,6 +21,8 @@ src_unpack() {
 }
 
 src_prepare() {
+	default
+
 	mv -f UT2004MegaPack/* . || die
 	rmdir UT2004MegaPack || die
 
@@ -53,6 +52,4 @@ src_prepare() {
 	rm System/{Manifest.in{i,t},OnslaughtFull.int} || die
 	rm System/{Core.int,Engine.int,Setup.int,Window.int} || die
 	rm System/{OnslaughtFull.u,OnslaughtBP.u} || die
-
-	default
 }

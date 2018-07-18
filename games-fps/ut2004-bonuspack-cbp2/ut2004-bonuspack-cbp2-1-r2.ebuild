@@ -11,13 +11,10 @@ SRC_URI="mirror://ipfs/ipfs/QmdphFqmxmA4AVbfYXkX41e9Ad2VDEvR1WgHy57F5cbP3X -> cb
 	mirror://ipfs/ipfs/QmV8H3Kf6LQDwfUB4EKfMAoW1bhmE6b3m3XNCcnpaMGGeD -> cbp2-volume2_zip.zip"
 
 LICENSE="freedist"
-KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 RDEPEND="games-fps/ut2004-bonuspack-cbp1
 	games-fps/ut2004-bonuspack-mega"
-
-S="${WORKDIR}"
 
 src_prepare() {
 	default

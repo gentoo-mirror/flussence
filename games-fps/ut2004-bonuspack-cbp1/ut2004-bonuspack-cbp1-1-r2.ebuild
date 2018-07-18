@@ -10,7 +10,4 @@ HOMEPAGE="https://liandri.beyondunreal.com/Unreal_Tournament_2004"
 SRC_URI="mirror://ipfs/ipfs/QmX2WjFtWdhf87GR5g6UrkQhE8qKtVnhpeDkrW7Z3NpFDv -> cbp1.zip"
 
 LICENSE="freedist"
-KEYWORDS="~amd64 ~x86"
 IUSE=""
-
-S="${WORKDIR}"
