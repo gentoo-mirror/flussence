@@ -7,7 +7,8 @@ MY_P=${P/-bin/}
 
 DESCRIPTION="Free-licensed standalone data file for playing Doom 1&2 deathmatch"
 HOMEPAGE="https://freedoom.github.io/"
-SRC_URI="https://github.com/freedoom/freedoom/releases/download/v${PV}/${MY_P}.zip"
+SRC_URI="mirror://ipfs/ipfs/Qmah5EuTRG44wbLVjBBjio2qpDy9vpahQAt6w97B7wwKn4 -> ${MY_P}.zip
+	https://github.com/freedoom/freedoom/releases/download/v${PV}/${MY_P}.zip"
 
 LICENSE="BSD"
 SLOT="0"
