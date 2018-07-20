@@ -26,7 +26,7 @@ REQUIRED_USE="
 RDEPEND="
 	app-arch/unzip
 	dev-libs/libxml2:2
-	~media-sound/audacious-${PV}[gtk?,qt5?]
+	~media-sound/audacious-${PV}[gtk=,qt5=]
 	aac? ( >=media-libs/faad2-2.7 )
 	alsa? ( >=media-libs/alsa-lib-1.0.16 )
 	ampache? ( =media-libs/ampache_browser-1* )
