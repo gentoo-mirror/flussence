@@ -6,10 +6,9 @@ EAPI=6
 PLOCALES="ar ca cs da de el en es fa fr hr hu it ja ko ms nb nl pl pt pt_BR ro ru sr sv tr zh_CN zh_TW"
 PLOCALE_BACKUP="en"
 
-inherit cmake-utils desktop gnome2-utils l10n pax-utils toolchain-funcs versionator
+inherit cmake-utils desktop gnome2-utils l10n pax-utils toolchain-funcs
 
-if [[ ${PV} == *9999 ]]
-then
+if [[ ${PV} == "9999" ]]; then
 	EGIT_REPO_URI="https://github.com/dolphin-emu/dolphin"
 	inherit git-r3
 else

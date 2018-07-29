@@ -19,7 +19,7 @@ RESTRICT="mirror strip"
 
 DEPEND="app-arch/p7zip"
 RDEPEND="!games-server/ut2004-ded
-	=virtual/libstdc++-3.3
+	~virtual/libstdc++-3.3
 	games-fps/ut2004-bonuspack-ece
 	games-fps/ut2004-bonuspack-mega
 	games-fps/ut2004-data
