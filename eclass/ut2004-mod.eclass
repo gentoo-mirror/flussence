@@ -9,6 +9,7 @@
 # @BLURB: Common installer stuff for UT2004 mod files
 # @DESCRIPTION: This provides a default src_install that takes care of putting files in the correct
 # FHS folder, and also linking them to the /opt/ game folders so the game or server will find them.
+# @SUPPORTED_EAPIS: 7
 
 EXPORT_FUNCTIONS src_install
 
