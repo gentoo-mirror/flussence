@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
+	<maintainer type="person">
+		<email>ant+gentoo.bugs@flussence.eu</email>
+		<name>Anthony Parsons</name>
+	</maintainer>
+	<upstream>
+		<bugs-to>http://redmine.audacious-media-player.org/projects/audacious/issues</bugs-to>
+	</upstream>
 </pkgmetadata>

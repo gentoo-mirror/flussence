@@ -5,4 +5,8 @@
 		<email>ant+gentoo.bugs@flussence.eu</email>
 		<name>Anthony Parsons</name>
 	</maintainer>
+	<upstream>
+		<bugs-to>https://github.com/QuiteRSS/quiterss/issues</bugs-to>
+		<remote-id type="github">QuiteRSS/quiterss</remote-id>
+	</upstream>
 </pkgmetadata>

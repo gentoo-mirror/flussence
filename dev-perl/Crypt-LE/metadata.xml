@@ -5,6 +5,7 @@
 		<email>ant+gentoo.bugs@flussence.eu</email>
 		<name>Anthony Parsons</name>
 	</maintainer>
-	<longdescription lang="en">
-	</longdescription>
+	<upstream>
+		<remote-id type="cpan-module">Crypt::LE</remote-id>
+	</upstream>
 </pkgmetadata>

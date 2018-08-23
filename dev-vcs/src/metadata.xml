@@ -12,4 +12,7 @@
 		command set that will seem familiar to Subversion/Git/hg users, and no binary blobs
 		anywhere.
 	</longdescription>
+	<upstream>
+		<remote-id type="gitlab">esr/src</remote-id>
+	</upstream>
 </pkgmetadata>

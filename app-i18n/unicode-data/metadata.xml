@@ -5,4 +5,7 @@
 		<email>ant+gentoo.bugs@flussence.eu</email>
 		<name>Anthony Parsons</name>
 	</maintainer>
+	<upstream>
+		<changelog>http://www.unicode.org/versions/latest/</changelog>
+	</upstream>
 </pkgmetadata>

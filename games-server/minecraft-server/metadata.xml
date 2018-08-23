@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<longdescription lang="en">
-		This package installs the official vanilla Minecraft server and all dependencies required to
-		run it.
-	</longdescription>
 	<maintainer type="person">
 		<email>ant+gentoo.bugs@flussence.eu</email>
 		<name>Anthony Parsons</name>
 	</maintainer>
+	<longdescription lang="en">
+		This package installs the official vanilla Minecraft server and all dependencies required to
+		run it.
+	</longdescription>
 	<upstream>
 		<bugs-to>https://forums.gentoo.org/viewtopic-t-857083.html</bugs-to>
 	</upstream>

@@ -34,13 +34,7 @@ N.B.: Anything not listed here is considered *very experimental*!
 Signify is a strong cryptographic signature tool that fits on a floppy disk, with public
 keys that fit in 140 characters, and a manpage that fits on one screen.
 
-`dev-libs/libsass` — https://github.com/sass/libsass[libsass]::
-`dev-util/sassc` — https://github.com/sass/sassc[SASS Compiler]::
-C++ SASS stylesheet preprocessor, so you don't have to install Ruby for one.
-Perl 5 has a `CSS::Sass` but it was too buggy to successfully package as an ebuild.
-
 `dev-perl/Crypt-LE` — http://search.cpan.org/dist/Crypt-LE[Crypt::LE]::
-`dev-perl/Crypt-Format` — Crypt-LE dependency::
 A Perl 5 ACME/Let's Encrypt client with lightweight dependencies.
 Not the most user-friendly option, but it gets the job done.
 
@@ -85,9 +79,9 @@ It crashes at runtime but maybe it'll work for someone else.
 `gnome-extra/gucharmap` — GTK+2 version of gucharmap::
 +
 --
-The last released GTK+2 version of gucharmap, with added Unicode 10 support.
+The last released GTK+2 version of gucharmap, patched to recognise new Unicode characters.
 Contains far fewer dependencies than the current GNOME 3 version forces upon you,
-and is more robust than `kde-apps/kcharselect` (17.12 still doesn't support font fallbacks!)
+and is more useful than `kde-apps/kcharselect` (17.12 still doesn't support font fallbacks!)
 
 Make sure to install this as `gnome-extra/gucharmap::flussence` (i.e. with the repo ID),
 or else the higher version number of the GTK+3 one will override it.

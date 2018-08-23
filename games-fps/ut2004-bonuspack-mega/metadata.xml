@@ -5,4 +5,10 @@
 		<email>ant+gentoo.bugs@flussence.eu</email>
 		<name>Anthony Parsons</name>
 	</maintainer>
+	<longdescription>
+		An IPFS-mirrored ebuild for UT2004 Megapack Bonus Pack.
+		If you're unable to download it via IPFS for whatever reason,
+		try searching the web for the file SHA1sum:
+			97f7865bc1b5c70ec82498b79ce7d85a4a26e40b ut2004megapack-linux.tar.bz2
+	</longdescription>
 </pkgmetadata>

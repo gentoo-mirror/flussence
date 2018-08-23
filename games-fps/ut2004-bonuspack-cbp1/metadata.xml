@@ -5,4 +5,10 @@
 		<email>ant+gentoo.bugs@flussence.eu</email>
 		<name>Anthony Parsons</name>
 	</maintainer>
+	<longdescription>
+		An IPFS-mirrored ebuild for UT2004 Community Bonus Pack 1.
+		If you're unable to download it via IPFS for whatever reason,
+		try searching the web for its SHA1sum:
+			1881706fdd31a954c3df1bf63063042c78c09a7e cbp1.zip
+	</longdescription>
 </pkgmetadata>

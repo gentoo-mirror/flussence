@@ -5,4 +5,11 @@
 		<email>ant+gentoo.bugs@flussence.eu</email>
 		<name>Anthony Parsons</name>
 	</maintainer>
+	<longdescription>
+		An IPFS-mirrored ebuild for UT2004 Community Bonus Pack 2.
+		If you're unable to download it via IPFS for whatever reason,
+		try searching the web for the file SHA1sums:
+			719095f073de635638696f71dbd9597e6ba903a5 cbp2-volume1_zip.zip
+			dc6a08b5f2022590c2b0f86cc01535e7a2b6ff9d cbp2-volume2_zip.zip
+	</longdescription>
 </pkgmetadata>

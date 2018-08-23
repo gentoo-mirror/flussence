@@ -5,4 +5,11 @@
 		<email>ant+gentoo.bugs@flussence.eu</email>
 		<name>Anthony Parsons</name>
 	</maintainer>
+	<longdescription>
+		An IPFS-mirrored ebuild for the UT2004 Linux binaries.
+		If you're unable to download it via IPFS for whatever reason,
+		try searching the web for the file SHA1sums:
+			a8cc33877a02a0a09c288b5fc248efde282f7bdf ut2004-lnxpatch3369-2.tar.bz2
+			db5cccc4b08e6314f203e8f036adf8421861c501 ut2004-v3369-3-linux-dedicated.7z
+	</longdescription>
 </pkgmetadata>
