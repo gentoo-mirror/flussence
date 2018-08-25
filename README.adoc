@@ -93,10 +93,6 @@ Builds OBS from Git.
 Probably has too many `USE` flags, but it works and does what I need from it.
 You can even build it with no GUI at all, if you're into that sort of thing.
 
-`net-im/dino` — https://github.com/dino/dino[GTK+3 XMPP program]::
-Pretty good in spite of being a thoroughly GNOME 3 app.
-Very few dependencies and supports modern E2E crypto.
-
 `sys-process/runit` — http://smarden.org[An init system you can trust]::
 +
 --
