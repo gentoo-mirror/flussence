@@ -8,3 +8,7 @@ dev-perl/CSS-Sass
 # Anthony Parsons <ant+gentoo.bugs@flussence.eu> (13 May 2018)
 # This is only for people who know why they need it.
 =virtual/linux-sources-9999
+
+# Anthony Parsons <ant+gentoo.bugs@flussence.eu> (26 Aug 2018)
+# The high DPI support is extremely bad in this version.
+=net-news/quiterss-0.18.12
