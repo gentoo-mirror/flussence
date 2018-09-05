@@ -24,6 +24,7 @@ FONT_S="${S}"
 FONT_SUFFIX="ttf"
 
 src_prepare() {
+	eapply_user
 	if use doc; then
 		DOCS="${MY_PN}.pdf"
 	fi
