@@ -13,6 +13,7 @@
 		<flag name="ampache">Add remote control support via <pkg>www-apps/ampache</pkg></flag>
 		<flag name="aosd">Enable the on-screen-display plugin</flag>
 		<flag name="bs2b">Enable Bauer stereophonic-to-binaural headphone filter</flag>
+		<flag name="bundled-libs">Enable codecs that haven't been properly unbundled, such as libgme. (some of these have had security vulnerabilities in the past)</flag>
 		<flag name="cue">Support CUE sheets using the libcue library</flag>
 		<flag name="ffmpeg">Use <pkg>virtual/ffmpeg</pkg> to play audio from most files</flag>
 		<flag name="filewriter">Enable FLAC/Vorbis filewriter output plugin</flag>

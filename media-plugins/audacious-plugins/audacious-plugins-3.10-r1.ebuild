@@ -4,17 +4,25 @@
 EAPI=7
 
 MY_P="${P/_/-}"
-
+S="${WORKDIR}/${MY_P}"
 DESCRIPTION="Audacious Player - Your music, your way, no exceptions"
 HOMEPAGE="https://audacious-media-player.org/"
-SRC_URI="https://distfiles.audacious-media-player.org/${MY_P}.tar.bz2"
+
+if [[ ${PV} == "9999" ]]; then
+	EGIT_REPO_URI="https://github.com/audacious-media-player/${PN}.git"
+	inherit git-r3 autotools
+else
+	KEYWORDS="~amd64 ~x86"
+	SRC_URI="https://distfiles.audacious-media-player.org/${MY_P}.tar.bz2"
+fi
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
-IUSE="aac alsa ampache aosd bs2b cdda cue ffmpeg filewriter flac fluidsynth gnome hotkeys http +gtk
-	jack lame libav libnotify libsamplerate lirc mms modplug mp3 mpris nls opengl oss pulseaudio qt5
-	scrobbler sdl sdl2 sid sndfile sox vorbis wavpack"
+
+IUSE="aac adplug alsa ampache aosd bs2b cdda cue ffmpeg filewriter flac fluidsynth gnome hotkeys
+	http +gtk jack lame libav libnotify libsamplerate lirc mms modplug mp3 mpris nls opengl oss
+	pulseaudio qt5 scrobbler sdl sdl2 sid sndfile sox vorbis wavpack
+	+bundled-libs"
 REQUIRED_USE="
 	|| ( alsa jack oss pulseaudio qt5 sdl )
 	ampache? ( qt5 http )
@@ -28,6 +36,7 @@ RDEPEND="
 	dev-libs/libxml2:2
 	~media-sound/audacious-${PV}[gtk=,qt5=]
 	aac? ( >=media-libs/faad2-2.7 )
+	adplug? ( media-libs/adplug:= )
 	alsa? ( >=media-libs/alsa-lib-1.0.16 )
 	ampache? ( =media-libs/ampache_browser-1* )
 	aosd? (
@@ -90,20 +99,26 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	nls? ( dev-util/intltool )"
 
-S="${WORKDIR}/${MY_P}"
+src_prepare() {
+	default
+	[[ ${PV} == "9999" ]] && eautoreconf
+}
 
 src_configure() {
 	# Upstream bundles several input plugin libs and hardcodes some of those to on.
-	# Some of them (libgme) have known vulns. I can't help you with that. Good luck.
+	# Some of them (libgme) have had pretty serious vulns in the past.
+	# You can disable them *partially* with USE=-bundled-libs, but xsf/psf/vtx are force-enabled.
 	econf \
 		--enable-songchange \
 		--disable-coreaudio \
 		--disable-sndio \
 		"$(use_enable aac)" \
+		"$(use_enable adplug)" \
 		"$(use_enable alsa)" \
 		"$(use_enable ampache)" \
 		"$(use_enable aosd)" \
 		"$(use_enable bs2b)" \
+		"$(use_enable bundled-libs console)" \
 		"$(use_enable cdda cdaudio)" \
 		"$(use_enable cue)" \
 		"$(use_enable filewriter)" \

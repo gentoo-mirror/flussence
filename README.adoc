@@ -28,7 +28,7 @@ Put this (or something like it) in your `repos.conf`, then do `emerge --sync flu
 
 Contents
 --------
-N.B.: Anything not listed here is considered *very experimental*!
+N.B.: Anything not listed here is considered *very experimental*! Or I forgot to add it.
 
 `app-crypt/signify` — https://github.com/aperezdc/signify[OpenBSD Signify]::
 Signify is a strong cryptographic signature tool that fits on a floppy disk, with public
@@ -37,6 +37,7 @@ keys that fit in 140 characters, and a manpage that fits on one screen.
 `dev-perl/Crypt-LE` — http://search.cpan.org/dist/Crypt-LE[Crypt::LE]::
 A Perl 5 ACME/Let's Encrypt client with lightweight dependencies.
 Not the most user-friendly option, but it gets the job done.
+Current version supports ECC certs, wildcards and ACME API v2.
 
 `dev-vcs/src` — https://gitlab.com/esr/src[Simple Revision Control]::
 A version control tool suitable for all those loose scripts you have lying around.
@@ -52,7 +53,7 @@ The mirror URLs for these have proved chronically unreliable, so these ebuilds u
 You'll need to configure your local IPFS node as a distfiles mirror,
 by adding a line like `ipfs http://localhost:8080` to `/etc/portage/mirrors`.
 
-Help preserving these files (and more) would be appreciated.
+*Help preserving these files (and more) would be appreciated.*
 The Manifest files contain additional SHA1 hashes (should be easily web searchable),
 and the IPFS hashes were generated using 0.4.15 defaults: `--hash sha2-256 --chunker size-262144`.
 
@@ -88,6 +89,16 @@ or else the higher version number of the GTK+3 one will override it.
 You may need to run `emerge --deselect gnome-extra/gucharmap` first if you have it already.
 --
 
+`media-sound/audacious` — https://audacious-media-player.org/[Audacious Media Player]::
++
+--
+Gentoo's ebuilds for this have been bitrotting for over half a decade.
+These are current versions, and I bothered to read the build scripts and get the dependencies right.
+
+You can build and run this using any combination of the GTK+2, Qt5 or DBus interfaces.
+Yes, you can have a completely CLI-controlled headless Audacious if you want.
+--
+
 `media-video/obs-studio` — https://github.com/jp9000/obs-studio[OBS Studio]::
 Builds OBS from Git.
 Probably has too many `USE` flags, but it works and does what I need from it.
@@ -96,16 +107,12 @@ You can even build it with no GUI at all, if you're into that sort of thing.
 `sys-process/runit` — http://smarden.org[An init system you can trust]::
 +
 --
-Here's the main attraction.
+If you don't want systemd and OpenRC's recent developments worry you,
+consider Taking A Third Option. Like this one.
 
-Most of Gentoo's plumbing-layer packages have fallen under questionable stewardship.
-Many forumgoers decided to circle the wagons and stick to OpenRC 0.17 in response;
-I hope that works out for them, but I chose another option.
-
-This ebuild and its upstream code rarely needs to change, but Safety Not Guaranteed™.
-This is not an “install and forget” thing. Familiarise yourself with Busybox disaster recovery
-before you decide to invest in this, and remember to RTFM.
-Support requests should go in the Unsupported Software forum, if anywhere.
+This package is a hard fork of whatever was in the Gentoo tree years ago,
+which was full of unfixed bugs and didn't have a responsible maintainer.
+It does things slightly differently, so familiarise yourself before use; qlist is your friend.
 
 For replacements to some OpenRC initscripts, take a look at
 https://gitlab.com/flussence/runit-scripts[my runit-scripts repository].
@@ -114,7 +121,7 @@ If that happens I'll give you plenty of advance warning.
 --
 
 `x11-libs/gtk+:3` — debloated Gtk+3
-Contains a NetBSD patch which makes DBus optional.
+Contains a NetBSD patch which makes DBus (and auto-spawning of hidden DBus processes) optional.
 Patch is from https://forums.gentoo.org/viewtopic-p-8245612.html#8245612
 
 Copyright
