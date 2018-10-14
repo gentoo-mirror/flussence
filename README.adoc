@@ -127,7 +127,8 @@ Patch is from https://forums.gentoo.org/viewtopic-p-8245612.html#8245612
 Copyright
 ---------
 
-The 2-line legalese header on each ebuild is required to be present, verbatim,
+Until https://www.gentoo.org/glep/glep-0076.html[GLEP 76] is implemented,
+the 2-line legalese header on each ebuild is required to be present, verbatim,
 by Gentoo's “repoman” QA tool. Don't read too much into it.
 All original work here is licensed under the GNU GPL version 2 *or later*, i.e.:
 
