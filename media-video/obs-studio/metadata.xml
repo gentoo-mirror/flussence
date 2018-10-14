@@ -9,10 +9,14 @@
 		<bugs-to>https://obsproject.com/mantis/</bugs-to>
 	</upstream>
 	<use>
+		<flag name="decklink">Enable bundled plugin for BlackMagic DeckLink devices</flag>
 		<flag name="fdk">Use <pkg>media-libs/fdk-aac</pkg> for high-quality AAC encoding</flag>
 		<flag name="imagemagick">Prefer ImageMagick for image loading instead of FFmpeg</flag>
+		<flag name="libcxx">Build using libc++ instead of libstdc++ (clang only)</flag>
+		<flag name="luajit">Enable the Lua scripting API</flag>
+		<flag name="python">Enable the Python scripting API</flag>
 		<flag name="qt5">Build the main OBS UI (you probably want this)</flag>
-		<flag name="ssl">Adds RTMPS (encrypted RTMP) support</flag>
+		<flag name="ssl">Add RTMPS (RTMP over TLS) support</flag>
 		<flag name="vlc">Add video source plugin using <pkg>media-video/vlc</pkg></flag>
 	</use>
 </pkgmetadata>
