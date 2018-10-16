@@ -21,11 +21,11 @@ S="${WORKDIR}"
 src_unpack() {
 	# Unihan.zip needs to be installed as a zip for reverse deps
 	# https://bugzilla.gnome.org/show_bug.cgi?id=768210
-	unpack ${P}-UCD.zip
+	unpack "${P}"-UCD.zip
 }
 
 src_install() {
-	insinto /usr/share/${PN}
+	insinto /usr/share/"${PN}"
 	doins -r "${S}"/*
-	newins "${DISTDIR}"/${P}-Unihan.zip Unihan.zip
+	newins "${DISTDIR}/${P}"-Unihan.zip Unihan.zip
 }

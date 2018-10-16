@@ -24,7 +24,7 @@ src_prepare() {
 	# Provided by ut2004-bonuspack-mega
 	rm Textures/Ty_RocketTextures.utx
 
-	cd Help
+	cd Help || die
 	# Useless orphan file
 	rm Note.txt
 	mv GERROIDREADME.txt DOM-CBP2-Gerroid.txt

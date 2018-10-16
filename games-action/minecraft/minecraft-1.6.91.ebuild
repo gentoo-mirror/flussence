@@ -28,7 +28,7 @@ S="${WORKDIR}"
 src_install() {
 	dobin "${FILESDIR}"/minecraft
 	doicon -s 192 "${DISTDIR}"/minecraft.png
-	insinto /usr/share/games/${PN}/
+	insinto /usr/share/games/"${PN}"
 	newins "${MY_JAR}" launcher.jar
 
 	make_desktop_entry minecraft Minecraft minecraft

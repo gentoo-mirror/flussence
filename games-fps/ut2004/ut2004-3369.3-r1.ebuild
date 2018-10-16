@@ -5,7 +5,7 @@ EAPI=7
 inherit eutils multilib desktop
 
 MY_P="ut2004-lnxpatch${PV%.*}-2.tar.bz2"
-MY_P=(ut2004-lnxpatch${PV%.*}-2.tar.bz2 ut2004-v${PV/./-}-linux-dedicated.7z)
+MY_P=( ut2004-lnxpatch"${PV%.*}"-2.tar.bz2 ut2004-v"${PV/./-}"-linux-dedicated.7z )
 DESCRIPTION="Editor's Choice Edition plus Mega Pack for the well-known first-person shooter"
 HOMEPAGE="http://www.unrealtournament2004.com/"
 SRC_URI="
@@ -42,7 +42,7 @@ QA_PREBUILT="${dir:1}/System/ut2004-bin
 src_prepare() {
 	default
 
-	cd "${S}"/System
+	cd "${S}"/System || die
 
 	# These files are owned by ut2004-bonuspack-mega
 	rm -f Manifest.in{i,t} Packages.md5 ucc-bin* || die
@@ -53,7 +53,7 @@ src_prepare() {
 		rm -f ut2004-bin-linux-amd64 || die
 	fi
 
-	cd "${WORKDIR}"/ut2004-ucc-bin-09192008
+	cd "${WORKDIR}"/ut2004-ucc-bin-09192008 || die
 	if use amd64 ; then
 		mv -f ucc-bin-linux-amd64 "${S}"/System/ucc-bin || die
 	else
@@ -63,12 +63,12 @@ src_prepare() {
 
 src_install() {
 	insinto "${dir}"
-	doins -r *
+	doins -r ./*
 	fperms +x "${dir}"/System/ucc-bin
 	fperms +x "${dir}"/System/ut2004-bin
 
-	dosym "${ED}"/usr/$(get_libdir)/libopenal.so "${dir}"/System/openal.so
-	dosym "${ED}"/usr/$(get_libdir)/libSDL-1.2.so.0 "${dir}"/System/libSDL-1.2.so.0
+	dosym "${ED}/usr/$(get_libdir)"/libopenal.so "${dir}"/System/openal.so
+	dosym "${ED}/usr/$(get_libdir)"/libSDL-1.2.so.0 "${dir}"/System/libSDL-1.2.so.0
 
 	make_wrapper ut2004 ./ut2004 "${dir}"
 
@@ -107,14 +107,14 @@ pkg_config() {
 	einfo "CD key format is: XXXXX-XXXXX-XXXXX-XXXXX"
 	while true ; do
 		einfo "Please enter your CD key:"
-		read CDKEY1
+		read -r CDKEY1
 		einfo "Please re-enter your CD key:"
-		read CDKEY2
+		read -r CDKEY2
 		if [[ -z ${CDKEY1} ]] || [[ -z ${CDKEY2} ]] ; then
 			echo "You entered a blank CD key. Try again."
 		else
-			if [[ ${CDKEY1} == ${CDKEY2} ]] ; then
-				echo "${CDKEY1}" | tr [:lower:] [:upper:] > "${dir}"/System/cdkey
+			if [[ ${CDKEY1} -eq ${CDKEY2} ]] ; then
+				echo "${CDKEY1}" | tr "[:lower:]" "[:upper:]" > "${dir}"/System/cdkey
 				einfo "Thank you!"
 				break
 			else

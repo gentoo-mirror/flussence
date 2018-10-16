@@ -91,7 +91,7 @@ PDEPEND="
 "
 
 MULTILIB_CHOST_TOOLS=(
-	/usr/bin/gtk-query-immodules-3.0$(get_exeext)
+	/usr/bin/gtk-query-immodules-3.0"$(get_exeext)"
 )
 
 strip_builddir() {
@@ -99,8 +99,8 @@ strip_builddir() {
 	shift
 	local directory=$1
 	shift
-	sed -e "s/^\(${rule} =.*\)${directory}\(.*\)$/\1\2/" -i $@ \
-		|| die "Could not strip director ${directory} from build."
+	sed -e 's/^\('"${rule}"' =.*\)'"${directory}"'\(.*\)$/\1\2/' -i "$@" \
+		|| die "Could not strip directory ${directory} from build."
 }
 
 src_prepare() {
@@ -120,13 +120,13 @@ src_prepare() {
 	fi
 
 	# gtk-update-icon-cache is installed by dev-util/gtk-update-icon-cache
-	eapply "${FILESDIR}"/${PN}-3.22.2-update-icon-cache.patch
+	eapply "${FILESDIR}/${PN}"-3.22.2-update-icon-cache.patch
 
 	# Fix broken autotools logic
-	eapply "${FILESDIR}"/${PN}-3.22.20-libcloudproviders-automagic.patch
+	eapply "${FILESDIR}/${PN}"-3.22.20-libcloudproviders-automagic.patch
 
 	# get rid of gtk3-atk-bridge crap
-	eapply "${FILESDIR}"/${PN}-3.22.19.atk-bridge.patch
+	eapply "${FILESDIR}/${PN}"-3.22.19.atk-bridge.patch
 
 	eautoreconf
 	gnome2_src_prepare
@@ -138,27 +138,27 @@ multilib_src_configure() {
 	# cloudprovider is not packaged in Gentoo
 	ECONF_SOURCE=${S} \
 	gnome2_src_configure \
-		$(use_enable aqua quartz-backend) \
-		$(use_enable broadway broadway-backend) \
-		$(use_enable cloudprint) \
-		$(use_enable colord) \
-		$(use_enable cups cups auto) \
-		$(multilib_native_use_enable introspection) \
-		$(use_enable wayland wayland-backend) \
-		$(use_enable X x11-backend) \
-		$(use_enable X xcomposite) \
-		$(use_enable X xdamage) \
-		$(use_enable X xfixes) \
-		$(use_enable X xkb) \
-		$(use_enable X xrandr) \
-		$(use_enable xinerama) \
-		$(use_with atk-bridge) \
+		"$(use_enable aqua quartz-backend)" \
+		"$(use_enable broadway broadway-backend)" \
+		"$(use_enable cloudprint)" \
+		"$(use_enable colord)" \
+		"$(use_enable cups cups auto)" \
+		"$(multilib_native_use_enable introspection)" \
+		"$(use_enable wayland wayland-backend)" \
+		"$(use_enable X x11-backend)" \
+		"$(use_enable X xcomposite)" \
+		"$(use_enable X xdamage)" \
+		"$(use_enable X xfixes)" \
+		"$(use_enable X xkb)" \
+		"$(use_enable X xrandr)" \
+		"$(use_enable xinerama)" \
+		"$(use_with atk-bridge)" \
 		--disable-cloudproviders \
 		--disable-mir-backend \
 		--disable-papi \
 		--enable-man \
 		--with-xml-catalog="${EPREFIX}"/etc/xml/catalog \
-		--libdir="${EPREFIX}"/usr/$(get_libdir) \
+		--libdir="${EPREFIX}/usr/$(get_libdir)" \
 		CUPS_CONFIG="${EPREFIX}/usr/bin/${CHOST}-cups-config"
 
 	# work-around gtk-doc out-of-source brokedness
@@ -192,12 +192,13 @@ pkg_preinst() {
 
 	multilib_pkg_preinst() {
 		# Make immodules.cache belongs to gtk+ alone
-		local cache="usr/$(get_libdir)/gtk-3.0/3.0.0/immodules.cache"
+		local cache
+		cache="usr/$(get_libdir)/gtk-3.0/3.0.0/immodules.cache"
 
-		if [[ -e ${EROOT}${cache} ]]; then
-			cp "${EROOT}"${cache} "${ED}"/${cache} || die
+		if [[ -e "${EROOT}${cache}" ]]; then
+			cp "${EROOT}${cache}" "${ED}/${cache}" || die
 		else
-			touch "${ED}"/${cache} || die
+			touch "${ED}/${cache}" || die
 		fi
 	}
 	multilib_parallel_foreach_abi multilib_pkg_preinst
@@ -224,7 +225,7 @@ pkg_postrm() {
 
 	if [[ -z ${REPLACED_BY_VERSION} ]]; then
 		multilib_pkg_postrm() {
-			rm -f "${EROOT}"usr/$(get_libdir)/gtk-3.0/3.0.0/immodules.cache
+			rm -f "${EROOT}usr/$(get_libdir)/gtk-3.0/3.0.0/immodules.cache"
 		}
 		multilib_foreach_abi multilib_pkg_postrm
 	fi
