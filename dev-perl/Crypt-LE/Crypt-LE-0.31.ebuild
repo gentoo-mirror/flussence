@@ -6,7 +6,7 @@ EAPI=6
 DIST_AUTHOR="LEADER"
 inherit perl-module
 
-DESCRIPTION="Let's Encrypt API interfacing module."
+DESCRIPTION="Let's Encrypt API module and client"
 
 LICENSE="Artistic-2"
 SLOT="0"

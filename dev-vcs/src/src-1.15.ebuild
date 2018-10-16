@@ -6,7 +6,7 @@ EAPI=6
 PYTHON_COMPAT=( python2_7 python3_{4,5,6} )
 inherit vcs-snapshot python-r1
 
-DESCRIPTION="An RCS work-alike with svn/hg/git-like UI"
+DESCRIPTION="A svn/hg/git-like UI wrapper around RCS"
 HOMEPAGE="http://www.catb.org/esr/src/"
 SRC_URI="https://gitlab.com/esr/${PN}/repository/archive.tar.bz2?ref=${PV} -> ${P}.tar.bz2"
 
