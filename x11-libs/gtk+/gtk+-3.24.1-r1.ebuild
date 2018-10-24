@@ -11,7 +11,7 @@ HOMEPAGE="https://www.gtk.org/"
 
 LICENSE="LGPL-2+"
 SLOT="3"
-IUSE="aqua atk-bridge broadway cloudprint colord cups examples +introspection test vim-syntax wayland +X xinerama"
+IUSE="aqua accessibility broadway cloudprint colord cups examples +introspection test vim-syntax wayland +X xinerama"
 REQUIRED_USE="
 	|| ( aqua wayland X )
 	xinerama? ( X )
@@ -49,7 +49,7 @@ COMMON_DEPEND="
 		>=x11-libs/libxkbcommon-0.2[${MULTILIB_USEDEP}]
 	)
 	X? (
-		atk-bridge? ( >=app-accessibility/at-spi2-atk-2.5.3[${MULTILIB_USEDEP}] )
+		accessibility? ( >=app-accessibility/at-spi2-atk-2.5.3[${MULTILIB_USEDEP}] )
 		x11-libs/libX11[${MULTILIB_USEDEP}]
 		>=x11-libs/libXi-1.3[${MULTILIB_USEDEP}]
 		x11-libs/libXext[${MULTILIB_USEDEP}]
@@ -152,7 +152,7 @@ multilib_src_configure() {
 		"$(use_enable X xkb)" \
 		"$(use_enable X xrandr)" \
 		"$(use_enable xinerama)" \
-		"$(use_with atk-bridge)" \
+		"$(use_with accessibility atk-bridge)" \
 		--disable-cloudproviders \
 		--disable-mir-backend \
 		--disable-papi \
