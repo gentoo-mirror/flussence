@@ -9,8 +9,8 @@
 		Signify is a sane alternative to GnuPG.
 	</longdescription>
 	<upstream>
-		<remote-id type="github">aperezdc/signify</remote-id>
 		<bugs-to>https://github.com/aperezdc/signify/issues</bugs-to>
-		<changelog>https://github.com/aperezdc/signify/releases</changelog>
+		<changelog>https://github.com/aperezdc/signify/releases.atom</changelog>
+		<remote-id type="github">aperezdc/signify</remote-id>
 	</upstream>
 </pkgmetadata>

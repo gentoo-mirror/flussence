@@ -6,6 +6,6 @@
 		<name>Anthony Parsons</name>
 	</maintainer>
 	<upstream>
-		<changelog>http://www.unicode.org/versions/latest/</changelog>
+		<doc>https://www.unicode.org/standard/versions/#Contributory_Data_Files</doc>
 	</upstream>
 </pkgmetadata>

@@ -7,6 +7,8 @@
 	</maintainer>
 	<upstream>
 		<bugs-to>https://obsproject.com/mantis/</bugs-to>
+		<doc>https://github.com/obsproject/obs-studio/wiki</doc>
+		<changelog>https://github.com/obsproject/obs-studio/releases.atom</changelog>
 	</upstream>
 	<use>
 		<flag name="decklink">Enable bundled plugin for BlackMagic DeckLink devices</flag>

@@ -6,10 +6,11 @@
 		<name>Anthony Parsons</name>
 	</maintainer>
 	<longdescription lang="en">
-		This package installs the official vanilla Minecraft server and all dependencies required to
-		run it.
+		This package installs the official vanilla Minecraft server and pulls in a Java runtime,
+		required to run it.
 	</longdescription>
 	<upstream>
-		<bugs-to>https://forums.gentoo.org/viewtopic-t-857083.html</bugs-to>
+		<bugs-to>https://bugs.mojang.com/</bugs-to>
 	</upstream>
 </pkgmetadata>
+

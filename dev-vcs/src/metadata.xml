@@ -13,6 +13,8 @@
 		anywhere.
 	</longdescription>
 	<upstream>
+		<bugs-to>https://gitlab.com/esr/src/issues</bugs-to>
+		<changelog>https://gitlab.com/esr/src/tags?format=atom</changelog>
 		<remote-id type="gitlab">esr/src</remote-id>
 	</upstream>
 </pkgmetadata>

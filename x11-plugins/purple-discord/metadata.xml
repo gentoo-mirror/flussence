@@ -10,6 +10,7 @@
 	</longdescription>
 	<upstream>
 		<bugs-to>https://github.com/EionRobb/purple-discord/issues</bugs-to>
+		<changelog>https://github.com/EionRobb/purple-discord/commits/master.atom</changelog>
 		<remote-id type="github">EionRobb/purple-discord</remote-id>
 	</upstream>
 </pkgmetadata>

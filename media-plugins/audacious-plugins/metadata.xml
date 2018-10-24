@@ -7,6 +7,8 @@
 	</maintainer>
 	<upstream>
 		<bugs-to>http://redmine.audacious-media-player.org/projects/audacious/issues</bugs-to>
+		<changelog>https://github.com/audacious-media-player/audacious-plugins/releases.atom</changelog>
+		<remote-id type="github">audacious-media-player/audacious-plugins</remote-id>
 	</upstream>
 	<use>
 		<flag name="adplug">Enable AdLib (OPL2/3 synthesizer) sound card emulation via <pkg>media-libs/adplug</pkg></flag>

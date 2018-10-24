@@ -6,6 +6,9 @@
 		<name>Anthony Parsons</name>
 	</maintainer>
 	<upstream>
+		<changelog>https://metacpan.org/feed/distribution/Crypt-LE</changelog>
+		<doc>https://metacpan.org/pod/Crypt::LE</doc>
+		<bugs-to>mailto:bug-crypt-le@rt.cpan.org</bugs-to>
 		<remote-id type="cpan-module">Crypt::LE</remote-id>
 	</upstream>
 </pkgmetadata>

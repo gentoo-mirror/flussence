@@ -7,6 +7,7 @@
 	</maintainer>
 	<upstream>
 		<bugs-to>https://github.com/QuiteRSS/quiterss/issues</bugs-to>
+		<changelog>https://github.com/QuiteRSS/quiterss/releases.atom</changelog>
 		<remote-id type="github">QuiteRSS/quiterss</remote-id>
 	</upstream>
 </pkgmetadata>

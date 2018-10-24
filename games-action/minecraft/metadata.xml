@@ -5,7 +5,11 @@
 		<email>ant+gentoo.bugs@flussence.eu</email>
 		<name>Anthony Parsons</name>
 	</maintainer>
+	<upstream>
+		<bugs-to>https://bugs.mojang.com</bugs-to>
+	</upstream>
 	<longdescription lang="en">
-		This package installs the launcher for the Java version of Minecraft. The launcher downloads the game itself and most of its dependencies.
+		This package installs the launcher for the Java version of Minecraft.
+		The launcher downloads the game itself and most of its dependencies.
 	</longdescription>
 </pkgmetadata>

@@ -11,6 +11,7 @@
 	</longdescription>
 	<upstream>
 		<bugs-to>https://github.com/bradenmcd/friidump/issues</bugs-to>
+		<changelog>https://github.com/bradenmcd/friidump/commits/master.atom</changelog>
 		<remote-id type="github">bradenmcd/friidump</remote-id>
 	</upstream>
 </pkgmetadata>
