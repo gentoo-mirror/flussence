@@ -1,3 +1,2 @@
-# This is only here as a fallback. *Please* don't rely on this, as it'll be extremely slow and puts
-# unnecessary stress on their server. Configure your own IPFS HTTP mirror in /etc/portage/mirrors.
-ipfs https://gateway.ipfs.io/
+# You should configure your own IPFS HTTP mirror in /etc/portage/mirrors if possible.
+ipfs https://cloudflare-ipfs.com/ https://gateway.ipfs.io/
