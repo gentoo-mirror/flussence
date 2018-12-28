@@ -138,6 +138,7 @@ src_configure() {
 		"$(use_enable mms)" \
 		"$(use_enable modplug)" \
 		"$(use_enable mp3 mpg123)" \
+		"$(use_enable mpris mpris2)" \
 		"$(use_enable nls)" \
 		"$(use_enable oss oss4)" \
 		"$(use_enable pulseaudio pulse)" \
