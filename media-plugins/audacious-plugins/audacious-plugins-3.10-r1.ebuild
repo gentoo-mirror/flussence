@@ -21,7 +21,7 @@ SLOT="0"
 
 IUSE="aac adplug alsa ampache aosd bs2b cdda cue ffmpeg filewriter flac fluidsynth gnome hotkeys
 	http +gtk jack lame libav libnotify libsamplerate lirc mms modplug mp3 mpris nls opengl oss
-	pulseaudio qt5 scrobbler sdl sdl2 sid sndfile sox vorbis wavpack
+	pulseaudio qt5 qtmedia scrobbler sdl sdl2 sid sndfile sox vorbis wavpack
 	+bundled-libs"
 REQUIRED_USE="
 	|| ( alsa jack oss pulseaudio qt5 sdl )
@@ -29,7 +29,8 @@ REQUIRED_USE="
 	aosd? ( gtk )
 	filewriter? ( || ( flac vorbis ) )
 	hotkeys? ( gtk )
-	opengl? ( || ( gtk qt5 ) )"
+	opengl? ( || ( gtk qt5 ) )
+	qtmedia? ( qt5 )"
 
 RDEPEND="
 	app-arch/unzip
@@ -61,8 +62,8 @@ RDEPEND="
 	qt5? (
 		dev-qt/qtcore:5
 		dev-qt/qtgui:5
-		dev-qt/qtmultimedia:5
 		dev-qt/qtwidgets:5
+		qtmedia? ( dev-qt/qtmultimedia:5 )
 	)
 	jack? (
 		>=media-libs/bio2jack-0.4
@@ -143,7 +144,7 @@ src_configure() {
 		"$(use_enable oss oss4)" \
 		"$(use_enable pulseaudio pulse)" \
 		"$(use_enable qt5 qt)" \
-		"$(use_enable qt5 qtaudio)" \
+		"$(use_enable qtmedia qtaudio)" \
 		"$(use qt5 && use_enable opengl qtglspectrum)" \
 		"$(use_enable scrobbler scrobbler2)" \
 		"$(use_enable sdl sdlout)" \

@@ -28,6 +28,7 @@
 		<flag name="mp3">Enable standalone MP3 plugin using <pkg>media-sound/mpg123</pkg></flag>
 		<flag name="mpris">Enable MPRIS2 support (dbus-based player remote control)</flag>
 		<flag name="opengl">Enable the glspectrum visualiser plugin</flag>
+		<flag name="qtmedia">Enable sound output via <pkg>dev-qt/qtmultimedia</pkg></flag>
 		<flag name="scrobbler">Build with scrobbler/LastFM submission support</flag>
 		<flag name="sdl2">Use libsdl2 instead of 1.2 (when USE=sdl is enabled)</flag>
 		<flag name="sid">Build with SID (Commodore 64 Audio) support</flag>
