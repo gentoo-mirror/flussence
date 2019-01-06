@@ -18,12 +18,18 @@ sv shutdown /etc/service/* || {
     sv -w 30 force-shutdown /etc/service/*
 }
 
-# If kexec is in a runnable state, this will cause it to do the reboot.
-# If not, it'll just fall through here and runit will do so itself.
-echo 'Doing OpenRC shutdown sequence...'
-if test -x /etc/runit/reboot; then
-    RUNLEVEL=6 /sbin/openrc reboot
-    kexec -e
-else
-    RUNLEVEL=0 /sbin/openrc shutdown
-fi
+# This looks messy, but we make this a symlink into /run/ and so "test -x" won't work.
+# runit itself already handles symlinks robustly.
+case "$(stat -Lc '%A' /etc/runit/reboot 2>/dev/null)" in
+    ???x?????? )
+        # If kexec is in a runnable state, this will cause it to do the reboot.
+        # If not, it'll just fall through here and runit will do so itself.
+        echo 'Doing OpenRC reboot sequence...'
+        RUNLEVEL=6 /sbin/openrc reboot
+        kexec -e
+        ;;
+    * )
+        echo 'Doing OpenRC shutdown sequence...'
+        RUNLEVEL=0 /sbin/openrc shutdown
+        ;;
+esac
