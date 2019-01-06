@@ -104,6 +104,10 @@ Builds OBS from Git.
 Probably has too many `USE` flags, but it works and does what I need from it.
 You can even build it with no GUI at all, if you're into that sort of thing.
 
+`net-news/quiterss` — https://quiterss.org[QuiteRSS]::
+This is the last version before “HiDPI” support was added,
+which can't be turned off and wastes too much screen space for me.
+
 `sys-process/runit` — http://smarden.org[An init system you can trust]::
 +
 --
@@ -132,7 +136,7 @@ For files *not* containing a generic Gentoo copyright, GPL2-or-later applies:
 
     SPDX-License-Identifier: GPL-2+
 
-    Copyright © 2012-2018 Anthony Parsons <ant@flussence.eu>
+    Copyright © 2012-2019 Anthony Parsons <ant@flussence.eu>
 
     This is free software; you can redistribute it and/or modify it
     under the terms of the GNU General Public License as published by
