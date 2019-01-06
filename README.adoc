@@ -3,13 +3,9 @@ Some ebuilds for Gentoo
 
 These are my packages for things that:
 
-* aren't in the main tree at all,
+* aren't in the main Gentoo tree at all,
 * aren't as up-to-date as I'd like there,
-* or where the Gentoo ebuilds deviate too much from upstream for my liking.
-
-I use everything I add but keep in mind the license disclaimer - no warranty.
-Feel free to report issues if you want, or even to add these things to Gentoo yourself.
-If you do that a heads-up is appreciated (but not required) so I can carry less weight in here.
+* aren't maintained to a sufficient standard in the main tree.
 
 Keywords are all `~amd64 ~x86` because I don't run Gentoo on anything else yet,
 but if you'd like me to add other arches just ask.
@@ -19,7 +15,8 @@ Installing
 
 You should already know how this works, but here's a reminder…
 
-Put this (or something like it) in your `repos.conf`, then do `emerge --sync flussence`:
+Put this (or whatever's appropriate for your system) in `/etc/portage/repos.conf`,
+then do `emerge --sync flussence`:
 
     [flussence]
     location = /var/db/repositories/flussence

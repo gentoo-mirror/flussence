@@ -1,0 +1,7 @@
+Contributing to `::flussence-overlay`
+=====================================
+
+Bug reports are accepted on gitlab.com, or via e-mail, or any other communication medium I'm on.
+
+I'm also willing to adopt and look after your ebuilds if you don't feel safe dealing with Gentoo's
+https://bugs.gentoo.org/674592[deadname-outing policy] or its developer clique.
