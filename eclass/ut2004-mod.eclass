@@ -16,6 +16,7 @@ EXPORT_FUNCTIONS src_install
 SLOT="0"
 RESTRICT="mirror strip"
 DEPEND="app-arch/unzip"
+RDEPEND="|| ( games-fps/ut2004 games-server/ut2004-ded )"
 KEYWORDS="~amd64 ~x86"
 S="${WORKDIR}"
 
