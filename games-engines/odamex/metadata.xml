@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>ant+gentoo.bugs@flussence.eu</email>
+		<name>Anthony Parsons</name>
+	</maintainer>
+	<longdescription lang="en">
+Odamex is a modification of DOOM to allow players to compete with each other
+over the Internet using the client/server architecture. Thanks to the source
+code release of DOOM by id Software in December 1997, there have been many
+modifications that enhanced DOOM in various ways. These modifications are known
+as "source ports", as early modifications mainly ported DOOM to other platforms
+and operating systems such as Windows and Macintosh.
+
+Odamex is based on the CSDoom 0.62 source code originally created by Sergey
+Makovkin, which is based on the ZDoom 1.22 source code created by Randy Heit.
+	</longdescription>
+	<use>
+		<flag name="asan">Enable clang's Address Sanitizer functionality (for debugging)</flag>
+		<flag name="client">Build the game client</flag>
+		<flag name="launcher">Build the GUI server list browser</flag>
+		<flag name="master">Build the server list server (not needed for normal use)</flag>
+		<flag name="portmidi">Enable <pkg>media-libs/portmidi</pkg> audio backend</flag>
+		<flag name="sdl2">Prefer <pkg>media-libs/libsdl2</pkg> over <pkg>media-libs/libsdl</pkg></flag>
+		<flag name="upnp">Enable automatic port mapping for running a server behind NAT</flag>
+	</use>
+</pkgmetadata>

@@ -43,6 +43,9 @@ A version control tool suitable for all those loose scripts you have lying aroun
 Convenience ebuild that keeps the Minecraft launcher up to date for you.
 Does not buy the game for you. Do that yourself.
 
+`games-engines/odamex` — https://odamex.net[Odamex DOOM sourceport]::
+Retro first-person shooter. This ebuild is written from scratch.
+
 `games-fps/ut2004-*` — UT2004 binaries and map packs via IPFS::
 +
 --
