@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>ant+gentoo.bugs@flussence.eu</email>
+		<name>Anthony Parsons</name>
+	</maintainer>
+	<upstream>
+		<bugs-to>https://bugs.openmpt.org/</bugs-to>
+		<changelog>https://lib.openmpt.org/libopenmpt/feed.xml</changelog>
+		<doc>https://buildbot.openmpt.org/builds/latest-unpacked/libopenmpt-docs/docs/</doc>
+	</upstream>
+	<use>
+		<flag name="cli">Build openmpt123, the command-line player application</flag>
+		<flag name="flac">Add support for FLAC file writing support in openmpt123</flag>
+		<flag name="modplug">Install the compat library as libmodplug.so (conflicts with
+			<pkg>media-libs/libmodplug</pkg>!)</flag>
+		<flag name="modplug-compat">Build libopenmpt_modplug.so compatibility library</flag>
+		<flag name="sdl">Enable SDL audio output driver in openmpt123</flag>
+		<flag name="sdl2">Enable SDL2 audio output driver in openmpt123</flag>
+		<flag name="sndfile">Add support for libsndfile file writing support in openmpt123</flag>
+	</use>
+</pkgmetadata>

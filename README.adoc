@@ -89,6 +89,12 @@ or else the higher version number of the GTK+3 one will override it.
 You may need to run `emerge --deselect gnome-extra/gucharmap` first if you have it already.
 --
 
+`media-libs/libopenmpt` — https://lib.openmpt.org[OpenMPT playback library]::
+`media-plugins/audacious-openmpt` — https://github.com/cspiegel/audacious-openmpt[Audacious
+libopenmpt plugin]::
+A modern replacement for modplug and mikmod.
+Much wider format support, more accurate playback, and better security upkeep.
+
 `media-sound/audacious` — https://audacious-media-player.org/[Audacious Media Player]::
 +
 --
