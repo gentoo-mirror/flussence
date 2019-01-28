@@ -1,4 +1,5 @@
 # Copyright 1999-2018 Gentoo Authors
+# Copyright 2016-2019 Anthony Parsons
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -64,10 +65,6 @@ DEPEND="${COMMON_DEPEND}
 RDEPEND="${COMMON_DEPEND}"
 
 CMAKE_REMOVE_MODULES_LIST=( FindFreetype )
-
-PATCHES=(
-	"${FILESDIR}"/pr1513.patch
-)
 
 pkg_setup() {
 	use python && python-single-r1_pkg_setup
