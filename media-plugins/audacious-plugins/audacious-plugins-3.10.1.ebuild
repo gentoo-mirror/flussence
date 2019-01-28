@@ -1,4 +1,5 @@
 # Copyright 1999-2018 Gentoo Authors
+# Copyright 2016-2019 Anthony Parsons
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -57,7 +58,6 @@ RDEPEND="
 	)
 	fluidsynth? ( media-sound/fluidsynth )
 	http? ( >=net-libs/neon-0.27 )
-	gnome? ( >=dev-libs/dbus-glib-0.60 )
 	gtk? ( x11-libs/gtk+:2 )
 	qt5? (
 		dev-qt/qtcore:5
@@ -130,7 +130,6 @@ src_configure() {
 		"$(use_enable hotkeys hotkey)" \
 		"$(use_enable http neon)" \
 		"$(use_enable jack)" \
-		"$(use_enable gnome gnomeshortcuts)" \
 		"$(use_enable lame filewriter_mp3)" \
 		"$(use_enable libnotify notify)" \
 		"$(use_enable libsamplerate resample)" \
