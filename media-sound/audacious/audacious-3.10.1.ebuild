@@ -2,7 +2,7 @@
 # Copyright 2016-2019 Anthony Parsons
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6 # restricted by gnome2-utils
+EAPI=7
 
 MY_P="${P/_/-}"
 S="${WORKDIR}/${MY_P}"
@@ -17,7 +17,7 @@ else
 	SRC_URI="https://distfiles.audacious-media-player.org/${MY_P}.tar.bz2"
 fi
 
-inherit gnome2-utils xdg-utils
+inherit xdg-utils
 
 LICENSE="BSD-2"
 SLOT="0"
@@ -63,10 +63,10 @@ pkg_postinst() {
 	fi
 
 	xdg_desktop_database_update
-	gnome2_icon_cache_update
+	xdg_icon_cache_update
 }
 
 pkg_postrm() {
 	xdg_desktop_database_update
-	gnome2_icon_cache_update
+	xdg_icon_cache_update
 }

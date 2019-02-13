@@ -3,7 +3,7 @@
 
 EAPI=6 # held back by wxwidgets.eclass
 
-inherit cmake-utils desktop gnome2-utils wxwidgets
+inherit cmake-utils desktop xdg-utils wxwidgets
 
 DESCRIPTION="Online Multiplayer Doom port with a strong focus on the original gameplay"
 HOMEPAGE="https://odamex.net"
@@ -102,5 +102,9 @@ src_install() {
 }
 
 pkg_postinst() {
-	gnome2_icon_cache_update
+	xdg_icon_cache_update
+}
+
+pkg_postrm() {
+	xdg_icon_cache_update
 }

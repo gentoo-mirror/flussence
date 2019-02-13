@@ -2,9 +2,9 @@
 # Copyright 2016-2019 Anthony Parsons
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 PYTHON_COMPAT=( python3_{5,6,7} )
-inherit cmake-utils gnome2-utils python-single-r1
+inherit cmake-utils xdg-utils python-single-r1
 
 DESCRIPTION="FOSS software for video recording and live streaming"
 HOMEPAGE="https://obsproject.com"
@@ -105,7 +105,7 @@ src_configure() {
 }
 
 pkg_postinst() {
-	gnome2_icon_cache_update
+	xdg_icon_cache_update
 
 	if ! use alsa && ! use pulseaudio; then
 		elog
@@ -127,5 +127,5 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	gnome2_icon_cache_update
+	xdg_icon_cache_update
 }

@@ -1,9 +1,10 @@
 # Copyright 1999-2018 Gentoo Authors
+# Copyright 2018-2019 Anthony Parsons
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
-inherit gnome2-utils qmake-utils xdg-utils
+inherit qmake-utils xdg-utils
 
 DESCRIPTION="A Qt-based RSS/Atom feed reader"
 HOMEPAGE="https://quiterss.org"
@@ -53,11 +54,11 @@ src_install() {
 }
 
 pkg_postinst() {
-	gnome2_icon_cache_update
 	xdg_desktop_database_update
+	xdg_icon_cache_update
 }
 
 pkg_postrm() {
-	gnome2_icon_cache_update
 	xdg_desktop_database_update
+	xdg_icon_cache_update
 }
