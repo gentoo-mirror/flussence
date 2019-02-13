@@ -1,6 +1,6 @@
 test:
-	# Ignoring SC2034 (variables defined but not set): too many false positives
-	find . -name '*.ebuild' -exec shellcheck -f gcc -s bash -e SC2034 \{} +
+	# SC2034 (vars set but unused): too many false positives
+	shellcheck --format=gcc --shell=bash --exclude=SC2034 */*/*.ebuild
 	repoman full
 
 .PHONY: test
