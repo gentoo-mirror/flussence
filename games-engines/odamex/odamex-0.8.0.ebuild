@@ -1,7 +1,7 @@
 # Copyright 2019 Anthony Parsons
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6 # held back by wxwidgets.eclass
+EAPI=6 # restricted by wxwidgets.eclass
 
 inherit cmake-utils desktop xdg-utils wxwidgets
 

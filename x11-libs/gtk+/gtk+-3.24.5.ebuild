@@ -1,7 +1,7 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=6 # restricted by gnome2.eclass
 GNOME2_LA_PUNT="yes"
 
 inherit autotools flag-o-matic gnome2 multilib virtualx multilib-minimal

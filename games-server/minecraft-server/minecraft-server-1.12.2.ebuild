@@ -1,8 +1,8 @@
 # Copyright 1999-2012 Gentoo Authors
-# Copyright 2012-2018 Anthony Parsons
+# Copyright 2012-2019 Anthony Parsons
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=6 # restricted by java-pkg-2 (java-utils-2 (versionator))
 inherit java-pkg-2
 
 # snapshot versions are mangled: "1433" for snapshot 14w33, "1450c" for 14w50c
