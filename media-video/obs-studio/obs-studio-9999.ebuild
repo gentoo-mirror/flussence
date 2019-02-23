@@ -26,7 +26,7 @@ REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
 COMMON_DEPEND="
 	dev-libs/jansson
-	media-libs/x264
+	media-libs/x264:=
 	net-misc/curl
 	sys-apps/dbus
 	sys-libs/zlib
