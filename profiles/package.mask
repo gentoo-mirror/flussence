@@ -18,3 +18,8 @@ dev-perl/CSS-Sass
 # I no longer use this service. If anyone wants the plugin to stay, speak up.
 # Removal in 30 days.
 x11-plugins/purple-discord
+
+# Anthony Parsons <ant+gentoo.bugs@flussence.eu> (26 Feb 2019)
+# Development version added for dev-libs/libressl-2.9.0 compatibility.
+# No reason to use this otherwise, so don't.
+=dev-perl/Net-SSLeay-1.860.7
