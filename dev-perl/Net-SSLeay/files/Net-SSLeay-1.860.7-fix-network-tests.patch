@@ -1,0 +1,31 @@
+From 36c14369372f0371e033019c9cea197b31a93bde Mon Sep 17 00:00:00 2001
+From: Kent Fredric <kentnl@gentoo.org>
+Date: Sat, 5 Mar 2016 12:41:11 +1300
+Subject: Fix network tests re: Networking
+
+---
+ inc/Module/Install/PRIVATE/Net/SSLeay.pm | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
+
+diff --git a/inc/Module/Install/PRIVATE/Net/SSLeay.pm b/inc/Module/Install/PRIVATE/Net/SSLeay.pm
+index 0a3aa24..f27b43f 100644
+--- a/Makefile.PL
++++ b/Makefile.PL
+@@ -12,11 +12,9 @@
+ # the Net-SSLeay loadable object on Windows
+ my $win_link_statically = 0;
+
+-my $tests = prompt(
+-  "Do you want to run external tests?\n".
+-  "These tests *will* *fail* if you do not have network connectivity.",
+-  'n',
+-) =~ /^y/i ? 't/*/*.t t/*/*/*.t' : 't/local/*.t t/handle/local/*.t';
++my $tests = (
++    'yes' eq ( $ENV{NETWORK_TESTS} || '' )
++) ? 't/*/*.t t/*/*/*.t' : 't/local/*.t t/handle/local/*.t';
+
+ my %eumm_args = (
+    NAME => 'Net::SSLeay',
+-- 
+2.14.3
+

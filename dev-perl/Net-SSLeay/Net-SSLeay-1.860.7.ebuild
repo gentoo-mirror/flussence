@@ -35,9 +35,8 @@ export OPTIMIZE="$CFLAGS"
 export OPENSSL_PREFIX=${EPREFIX}/usr
 
 PATCHES=(
-	"${FILESDIR}/${PN}-1.82-respect-cflags.patch"
-	"${FILESDIR}/${PN}-1.82-fix-libdir.patch"
-	"${FILESDIR}/${PN}-1.82-fix-network-tests.patch"
+	"${FILESDIR}/${P}-fix-libdir.patch"
+	"${FILESDIR}/${P}-fix-network-tests.patch"
 )
 PERL_RM_FILES=(
 	# Hateful author tests
