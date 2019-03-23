@@ -56,7 +56,7 @@ RDEPEND="
 		>=media-libs/libvorbis-1.0
 		>=media-libs/flac-1.2.1-r1
 	)
-	fluidsynth? ( media-sound/fluidsynth )
+	fluidsynth? ( media-sound/fluidsynth:= )
 	http? ( >=net-libs/neon-0.27 )
 	gtk? ( x11-libs/gtk+:2 )
 	qt5? (
