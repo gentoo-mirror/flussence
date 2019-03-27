@@ -2,10 +2,6 @@
 # These numbers are snapshot versions; unmask manually if wanted.
 >games-server/minecraft-server-10
 
-# Anthony Parsons <ant+gentoo.bugs@flussence.eu> (30 May 2017)
-# Miscompiles when portage builds it; no idea how to fix.
-dev-perl/CSS-Sass
-
 # Anthony Parsons <ant+gentoo.bugs@flussence.eu> (13 May 2018)
 # This is only for people who know why they need it.
 =virtual/linux-sources-9999
@@ -13,11 +9,6 @@ dev-perl/CSS-Sass
 # Anthony Parsons <ant+gentoo.bugs@flussence.eu> (26 Aug 2018)
 # The high DPI support is extremely bad in this version.
 =net-news/quiterss-0.18.12
-
-# Anthony Parsons <ant+gentoo.bugs@flussence.eu> (28 Jan 2019)
-# I no longer use this service. If anyone wants the plugin to stay, speak up.
-# Removal in 30 days.
-x11-plugins/purple-discord
 
 # Anthony Parsons <ant+gentoo.bugs@flussence.eu> (26 Feb 2019)
 # Development version added for dev-libs/libressl-2.9.0 compatibility.
