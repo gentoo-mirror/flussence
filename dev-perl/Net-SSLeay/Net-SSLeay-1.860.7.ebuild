@@ -50,12 +50,14 @@ PERL_RM_FILES=(
 )
 
 src_configure() {
-	if use test && has network ${DIST_TEST_OVERRIDE:-${DIST_TEST:-do parallel}}; then
-		export NETWORK_TESTS=yes
+	if use test && has network "${DIST_TEST_OVERRIDE:-${DIST_TEST:-do parallel}}"; then
+		NETWORK_TESTS=yes
 	else
 		use test && einfo "Network tests will be skipped without DIST_TEST_OVERRIDE=~network"
-		export NETWORK_TESTS=no
+		NETWORK_TESTS=no
 	fi
-	export LIBDIR=$(get_libdir)
+	LIBDIR=$(get_libdir)
+	export NETWORK_TESTS LIBDIR
+
 	perl-module_src_configure
 }
