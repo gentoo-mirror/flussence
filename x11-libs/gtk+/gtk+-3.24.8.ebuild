@@ -3,15 +3,16 @@
 
 EAPI=6 # restricted by gnome2.eclass
 GNOME2_LA_PUNT="yes"
+GNOME2_EAUTORECONF="yes"
 
-inherit autotools flag-o-matic gnome2 multilib virtualx multilib-minimal
+inherit flag-o-matic gnome2 multilib virtualx multilib-minimal
 
 DESCRIPTION="Gimp ToolKit +"
 HOMEPAGE="https://www.gtk.org/"
 
 LICENSE="LGPL-2+"
 SLOT="3"
-IUSE="aqua accessibility broadway cloudprint colord cups examples +introspection test vim-syntax wayland +X xinerama"
+IUSE="aqua accessibility broadway cloudprint colord cups examples gtk-doc +introspection test vim-syntax wayland +X xinerama"
 REQUIRED_USE="
 	|| ( aqua wayland X )
 	xinerama? ( X )
@@ -69,6 +70,7 @@ DEPEND="${COMMON_DEPEND}
 	>=dev-util/gdbus-codegen-2.48
 	dev-util/glib-utils
 	>=dev-util/gtk-doc-am-1.20
+	gtk-doc? ( >=dev-util/gtk-doc-1.20 )
 	>=sys-devel/gettext-0.19.7[${MULTILIB_USEDEP}]
 	virtual/pkgconfig[${MULTILIB_USEDEP}]
 	X? ( x11-base/xorg-proto )
@@ -120,7 +122,7 @@ src_prepare() {
 	fi
 
 	# gtk-update-icon-cache is installed by dev-util/gtk-update-icon-cache
-	eapply "${FILESDIR}/${PN}"-3.22.2-update-icon-cache.patch
+	eapply "${FILESDIR}/${PN}"-3.24.8-update-icon-cache.patch
 
 	# Fix broken autotools logic
 	eapply "${FILESDIR}/${PN}"-3.22.20-libcloudproviders-automagic.patch
@@ -128,7 +130,6 @@ src_prepare() {
 	# get rid of gtk3-atk-bridge crap
 	eapply "${FILESDIR}/${PN}"-3.22.19.atk-bridge.patch
 
-	eautoreconf
 	gnome2_src_prepare
 }
 
@@ -143,6 +144,7 @@ multilib_src_configure() {
 		"$(use_enable cloudprint)" \
 		"$(use_enable colord)" \
 		"$(use_enable cups cups auto)" \
+		"$(multilib_native_use_enable gtk-doc)" \
 		"$(multilib_native_use_enable introspection)" \
 		"$(use_enable wayland wayland-backend)" \
 		"$(use_enable X x11-backend)" \
