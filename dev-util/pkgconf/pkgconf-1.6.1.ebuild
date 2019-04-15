@@ -4,7 +4,7 @@
 EAPI=7
 
 if [[ ${PV} == "9999" ]] ; then
-	EGIT_REPO_URI="https://github.com/${PN}/${PN}.git"
+	EGIT_REPO_URI="https://git.dereferenced.org/${PN}/${PN}.git"
 	inherit autotools git-r3
 else
 	SRC_URI="https://distfiles.dereferenced.org/${PN}/${P}.tar.xz"
@@ -14,7 +14,7 @@ fi
 inherit multilib-minimal
 
 DESCRIPTION="pkg-config compatible replacement with no dependencies other than ANSI C89"
-HOMEPAGE="https://github.com/pkgconf/pkgconf"
+HOMEPAGE="https://www.pkgconf.org/ https://github.com/pkgconf/pkgconf"
 
 LICENSE="ISC"
 SLOT="0/3"
