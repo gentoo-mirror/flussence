@@ -134,6 +134,9 @@ If that happens I'll give you plenty of advance warning.
 Contains a NetBSD patch which makes DBus (and auto-spawning of hidden DBus processes) optional.
 Patch is from https://forums.gentoo.org/viewtopic-p-8245612.html#8245612
 
+`x11-misc/compton` — yshui's compton fork
+Upstream is more or less dead, and this has tons of fixes.
+
 Copyright
 ---------
 
