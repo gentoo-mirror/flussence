@@ -25,6 +25,7 @@
 
 case ${EAPI:-0} in
 	7)
+		: ${KEYWORDS:?"Must be defined before inheriting github-pkg.eclass"}
 		HOMEPAGE="https://github.com/${GITHUB_USER:?}/${GITHUB_PROJ:-${PN}}"
 
 		if [[ ${PV} == "9999" ]]; then
