@@ -53,7 +53,7 @@ src_configure() {
 
 src_install() {
 	docinto examples
-	dodoc *.glsl compton.sample.conf bin/compton-convgen.py
+	dodoc compton-*-fshader-win.glsl compton.sample.conf bin/compton-convgen.py
 	rm bin/compton-convgen.py
 
 	meson_src_install
