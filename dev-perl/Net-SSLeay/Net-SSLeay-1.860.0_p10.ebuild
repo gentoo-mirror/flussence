@@ -3,8 +3,8 @@
 
 EAPI=6
 
-DIST_AUTHOR=RADIATOR
-DIST_VERSION=1.86_07
+DIST_AUTHOR=CHRISN
+DIST_VERSION=1.86_10
 DIST_EXAMPLES=("examples/*")
 inherit multilib perl-module
 
