@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-use v5.26;
+use v5.28;
 use warnings;
 use utf8;
 use autodie qw(:all);

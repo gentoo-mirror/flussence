@@ -19,8 +19,8 @@ RDEPEND="
 	gconf? ( gnome-base/gconf:2 )"
 DEPEND="${RDEPEND}
 	system-unicode? (
-		>=dev-lang/perl-5.26.0
-		<=app-i18n/unicode-data-${PR#r}.0.0
+		>=dev-lang/perl-5.28.0
+		<=app-i18n/unicode-data-${PR#r}.9999
 	)"
 
 PATCHES=( "${FILESDIR}"/unicode-"${PR#r}"-defines.patch )
