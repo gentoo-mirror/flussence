@@ -4,15 +4,15 @@
 EAPI=6
 
 DIST_AUTHOR=CHRISN
-DIST_VERSION=1.86_10
+DIST_VERSION=1.88
 DIST_EXAMPLES=("examples/*")
 inherit multilib perl-module
 
 DESCRIPTION="Perl extension for using OpenSSL"
 
-LICENSE="openssl"
+LICENSE="Artistic-2"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~ppc-aix ~x64-cygwin ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~amd64 ~x86"
 IUSE="libressl test minimal examples"
 
 RDEPEND="
@@ -32,7 +32,7 @@ DEPEND="${RDEPEND}
 	)
 "
 export OPTIMIZE="$CFLAGS"
-export OPENSSL_PREFIX=${EPREFIX}/usr
+export OPENSSL_PREFIX="${EPREFIX}"/usr
 
 PATCHES=(
 	"${FILESDIR}/${PN}-fix-libdir.patch"
