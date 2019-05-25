@@ -27,6 +27,7 @@ REQUIRED_USE="|| ( dbus gtk qt5 )" # audtool requires dbus
 
 GUI_DEPEND="x11-libs/cairo x11-libs/pango virtual/freedesktop-icon-theme"
 RDEPEND=">=dev-libs/glib-2.30
+	dbus? ( sys-apps/dbus )
 	gtk? ( x11-libs/gtk+:2 ${GUI_DEPEND} )
 	qt5? ( dev-qt/qtcore:5 dev-qt/qtgui:5 dev-qt/qtwidgets:5 ${GUI_DEPEND} )"
 DEPEND="${RDEPEND}
