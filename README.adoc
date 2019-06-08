@@ -130,6 +130,9 @@ At some time in the distant future I plan to drop the OpenRC dep for something n
 If that happens I'll give you plenty of advance warning.
 --
 
+`www-client/michabo` — Native desktop Fediverse client::
+h
+
 `x11-libs/gtk+:3` — debloated Gtk+3
 Contains a NetBSD patch which makes DBus (and auto-spawning of hidden DBus processes) optional.
 Patch is from https://forums.gentoo.org/viewtopic-p-8245612.html#8245612
