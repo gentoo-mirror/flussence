@@ -1,5 +1,4 @@
-# Copyright 1999-2012 Gentoo Authors
-# Copyright 2012-2019 Anthony Parsons
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6 # restricted by java-pkg-2 (java-utils-2 (versionator))

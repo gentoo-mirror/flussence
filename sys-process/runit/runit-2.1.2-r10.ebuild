@@ -1,5 +1,4 @@
-# Copyright 1999-2014 Gentoo Authors
-# Copyright 2014-2018 Anthony Parsons
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7

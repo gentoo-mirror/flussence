@@ -1,4 +1,4 @@
-# Copyright 2019 Anthony Parsons
+# Copyright 2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6 # restricted by wxwidgets.eclass
