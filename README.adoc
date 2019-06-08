@@ -90,8 +90,7 @@ You may need to run `emerge --deselect gnome-extra/gucharmap` first if you have 
 --
 
 `media-libs/libopenmpt` — https://lib.openmpt.org[OpenMPT playback library]::
-`media-plugins/audacious-openmpt` — https://github.com/cspiegel/audacious-openmpt[Audacious
-libopenmpt plugin]::
+`media-plugins/audacious-openmpt` — https://github.com/cspiegel/audacious-openmpt[Audacious libopenmpt plugin]::
 A modern replacement for modplug and mikmod.
 Much wider format support, more accurate playback, and better security upkeep.
 
