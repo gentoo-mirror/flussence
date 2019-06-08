@@ -18,7 +18,7 @@ fi
 
 inherit xdg-utils
 
-LICENSE="BSD-2"
+LICENSE="BSD-2 CC-BY-SA-4.0"
 SLOT="0"
 
 IUSE="+dbus nls +gtk qt5"
