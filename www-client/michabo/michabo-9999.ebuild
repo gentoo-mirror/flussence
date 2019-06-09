@@ -34,5 +34,5 @@ src_compile() {
 }
 
 src_install() {
-	dobin michabo
+	dobin Michabo
 }
