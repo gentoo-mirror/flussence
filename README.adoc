@@ -7,25 +7,18 @@ These are my packages for things that:
 * aren't as up-to-date as I'd like there,
 * aren't maintained to a sufficient standard in the main tree.
 
-Keywords are all `~amd64 ~x86` because I don't run Gentoo on anything else yet,
-but if you'd like me to add other arches just ask.
+Keywords are all `~amd64 ~x86` because I don't run Gentoo on anything else yet.
 
 Installing
 ----------
+If you know what you're doing, go right ahead. Otherwise:
 
-You should already know how this works, but here's a reminder…
-
-Put this (or whatever's appropriate for your system) in `/etc/portage/repos.conf`,
-then do `emerge --sync flussence`:
-
-    [flussence]
-    location = /var/db/repositories/flussence
-    sync-type = git
-    sync-uri = https://gitlab.com/flussence/overlay.git
+    root # emerge -n eselect-repository
+    root # eselect repository enable flussence
 
 Contents
 --------
-N.B.: Anything not listed here is considered *very experimental*! Or I forgot to add it.
+This list is manually maintained. Some things may be missing (accidentally or not).
 
 `app-crypt/signify` — https://github.com/aperezdc/signify[OpenBSD Signify]::
 Signify is a strong cryptographic signature tool that fits on a floppy disk, with public
@@ -49,13 +42,9 @@ Retro first-person shooter. This ebuild is written from scratch.
 `games-fps/ut2004-*` — UT2004 binaries and map packs via IPFS::
 +
 --
-The mirror URLs for these have proved chronically unreliable, so these ebuilds use IPFS.
-You'll need to configure your local IPFS node as a distfiles mirror,
-by adding a line like `ipfs http://localhost:8080` to `/etc/portage/mirrors`.
-
-*Help preserving these files (and more) would be appreciated.*
-The Manifest files contain additional SHA1 hashes (should be easily web searchable),
-and the IPFS hashes were generated using 0.4.15 defaults: `--hash sha2-256 --chunker size-262144`.
+The mirror URLs for these have proved chronically unreliable, so these ebuilds use IPFS only.
+As not everyone can use IPFS, the Manifest files for these also contain deprecated SHA1 hashes,
+to facilitate in scavenging the web for file host mirrors which traditionally use those.
 
 Obviously, this doesn't contain the base game data files, which are required.
 You still need to buy the disc and install `games-fps/ut2004-data::gentoo` for that.
@@ -119,9 +108,9 @@ which can't be turned off and wastes too much screen space for me.
 If you don't want systemd and OpenRC's recent developments worry you,
 consider Taking A Third Option. Like this one.
 
-This package is a hard fork of whatever was in the Gentoo tree years ago,
+This package is a hard fork of whatever was in the Gentoo tree circa 2014,
 which was full of unfixed bugs and didn't have a responsible maintainer.
-It does things slightly differently, so familiarise yourself before use; qlist is your friend.
+It does things slightly differently, so familiarise yourself before use; `qlist` is your friend.
 
 For replacements to some OpenRC initscripts, take a look at
 https://gitlab.com/flussence/runit-scripts[my runit-scripts repository].
@@ -132,18 +121,35 @@ If that happens I'll give you plenty of advance warning.
 `www-client/michabo` — Native desktop Fediverse client::
 h
 
-`x11-libs/gtk+:3` — debloated Gtk+3
+`x11-libs/gtk+:3` — debloated Gtk+3::
 Contains a NetBSD patch which makes DBus (and auto-spawning of hidden DBus processes) optional.
 Patch is from https://forums.gentoo.org/viewtopic-p-8245612.html#8245612
 
-`x11-misc/compton` — yshui's compton fork
+`x11-misc/compton` — yshui's compton fork::
 Upstream is more or less dead, and this has tons of fixes.
+
+IPFS mirrors
+------------
+Where possible, ebuilds contain https://ipfs.io[IPFS] hashes in addition to regular mirrors.
+You can use your local IPFS gateway by adding it to `/etc/portage/mirrors`, e.g.:
+
+    ipfs http://localhost:8080/
+
+*Note:* If unconfigured, the default list for `mirror://ipfs/` URLs includes CloudFlare.
+
+If you have the resources to run an IPFS node, please consider adding your own distfiles to it.
+IPFS hash URLs in this overlay were generated using go-ipfs-0.4.15 defaults, so do the same.
+
+For reference, those defaults are equivalent to:
+
+    ipfs add --hash sha2-256 --chunker size-262144 $file
 
 Copyright
 ---------
+Due to limitations in the QA tool used, ebuild headers have to carry a GPL2-only statement
+without full attribution. I disagree with this, but don't have the resources to fix it.
 
-Due to limitations in the QA tool used, ebuild headers have to carry a GPL2-only statement.
-For files *not* containing a generic Gentoo copyright, GPL2-or-later applies:
+For files wholly my own work (figuring this out is on you), GPL2-or-later is granted:
 
     SPDX-License-Identifier: GPL-2+
 
