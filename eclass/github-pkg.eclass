@@ -11,7 +11,7 @@
 # The github-pkg eclass fills in git-r3 related variables with sensible defaults.
 # By default, HOMEPAGE is set to the repo URL and EGIT_REPO_URI is derived from it.
 # Upstreams tend to use wildly inconsistent tarball naming conventions, so no SRC_URI is provided.
-# @SUPPORTED_EAPIS: 7
+# @SUPPORTED_EAPIS: 6 7
 
 # @ECLASS-VARIABLE: GITHUB_USER
 # @REQUIRED
@@ -24,9 +24,10 @@
 # Specify the project name in the repository's URL; defaults to PN.
 
 case ${EAPI:-0} in
-	7)
+	6|7)
+		GITHUB_HOMEPAGE="https://github.com/${GITHUB_USER:?}/${GITHUB_PROJ:-${PN}}"
 		: ${KEYWORDS:?"Must be defined before inheriting github-pkg.eclass"}
-		HOMEPAGE="https://github.com/${GITHUB_USER:?}/${GITHUB_PROJ:-${PN}}"
+		: ${HOMEPAGE:=$GITHUB_HOMEPAGE}
 
 		if [[ ${PV} == "9999" ]]; then
 			: ${EGIT_REPO_URI:=${HOMEPAGE}.git}
