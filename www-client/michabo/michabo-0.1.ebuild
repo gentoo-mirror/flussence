@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit qmake-utils
+inherit desktop qmake-utils xdg
 
 DESCRIPTION="A Fediverse client written in Qt"
 HOMEPAGE="https://git.pleroma.social/kaniini/michabo"
@@ -40,4 +40,10 @@ src_compile() {
 src_install() {
 	dodoc README*
 	dobin Michabo
+
+	domenu michabo.desktop
+	local iconsize
+	for iconsize in 16 32 64 256; do
+		newicon -s "$iconsize" "icons/michabo-${iconsize}.png" "Michabo.png"
+	done
 }
