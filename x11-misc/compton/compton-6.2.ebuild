@@ -11,7 +11,7 @@ inherit github-pkg meson xdg-utils
 DESCRIPTION="Compton is a X compositing window manager, fork of xcompmgr-dana."
 
 if [[ ${PV} != "9999" ]]; then
-	SRC_URI="${HOMEPAGE}/archive/v${PV}.tar.gz"
+	SRC_URI="${HOMEPAGE}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 fi
 
 LICENSE="MPL-2.0 MIT"

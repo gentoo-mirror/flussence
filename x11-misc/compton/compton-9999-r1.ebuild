@@ -13,7 +13,7 @@ DESCRIPTION="Compton is a X compositing window manager, fork of xcompmgr-dana."
 if [[ ${PV} != "9999" ]]; then
 	MY_PV="${PV/_rc/-rc}"
 	TEST_H_COMMIT="a84877df68873f80ff3620f4993619b35b21f758"
-	SRC_URI="${HOMEPAGE}/archive/v${MY_PV}.tar.gz
+	SRC_URI="${HOMEPAGE}/archive/v${MY_PV}.tar.gz -> ${P}.tar.gz
 		${HOMEPAGE/${PN}/test.h}/archive/${TEST_H_COMMIT}.tar.gz
 			-> yshui_test.h_${TEST_H_COMMIT}.tar.gz"
 	S="${WORKDIR}/${PN}-${MY_PV}"
