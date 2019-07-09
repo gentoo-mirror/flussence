@@ -42,7 +42,7 @@ DEPEND="
 		portmidi? ( media-libs/portmidi )
 	)
 	dedicated? (
-		dev-libs/jsoncpp
+		dev-libs/jsoncpp:0=
 		upnp? ( net-libs/miniupnpc )
 	)
 	launcher? (
