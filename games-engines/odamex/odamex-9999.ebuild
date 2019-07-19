@@ -58,8 +58,8 @@ BDEPEND="
 "
 
 PATCHES=(
-	"${FILESDIR}"/unbundle-jsoncpp-"${PV}".patch
-	"${FILESDIR}"/unbundle-miniupnpc-"${PV}".patch
+	"${FILESDIR}"/unbundle-jsoncpp.patch
+	"${FILESDIR}"/unbundle-miniupnpc.patch
 )
 
 src_prepare() {
