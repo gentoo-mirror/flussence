@@ -6,7 +6,7 @@ inherit toolchain-funcs
 
 DESCRIPTION="Cryptographically sign and verify files"
 HOMEPAGE="https://github.com/aperezdc/signify"
-SRC_URI="${HOMEPAGE}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI="${HOMEPAGE}/releases/download/v${PV}/${P}.tar.xz"
 
 LICENSE="ISC"
 SLOT="0"
