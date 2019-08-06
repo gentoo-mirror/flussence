@@ -63,7 +63,7 @@ src_configure() {
 	# TODO: support FEATURES=test properly
 	local emesonargs=(
 		"$(meson_use dbus)"
-		"$(meson_use doc build_docs)"
+		"$(meson_use doc with_docs)"
 		"$(meson_use drm vsync_drm)"
 		"$(meson_use libconfig config_file)"
 		"$(meson_use opengl)"
