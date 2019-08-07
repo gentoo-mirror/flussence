@@ -7,7 +7,7 @@ inherit font
 
 DESCRIPTION="A set of matching libre/open fonts funded by Canonical"
 HOMEPAGE="http://font.ubuntu.com/"
-SRC_URI="https://assets.ubuntu.com/v1/fad7939b-${P}.zip -> ${P}.zip"
+SRC_URI="https://assets.ubuntu.com/v1/0cef8205-${P}.zip -> ${P}.zip"
 
 LICENSE="UbuntuFontLicense-1.0"
 SLOT="0"
