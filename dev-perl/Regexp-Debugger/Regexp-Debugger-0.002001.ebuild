@@ -6,7 +6,7 @@ EAPI=6 # restricted by perl-module.eclass
 DIST_AUTHOR="DCONWAY"
 inherit perl-module
 
-DESCRIPTION="Perl module and command line tool to visually debug regexes in-place"
+DESCRIPTION="Perl module and command line tool (rxrx) to visually debug regexes in-place"
 
 LICENSE="|| ( Artistic GPL-1+ )"
 SLOT="0"
