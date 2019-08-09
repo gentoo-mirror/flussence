@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>ant+gentoo.bugs@flussence.eu</email>
+		<name>Anthony Parsons</name>
+	</maintainer>
+	<upstream>
+		<changelog>https://metacpan.org/feed/distribution/Regexp-Debugger</changelog>
+		<doc>https://metacpan.org/pod/Regexp::Debugger</doc>
+		<bugs-to>mailto:bug-regexp-debugger@rt.cpan.org</bugs-to>
+		<remote-id type="cpan-module">Regexp::Debugger</remote-id>
+	</upstream>
+</pkgmetadata>

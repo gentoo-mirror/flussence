@@ -24,10 +24,13 @@ This list is manually maintained. Some things may be missing (accidentally or no
 Signify is a strong cryptographic signature tool that fits on a floppy disk, with public
 keys that fit in 140 characters, and a manpage that fits on one screen.
 
-`dev-perl/Crypt-LE` — http://search.cpan.org/dist/Crypt-LE[Crypt::LE]::
+`dev-perl/Crypt-LE` — https://metacpan.org/pod/Crypt::LE[Crypt::LE]::
 A Perl 5 ACME/Let's Encrypt client with lightweight dependencies.
 Not the most user-friendly option, but it gets the job done.
 Current version supports ECC certs, wildcards and ACME API v2.
+
+`dev-perl/Regexp-Debugger` — https://metacpan.org/pod/Regexp::Debugger[Regexp::Debugger]::
+The best interactive debug tool for Perl 5/PCRE regexes in existence, IMHO.
 
 `dev-vcs/src` — https://gitlab.com/esr/src[Simple Revision Control]::
 A version control tool suitable for all those loose scripts you have lying around.
