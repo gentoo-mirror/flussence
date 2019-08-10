@@ -1,7 +1,7 @@
 # Copyright 2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6 # restricted by wxwidgets.eclass
+EAPI=7
 
 GITHUB_USER="odamex"
 # N.B. upstream explicitly supports a whole bunch of arches,
