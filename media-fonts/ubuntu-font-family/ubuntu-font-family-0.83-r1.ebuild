@@ -6,7 +6,7 @@ EAPI=6 # restricted by font.eclass
 inherit font
 
 DESCRIPTION="A set of matching libre/open fonts funded by Canonical"
-HOMEPAGE="http://font.ubuntu.com/"
+HOMEPAGE="https://design.ubuntu.com/font/"
 SRC_URI="https://assets.ubuntu.com/v1/0cef8205-${P}.zip -> ${P}.zip"
 
 LICENSE="UbuntuFontLicense-1.0"
