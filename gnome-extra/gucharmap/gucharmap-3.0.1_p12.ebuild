@@ -3,9 +3,12 @@
 
 EAPI=7
 
+MY_P="${P%%_p*}" # package without patchlevel
+MY_UV="${PV##*_p}" # unicode major version that we support
+
 DESCRIPTION="GNOME Character Map, based on the Unicode Character Database"
 HOMEPAGE="https://wiki.gnome.org/Apps/Gucharmap"
-SRC_URI="mirror://gnome/sources/gucharmap/${PV}/${P}.tar.bz2"
+SRC_URI="mirror://gnome/sources/gucharmap/3.0/${MY_P}.tar.bz2"
 
 LICENSE="GPL-3 unicode"
 SLOT="0"
@@ -16,13 +19,15 @@ RDEPEND="
 	>=dev-libs/glib-2.16.3
 	>=x11-libs/gtk+-2.14.0:2
 	gconf? ( gnome-base/gconf:2 )"
-DEPEND="${RDEPEND}
+DEPEND="${RDEPEND}"
+BDEPEND="
 	system-unicode? (
-		>=dev-lang/perl-5.26.0
-		<=app-i18n/unicode-data-11.0.0
+		>=dev-lang/perl-5.28.0
+		<=app-i18n/unicode-data-${MY_UV}.9999
 	)"
 
-PATCHES=( "${FILESDIR}"/unicode-11-defines.patch )
+PATCHES=( "${FILESDIR}"/unicode-"${MY_UV}"-defines.patch )
+S="${WORKDIR}/${MY_P}"
 
 src_prepare() {
 	default
