@@ -20,6 +20,7 @@ RDEPEND="
 		virtual/perl-Time-HiRes
 	)"
 DEPEND="${RDEPEND}
-	dev-perl/Module-Build
-	virtual/perl-ExtUtils-MakeMaker
 	virtual/perl-version"
+BDEPEND="
+	dev-perl/Module-Build
+	virtual/perl-ExtUtils-MakeMaker"

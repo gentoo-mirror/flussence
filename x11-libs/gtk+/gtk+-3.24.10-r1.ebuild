@@ -67,13 +67,16 @@ DEPEND="${COMMON_DEPEND}
 	app-text/docbook-xml-dtd:4.1.2
 	dev-libs/libxslt
 	dev-libs/gobject-introspection-common
-	>=dev-util/gdbus-codegen-2.48
 	dev-util/glib-utils
 	>=dev-util/gtk-doc-am-1.20
 	gtk-doc? ( >=dev-util/gtk-doc-1.20 )
 	>=sys-devel/gettext-0.19.7[${MULTILIB_USEDEP}]
-	virtual/pkgconfig[${MULTILIB_USEDEP}]
 	X? ( x11-base/xorg-proto )
+"
+# TODO probably incomplete transition from DEPEND
+BDEPEND="
+	>=dev-util/gdbus-codegen-2.48
+	virtual/pkgconfig[${MULTILIB_USEDEP}]
 	test? (
 		media-fonts/font-misc-misc
 		media-fonts/font-cursor-misc )

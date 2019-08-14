@@ -16,12 +16,13 @@ KEYWORDS="~amd64 ~x86"
 IUSE="test"
 REQUIRED_USE="$PYTHON_REQUIRED_USE"
 
-HDEPEND="app-text/asciidoc"
 RDEPEND="dev-vcs/rcs"
-DEPEND="test? (
-	dev-python/pylint[${PYTHON_USEDEP}]
-	${RDEPEND}
-)"
+BDEPEND="
+	app-text/asciidoc
+	test? (
+		dev-python/pylint[${PYTHON_USEDEP}]
+		${RDEPEND}
+	)"
 
 src_install() {
 	emake DESTDIR="${D}" prefix=/usr install

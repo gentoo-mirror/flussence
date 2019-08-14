@@ -28,7 +28,8 @@ RDEPEND="
 	>=dev-perl/Net-SSLeay-1.490
 	virtual/perl-Scalar-List-Utils
 	>=virtual/perl-Time-Piece-1.270"
-DEPEND="${RDEPEND}
+DEPEND="${RDEPEND}"
+BDEPEND="
 	>=virtual/perl-ExtUtils-Install-1.460
 	virtual/perl-ExtUtils-MakeMaker
 	>=dev-perl/Module-Build-0.380

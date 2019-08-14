@@ -23,7 +23,7 @@ IUSE="+pkg-config test"
 # tests require 'kyua'
 RESTRICT="!test? ( test )"
 
-DEPEND="
+BDEPEND="
 	test? (
 		dev-libs/atf
 		dev-util/kyua
