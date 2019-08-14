@@ -16,8 +16,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="doc"
 
-DEPEND="app-arch/unzip"
-RDEPEND=""
+BDEPEND="app-arch/unzip"
 
 S="${WORKDIR}"
 FONT_S="${S}"

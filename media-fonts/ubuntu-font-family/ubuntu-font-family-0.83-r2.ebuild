@@ -14,8 +14,7 @@ SLOT="0"
 KEYWORDS="amd64 ~arm ~arm64 x86"
 IUSE=""
 
-DEPEND="app-arch/unzip"
-RDEPEND=""
+BDEPEND="app-arch/unzip"
 
 FONT_SUFFIX="ttf"
 

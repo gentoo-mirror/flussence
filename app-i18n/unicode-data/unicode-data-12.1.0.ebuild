@@ -13,13 +13,12 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND="app-arch/unzip"
-RDEPEND=""
+BDEPEND="app-arch/unzip"
 
 S="${WORKDIR}"
 
 src_unpack() {
-	# Unihan.zip needs to be installed as a zip for reverse deps
+	# Unihan.zip needs to be installed as-is (as a zip) for reverse deps
 	# https://bugzilla.gnome.org/show_bug.cgi?id=768210
 	unpack "${P}"-UCD.zip
 }
