@@ -2,51 +2,59 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-PYTHON_COMPAT=( python3_{5,6,7} )
-inherit cmake-utils xdg-utils python-single-r1
 
-DESCRIPTION="FOSS software for video recording and live streaming"
-HOMEPAGE="https://obsproject.com"
+PYTHON_COMPAT=( python3_{5,6,7} )
+
+inherit cmake-utils python-single-r1 xdg-utils
+
 MY_REPO_URI="https://github.com/jp9000/obs-studio"
 
 if [[ ${PV} == "9999" ]]; then
+	inherit git-r3
 	EGIT_REPO_URI="${MY_REPO_URI}.git"
 	EGIT_SUBMODULES=()
-	inherit git-r3
 else
-	KEYWORDS="~amd64 ~x86"
 	SRC_URI="${MY_REPO_URI}/archive/${PV}.tar.gz"
+	KEYWORDS="~amd64 ~x86"
 fi
+
+DESCRIPTION="Free software for video recording and live streaming"
+HOMEPAGE="https://obsproject.com"
 
 LICENSE="GPL-2"
 SLOT="0"
 IUSE="alsa decklink fdk jack imagemagick libcxx luajit pulseaudio python +qt5 ssl speex truetype udev v4l vlc"
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
-COMMON_DEPEND="
-	dev-libs/jansson
+BDEPEND="
+	luajit? ( dev-lang/swig )
+	python? ( dev-lang/swig )
+"
+DEPEND="
+	>=dev-libs/jansson-2.5
 	media-libs/x264:=
 	net-misc/curl
 	sys-apps/dbus
 	sys-libs/zlib
 	virtual/opengl
+	x11-libs/libXcomposite
 	x11-libs/libXinerama
 	x11-libs/libXrandr
 	x11-libs/libxcb
 	alsa? ( media-libs/alsa-lib )
 	fdk? ( media-libs/fdk-aac:= )
 	imagemagick? ( media-gfx/imagemagick:= )
-	!imagemagick? ( virtual/ffmpeg )
-	jack? ( media-sound/jack-audio-connection-kit )
+	!imagemagick? ( media-video/ffmpeg:= )
+	jack? ( virtual/jack )
 	libcxx? ( sys-libs/libcxx )
 	luajit? ( dev-lang/luajit:2 )
-	python? ( ${PYTHON_DEPS} )
 	qt5? (
 		dev-qt/qtcore:5
 		dev-qt/qtgui:5
 		dev-qt/qtsvg:5
 		dev-qt/qtwidgets:5
 		dev-qt/qtx11extras:5
+		media-video/ffmpeg:=
 	)
 	pulseaudio? ( media-sound/pulseaudio )
 	python? ( ${PYTHON_DEPS} )
@@ -58,11 +66,7 @@ COMMON_DEPEND="
 	udev? ( virtual/udev )
 	v4l? ( media-libs/libv4l )
 	vlc? ( media-video/vlc )"
-DEPEND="${COMMON_DEPEND}
-	luajit? ( dev-lang/swig )
-	python? ( dev-lang/swig )
-"
-RDEPEND="${COMMON_DEPEND}"
+RDEPEND="${DEPEND}"
 
 CMAKE_REMOVE_MODULES_LIST=( FindFreetype )
 
