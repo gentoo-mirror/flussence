@@ -19,7 +19,9 @@ RDEPEND="
 		dev-perl/TermReadKey
 		virtual/perl-Time-HiRes
 	)"
+# Module-Build is duplicated due to a perl-module.eclass bug
 DEPEND="${RDEPEND}
+	dev-perl/Module-Build
 	virtual/perl-version"
 BDEPEND="
 	dev-perl/Module-Build

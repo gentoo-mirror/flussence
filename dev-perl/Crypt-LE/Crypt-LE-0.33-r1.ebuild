@@ -28,7 +28,9 @@ RDEPEND="
 	>=dev-perl/Net-SSLeay-1.490
 	virtual/perl-Scalar-List-Utils
 	>=virtual/perl-Time-Piece-1.270"
-DEPEND="${RDEPEND}"
+# Module-Build is duplicated due to a perl-module.eclass bug
+DEPEND="${RDEPEND}
+	>=dev-perl/Module-Build-0.380"
 BDEPEND="
 	>=virtual/perl-ExtUtils-Install-1.460
 	virtual/perl-ExtUtils-MakeMaker
