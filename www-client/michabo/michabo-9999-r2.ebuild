@@ -30,7 +30,6 @@ DEPEND="
 	dev-qt/qtwebsockets:5
 	dev-qt/qtwidgets:5"
 RDEPEND="${DEPEND}"
-BDEPEND=""
 
 src_compile() {
 	eqmake5

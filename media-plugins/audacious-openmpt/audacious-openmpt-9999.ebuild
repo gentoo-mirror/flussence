@@ -19,4 +19,3 @@ IUSE=""
 
 DEPEND=">=media-libs/libopenmpt-0.3"
 RDEPEND="${DEPEND}"
-BDEPEND=""
