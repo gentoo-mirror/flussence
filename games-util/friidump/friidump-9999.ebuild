@@ -19,9 +19,6 @@ LICENSE="GPL-2"
 SLOT="0"
 IUSE=""
 
-DEPEND=""
-RDEPEND="${DEPEND}"
-
 FILECAPS=(
 	'-g' cdrom '-m' 4710 '-M' 0710 cap_sys_rawio /usr/bin/friidump
 )

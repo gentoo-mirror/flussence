@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -17,7 +17,6 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 RESTRICT="mirror strip"
 
-DEPEND="app-arch/p7zip"
 RDEPEND="!games-server/ut2004-ded
 	~virtual/libstdc++-3.3
 	games-fps/ut2004-bonuspack-ece
@@ -31,6 +30,7 @@ RDEPEND="!games-server/ut2004-ded
 	x11-libs/libXau
 	x11-libs/libXdmcp
 	x11-libs/libXext"
+BDEPEND="app-arch/p7zip"
 
 S=${WORKDIR}/UT2004-Patch
 dir=/opt/${PN}
