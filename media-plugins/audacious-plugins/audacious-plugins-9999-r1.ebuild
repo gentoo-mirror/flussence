@@ -33,7 +33,6 @@ REQUIRED_USE="
 	qtmedia? ( qt5 )"
 
 RDEPEND="
-	app-arch/unzip
 	dev-libs/libxml2:2
 	~media-sound/audacious-${PV}[gtk=,qt5=]
 	aac? ( >=media-libs/faad2-2.7 )
@@ -74,7 +73,6 @@ RDEPEND="
 	lirc? ( app-misc/lirc )
 	mms? ( >=media-libs/libmms-0.3 )
 	modplug? ( media-libs/libmodplug )
-	mpris? ( dev-util/gdbus-codegen )
 	mp3? ( >=media-sound/mpg123-1.12.1 )
 	opengl? (
 		virtual/opengl
@@ -95,9 +93,10 @@ RDEPEND="
 	)
 	wavpack? ( >=media-sound/wavpack-4.50.1-r1 )"
 
-DEPEND="${RDEPEND}
-	virtual/pkgconfig
-	nls? ( dev-util/intltool )"
+DEPEND="${RDEPEND} virtual/pkgconfig"
+BDEPEND="
+	mpris? ( dev-util/gdbus-codegen )
+	nls? ( sys-devel/gettext )"
 
 src_prepare() {
 	default
@@ -153,4 +152,12 @@ src_configure() {
 		"$(use_enable vorbis)" \
 		"$(use_enable wavpack)" \
 		"$(use_with ffmpeg ffmpeg "$(usex libav libav ffmpeg)")"
+}
+
+pkg_postinst() {
+	if ! has_version -r app-arch/unzip; then
+		einfo "For full winamp2 skin support either install app-arch/unzip,"
+		einfo "or set the environment variable UNZIPCMD to a drop-in replacement"
+		einfo "(e.g. 'busybox unzip')"
+	fi
 }
