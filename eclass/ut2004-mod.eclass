@@ -1,4 +1,4 @@
-# Copyright 2018 Anthony Parsons
+# Copyright 2018-2019 Anthony Parsons
 # Distributed under the terms of the GNU General Public License v2
 
 # @ECLASS: ut2004-mod.eclass
@@ -13,11 +13,13 @@
 
 EXPORT_FUNCTIONS src_install
 
-SLOT="0"
-RESTRICT="mirror strip"
-DEPEND="app-arch/unzip"
-RDEPEND="|| ( games-fps/ut2004 games-server/ut2004-ded )"
 KEYWORDS="~amd64 ~x86"
+RESTRICT="mirror strip"
+SLOT="0"
+
+BDEPEND="app-arch/unzip"
+RDEPEND="|| ( games-fps/ut2004 games-server/ut2004-ded )"
+
 S="${WORKDIR}"
 
 GAME_DATADIR="/usr/share/games/ut2004"
