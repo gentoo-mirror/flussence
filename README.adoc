@@ -96,6 +96,9 @@ You can build and run this using any combination of the GTK+2, Qt5 or DBus inter
 Yes, you can have a completely CLI-controlled headless Audacious if you want.
 --
 
+`media-plugins/lvis` — https://git.sr.ht/~kaniini/lvis[Audacious visualiser plugin]::
+Like Winamp AVS, but better.
+
 `media-video/obs-studio` — https://github.com/jp9000/obs-studio[OBS Studio]::
 Builds OBS from Git.
 Probably has too many `USE` flags, but it works and does what I need from it.
