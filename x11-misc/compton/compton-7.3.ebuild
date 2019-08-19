@@ -6,17 +6,19 @@ EAPI=7
 GITHUB_USER="yshui"
 KEYWORDS="~amd64 ~x86"
 
-inherit github-pkg meson xdg-utils
+inherit desktop github-pkg meson xdg
 
 DESCRIPTION="Compton is a X compositing window manager, fork of xcompmgr-dana."
 
 if [[ ${PV} != "9999" ]]; then
-	SRC_URI="${HOMEPAGE}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+	MY_PV="${PV/_rc/-rc}"
+	SRC_URI="${HOMEPAGE}/archive/v${MY_PV}.tar.gz -> ${P}.tar.gz"
+	S="${WORKDIR}/${PN}-${MY_PV}"
 fi
 
 LICENSE="MPL-2.0 MIT"
 SLOT="0"
-IUSE="dbus drm +doc +libconfig +opengl +pcre python"
+IUSE="dbus drm +doc +libconfig +opengl +pcre"
 
 RDEPEND="
 	dev-libs/libev
@@ -56,17 +58,13 @@ src_configure() {
 }
 
 src_install() {
+	dodoc CONTRIBUTORS
+
 	docinto examples
-	dodoc compton-*-fshader-win.glsl compton.sample.conf bin/compton-convgen.py
-	rm bin/compton-convgen.py
+	dodoc compton-*-fshader-win.glsl compton.sample.conf
+	if use dbus; then
+		dodoc -r dbus-examples/
+	fi
 
 	meson_src_install
-}
-
-pkg_postinst() {
-	xdg_icon_cache_update
-}
-
-pkg_postrm() {
-	xdg_icon_cache_update
 }

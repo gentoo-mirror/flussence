@@ -14,7 +14,6 @@
 		<flag name="drm">Enable (deprecated) DRM VSync method</flag>
 		<flag name="libconfig">Enable config file support, recommended</flag>
 		<flag name="opengl">Enable OpenGL backend (requires at least OpenGL 3.0)</flag>
-		<flag name="python">Installs the compton-convgen utility</flag>
 	</use>
 	<upstream>
 		<bugs-to>https://github.com/yshui/compton/issues</bugs-to>
