@@ -1,7 +1,7 @@
 # Copyright 2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6 # restricted by perl-module.eclass
+EAPI=7
 
 DIST_AUTHOR="DCONWAY"
 inherit perl-module
