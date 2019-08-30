@@ -26,7 +26,8 @@ keys that fit in 140 characters, and a manpage that fits on one screen.
 
 `dev-perl/Crypt-LE` — https://metacpan.org/pod/Crypt::LE[Crypt::LE]::
 A Perl 5 ACME/Let's Encrypt client with lightweight dependencies.
-Not the most user-friendly option, but it gets the job done.
+Not the most user-friendly option, but it has minimal dependencies,
+and unlike `app-crypt/acme-sh` it doesn't secretly require CloudFlare.
 Current version supports ECC certs, wildcards and ACME API v2.
 
 `dev-perl/Regexp-Debugger` — https://metacpan.org/pod/Regexp::Debugger[Regexp::Debugger]::
