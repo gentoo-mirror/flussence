@@ -16,6 +16,10 @@ If you know what you're doing, go right ahead. Otherwise:
     root # emerge -n eselect-repository
     root # eselect repository enable flussence
 
+All commits are GPG-signed and the key is available via WKD.
+Please enable `sync-git-verify-commit-signature = true` if you can spare the effort,
+and pressure Portage's authors to make this process easier for overlays.
+
 Contents
 --------
 This list is manually maintained. Some things may be missing (accidentally or not).
