@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>ant+gentoo.bugs@flussence.eu</email>
+		<name>Anthony Parsons</name>
+	</maintainer>
+	<longdescription>
+		Attempts to install the UT2004 data files from original discs.
+		This ebuild was rescued from the main Gentoo repo and given some minor cleanups.
+	</longdescription>
+</pkgmetadata>

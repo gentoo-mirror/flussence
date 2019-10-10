@@ -14,3 +14,9 @@
 # Development version added for dev-libs/libressl-2.9.0 compatibility.
 # No reason to use this otherwise, so don't.
 =dev-perl/Net-SSLeay-1.860.7
+
+# Anthony Parsons <ant+gentoo.bugs@flussence.eu> (10 Oct 2019)
+# NOT YET TESTED. Salvaged from Gentoo ebuild repo before last rites.
+# If you're brave, grab your install disc(s) and give this a try,
+# and please report any QA messages it spits out.
+~games-fps/ut2004-data-3184
