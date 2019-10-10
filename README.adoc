@@ -47,15 +47,18 @@ Does not buy the game for you. Do that yourself.
 `games-engines/odamex` — https://odamex.net[Odamex DOOM sourceport]::
 Retro first-person shooter. This ebuild is written from scratch.
 
-`games-fps/ut2004-*` — UT2004 binaries and map packs via IPFS::
+`games-*/ut2004-*` — UT2004 binaries and map packs via IPFS::
 +
 --
-The mirror URLs for these have proved chronically unreliable, so these ebuilds use IPFS only.
-As not everyone can use IPFS, the Manifest files for these also contain deprecated SHA1 hashes,
+These were finally removed from the Gentoo tree in October 2019,
+following several years of attempts to pin the URLs to a reliable file mirror.
+These ebuilds, instead of trying to do that, simply point to IPFS hashes.
+
+As not everyone can use IPFS, corresponding SHA1 hashes are also listed in `metadata.xml`,
 to facilitate in scavenging the web for file host mirrors which traditionally use those.
 
 Obviously, this doesn't contain the base game data files, which are required.
-You still need to buy the disc and install `games-fps/ut2004-data::gentoo` for that.
+You still need to buy the disc and install `games-fps/ut2004-data` for that.
 --
 
 `games-server/minecraft-server` — minecraft-server ebuilds::

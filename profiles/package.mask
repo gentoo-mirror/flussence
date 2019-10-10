@@ -20,3 +20,4 @@
 # If you're brave, grab your install disc(s) and give this a try,
 # and please report any QA messages it spits out.
 ~games-fps/ut2004-data-3184
+~games-server/ut2004-ded-3369.3
