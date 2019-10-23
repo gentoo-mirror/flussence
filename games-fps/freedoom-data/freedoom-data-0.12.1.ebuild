@@ -8,7 +8,7 @@ MY_P=${P/-data/}
 DESCRIPTION="Free-licensed alternatives to the Doom 1 and 2 IWAD data files"
 HOMEPAGE="https://freedoom.github.io/"
 SRC_URI="https://github.com/freedoom/freedoom/releases/download/v${PV}/${MY_P}.zip
-	mirror://ipfs/ipfs/QmWhyGPCujMuLSwiD6L5rb6PMpomnFbaJJZbrmwJgXHMSs -> ${MY_P}.zip"
+	mirror://ipfs/ipfs/QmTjtG5BqK3GRzDo5Nq6c7dBkeACoAmRLqq7PTcmPTHMxu -> ${MY_P}.zip"
 
 LICENSE="BSD"
 SLOT="0"
@@ -34,8 +34,8 @@ pkg_postinst() {
 	elog "To play these you'll also need a game engine - try games-fps/odamex or"
 	elog "games-fps/chocolate-doom (other options are available)."
 	echo
-	elog "freedm.wad is in a separate package, ${CATEGORY}/${PN/freedoom/freedm}."
+	elog "freedm.wad is in a separate package: ${CATEGORY}/freedm"
 	echo
 	elog "This is the prebuilt data from upstream. If you'd rather build from"
-	elog "source for whatever reason, try games-fps/freedoom::games-overlay."
+	elog "source for whatever reason, try games-fps/freedoom::gentoo."
 }

@@ -8,7 +8,7 @@ MY_P=${P/-data/}
 DESCRIPTION="Free-licensed standalone data file for playing Doom 1&2 deathmatch"
 HOMEPAGE="https://freedoom.github.io/"
 SRC_URI="https://github.com/freedoom/freedoom/releases/download/v${PV}/${MY_P}.zip
-	mirror://ipfs/ipfs/Qmec3yDH7jcrnyG7AVgEPrCFpzpsqHvoKsox9FabTqxqnz -> ${MY_P}.zip"
+	mirror://ipfs/ipfs/QmWuC1KiiQFYDVecHiS9GuG3Dv6KmrBKYQ6GUtVth7rph7 -> ${MY_P}.zip"
 
 LICENSE="BSD"
 SLOT="0"
@@ -28,5 +28,5 @@ src_install() {
 
 pkg_postinst() {
 	elog "Note: This package only installs ${MY_DATADIR}/freedm.wad"
-	elog "If you want offline-playable content, install ${CATEGORY}/${PN/freedm/freedoom}."
+	elog "If you want offline-playable content, install ${CATEGORY}/freedoom"
 }
