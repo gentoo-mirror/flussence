@@ -137,34 +137,49 @@ src_prepare() {
 }
 
 multilib_src_configure() {
-	# need libdir here to avoid a double slash in a path that libtool doesn't
-	# grok so well during install (// between $EPREFIX and usr ...)
-	# cloudprovider is not packaged in Gentoo
-	ECONF_SOURCE=${S} \
-	gnome2_src_configure \
-		"$(use_enable aqua quartz-backend)" \
-		"$(use_enable broadway broadway-backend)" \
-		"$(use_enable cloudprint)" \
-		"$(use_enable colord)" \
-		"$(use_enable cups cups auto)" \
-		"$(multilib_native_use_enable gtk-doc)" \
-		"$(multilib_native_use_enable introspection)" \
-		"$(use_enable wayland wayland-backend)" \
-		"$(use_enable X x11-backend)" \
-		"$(use_enable X xcomposite)" \
-		"$(use_enable X xdamage)" \
-		"$(use_enable X xfixes)" \
-		"$(use_enable X xkb)" \
-		"$(use_enable X xrandr)" \
-		"$(use_enable xinerama)" \
-		"$(use_with accessibility atk-bridge)" \
-		--disable-cloudproviders \
-		--disable-mir-backend \
-		--disable-papi \
-		--enable-man \
-		--with-xml-catalog="${EPREFIX}"/etc/xml/catalog \
-		--libdir="${EPREFIX}/usr/$(get_libdir)" \
+	local myconf
+	myconf=(
+		$(use_enable aqua quartz-backend)
+		$(use_enable broadway broadway-backend)
+		$(use_enable cloudprint)
+		$(use_enable colord)
+		$(use_enable cups cups auto)
+		$(multilib_native_use_enable gtk-doc)
+		$(multilib_native_use_enable introspection)
+		$(use_enable wayland wayland-backend)
+		$(use_enable X x11-backend)
+		$(use_enable X xcomposite)
+		$(use_enable X xdamage)
+		$(use_enable X xfixes)
+		$(use_enable X xkb)
+		$(use_enable X xrandr)
+		$(use_enable xinerama)
+		$(use_with accessibility atk-bridge)
+		# cloudprovider is not packaged in Gentoo yet
+		--disable-cloudproviders
+		--disable-mir-backend
+		--disable-papi
+		# sysprof integration needs >=sysprof-3.33.2
+		--disable-profiler
+		--enable-man
+		--with-xml-catalog="${EPREFIX}"/etc/xml/catalog
+		# need libdir here to avoid a double slash in a path that libtool doesn't
+		# grok so well during install (// between $EPREFIX and usr ...)
+		# TODO: Is this still the case?
+		--libdir="${EPREFIX}"/usr/$(get_libdir)
 		CUPS_CONFIG="${EPREFIX}/usr/bin/${CHOST}-cups-config"
+	)
+
+	if use wayland; then
+		myconf+=(
+			# Include wayland immodule into gtk itself, to avoid problems like
+			# https://gitlab.gnome.org/GNOME/gnome-shell/issues/109 from a
+			# user overridden GTK_IM_MODULE envvar
+			--with-included-immodules=wayland
+		)
+	fi;
+
+	ECONF_SOURCE=${S} gnome2_src_configure "${myconf[@]}"
 
 	# work-around gtk-doc out-of-source brokedness
 	if multilib_is_native_abi; then
