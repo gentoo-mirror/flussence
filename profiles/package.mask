@@ -21,3 +21,8 @@
 # and please report any QA messages it spits out.
 ~games-fps/ut2004-data-3184
 ~games-server/ut2004-ded-3369.3
+
+# Anthony Parsons <ant+gentoo.bugs@flussence.eu> (27 Oct 2019)
+# yshui's compton fork was renamed to picom, and some files were renamed too.
+# The versioned releases still work, this one will require old commits though.
+=x11-misc/compton-9999
