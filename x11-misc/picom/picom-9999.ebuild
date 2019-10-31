@@ -21,7 +21,6 @@ SLOT="0"
 IUSE="dbus drm +doc +libconfig +opengl +pcre"
 
 RDEPEND="
-	!x11-misc/compton
 	dev-libs/libev
 	>=x11-libs/libxcb-1.9.2
 	x11-libs/libXext
@@ -62,10 +61,15 @@ src_install() {
 	dodoc CONTRIBUTORS
 
 	docinto examples
-	dodoc *-fshader-win.glsl *.sample.conf
+	dodoc ./*-fshader-win.glsl ./*.sample.conf
 	if use dbus; then
 		dodoc -r dbus-examples/
 	fi
 
 	meson_src_install
+
+	# remove compatibility symlinks/.desktop and move icons so this doesn't file-collide compton
+	rm -fv "${D}"/usr/{bin/compton{,-trans},share/applications/compton.desktop}
+	mv -fv "${D}"/usr/share/icons/hicolor/48x48/apps/{compton,picom}.png
+	mv -fv "${D}"/usr/share/icons/hicolor/scalable/apps/{compton,picom}.svg
 }

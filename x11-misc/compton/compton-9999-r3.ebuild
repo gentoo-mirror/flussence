@@ -6,6 +6,9 @@ EAPI=7
 GITHUB_USER="yshui"
 KEYWORDS="~amd64 ~x86"
 
+# last commit before rename to picom
+EGIT_COMMIT="ed6a96dae997727113a568789085f100d17da7a0"
+
 inherit desktop github-pkg meson xdg
 
 DESCRIPTION="Compton is a X compositing window manager, fork of xcompmgr-dana."
@@ -67,4 +70,11 @@ src_install() {
 	fi
 
 	meson_src_install
+}
+
+pkg_postinst() {
+	ewarn "This fork of compton has been renamed to picom upstream. The ${PF}"
+	ewarn "ebuild will now only install the last commit before the rename; please"
+	ewarn "move to x11-misc/picom to continue getting updates. Both packages can be"
+	ewarn "installed side-by-side."
 }
