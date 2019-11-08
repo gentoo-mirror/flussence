@@ -16,7 +16,7 @@ else
 	SRC_URI="https://distfiles.audacious-media-player.org/${MY_P}.tar.bz2"
 fi
 
-LICENSE="GPL-2"
+LICENSE="BSD-2 LGPL-2 GPL-2+ ampache? ( GPL-3 )"
 SLOT="0"
 
 IUSE="aac adplug alsa ampache aosd bs2b cdda cue ffmpeg filewriter flac fluidsynth gnome hotkeys

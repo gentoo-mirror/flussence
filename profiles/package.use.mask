@@ -1,5 +1,3 @@
-# "symbol lookup error: libval-threads.so.14: undefined symbol: ns_name_pton"
-net-irc/irssi dane
-
-# Segfaults
-=net-irc/irssi-9999 boehm-gc
+# GTK+2 support is gone.
+>=media-sound/audacious-4.0_beta1 gtk
+>=media-plugins/audacious-plugins-4.0_beta1 gtk
