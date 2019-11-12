@@ -34,7 +34,7 @@ REQUIRED_USE="
 
 RDEPEND="
 	dev-libs/libxml2:2
-	~media-sound/audacious-${PV}[gtk=,qt5=]
+	~media-sound/audacious-${PV}:=[gtk=,qt5=]
 	aac? ( >=media-libs/faad2-2.7 )
 	adplug? ( media-libs/adplug:= )
 	alsa? ( >=media-libs/alsa-lib-1.0.16 )

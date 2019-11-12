@@ -7,12 +7,15 @@
 	</maintainer>
 	<longdescription>
 		Audacious is a plugin-based audio player, descended from the Beep/XMMS 1.x line.
-		It supports CLI, plain GTK+2 and Qt5 UIs, and Winamp2-based skins for either of those;
-		the three main UIs can be enabled independent of each other.
+		It supports a Qt5 GUI with optional Winamp2-based skins, a CLI mode, and MPRIS;
+		these can be enabled independent of each other.
 	</longdescription>
 	<upstream>
 		<bugs-to>http://redmine.audacious-media-player.org/projects/audacious/issues</bugs-to>
 		<changelog>https://github.com/audacious-media-player/audacious/releases.atom</changelog>
-		<remote-id type="github">audacious-media-player/audacious-plugins</remote-id>
+		<remote-id type="github">audacious-media-player/audacious</remote-id>
 	</upstream>
+	<slots>
+		<subslots>libaudcore.so ABI - audacious-plugins needs to be rebuilt when this changes</subslots>
+	</slots>
 </pkgmetadata>

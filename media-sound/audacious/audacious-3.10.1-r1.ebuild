@@ -19,7 +19,7 @@ fi
 inherit xdg-utils
 
 LICENSE="BSD-2 CC-BY-SA-4.0"
-SLOT="0"
+SLOT="0/5.1"
 
 IUSE="+dbus nls +gtk qt5"
 REQUIRED_USE="|| ( dbus gtk qt5 )" # audtool requires dbus

@@ -18,4 +18,6 @@ SLOT="0"
 IUSE=""
 
 DEPEND=">=media-libs/libopenmpt-0.3"
-RDEPEND="${DEPEND}"
+RDEPEND="${DEPEND}
+	media-sound/audacious:=
+	!media-plugins/audacious-plugins[openmpt(-)]"
