@@ -19,5 +19,5 @@ IUSE=""
 
 DEPEND=">=media-libs/libopenmpt-0.3"
 RDEPEND="${DEPEND}
-	media-sound/audacious:=
+	=media-sound/audacious-3*:=
 	!media-plugins/audacious-plugins[openmpt(-)]"
