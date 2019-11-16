@@ -22,7 +22,7 @@ DEPEND="
 	>=dev-qt/qtcore-5.9
 	>=dev-qt/qtdeclarative-5.9
 	>=dev-qt/qtwidgets-5.9
-	>=media-sound/audacious-3.10
+	>=media-sound/audacious-3.10:=
 	media-sound/pulseaudio"
 RDEPEND="${DEPEND}"
 BDEPEND=">=dev-util/meson-0.50"
