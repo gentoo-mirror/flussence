@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>ant+gentoo.bugs@flussence.eu</email>
+		<name>Anthony Parsons</name>
+	</maintainer>
+	<upstream>
+		<changelog>https://sourceforge.net/p/sidplay-residfp/activity/feed</changelog>
+		<doc>https://sourceforge.net/p/sidplay-residfp/wiki/</doc>
+		<remote-id type="sourceforge">sidplay-residfp</remote-id>
+	</upstream>
+	<slots>
+		<subslots>libsidplayfp.so ABI</subslots>
+	</slots>
+</pkgmetadata>
