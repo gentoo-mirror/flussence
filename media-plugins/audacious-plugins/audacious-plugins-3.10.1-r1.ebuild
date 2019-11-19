@@ -77,6 +77,7 @@ RDEPEND="
 	opengl? (
 		virtual/opengl
 		x11-libs/libX11
+		qt5? ( dev-qt/qtopengl )
 	)
 	pulseaudio? ( >=media-sound/pulseaudio-0.9.5 )
 	scrobbler? ( net-misc/curl )
@@ -97,6 +98,12 @@ DEPEND="${RDEPEND} virtual/pkgconfig"
 BDEPEND="
 	mpris? ( dev-util/gdbus-codegen )
 	nls? ( sys-devel/gettext )"
+
+PATCHES=(
+	# CVE-2017-17446; https://bitbucket.org/mpyne/game-music-emu/issues/14
+	"${FILESDIR}"/0001-nsfe-Sanity-check-block-header-size-before-reading.patch
+	"${FILESDIR}"/0002-nsfe-Add-some-additional-hardening-and-sanity-checks.patch
+)
 
 src_prepare() {
 	default
