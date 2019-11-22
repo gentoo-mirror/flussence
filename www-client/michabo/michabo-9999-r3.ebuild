@@ -30,13 +30,20 @@ DEPEND="$(_qt_deps core gui websockets widgets network dbus)"
 RDEPEND="${DEPEND}"
 
 src_install() {
-	default
+	meson_src_install
 
 	domenu michabo.desktop
 
+	# app icons
 	local iconsize
 	for iconsize in 16 32 64 256; do
 		newicon -s "$iconsize" "icons/michabo-${iconsize}.png" "michabo.png"
 	done
 	newicon -s scalable "icons/michabo-default.svg" "michabo.svg"
+
+	# toolbar icons
+	cp -n icons/action-pref{erence,}s.svg # fix your shit kaniini
+	for icon in icons/action-*.svg; do
+		newicon -s scalable "${icon}" "michabo-${icon##*/}"
+	done
 }
