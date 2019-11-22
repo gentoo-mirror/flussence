@@ -6,7 +6,7 @@ EAPI=7
 GITHUB_USER="himdel"
 KEYWORDS="~amd64 ~x86"
 
-inherit github-pkg
+inherit github-pkg toolchain-funcs
 
 DESCRIPTION="Tool which allows you to compose wallpapers ('root pixmaps') for X"
 
@@ -31,6 +31,12 @@ src_prepare() {
 		-e 's/^LDFLAGS/LDLIBS/' \
 		-e '/--no-as-needed/d' \
 		Makefile || die
+
+	default
+}
+
+src_compile() {
+	tc-export CC
 
 	default
 }
