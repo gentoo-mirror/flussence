@@ -45,8 +45,9 @@ RDEPEND="
 	)
 	bs2b? ( media-libs/libbs2b )
 	cdda? (
+		>=dev-libs/libcdio-0.70:=
+		>=dev-libs/libcdio-paranoia-0.70:=
 		>=media-libs/libcddb-1.2.1
-		dev-libs/libcdio-paranoia
 	)
 	cue? ( media-libs/libcue )
 	ffmpeg? ( virtual/ffmpeg[libav?] )

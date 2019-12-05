@@ -55,8 +55,8 @@ RDEPEND="
 	adplug? ( media-libs/adplug:= )
 	alsa? ( >=media-libs/alsa-lib-1.0.16 )
 	cdda? (
-		>=dev-libs/libcdio-0.70
-		>=dev-libs/libcdio-paranoia-0.70
+		>=dev-libs/libcdio-0.70:=
+		>=dev-libs/libcdio-paranoia-0.70:=
 		>=media-libs/libcddb-1.2.1
 	)
 	cue? ( >=media-libs/libcue-2.0 )
