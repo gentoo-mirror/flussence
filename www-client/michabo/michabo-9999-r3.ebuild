@@ -14,7 +14,7 @@ if [[ ${PV} == "9999" ]]; then
 else
 	MY_P="${PN}-v${PV}"
 	KEYWORDS="~amd64 ~x86"
-	SRC_URI="${HOMEPAGE}/-/archive/v${PV}/${MY_P}.tar.bz2"
+	SRC_URI="https://git.pleroma.social/kaniini/michabo/-/archive/v${PV}/${MY_P}.tar.bz2"
 	S="${WORKDIR}/${MY_P}"
 fi
 

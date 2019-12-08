@@ -12,7 +12,7 @@ DESCRIPTION="Picom is a X compositing window manager, fork of compton."
 
 if [[ ${PV} != "9999" ]]; then
 	MY_PV="${PV/_rc/-rc}"
-	SRC_URI="${HOMEPAGE}/archive/v${MY_PV}.tar.gz -> ${P}.tar.gz"
+	SRC_URI="${GITHUB_HOMEPAGE}/archive/v${MY_PV}.tar.gz -> ${P}.tar.gz"
 	S="${WORKDIR}/${PN}-${MY_PV}"
 fi
 
