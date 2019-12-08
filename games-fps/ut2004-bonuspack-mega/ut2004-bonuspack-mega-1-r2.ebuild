@@ -12,6 +12,7 @@ MY_P="ut2004megapack-linux.tar.bz2"
 SRC_URI="mirror://ipfs/ipfs/QmXcU3L3yhq4aVBdP9Lx7Ego9vH63D5Kx1PouvTuh8orz4 -> ${MY_P}"
 
 LICENSE="ut2003"
+RESTRICT="bindist mirror"
 IUSE=""
 
 src_prepare() {

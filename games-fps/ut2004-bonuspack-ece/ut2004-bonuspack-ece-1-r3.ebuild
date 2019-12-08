@@ -12,6 +12,7 @@ SRC_URI="mirror://ipfs/ipfs/QmXcU3L3yhq4aVBdP9Lx7Ego9vH63D5Kx1PouvTuh8orz4 -> ${
 	mirror://ipfs/ipfs/QmQCpjBGdMYof2yNF5cQHrQNSzjvGkXh15uZN2RbS1HJjz -> ${MY_P[1]}"
 
 LICENSE="ut2003"
+RESTRICT="bindist mirror"
 IUSE=""
 
 src_unpack() {
