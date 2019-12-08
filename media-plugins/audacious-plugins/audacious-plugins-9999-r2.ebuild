@@ -49,7 +49,7 @@ REQUIRED_USE="
 
 RDEPEND="
 	>=dev-libs/glib-2.32
-	>=media-sound/audacious-4.0_beta1:=[qt5=]
+	>=media-sound/audacious-4.0_beta1:=[qt5(-)=]
 	sys-libs/zlib
 	aac? ( >=media-libs/faad2-2.7 )
 	adplug? ( media-libs/adplug:= )
