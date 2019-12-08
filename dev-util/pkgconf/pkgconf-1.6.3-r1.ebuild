@@ -67,7 +67,7 @@ multilib_src_install() {
 	if use pkg-config; then
 		dosym pkgconf /usr/bin/pkg-config
 	else
-		rm "${ED%/}"/usr/share/aclocal/pkg.m4 || die
+		rm "${ED}"/usr/share/aclocal/pkg.m4 || die
 	fi
 }
 
