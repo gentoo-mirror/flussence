@@ -2,17 +2,16 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-inherit cmake-utils fcaps
+
+GITHUB_USER="bradenmcd"
+KEYWORDS="~amd64"
+
+inherit cmake-utils fcaps github-pkg
 
 DESCRIPTION="Dump Nintendo Wii and GameCube discs"
-HOMEPAGE="https://github.com/bradenmcd/friidump"
 
-if [[ ${PV} == "9999" ]]; then
-	EGIT_REPO_URI="${HOMEPAGE}.git"
-	inherit git-r3
-else
-	KEYWORDS="~amd64"
-	SRC_URI="${HOMEPAGE}/archive/${PV}.tar.gz"
+if [[ ${PV} != "9999" ]]; then
+	SRC_URI="${GITHUB_HOMEPAGE}/archive/${PV}.tar.gz"
 fi
 
 LICENSE="GPL-2"
