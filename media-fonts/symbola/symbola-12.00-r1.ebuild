@@ -10,21 +10,21 @@ inherit font
 DESCRIPTION="Unicode font for Latin, IPA Extensions, Greek, Cyrillic and many Symbol Blocks"
 HOMEPAGE="http://users.teilar.gr/~g1951d/"
 SRC_URI="http://users.teilar.gr/~g1951d/${MY_PN}.zip -> ${P}.zip doc? ( http://users.teilar.gr/~g1951d/${MY_PN}.pdf -> ${P}.pdf )"
-LICENSE="Unicode_Fonts_for_Ancient_Scripts"
 
+LICENSE="Unicode_Fonts_for_Ancient_Scripts"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="alpha amd64 arm arm64 hppa ia64 mips ppc ppc64 s390 sh sparc x86"
 IUSE="doc"
 
 BDEPEND="app-arch/unzip"
 
 S="${WORKDIR}"
-FONT_S="${S}"
 FONT_SUFFIX="ttf"
 
-src_prepare() {
+src_install() {
 	if use doc; then
 		DOCS="${DISTDIR}/${P}.pdf"
 	fi
-	default
+
+	font_src_install
 }

@@ -11,7 +11,7 @@ SRC_URI="https://assets.ubuntu.com/v1/0cef8205-${P}.zip -> ${P}.zip"
 
 LICENSE="UbuntuFontLicense-1.0"
 SLOT="0"
-KEYWORDS="amd64 ~arm ~arm64 x86"
+KEYWORDS="alpha amd64 arm arm64 hppa ia64 mips ppc ppc64 s390 sh sparc x86"
 IUSE=""
 
 BDEPEND="app-arch/unzip"
