@@ -18,7 +18,7 @@ fi
 
 inherit xdg
 
-LICENSE="BSD-2 CC-BY-SA-4.0"
+LICENSE="BSD-2 BSD CC-BY-SA-4.0"
 SLOT="0/5.2"
 
 # N.B. gtk2 support was removed in 4.0_beta1.
