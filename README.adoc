@@ -89,6 +89,10 @@ or else the higher version number of the GTK+3 one will override it.
 You may need to run `emerge --deselect gnome-extra/gucharmap` first if you have it already.
 --
 
+`media-fonts/tt2020` — https://fontlibrary.org/en/font/tt2020-base-style[authentic typewriter font]::
+A monospace font that uses OpenType alternate glyph tricks to give letters an analogue feel.
+This is a heavy download, but you can `USE=minimal` to get just the base font without variants.
+
 `media-libs/libopenmpt` — https://lib.openmpt.org[OpenMPT playback library]::
 `media-plugins/audacious-openmpt` — https://github.com/cspiegel/audacious-openmpt[Audacious libopenmpt plugin]::
 A modern replacement for modplug and mikmod.
