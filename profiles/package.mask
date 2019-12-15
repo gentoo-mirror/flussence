@@ -1,3 +1,4 @@
+# vim: tw=80
 # Anthony Parsons <ant+gentoo.bugs@flussence.eu> (13 May 2018)
 # This is only for people who know why they need it.
 =virtual/linux-sources-9999
@@ -13,3 +14,9 @@
 =media-sound/audacious-9999-r1
 =www-client/michabo-9999-r1
 =www-client/michabo-9999-r2
+
+# Anthony Parsons <ant+gentoo.bugs@flussence.eu> (15 Dec 2019)
+# This hasn't been updated in a while due to lack of tuits/spoons/etc. It may be
+# fixed later, but until then I strongly recommend using the server ebuild in
+# ::gentoo, it's far less crufty than this.
+games-server/minecraft-server
