@@ -10,7 +10,7 @@ HOMEPAGE="https://liandri.beyondunreal.com/Unreal_Tournament_2004"
 SRC_URI="mirror://ipfs/ipfs/QmdphFqmxmA4AVbfYXkX41e9Ad2VDEvR1WgHy57F5cbP3X -> cbp2-volume1_zip.zip
 	mirror://ipfs/ipfs/QmV8H3Kf6LQDwfUB4EKfMAoW1bhmE6b3m3XNCcnpaMGGeD -> cbp2-volume2_zip.zip"
 
-LICENSE="freedist"
+LICENSE="free-noncomm all-rights-reserved"
 IUSE=""
 
 RDEPEND="games-fps/ut2004-bonuspack-cbp1
