@@ -24,7 +24,6 @@ RESTRICT="bindist mirror strip"
 DEPEND="app-arch/unzip
 	app-arch/p7zip"
 RDEPEND="sys-libs/glibc
-	!games-fps/ut2004[dedicated]
 	games-fps/ut2004-bonuspack-ece
 	games-fps/ut2004-bonuspack-mega"
 
