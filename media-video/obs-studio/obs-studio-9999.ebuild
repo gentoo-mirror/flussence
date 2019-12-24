@@ -58,7 +58,7 @@ DEPEND="
 	)
 	pulseaudio? ( media-sound/pulseaudio )
 	python? ( ${PYTHON_DEPS} )
-	ssl? ( net-libs/mbedtls )
+	ssl? ( net-libs/mbedtls:= )
 	truetype? (
 		media-libs/fontconfig
 		media-libs/freetype
