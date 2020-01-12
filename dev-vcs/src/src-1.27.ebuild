@@ -3,7 +3,7 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python2_7 python3_{4,5,6,7} )
+PYTHON_COMPAT=( python2_7 python3_{6,7} ) # restricted by deps: asciidoc, pylint
 inherit python-r1
 
 DESCRIPTION="A svn/hg/git-like UI wrapper around RCS"
