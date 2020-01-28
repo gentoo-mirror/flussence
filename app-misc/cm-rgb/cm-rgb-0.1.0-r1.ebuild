@@ -21,5 +21,6 @@ REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 RDEPEND="${PYTHON_DEPS}
 	dev-python/click[${PYTHON_USEDEP}]
-	dev-python/cython-hidapi[${PYTHON_USEDEP}]"
+	dev-python/cython-hidapi[${PYTHON_USEDEP}]
+	dev-python/psutil[${PYTHON_USEDEP}]"
 DEPEND="${RDEPEND}"
