@@ -4,6 +4,7 @@
 EAPI=7
 
 DIST_AUTHOR="DCONWAY"
+DIST_VERSION="0.002002"
 inherit perl-module
 
 DESCRIPTION="Perl module and command line tool (rxrx) to visually debug regexes in-place"
