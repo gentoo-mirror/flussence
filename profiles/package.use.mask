@@ -1,3 +1,6 @@
 # GTK+2 is gone
 >=media-sound/audacious-4.0_beta1 gtk
 >=media-plugins/audacious-plugins-4.0_beta1 gtk aosd hotkeys
+
+# adplug and libbinio are unmaintained and last-rited in ::gentoo
+media-plugins/audacious-plugins adplug
