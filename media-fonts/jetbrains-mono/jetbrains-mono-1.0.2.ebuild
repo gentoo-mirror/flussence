@@ -12,7 +12,7 @@ SRC_URI="https://download.jetbrains.com/fonts/${MY_P}.zip -> ${P}.zip"
 
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~alpha amd64 arm arm64 hppa ia64 mips ppc ppc64 s390 sh sparc x86"
 
 BDEPEND="app-arch/unzip"
 
