@@ -1,4 +1,4 @@
-# Copyright 2018-2019 Anthony Parsons
+# Copyright 2018-2020 Anthony Parsons
 # Distributed under the terms of the GNU General Public License v2
 
 # @ECLASS: ut2004-mod.eclass
@@ -14,7 +14,7 @@
 EXPORT_FUNCTIONS src_install
 
 KEYWORDS="~amd64 ~x86"
-RESTRICT="mirror strip"
+RESTRICT="strip"
 SLOT="0"
 
 BDEPEND="app-arch/unzip"
@@ -22,27 +22,10 @@ RDEPEND="|| ( games-fps/ut2004 games-server/ut2004-ded )"
 
 S="${WORKDIR}"
 
-GAME_DATADIR="/usr/share/games/ut2004"
+GAME_DATADIR="/opt/ut2004"
 GAME_SUBDIRS=(Animations Help Maps Music Sounds StaticMeshes System Textures)
-GAME_DESTDIRS=(/opt/ut2004 /opt/ut2004-ded)
 
 ut2004-mod_src_install() {
 	insinto "${GAME_DATADIR}"
-
-	for subdir in "${GAME_SUBDIRS[@]}"; do
-		[[ -d ./"${subdir}" ]] || continue
-		doins -r ./"${subdir}"
-		ut2004-mod_link_files "${subdir}"
-	done
-}
-
-ut2004-mod_link_files() {
-	local subdir=$1
-	local linkdirs=(/opt/ut2004 /opt/ut2004-ded)
-
-	for srcfile in "${D}/${GAME_DATADIR}/${subdir}"/*; do
-		for optdir in "${GAME_DESTDIRS[@]}"; do
-			dosym "${srcfile}" "${optdir}/${subdir}/${srcfile##*/}"
-		done
-	done
+	doins -r *
 }

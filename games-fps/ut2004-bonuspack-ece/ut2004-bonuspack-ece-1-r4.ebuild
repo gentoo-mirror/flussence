@@ -1,19 +1,19 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
 inherit ut2004-mod
 
-DESCRIPTION="UT2004 Editor's Choice Edition bonus pack"
+DESCRIPTION="UT2004 Editor's Choice Edition - Editor's Choice Edition bonus pack"
 HOMEPAGE="http://www.unrealtournament2004.com/"
 MY_P=(ut2004megapack-linux.tar.bz2 UT2004-ONSBonusMapPack.zip)
-SRC_URI="mirror://ipfs/ipfs/QmXcU3L3yhq4aVBdP9Lx7Ego9vH63D5Kx1PouvTuh8orz4 -> ${MY_P[0]}
+SRC_URI="
+	mirror://ipfs/ipfs/QmXcU3L3yhq4aVBdP9Lx7Ego9vH63D5Kx1PouvTuh8orz4 -> ${MY_P[0]}
 	mirror://ipfs/ipfs/QmQCpjBGdMYof2yNF5cQHrQNSzjvGkXh15uZN2RbS1HJjz -> ${MY_P[1]}"
 
 LICENSE="ut2003"
 RESTRICT="bindist mirror"
-IUSE=""
 
 src_unpack() {
 	unpack "${MY_P[0]}"
