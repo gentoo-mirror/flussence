@@ -5,10 +5,6 @@
 		<email>ant+gentoo.bugs@flussence.eu</email>
 		<name>Anthony Parsons</name>
 	</maintainer>
-	<longdescription lang="en">
-		Distcc is a program to distribute compilation of C code across several
-		machines on a network.
-	</longdescription>
 	<use>
 		<flag name="gssapi">Enable support for <pkg>net-libs/libgssglue</pkg></flag>
 		<flag name="pump">Install pump and include_server python scripts for pump mode</flag>
