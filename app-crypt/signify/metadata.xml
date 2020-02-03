@@ -5,9 +5,6 @@
 		<email>ant+gentoo.bugs@flussence.eu</email>
 		<name>Anthony Parsons</name>
 	</maintainer>
-	<longdescription lang="en">
-		Signify is a sane alternative to GnuPG.
-	</longdescription>
 	<upstream>
 		<bugs-to>https://github.com/aperezdc/signify/issues</bugs-to>
 		<changelog>https://github.com/aperezdc/signify/releases.atom</changelog>
