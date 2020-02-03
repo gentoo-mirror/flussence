@@ -33,6 +33,11 @@ This list is manually maintained. Some things may be missing (accidentally or no
 `dev-perl/Regexp-Debugger` — [Regexp::Debugger](https://metacpan.org/pod/Regexp::Debugger)
 : The `rxrx` utility, a lifesaver when trying to figure out what a Perl regex is doing.
 
+`dev-qt/qtstyleplugins` — [Qt5 Themes](https://code.qt.io/cgit/qt/qtstyleplugins.git/)
+: Includes the old Qt4 default, “Plastique”, and a mostly-working GTK+2 theme engine.
+  This hasn't been maintained upstream since 2017, but surprisingly still works.
+  Unfortunately lacks the pinnacle of FOSS GUI design, Keramik.
+
 `dev-vcs/src` — [Simple Revision Control](https://gitlab.com/esr/src)
 : A python wrapper around `dev-vcs/rcs` that makes it pretend it's a modern program.
   Chances are you'd be better off using something like `dev-vcs/fossil`.
