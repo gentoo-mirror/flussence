@@ -41,7 +41,7 @@ RDEPEND="dev-libs/glib:2
 	svg? ( gnome-base/librsvg:2 )
 	xdg? (
 		${PYTHON_DEPS}
-		$(python_gen_cond_dep 'dev-python/pyxdg[${PYTHON_MULTI_USEDEP}]')
+		$(python_gen_cond_dep "dev-python/pyxdg[\${PYTHON_MULTI_USEDEP}]")
 	)
 	"
 DEPEND="${RDEPEND}
@@ -73,20 +73,20 @@ src_prepare() {
 src_configure() {
 	econf \
 		--docdir="${EPREFIX}/usr/share/doc/${PF}" \
-		$(use_enable debug) \
-		$(use_enable static-libs static) \
-		$(use_enable nls) \
-		$(use_enable imlib imlib2) \
-		$(use_enable svg librsvg) \
-		$(use_enable startup-notification) \
-		$(use_enable session session-management) \
+		"$(use_enable debug)" \
+		"$(use_enable static-libs static)" \
+		"$(use_enable nls)" \
+		"$(use_enable imlib imlib2)" \
+		"$(use_enable svg librsvg)" \
+		"$(use_enable startup-notification)" \
+		"$(use_enable session session-management)" \
 		--with-x
 }
 
 src_install() {
 	dodir /etc/X11/Sessions
 	echo "/usr/bin/openbox-session" > "${ED}/etc/X11/Sessions/${PN}"
-	fperms a+x /etc/X11/Sessions/${PN}
+	fperms a+x "/etc/X11/Sessions/${PN}"
 	emake DESTDIR="${D}" install
 	if use branding; then
 		insinto /usr/share/themes
