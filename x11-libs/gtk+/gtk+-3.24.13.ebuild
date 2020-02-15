@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6 # restricted by gnome2.eclass
@@ -9,6 +9,7 @@ inherit flag-o-matic gnome2 multilib virtualx multilib-minimal
 
 DESCRIPTION="Gimp ToolKit +"
 HOMEPAGE="https://www.gtk.org/"
+SRC_URI+=" https://dev.gentoo.org/~leio/distfiles/${P}-patchset.tar.xz"
 
 LICENSE="LGPL-2+"
 SLOT="3"
@@ -28,6 +29,7 @@ RESTRICT="test"
 # bug #????
 COMMON_DEPEND="
 	>=dev-libs/atk-2.15[introspection?,${MULTILIB_USEDEP}]
+	>=dev-libs/fribidi-0.19.7[${MULTILIB_USEDEP}]
 	>=dev-libs/glib-2.57.2:2[${MULTILIB_USEDEP}]
 	media-libs/fontconfig[${MULTILIB_USEDEP}]
 	>=media-libs/libepoxy-1.4[X(+)?,${MULTILIB_USEDEP}]
@@ -41,16 +43,17 @@ COMMON_DEPEND="
 		>=net-libs/rest-0.7[${MULTILIB_USEDEP}]
 		>=dev-libs/json-glib-1.0[${MULTILIB_USEDEP}] )
 	colord? ( >=x11-misc/colord-0.1.9:0=[${MULTILIB_USEDEP}] )
-	cups? ( >=net-print/cups-1.2[${MULTILIB_USEDEP}] )
+	cups? ( >=net-print/cups-2.0[${MULTILIB_USEDEP}] )
 	introspection? ( >=dev-libs/gobject-introspection-1.39:= )
 	wayland? (
 		>=dev-libs/wayland-1.9.91[${MULTILIB_USEDEP}]
-		>=dev-libs/wayland-protocols-1.12
+		>=dev-libs/wayland-protocols-1.14
 		media-libs/mesa[wayland,${MULTILIB_USEDEP}]
 		>=x11-libs/libxkbcommon-0.2[${MULTILIB_USEDEP}]
 	)
 	X? (
 		accessibility? ( >=app-accessibility/at-spi2-atk-2.5.3[${MULTILIB_USEDEP}] )
+		media-libs/mesa[X(+),${MULTILIB_USEDEP}]
 		x11-libs/libX11[${MULTILIB_USEDEP}]
 		>=x11-libs/libXi-1.3[${MULTILIB_USEDEP}]
 		x11-libs/libXext[${MULTILIB_USEDEP}]
@@ -124,6 +127,9 @@ src_prepare() {
 		strip_builddir SRC_SUBDIRS examples Makefile.{am,in}
 	fi
 
+	# Select patches from origin/gtk-3-24 on 2019-12-25
+	eapply "${WORKDIR}"/patches
+
 	# gtk-update-icon-cache is installed by dev-util/gtk-update-icon-cache
 	eapply "${FILESDIR}/${PN}"-3.24.8-update-icon-cache.patch
 
@@ -157,7 +163,6 @@ multilib_src_configure() {
 		"$(use_with accessibility atk-bridge)"
 		# cloudprovider is not packaged in Gentoo yet
 		--disable-cloudproviders
-		--disable-mir-backend
 		--disable-papi
 		# sysprof integration needs >=sysprof-3.33.2
 		--disable-profiler
@@ -202,8 +207,8 @@ multilib_src_install() {
 multilib_src_install_all() {
 	insinto /etc/gtk-3.0
 	doins "${FILESDIR}"/settings.ini
-	# Skip README.{in,commits,win32} and useless ChangeLog that would get installed by default
-	DOCS=( AUTHORS NEWS README )
+	# Skip README.{in,commits,win32} that would get installed by default
+	DOCS=( AUTHORS ChangeLog NEWS README )
 	einstalldocs
 }
 
