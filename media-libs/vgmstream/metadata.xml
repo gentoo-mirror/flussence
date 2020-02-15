@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>ant+gentoo.bugs@flussence.eu</email>
+		<name>Anthony Parsons</name>
+	</maintainer>
+		<use>
+			<flag name="audacious">Enable the <pkg>media-sound/audacious</pkg> input plugin</flag>
+			<flag name="cli">Build vgmstream123 (CLI player) and vgmstream_cli (render-to-wav) binaries</flag>
+			<flag name="fdk">Use <pkg>media-libs/fdk-aac</pkg> for AAC decoding</flag>
+		</use>
+</pkgmetadata>
