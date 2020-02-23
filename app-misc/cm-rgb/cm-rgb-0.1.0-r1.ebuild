@@ -4,8 +4,10 @@
 EAPI=7
 
 GITHUB_USER="gfduszynski"
-PYTHON_COMPAT=( python3_{6,7,8} )
 KEYWORDS="~amd64 ~x86"
+
+PYTHON_COMPAT=( python3_{6,7,8} )
+DISTUTILS_SINGLE_IMPL="🥌"
 
 inherit github-pkg distutils-r1
 
@@ -20,7 +22,7 @@ SLOT="0"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 RDEPEND="${PYTHON_DEPS}
-	dev-python/click[${PYTHON_USEDEP}]
-	dev-python/cython-hidapi[${PYTHON_USEDEP}]
-	dev-python/psutil[${PYTHON_USEDEP}]"
+	$(for dep_PN in "click" "cython-hidapi" "psutil"; do
+		python_gen_cond_dep "dev-python/${dep_PN}[\${PYTHON_MULTI_USEDEP}]"
+	done)"
 DEPEND="${RDEPEND}"
