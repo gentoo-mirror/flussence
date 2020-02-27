@@ -1,5 +1,5 @@
 From c82a7c81ad8ac62c0095f76f68091af2ec18ef4c Mon Sep 17 00:00:00 2001
-From: Anthony Parsons <ant@flussence.eu>
+From: flussence <flussence+arB19vfDKj@flussence.eu>
 Date: Thu, 11 Apr 2019 18:20:52 +0100
 Subject: [PATCH v2] Always use external gtk-update-icon-cache
 
