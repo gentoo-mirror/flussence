@@ -1,4 +1,4 @@
-# Copyright 2019 Gentoo Authors
+# Copyright 2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -34,10 +34,7 @@ RDEPEND="
 	x11-libs/xcb-util-renderutil
 	dbus? ( sys-apps/dbus )
 	drm? ( x11-libs/libdrm )
-	libconfig? (
-		>=dev-libs/libconfig-1.4:=
-		dev-libs/libxdg-basedir
-	)
+	libconfig? ( >=dev-libs/libconfig-1.4:= )
 	opengl? ( virtual/opengl )
 	pcre? ( >=dev-libs/libpcre-8.20:3 )"
 DEPEND="${RDEPEND}
