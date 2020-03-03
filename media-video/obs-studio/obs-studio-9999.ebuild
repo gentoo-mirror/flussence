@@ -1,13 +1,13 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{5,6,7} )
+PYTHON_COMPAT=( python3_{6,7} )
 
 inherit cmake-utils python-single-r1 xdg-utils
 
-MY_REPO_URI="https://github.com/jp9000/obs-studio"
+MY_REPO_URI="https://github.com/obsproject/obs-studio"
 
 if [[ ${PV} == "9999" ]]; then
 	inherit git-r3
@@ -32,6 +32,7 @@ BDEPEND="
 "
 DEPEND="
 	>=dev-libs/jansson-2.5
+	media-video/ffmpeg:=
 	media-libs/x264:=
 	net-misc/curl
 	sys-apps/dbus
@@ -44,7 +45,6 @@ DEPEND="
 	alsa? ( media-libs/alsa-lib )
 	fdk? ( media-libs/fdk-aac:= )
 	imagemagick? ( media-gfx/imagemagick:= )
-	!imagemagick? ( media-video/ffmpeg:= )
 	jack? ( virtual/jack )
 	libcxx? ( sys-libs/libcxx )
 	luajit? ( dev-lang/luajit:2 )
