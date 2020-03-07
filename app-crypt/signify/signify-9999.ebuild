@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -9,6 +9,7 @@ KEYWORDS="~amd64 ~x86"
 inherit github-pkg toolchain-funcs
 
 DESCRIPTION="Cryptographically sign and verify files"
+HOMEPAGE+=" https://flak.tedunangst.com/post/signify"
 
 if [[ ${PV} != "9999" ]]; then
 	SRC_URI="${GITHUB_HOMEPAGE}/releases/download/v${PV}/${P}.tar.xz"
