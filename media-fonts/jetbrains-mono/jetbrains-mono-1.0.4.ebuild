@@ -16,6 +16,6 @@ KEYWORDS="~alpha amd64 arm arm64 hppa ia64 mips ppc ppc64 s390 sh sparc x86"
 
 BDEPEND="app-arch/unzip"
 
-S="${WORKDIR}/${MY_P}-Source"
+S="${WORKDIR}/${MY_P}"
 FONT_SUFFIX="ttf"
 FONT_S="${S}/${FONT_SUFFIX}"
