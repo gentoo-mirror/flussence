@@ -19,7 +19,7 @@ fi
 LICENSE="BSD-2 LGPL-2 GPL-2+ ampache? ( GPL-3 )"
 SLOT="0"
 
-IUSE="aac adplug +alsa ampache aosd bs2b cdda cue ffmpeg filewriter flac fluidsynth gnome hotkeys
+IUSE="aac +alsa ampache aosd bs2b cdda cue ffmpeg filewriter flac fluidsynth gnome hotkeys
 	http +gtk jack lame libav libnotify libsamplerate lirc mms modplug mp3 mpris nls opengl oss
 	pulseaudio qt5 qtmedia scrobbler sdl sdl2 sid sndfile sox vorbis wavpack
 	+bundled-libs"
@@ -36,7 +36,6 @@ RDEPEND="
 	dev-libs/libxml2:2
 	~media-sound/audacious-${PV}:=[gtk(-)=,qt5(-)=]
 	aac? ( >=media-libs/faad2-2.7 )
-	adplug? ( media-libs/adplug:= )
 	alsa? ( >=media-libs/alsa-lib-1.0.16 )
 	ampache? ( =media-libs/ampache_browser-1* )
 	aosd? (
@@ -120,7 +119,6 @@ src_configure() {
 		--disable-coreaudio \
 		--disable-sndio \
 		"$(use_enable aac)" \
-		"$(use_enable adplug)" \
 		"$(use_enable alsa)" \
 		"$(use_enable ampache)" \
 		"$(use_enable aosd)" \

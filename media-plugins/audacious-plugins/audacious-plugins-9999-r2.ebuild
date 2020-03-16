@@ -31,7 +31,7 @@ LICENSE="
 SLOT="0"
 
 USE_FRONTENDS="+qt5 +mpris"
-USE_CODECS="aac adplug cdda ffmpeg flac fluidsynth lame modplug mp3 openmpt sid vorbis wavpack"
+USE_CODECS="aac cdda ffmpeg flac fluidsynth lame modplug mp3 openmpt sid vorbis wavpack"
 USE_OUTPUTS="alsa encode pulseaudio qtmedia"
 USE_TRANSPORTS="http mms streamtuner"
 USE_FORMATS="cue +xml"
@@ -52,7 +52,6 @@ RDEPEND="
 	>=media-sound/audacious-4.0_beta1:=[qt5(-)=]
 	sys-libs/zlib
 	aac? ( >=media-libs/faad2-2.7 )
-	adplug? ( media-libs/adplug:= )
 	alsa? ( >=media-libs/alsa-lib-1.0.16 )
 	cdda? (
 		>=dev-libs/libcdio-0.70:=
@@ -105,7 +104,6 @@ src_configure() {
 	#   alarm ampache aosd bs2b {cairo-,gl,qtgl}spectrum hotkey jack ladspa lirc oss4 sdlout
 	# Some others never will be because they're either not for linux or qt5.
 	local emesonargs=(
-		"$(meson_use                adplug)"
 		"$(meson_use                alsa)"
 		"$(meson_use fluidsynth     amidiplug)"
 		"$(meson_use cdda           cdaudio)"
