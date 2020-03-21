@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -19,14 +19,15 @@ fi
 inherit meson xdg
 
 LICENSE="BSD-2 BSD CC-BY-SA-4.0"
-SLOT="0/5.2"
+SLOT="0/5.1"
 
-IUSE="+dbus +qt5"
+IUSE="+dbus +libarchive +qt5"
 REQUIRED_USE="|| ( dbus qt5 )" # audtool requires dbus, GUI requires qt5
 
 RDEPEND="
 	>=dev-libs/glib-2.32
 	dbus? ( sys-apps/dbus )
+	libarchive? ( app-arch/libarchive )
 	qt5? (
 		>=dev-qt/qtcore-5.2:5
 		>=dev-qt/qtgui-5.2:5
@@ -50,7 +51,9 @@ pkg_setup() {
 
 src_configure() {
 	local emesonargs=(
+		"-Dauto_features=disabled"
 		"-Ddbus=$(usex dbus true false)"
+		"-Dlibarchive=$(usex libarchive true false)"
 		"-Dqt=$(usex qt5 true false)"
 	)
 	meson_src_configure

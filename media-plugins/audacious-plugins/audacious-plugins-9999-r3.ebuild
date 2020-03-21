@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -49,7 +49,6 @@ REQUIRED_USE="
 
 RDEPEND="
 	>=dev-libs/glib-2.32
-	>=media-sound/audacious-4.0_beta1:=[qt5(-)=]
 	sys-libs/zlib
 	aac? ( >=media-libs/faad2-2.7 )
 	alsa? ( >=media-libs/alsa-lib-1.0.16 )
@@ -63,6 +62,8 @@ RDEPEND="
 	flac? ( >=media-libs/flac-1.2.1 )
 	fluidsynth? ( >=media-sound/fluidsynth-1.0.6:= )
 	http? ( >=net-libs/neon-0.27 )
+	mpris? ( >=media-sound/audacious-4.0:=[qt5(-)=,dbus(-)] )
+	!mpris? ( >=media-sound/audacious-4.0:=[qt5(-)=] )
 	qt5? (
 		>=dev-qt/qtcore-5.2:5
 		>=dev-qt/qtgui-5.2:5

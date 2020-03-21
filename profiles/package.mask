@@ -5,8 +5,6 @@
 
 # Anthony Parsons <ant+gentoo.bugs@flussence.eu> (24 Nov 2019)
 # Stale live ebuilds for older build systems. Will be removed at next release.
-=media-plugins/audacious-plugins-9999-r1
-=media-sound/audacious-9999-r1
 =www-client/michabo-9999-r1
 =www-client/michabo-9999-r2
 
