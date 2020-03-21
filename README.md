@@ -88,7 +88,7 @@ This list is manually maintained. Some things may be missing (accidentally or no
   Probably has too many `USE` flags, but it works and does what I need from it.
   You can even build it with no GUI at all, if you're into that sort of thing.
 
-`sys-process/runit` — [Runit PID1 and service manager](http://smarden.org)
+`sys-process/runit` — [Runit PID1 and service manager](http://smarden.org/runit/)
 : An elegant init for a more civilised age. (S6 is good too)
   This package is a hard fork of whatever was in the Gentoo tree circa 2014,
   which was full of unfixed bugs and didn't have a responsible maintainer.
