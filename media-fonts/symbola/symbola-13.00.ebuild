@@ -6,19 +6,20 @@ EAPI=7
 inherit font
 
 DESCRIPTION="Unicode font for Latin, IPA Extensions, Greek, Cyrillic and many Symbol Blocks"
-HOMEPAGE="http://users.teilar.gr/~g1951d/"
+HOMEPAGE="https://dn-works.com/ufas/"
 MY_PN="${PN/s/S}"
-SRC_URI="http://users.teilar.gr/~g1951d/${MY_PN}.zip -> ${P}.zip doc? ( http://users.teilar.gr/~g1951d/${MY_PN}.pdf -> ${P}.pdf )"
+SRC_URI="https://dn-works.com/wp-content/uploads/2020/UFAS-Fonts/${MY_PN}.zip -> ${P}.zip
+	doc? ( https://dn-works.com/wp-content/uploads/2020/UFAS-Docs/${MY_PN}.pdf -> ${P}.pdf )"
 
 LICENSE="Unicode_Fonts_for_Ancient_Scripts"
 SLOT="0"
-KEYWORDS="~alpha amd64 arm arm64 hppa ia64 mips ppc ppc64 s390 sh sparc x86"
+KEYWORDS="amd64 arm arm64 hppa ia64 mips ppc ppc64 s390 sh sparc x86"
 IUSE="doc"
 
 BDEPEND="app-arch/unzip"
 
 S="${WORKDIR}"
-FONT_SUFFIX="ttf"
+FONT_SUFFIX="otf"
 
 src_install() {
 	if use doc; then
