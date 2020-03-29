@@ -15,6 +15,7 @@ LICENSE="Unicode_Fonts_for_Ancient_Scripts"
 SLOT="0"
 KEYWORDS="amd64 arm arm64 mips ppc ppc64 x86"
 IUSE="doc"
+RESTRICT="bindist mirror"
 
 BDEPEND="app-arch/unzip"
 
