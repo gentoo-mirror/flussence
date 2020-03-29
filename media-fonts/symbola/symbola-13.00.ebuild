@@ -13,7 +13,7 @@ SRC_URI="https://dn-works.com/wp-content/uploads/2020/UFAS-Fonts/${MY_PN}.zip ->
 
 LICENSE="Unicode_Fonts_for_Ancient_Scripts"
 SLOT="0"
-KEYWORDS="amd64 arm arm64 hppa ia64 mips ppc ppc64 s390 sh sparc x86"
+KEYWORDS="amd64 arm arm64 mips ppc ppc64 x86"
 IUSE="doc"
 
 BDEPEND="app-arch/unzip"

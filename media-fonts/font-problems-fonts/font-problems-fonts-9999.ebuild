@@ -5,7 +5,7 @@ EAPI=7
 
 GITHUB_USER="robey"
 GITHUB_PROJ="font-problems"
-KEYWORDS="~alpha amd64 arm arm64 hppa ia64 mips ppc ppc64 s390 sh sparc x86"
+KEYWORDS="amd64 arm arm64 mips ppc ppc64 x86"
 
 inherit font github-pkg
 

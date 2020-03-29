@@ -7,14 +7,17 @@ These are my packages for things that:
 * aren't as up-to-date as I'd like there,
 * aren't maintained to a sufficient standard in the main tree.
 
+All commits are signed with the `<name>@flussence.eu` in the git logs, which is available via WKD.
+
+Packages that install arch-independent stuff will be keyworded for non-exotic arches only:
+x86/amd64, arm/arm64, mips and ppc/ppc64.
+
 Installing
 ----------
 If you know what you're doing, go right ahead. Otherwise:
 
     root # emerge -n eselect-repository
     root # eselect repository enable flussence
-
-All commits are signed with the `<name>@flussence.eu` in the git logs, which is available via WKD.
 
 Contents
 --------
