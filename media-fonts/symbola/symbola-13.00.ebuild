@@ -11,7 +11,7 @@ MY_PN="${PN/s/S}"
 SRC_URI="https://dn-works.com/wp-content/uploads/2020/UFAS-Fonts/${MY_PN}.zip -> ${P}.zip
 	doc? ( https://dn-works.com/wp-content/uploads/2020/UFAS-Docs/${MY_PN}.pdf -> ${P}.pdf )"
 
-LICENSE="Unicode_Fonts_for_Ancient_Scripts"
+LICENSE="Unicode_Fonts_for_Ancient_Scripts_20200325"
 SLOT="0"
 KEYWORDS="amd64 arm arm64 mips ppc ppc64 x86"
 IUSE="doc"
