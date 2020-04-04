@@ -31,22 +31,20 @@ LICENSE="
 SLOT="0"
 
 USE_FRONTENDS="+qt5 +mpris"
-USE_CODECS="aac cdda ffmpeg flac fluidsynth lame modplug mp3 openmpt sid vorbis wavpack"
 USE_OUTPUTS="alsa encode +pulseaudio qtmedia"
-USE_TRANSPORTS="http mms streamtuner"
-USE_FORMATS="cue +xml"
-IUSE="libnotify libsamplerate scrobbler sndfile
-	${USE_FRONTENDS} ${USE_CODECS} ${USE_OUTPUTS} ${USE_TRANSPORTS} ${USE_FORMATS}"
+USE_CODECS="+flac lame +vorbis"
+IUSE="aac cdda cue ffmpeg fluidsynth http libnotify libsamplerate mms modplug
+	mp3 opengl openmpt scrobbler sid sndfile streamtuner wavpack +xml
+	${USE_FRONTENDS} ${USE_OUTPUTS} ${USE_CODECS}"
 
 REQUIRED_USE="
 	|| ( ${USE_FRONTENDS//+/} )
 	|| ( ${USE_OUTPUTS//+/} )
-	encode? ( || ( flac lame vorbis ) )
-	libnotify? ( qt5 )
-	qtmedia? ( qt5 )
-	scrobbler? ( xml )
-	streamtuner? ( qt5 )"
+	encode? ( || ( ${USE_CODECS//+/} ) )
+	!qt5? ( !libnotify !qtmedia !opengl !streamtuner )
+	scrobbler? ( xml )"
 
+QT_REQ="5.2"
 RDEPEND="
 	>=dev-libs/glib-2.32
 	sys-libs/zlib
@@ -65,23 +63,24 @@ RDEPEND="
 	mpris? ( >=media-sound/audacious-4.0:=[qt5(-)=,dbus(-)] )
 	!mpris? ( >=media-sound/audacious-4.0:=[qt5(-)=] )
 	qt5? (
-		>=dev-qt/qtcore-5.2:5
-		>=dev-qt/qtgui-5.2:5
-		>=dev-qt/qtwidgets-5.2:5
-		qtmedia? ( dev-qt/qtmultimedia:5 )
-		streamtuner? ( dev-qt/qtnetwork:5 )
+		>=dev-qt/qtcore-${QT_REQ}:5
+		>=dev-qt/qtgui-${QT_REQ}:5
+		>=dev-qt/qtwidgets-${QT_REQ}:5
 	)
+	qtmedia? ( >=dev-qt/qtmultimedia-${QT_REQ}:5 )
 	lame? ( media-sound/lame )
 	libnotify? ( x11-libs/libnotify )
 	libsamplerate? ( media-libs/libsamplerate:= )
 	mms? ( >=media-libs/libmms-0.3 )
 	modplug? ( media-libs/libmodplug )
 	mp3? ( >=media-sound/mpg123-1.12 )
+	opengl? ( >=dev-qt/qtopengl-${QT_REQ}:5 )
 	openmpt? ( >=media-libs/libopenmpt-0.2 )
 	pulseaudio? ( >=media-sound/pulseaudio-0.9.5 )
 	scrobbler? ( net-misc/curl )
 	sid? ( >=media-libs/libsidplayfp-2.0 )
 	sndfile? ( >=media-libs/libsndfile-1.0.19 )
+	streamtuner? ( >=dev-qt/qtnetwork-${QT_REQ}:5 )
 	vorbis? (
 		>=media-libs/libogg-1.0
 		>=media-libs/libvorbis-1.0
@@ -101,8 +100,8 @@ PATCHES=(
 )
 
 src_configure() {
-	# As of this writing (2019-11-17), these plugins aren't yet meson-ified:
-	#   alarm ampache aosd bs2b {cairo-,gl,qtgl}spectrum hotkey jack ladspa lirc oss4 sdlout
+	# As of this writing (2020-04-04), these plugins aren't yet meson-ified:
+	#   alarm ampache aosd bs2b {cairo-,gl}spectrum hotkey jack ladspa lirc oss4 sdlout
 	# Some others never will be because they're either not for linux or qt5.
 	local emesonargs=(
 		"$(meson_use                alsa)"
@@ -116,6 +115,7 @@ src_configure() {
 		"$(meson_use lame           filewriter-mp3)"
 		"$(meson_use vorbis         filewriter-ogg)"
 		"$(meson_use                flac)"
+		"$(meson_use opengl         gl-spectrum)"
 		"$(meson_use http           neon)"
 		"$(meson_use libnotify      notify)"
 		"$(meson_use libsamplerate  resample)"
