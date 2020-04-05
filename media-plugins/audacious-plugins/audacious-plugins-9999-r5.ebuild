@@ -34,7 +34,7 @@ USE_FRONTENDS="+qt5 +mpris"
 USE_OUTPUTS="alsa encode +pulseaudio qtmedia"
 USE_CODECS="+flac lame +vorbis"
 IUSE="aac cdda cue ffmpeg fluidsynth http libnotify libsamplerate mms modplug
-	mp3 opengl openmpt scrobbler sid sndfile streamtuner wavpack +xml
+	mp3 opengl openmpt scrobbler sid sndfile soxr streamtuner wavpack +xml
 	${USE_FRONTENDS} ${USE_OUTPUTS} ${USE_CODECS}"
 
 REQUIRED_USE="
@@ -80,6 +80,7 @@ RDEPEND="
 	scrobbler? ( net-misc/curl )
 	sid? ( >=media-libs/libsidplayfp-2.0 )
 	sndfile? ( >=media-libs/libsndfile-1.0.19 )
+	soxr? ( media-libs/soxr )
 	streamtuner? ( >=dev-qt/qtnetwork-${QT_REQ}:5 )
 	vorbis? (
 		>=media-libs/libogg-1.0
@@ -119,6 +120,7 @@ src_configure() {
 		"$(meson_use http           neon)"
 		"$(meson_use libnotify      notify)"
 		"$(meson_use libsamplerate  resample)"
+		"$(meson_use                soxr)"
 		"$(meson_use libsamplerate  speedpitch)"
 		"$(meson_use                mms)"
 		"$(meson_use                modplug)"
