@@ -8,14 +8,3 @@
 # fixed later, but until then I strongly recommend using the server ebuild in
 # ::gentoo, it's far less crufty than this.
 games-server/minecraft-server
-
-# <ant+gentoo.bugs@flussence.eu> (20 Mar 2020)
-# Fails to compile half the time, a nightmare to navigate its build system.
-# Upstream ignores attempts to fix its trash fire. Unfixable, not worth keeping.
-# Removal due on April Fools' Day.
-media-libs/vgmstream
-
-# <ant+gentoo.bugs@flussence.eu> (29 Mar 2020)
-# License silently changed from anything goes to a draconian EULA.
-# Unmask at your own peril.
->=media-fonts/symbola-12
