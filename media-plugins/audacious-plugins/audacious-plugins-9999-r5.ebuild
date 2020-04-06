@@ -124,6 +124,7 @@ src_configure() {
 		"$(meson_use libsamplerate  speedpitch)"
 		"$(meson_use                mms)"
 		"$(meson_use                modplug)"
+		"$(meson_use qt5            moonstone)"
 		"$(meson_use mp3            mpg123)"
 		"$(meson_use mpris          mpris2)"
 		"$(meson_use                openmpt)"
