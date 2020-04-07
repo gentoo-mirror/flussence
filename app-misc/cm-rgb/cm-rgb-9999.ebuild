@@ -6,10 +6,10 @@ EAPI=7
 GITHUB_USER="gfduszynski"
 KEYWORDS="~amd64 ~x86"
 
-PYTHON_COMPAT=( python3_{6,7,8} )
-DISTUTILS_SINGLE_IMPL="🥌"
+PYTHON_COMPAT=( python3_{7,8} )
+DISTUTILS_SINGLE_IMPL="2"
 
-inherit github-pkg distutils-r1
+inherit github-pkg distutils-r1 udev
 
 DESCRIPTION="Python library and CLI tools to control the RGB LEDs on the AMD Wraith heatsink"
 
@@ -26,3 +26,12 @@ RDEPEND="${PYTHON_DEPS}
 		python_gen_cond_dep "dev-python/${dep_PN}[\${PYTHON_MULTI_USEDEP}]"
 	done)"
 DEPEND="${RDEPEND}"
+
+src_install() {
+	distutils-r1_src_install
+	udev_dorules "${FILESDIR}"/60-cm-rgb.rules
+}
+
+pkg_postinst() {
+	udev_reload
+}
