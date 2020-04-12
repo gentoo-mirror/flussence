@@ -19,9 +19,9 @@ else
 fi
 
 DEPEND="
-	dev-qt/qtgui:5
-	dev-qt/qtwidgets:5
-	x11-libs/gtk+:2"
+	dev-qt/qtgui:5=
+	dev-qt/qtwidgets:5=
+	x11-libs/gtk+:2="
 RDEPEND="${DEPEND}"
 
 pkg_postinst() {
