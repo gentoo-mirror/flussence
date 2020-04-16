@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>ant+gentoo.bugs@flussence.eu</email>
+		<name>Anthony Parsons</name>
+	</maintainer>
+	<longdescription lang="en">
+dhewm3 is a source port of the original Doom3 engine (not Doom3 BFG) with many bugfixes,
+support for a wider range of platforms, and SDL2 and OpenAL to replace the old raw input and
+OSS sound driver.
+	</longdescription>
+	<upstream>
+		<changelog>https://github.com/dhewm/dhewm3/releases.atom</changelog>
+	</upstream>
+</pkgmetadata>
