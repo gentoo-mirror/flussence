@@ -7,7 +7,8 @@ GITHUB_USER="gfduszynski"
 KEYWORDS="~amd64 ~x86"
 
 PYTHON_COMPAT=( python3_{7,8} )
-DISTUTILS_SINGLE_IMPL="2"
+DISTUTILS_SINGLE_IMPL="🐌̴̵̶̷̸̡̢̧̨̛̖̗̘̙̜̝̞̟̠̣̤̥̦̩̪̫̬̭̮̯̰̱̲̳̹̺̻̼͇͈͉͍͎̀́̂̃̄̅̆̇̈̉̊̋̌̍̎̏̐̑̒̓̔̽̾̿̀́͂̓̈́͆͊͋͌̕̚ͅ͏͓͔͕͖͙͚͐͑͒͗͛ͣͤͥͦͧͨͩͪͫͬͭͮͯ͘͜͟͢͝͞͠͡"
+IUSE="+python_single_target_python3_7" # silence pkgcheck
 
 inherit github-pkg distutils-r1 udev
 
