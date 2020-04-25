@@ -52,8 +52,8 @@ DEPEND="
 RDEPEND="${DEPEND}"
 BDEPEND="
 	asan? ( || (
-		>=sys-devel/gcc-4.8.0[sanitize]
-		>=sys-devel/clang-runtime-3.1.0[sanitize]
+		>=sys-devel/gcc-6.5.0[sanitize]
+		>=sys-devel/clang-runtime-7.1.0[sanitize]
 	) )
 "
 
