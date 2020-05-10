@@ -2,8 +2,7 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer type="person">
-		<email>ant+gentoo.bugs@flussence.eu</email>
-		<name>Anthony Parsons</name>
+		<email>gentoo+bugs@flussence.eu</email>
 	</maintainer>
 	<longdescription>
 		An IPFS-mirrored ebuild for UT2004 Megapack Bonus Pack.

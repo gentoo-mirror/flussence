@@ -7,8 +7,7 @@
 		a transient dependency on <pkg>sys-apps/dbus</pkg>, and spawning extra runtime processes.
 	</longdescription>
 	<maintainer type="person">
-		<email>ant+gentoo.bugs@flussence.eu</email>
-		<name>Anthony Parsons</name>
+		<email>gentoo+bugs@flussence.eu</email>
 	</maintainer>
 	<upstream>
 		<bugs-to>https://gitlab.gnome.org/GNOME/gtk/issues/</bugs-to>

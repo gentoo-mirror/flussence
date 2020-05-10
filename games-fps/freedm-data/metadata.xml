@@ -8,8 +8,7 @@
 		FreeDM is a standalone 32-level game designed for competitive deathmatch play.
 	</longdescription>
 	<maintainer type="person">
-		<email>ant+gentoo.bugs@flussence.eu</email>
-		<name>Anthony Parsons</name>
+		<email>gentoo+bugs@flussence.eu</email>
 	</maintainer>
 	<upstream>
 		<bugs-to>https://github.com/freedoom/freedoom/issues</bugs-to>

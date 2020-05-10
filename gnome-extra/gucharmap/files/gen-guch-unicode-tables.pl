@@ -49,7 +49,7 @@ L<IO::Uncompress::Unzip> is needed for Unihan.zip
 
 =head1 COPYRIGHT
 
-    Copyright © 2018 Anthony Parsons <ant@flussence.eu>
+    Copyright © 2018 flussence <flussence+i7fOaGgE@flussence.eu>
     Derived from the gucharmap 10.0.0 gen-guch-unicode-tables.pl script
      - © the gucharmap authors
 

@@ -9,8 +9,7 @@
 		<pkg>sys-apps/openrc</pkg> for the rc layer inbetween.
 	</longdescription>
 	<maintainer type="person">
-		<email>ant+gentoo.bugs@flussence.eu</email>
-		<name>Anthony Parsons</name>
+		<email>gentoo+bugs@flussence.eu</email>
 	</maintainer>
 	<upstream>
 		<bugs-to>http://skarnet.org/lists/#supervision</bugs-to>

@@ -6,8 +6,7 @@
     <description lang="en">Ant P.ʼs personal overlay</description>
     <homepage>https://repo.or.cz/flussence-overlay.git</homepage>
     <owner type="person">
-      <email>ant+gentoo.bugs@flussence.eu</email>
-      <name>Anthony Parsons</name>
+      <email>gentoo+bugs@flussence.eu</email>
     </owner>
     <source type="git">https://repo.or.cz/flussence-overlay.git</source>
     <source type="git">git://repo.or.cz/flussence-overlay.git</source>

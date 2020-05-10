@@ -9,8 +9,7 @@
 		with Doom 1 and 2 respectively.
 	</longdescription>
 	<maintainer type="person">
-		<email>ant+gentoo.bugs@flussence.eu</email>
-		<name>Anthony Parsons</name>
+		<email>gentoo+bugs@flussence.eu</email>
 	</maintainer>
 	<upstream>
 		<bugs-to>https://github.com/freedoom/freedoom/issues</bugs-to>

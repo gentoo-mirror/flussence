@@ -7,7 +7,12 @@ These are my packages for things that:
 * aren't as up-to-date as I'd like there,
 * aren't maintained to a sufficient standard in the main tree.
 
-All commits are signed with the `<name>@flussence.eu` in the git logs, which is available via WKD.
+All commits are signed by a GPG key, available via WKD, for the email address output from:
+```raku
+#!/usr/bin/env rakudo
+my $name = 'flussence-overlay'.subst('-overlay', '');
+put $name ~ '@' ~ $name ~ '.eu';
+```
 
 Packages that install arch-independent stuff will be keyworded for non-exotic arches only:
 x86/amd64, arm/arm64, mips and ppc/ppc64.

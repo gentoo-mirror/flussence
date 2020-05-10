@@ -1,11 +1,11 @@
-# Copyright 2019 Gentoo Authors
+# Copyright 2019-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # @ECLASS: github-pkg.eclass
 # @MAINTAINER:
-# Anthony Parsons <ant+gentoo.bugs@flussence.eu>
+# flussence <gentoo+bugs@flussence.eu>
 # @AUTHOR:
-# Anthony Parsons <ant+gentoo.bugs@flussence.eu>
+# flussence <gentoo+bugs@flussence.eu>
 # @BLURB: Common code for GitHub-hosted packages
 # @DESCRIPTION:
 # The github-pkg eclass fills in git-r3 related variables with sensible defaults.

@@ -8,7 +8,7 @@ GITHUB_USER="odamex"
 # but we're hamstrung by sdl2-mixer::gentoo's lack of keywords
 KEYWORDS="~amd64 ~arm ~x86"
 
-inherit cmake-utils desktop github-pkg xdg-utils wxwidgets
+inherit cmake-utils desktop flag-o-matic github-pkg xdg-utils wxwidgets
 
 DESCRIPTION="Online Multiplayer Doom port with a strong focus on the original gameplay"
 HOMEPAGE="https://odamex.net"
