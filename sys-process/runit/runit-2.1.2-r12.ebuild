@@ -26,9 +26,6 @@ src_prepare() {
 	# we either build everything or nothing static
 	sed -i -e 's:-static: :' Makefile
 
-	# Don't violate FHS, but ensure `sv s $foo` shorthand still works
-	sed -i -e 's@ /service@ /etc/service@' -e '2s@^$@SVDIR=/etc/service@' "${S}"/../etc/2
-
 	default
 }
 
@@ -57,12 +54,10 @@ src_install() {
 	done
 
 	exeinto /etc/runit
-	doexe "${FILESDIR}"/{1,3,ctrlaltdel}
+	doexe "${FILESDIR}"/{1,2,3,ctrlaltdel}
 
 	# N.B. this is not $WORKDIR because $S is redefined above
 	cd "${S}"/.. || die
-
-	doexe etc/2
 
 	dodoc package/{CHANGES,README,THANKS,TODO} doc/*.html
 	doman man/*.[18]
