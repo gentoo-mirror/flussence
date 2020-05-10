@@ -6,6 +6,7 @@
 # using OpenRC's existing /etc/local.d/ facility via the boot runlevel instead
 # of editing this file, as it will be overwritten on upgrades.
 
+SVDIR=/etc/service
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 
 RUNLEVEL=S /sbin/openrc sysinit
@@ -21,35 +22,30 @@ case " $kcmdline " in
     ;;
 esac
 
-# Try to put runtime state into a common runtime location,
-# so that /etc may be mounted readonly.
+# Runit expects $SVDIR to be mutable, which isn't good to do in /etc/ for a
+# number of good reasons, but is hard to change due to compatibility reasons.
+# We try here to symlink the $SVDIR/**/supervise/ dirs to /run/ so that the
+# system still works if the filesystem $SVDIR's on is (or becomes) readonly.
 tmpstate="/run/runit"
 
-findmnt -nt tmpfs /run > /dev/null && install -m 0755 -d "$tmpstate"
-[ -d "$tmpstate" ] || exit 0 # may fail, that's fine.
+# This may fail if /run/ also isn't writable, but that's not a fatal error on
+# its own.
+install -m 0755 -d "$tmpstate" || exit 0
 
-
-tmpify() {
-    cd "$1" || return
-
-    if [ ! -L ./supervise ]; then
-        rm -rfv ./supervise
-        ln -Ts "$tmpstate"/"${PWD##*/}" ./supervise
+# Attempt to symlink each $sv's ./supervise/ (resp. ./log/supervise/) directory
+# to /run/runit/$sv/ (resp. /run/runit/log.$sv/) in order to minimise filesystem
+# writes in /etc/.
+# If the supervise directories are already symlinks, they'll be left alone.
+for sv in "$SVDIR"/*/; do
+    if [ ! -L "$sv"/supervise ]; then
+        rm -rfv "$sv"/supervise
+        ln -Trs "$tmpstate"/"${sv##*/}" "$sv"/supervise
     fi
 
-    if [ -d ./log ] && [ ! -L ./log/supervise ]; then
-        rm -rfv ./log/supervise
-        ln -Ts "$tmpstate"/log."${PWD##*/}" ./log/supervise
+    if [ -d "$sv"/log ] && [ ! -L "$sv"/log/supervise ]; then
+        rm -rfv "$sv"/log/supervise
+        ln -Trs "$tmpstate"/log."${sv##*/}" "$sv"/log/supervise
     fi
-
-    cd "$OLDPWD" || return
-}
-
-# Attempt to symlink each $sv's supervise/ directory to /run/runit/$sv,
-# in order to avoid disk writes in /etc. Existing directories are replaced,
-# existing symlinks and log services are untouched.
-for sv in /etc/service/*/; do
-    tmpify "$sv"
 done
 
 # Do the same for shutdown control files.
@@ -58,5 +54,5 @@ done
 for fn in reboot stopit; do
     [ -L /etc/runit/$fn ] && continue
     rm -fv /etc/runit/$fn
-    ln -Ts "$tmpstate"/$fn /etc/runit/$fn
+    ln -Trs "$tmpstate"/$fn /etc/runit/$fn
 done

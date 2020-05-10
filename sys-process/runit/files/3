@@ -1,24 +1,29 @@
 #!/bin/sh
 # /etc/runit/3 - system shutdown tasks
 
-exec >/dev/console 2>&1
+SVDIR=/etc/service
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
+
+# Make a best effort to put all our output on tty1.
+chvt 1
+exec >/dev/tty1 2>&1
 stty sane
 
-# This will work with any service with "getty" in its name,
-# in case you decide not to use the provided agetty scripts.
 # If you're logged in on a tty somewhere this will return false,
 # giving you some extra time to finish whatever you were doing.
+# (This will work for any service with "getty" in its name,
+# in case you decide not to use the provided agetty scripts.)
 echo 'Shutting down login consoles...'
-sv shutdown /etc/service/*getty*
+sv -w 5 shutdown "$SVDIR"/*getty*
 
 echo 'Stopping remaining services...'
-sv shutdown /etc/service/* || {
-    echo 'Some services refused to stop. Killing them in 30 seconds.'
-    sv -w 30 force-shutdown /etc/service/*
+sv -w 10 shutdown "$SVDIR"/* || {
+    echo 'Some services refused to stop. Killing them in 15 seconds:'
+    pstree -a
+    sv -w 15 force-shutdown "$SVDIR"/*
 }
 
-# This looks messy, but we make this a symlink into /run/ and so "test -x" won't work.
+# This looks messy, but `test -x` doesn't work on symlinks.
 # runit itself already handles symlinks robustly.
 case "$(stat -Lc '%A' /etc/runit/reboot 2>/dev/null)" in
     ???x?????? )

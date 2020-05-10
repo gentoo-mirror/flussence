@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -11,15 +11,23 @@ SRC_URI="http://smarden.org/runit/${P}.tar.gz"
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="static +symlink"
+IUSE="static"
 
-RDEPEND="sys-apps/openrc"
+# runtime dependencies in /etc/runit/{1,3}
+RDEPEND="
+	sys-apps/openrc
+	sys-process/psmisc
+"
 
+PATCHES=( "${FILESDIR}"/bug721880-dont-hardcode-ar-ranlib.patch )
 S=${WORKDIR}/admin/${P}/src
 
 src_prepare() {
 	# we either build everything or nothing static
 	sed -i -e 's:-static: :' Makefile
+
+	# Don't violate FHS, but ensure `sv s $foo` shorthand still works
+	sed -i -e 's@ /service@ /etc/service@' -e '2s@^$@SVDIR=/etc/service@' "${S}"/../etc/2
 
 	default
 }
@@ -28,12 +36,13 @@ src_configure() {
 	use static && append-ldflags -static
 
 	echo "$(tc-getCC) ${CFLAGS}"  > conf-cc
-	echo "$(tc-getCC) ${LDFLAGS}" > conf-ld
+	echo "$(tc-getCC) ${LDFLAGS}" > conf-ld # [sic]
+	tc-getAR     > conf-ar
+	tc-getRANLIB > conf-ranlib
 }
 
 src_install() {
 	dodir /etc/service
-	use symlink && dosym /etc/service /service
 
 	into /
 	dobin chpst runsv runsvchdir runsvdir sv svlogd
@@ -53,7 +62,6 @@ src_install() {
 	# N.B. this is not $WORKDIR because $S is redefined above
 	cd "${S}"/.. || die
 
-	sed -i 's@/service@/etc/service@' etc/2 || die 'sed failed'
 	doexe etc/2
 
 	dodoc package/{CHANGES,README,THANKS,TODO} doc/*.html
@@ -68,10 +76,6 @@ pkg_postinst() {
 	elog "/etc/service/ to have console logins available at boot."
 	elog "The supplied startup scripts will run up to OpenRC's 'boot' runlevel"
 	elog "and then start runit's services."
-	echo
-	elog "/service will be a symlink to /etc/service iff you have USE=symlink."
-	elog "This is only used to allow 'sv stat foo' shorthand to work; you may"
-	elog "also define \$SVDIR for the same effect."
 	if [[ ${REPLACING_VERSIONS} ]] ; then
 		echo
 		ewarn "A pre-existing runit version was detected."

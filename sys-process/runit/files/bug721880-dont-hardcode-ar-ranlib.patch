@@ -1,0 +1,53 @@
+diff --git a/Makefile b/Makefile
+index d9624de33..9f82e96a6 100644
+--- a/Makefile
++++ b/Makefile
+@@ -257,7 +257,7 @@ lock_ex.o: compile hasflock.h lock.h lock_ex.c
+ lock_exnb.o: compile hasflock.h lock.h lock_exnb.c
+ 	./compile lock_exnb.c
+ 
+-makelib: print-ar.sh systype warn-auto.sh
++makelib: conf-ar print-ar.sh systype warn-auto.sh
+ 	rm -f makelib
+ 	sh print-ar.sh > makelib
+ 	chmod 555 makelib
+diff --git a/conf-ar b/conf-ar
+new file mode 100644
+index 000000000..13beaeec7
+--- /dev/null
++++ b/conf-ar
+@@ -0,0 +1 @@
++ar
+diff --git a/conf-ranlib b/conf-ranlib
+new file mode 100644
+index 000000000..6906e90ca
+--- /dev/null
++++ b/conf-ranlib
+@@ -0,0 +1 @@
++ranlib
+diff --git a/print-ar.sh b/print-ar.sh
+index 99bc1162f..21d7cd2b1 100644
+--- a/print-ar.sh
++++ b/print-ar.sh
+@@ -1,8 +1,12 @@
++ar="`head -n1 conf-ar`"
++ranlib="`head -n1 conf-ranlib`"
++systype="`cat systype`"
++
+ cat warn-auto.sh
+ echo 'main="$1"; shift'
+ echo 'rm -f "$main"'
+-echo 'ar cr "$main" ${1+"$@"}'
+-case "`cat systype`" in
++echo "$ar" 'cr "$main" ${1+"$@"}'
++case "$systype" in
+   sunos-5.*) ;;
+   unix_sv*) ;;
+   irix64-*) ;;
+@@ -10,5 +14,5 @@ case "`cat systype`" in
+   dgux-*) ;;
+   hp-ux-*) ;;
+   sco*) ;;
+-  *) echo 'ranlib "$main"' ;;
++  *) echo "$ranlib" '"$main"' ;;
+ esac

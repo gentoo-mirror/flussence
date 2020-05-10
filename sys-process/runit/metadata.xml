@@ -16,9 +16,4 @@
 		<bugs-to>http://skarnet.org/lists/#supervision</bugs-to>
 		<doc>http://smarden.org/runit/</doc>
 	</upstream>
-	<use>
-		<flag name="symlink">
-			Create /service symlink to allow abbreviated `sv` commands without setting $SVDIR
-		</flag>
-	</use>
 </pkgmetadata>
