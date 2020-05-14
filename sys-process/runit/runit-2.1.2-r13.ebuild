@@ -39,7 +39,9 @@ src_configure() {
 }
 
 src_install() {
-	dodir /etc/service
+	dodir /etc/env.d /etc/service
+	echo 'SVDIR=/etc/service' >> "${T}/99${PN}" || die
+	doenvd "${T}/99${PN}"
 
 	into /
 	dobin chpst runsv runsvchdir runsvdir sv svlogd
