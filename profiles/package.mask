@@ -13,3 +13,8 @@ games-server/minecraft-server
 # This version fixes a win32-specific bug. No reason to upgrade.
 # It's here for completeness only.
 =dev-util/pkgconf-1.7.2
+
+# flussence <gentoo+bugs@flussence.eu> (29 May 2020)
+# Doesn't compile against Qt 5.15. Upstream last active in 2017.
+# It's dead, Jim. Removal in 30 days unless a miracle happens.
+dev-qt/qtstyleplugins
