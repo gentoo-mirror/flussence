@@ -78,7 +78,7 @@ DEPEND="${COMMON_DEPEND}
 # TODO probably incomplete transition from DEPEND
 BDEPEND="
 	>=dev-util/gdbus-codegen-2.48
-	virtual/pkgconfig[${MULTILIB_USEDEP}]
+	virtual/pkgconfig
 	test? (
 		media-fonts/font-misc-misc
 		media-fonts/font-cursor-misc )
