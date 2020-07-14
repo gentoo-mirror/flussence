@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>gentoo+bugs@flussence.eu</email>
+	</maintainer>
+	<upstream>
+		<changelog>https://github.com/antijingoist/opendyslexia/releases.atom</changelog>
+		<remote-id type="github">antijingoist/opendyslexia</remote-id>
+	</upstream>
+</pkgmetadata>
