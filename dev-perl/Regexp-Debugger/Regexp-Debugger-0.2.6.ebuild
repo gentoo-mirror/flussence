@@ -4,7 +4,7 @@
 EAPI=7
 
 DIST_AUTHOR="DCONWAY"
-DIST_VERSION="0.002005"
+DIST_VERSION="0.002006"
 inherit perl-module eutils
 
 DESCRIPTION="Perl module and command line tool (rxrx) to visually debug regexes in-place"
