@@ -4,13 +4,12 @@
   <repo quality="experimental" status="unofficial">
     <name>flussence</name>
     <description lang="en">Ant P.ʼs personal overlay</description>
-    <homepage>https://repo.or.cz/flussence-overlay.git</homepage>
+    <homepage>https://gitea.flussence.eu/flussence/flussence-overlay</homepage>
     <owner type="person">
       <email>gentoo+bugs@flussence.eu</email>
     </owner>
     <source type="git">https://repo.or.cz/flussence-overlay.git</source>
-    <source type="git">git://repo.or.cz/flussence-overlay.git</source>
-    <source type="git">ssh://git@repo.or.cz/flussence-overlay.git</source>
+    <source type="git">https://gitea.flussence.eu/flussence/flussence-overlay.git</source>
     <feed>https://repo.or.cz/flussence-overlay.git/atom</feed>
   </repo>
 </repositories>
