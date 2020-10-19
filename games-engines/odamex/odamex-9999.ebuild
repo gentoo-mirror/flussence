@@ -8,7 +8,7 @@ GITHUB_USER="odamex"
 # but we're hamstrung by sdl2-mixer::gentoo's lack of keywords
 KEYWORDS="~amd64 ~arm ~x86"
 
-inherit cmake-utils desktop flag-o-matic github-pkg xdg-utils wxwidgets
+inherit cmake desktop flag-o-matic github-pkg xdg-utils wxwidgets
 
 DESCRIPTION="Online Multiplayer Doom port with a strong focus on the original gameplay"
 HOMEPAGE="https://odamex.net"
@@ -57,14 +57,9 @@ BDEPEND="
 	) )
 "
 
-PATCHES=(
-	"${FILESDIR}"/unbundle-jsoncpp.patch
-	"${FILESDIR}"/unbundle-miniupnpc.patch
-)
-
 src_prepare() {
-	cmake-utils_src_prepare
-	rm -r README.md libraries/{jsoncpp,libminiupnpc,libpng,portmidi,zlib}
+	cmake_src_prepare
+	rm -r README.md libraries/{libpng,portmidi,zlib}
 }
 
 src_configure() {
@@ -82,7 +77,7 @@ src_configure() {
 
 	use debug && CMAKE_BUILD_TYPE=Debug
 
-	cmake-utils_src_configure
+	cmake_src_configure
 }
 
 _odamex_do_launcher() {
@@ -94,7 +89,7 @@ _odamex_do_launcher() {
 }
 
 src_install() {
-	cmake-utils_src_install
+	cmake_src_install
 
 	local iconname
 	if use client; then
