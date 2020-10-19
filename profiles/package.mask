@@ -18,3 +18,7 @@ games-server/minecraft-server
 # Doesn't compile against Qt 5.15. Upstream last active in 2017.
 # It's dead, Jim. Removal in 30 days unless a miracle happens.
 dev-qt/qtstyleplugins
+
+# flussence <gentoo+bugs@flussence.eu> (19 Oct 2020)
+# Never actually worked for me, and is now suffering from -fno-common failures.
+games-util/friidump
