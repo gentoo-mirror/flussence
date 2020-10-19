@@ -57,7 +57,7 @@ RDEPEND="
 		>=media-libs/libcddb-1.2.1
 	)
 	cue? ( >=media-libs/libcue-2.0 )
-	ffmpeg? ( virtual/ffmpeg )
+	ffmpeg? ( media-video/ffmpeg )
 	flac? ( >=media-libs/flac-1.2.1 )
 	fluidsynth? ( >=media-sound/fluidsynth-1.0.6:= )
 	http? ( >=net-libs/neon-0.27 )
