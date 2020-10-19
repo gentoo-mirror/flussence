@@ -6,7 +6,7 @@ EAPI=7
 GITHUB_USER="bradenmcd"
 KEYWORDS="~amd64"
 
-inherit cmake-utils fcaps github-pkg
+inherit cmake fcaps github-pkg
 
 DESCRIPTION="Dump Nintendo Wii and GameCube discs"
 
@@ -27,5 +27,5 @@ src_configure() {
 	local mycmakeargs+=(
 		'-DBUILD_STATIC_BINARY=1'
 	)
-	cmake-utils_src_configure
+	cmake_src_configure
 }

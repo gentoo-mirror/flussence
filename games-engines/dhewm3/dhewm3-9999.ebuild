@@ -6,7 +6,7 @@ EAPI=7
 GITHUB_USER="dhewm"
 KEYWORDS="~amd64 ~x86"
 
-inherit cmake-utils github-pkg
+inherit cmake github-pkg
 
 DESCRIPTION="A cross-platform Doom 3 source port"
 HOMEPAGE="https://dhewm3.org"

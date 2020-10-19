@@ -5,7 +5,7 @@ EAPI=7
 
 PYTHON_COMPAT=( python3_{6,7} )
 
-inherit cmake-utils python-single-r1 xdg-utils
+inherit cmake python-single-r1 xdg-utils
 
 MY_REPO_URI="https://github.com/obsproject/obs-studio"
 
@@ -105,7 +105,7 @@ src_configure() {
 		mycmakeargs+=( "-DENABLE_SCRIPTING=no" )
 	fi
 
-	cmake-utils_src_configure
+	cmake_src_configure
 }
 
 pkg_postinst() {
