@@ -32,6 +32,9 @@ This list is manually maintained. Some things may be missing (accidentally or no
 : Signify is a strong cryptographic signature tool that fits on a floppy disk,
   with public keys that fit in 140 characters, and a manpage that fits on one screen.
 
+`app-misc/cm-rgb` — [CLI for Wraith Prism RGB settings](https://github.com/gfduszynski/cm-rgb)
+: Allows you to tweak the LED effects on Ryzen fans, or turn them off entirely.
+
 `dev-perl/Crypt-LE` — [Crypt::LE](https://metacpan.org/pod/Crypt::LE)
 : A Perl ACME/Let's Encrypt client with lightweight dependencies.
   Not the most user-friendly option, but it has minimal dependencies,
