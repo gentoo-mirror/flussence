@@ -26,7 +26,7 @@ RDEPEND="
 	media-libs/libsdl
 	media-libs/openal
 	sys-libs/glibc
-	~virtual/libstdc++-3.3
+	sys-libs/libstdc++-v3:5
 	virtual/opengl
 	x11-libs/libX11
 	x11-libs/libXau
