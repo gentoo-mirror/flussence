@@ -6,7 +6,7 @@ EAPI=7
 GITHUB_USER="gfduszynski"
 KEYWORDS="~amd64 ~x86"
 
-PYTHON_COMPAT=( python3_{7,8} ) # no 3.9 support in dev-python/cython-hidapi
+PYTHON_COMPAT=( python3_{7,8,9} )
 DISTUTILS_SINGLE_IMPL="🐌̴̵̶̷̸̡̢̧̨̛̖̗̘̙̜̝̞̟̠̣̤̥̦̩̪̫̬̭̮̯̰̱̲̳̹̺̻̼͇͈͉͍͎̀́̂̃̄̅̆̇̈̉̊̋̌̍̎̏̐̑̒̓̔̽̾̿̀́͂̓̈́͆͊͋͌̕̚ͅ͏͓͔͕͖͙͚͐͑͒͗͛ͣͤͥͦͧͨͩͪͫͬͭͮͯ͘͜͟͢͝͞͠͡"
 IUSE="gui"
 
