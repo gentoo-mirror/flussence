@@ -3,7 +3,7 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{7,8,9} )
+PYTHON_COMPAT=( python3_{7,8} ) # dev-python/pylint missing 3.9
 inherit python-r1
 
 DESCRIPTION="A svn/hg/git-like UI wrapper around RCS"
