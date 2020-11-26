@@ -45,7 +45,7 @@ REQUIRED_USE="
 	scrobbler? ( xml )"
 
 # hotkeys currently has automagic detection
-QT_REQ="5.2"
+QT_REQ="5.2:5="
 RDEPEND="
 	>=dev-libs/glib-2.32
 	sys-libs/zlib
@@ -61,30 +61,30 @@ RDEPEND="
 	flac? ( >=media-libs/flac-1.2.1 )
 	fluidsynth? ( >=media-sound/fluidsynth-1.0.6:= )
 	http? ( >=net-libs/neon-0.27 )
-	hotkeys? ( >=dev-qt/qtx11extras-${QT_REQ}:5 )
+	hotkeys? ( >=dev-qt/qtx11extras-${QT_REQ} )
 	!hotkeys? ( !dev-qt/qtx11extras:5 )
 	mpris? ( >=media-sound/audacious-4.0:=[qt5(-)=,dbus(-)] )
 	!mpris? ( >=media-sound/audacious-4.0:=[qt5(-)=] )
 	qt5? (
-		>=dev-qt/qtcore-${QT_REQ}:5
-		>=dev-qt/qtgui-${QT_REQ}:5
-		>=dev-qt/qtwidgets-${QT_REQ}:5
+		>=dev-qt/qtcore-${QT_REQ}
+		>=dev-qt/qtgui-${QT_REQ}
+		>=dev-qt/qtwidgets-${QT_REQ}
 	)
-	qtmedia? ( >=dev-qt/qtmultimedia-${QT_REQ}:5 )
+	qtmedia? ( >=dev-qt/qtmultimedia-${QT_REQ} )
 	lame? ( media-sound/lame )
 	libnotify? ( x11-libs/libnotify )
 	libsamplerate? ( media-libs/libsamplerate:= )
 	mms? ( >=media-libs/libmms-0.3 )
 	modplug? ( media-libs/libmodplug )
 	mp3? ( >=media-sound/mpg123-1.12 )
-	opengl? ( >=dev-qt/qtopengl-${QT_REQ}:5 )
+	opengl? ( >=dev-qt/qtopengl-${QT_REQ} )
 	openmpt? ( >=media-libs/libopenmpt-0.2 )
 	pulseaudio? ( >=media-sound/pulseaudio-0.9.5 )
 	scrobbler? ( net-misc/curl )
 	sid? ( >=media-libs/libsidplayfp-2.0 )
 	sndfile? ( >=media-libs/libsndfile-1.0.19 )
 	soxr? ( media-libs/soxr )
-	streamtuner? ( >=dev-qt/qtnetwork-${QT_REQ}:5 )
+	streamtuner? ( >=dev-qt/qtnetwork-${QT_REQ} )
 	vorbis? (
 		>=media-libs/libogg-1.0
 		>=media-libs/libvorbis-1.0
