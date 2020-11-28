@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>gentoo+bugs@flussence.eu</email>
+	</maintainer>
+	<upstream>
+		<bugs-to>https://github.com/kepstin/regainer/issues</bugs-to>
+		<changelog>https://github.com/kepstin/regainer/releases.atom</changelog>
+		<remote-id type="github">kepstin/regainer</remote-id>
+	</upstream>
+</pkgmetadata>
