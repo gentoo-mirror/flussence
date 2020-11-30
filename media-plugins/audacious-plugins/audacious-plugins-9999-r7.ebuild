@@ -101,6 +101,8 @@ PATCHES=(
 	# CVE-2017-17446; https://bitbucket.org/mpyne/game-music-emu/issues/14
 	"${FILESDIR}"/0001-nsfe-Sanity-check-block-header-size-before-reading.patch
 	"${FILESDIR}"/0002-nsfe-Add-some-additional-hardening-and-sanity-checks.patch
+	# USE=qtmedia
+	"${FILESDIR}"/0001-Make-QtMultimedia-output-optional.patch
 )
 
 src_configure() {
@@ -133,6 +135,7 @@ src_configure() {
 		"$(meson_use                openmpt)"
 		"$(meson_use pulseaudio     pulse)"
 		"$(meson_use qt5            qt)"
+		"$(meson_use qtmedia        qtaudio)"
 		"$(meson_use scrobbler      scrobbler2)"
 		"$(meson_use sid)"
 		"$(meson_use sndfile)"
