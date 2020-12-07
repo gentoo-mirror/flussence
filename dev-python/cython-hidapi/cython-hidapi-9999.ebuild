@@ -16,6 +16,8 @@ case "${PV}" in
 		EGIT_SUBMODULES=() ;;
 	0.10.0_p1 )
 		MY_PV="f8b11b43c3ddd2f31d164b999074aa60c3746a3e" ;;
+	0.10.1 )
+		MY_PV="6539756c42cddf63cfee3eb40f5e570c0cb9d1ec" ;;
 	* )
 		MY_PV="${PV/_p/.post}"
 esac

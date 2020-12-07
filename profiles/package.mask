@@ -8,11 +8,3 @@
 # fixed later, but until then I strongly recommend using the server ebuild in
 # ::gentoo, it's far less crufty than this.
 games-server/minecraft-server
-
-# flussence <gentoo+bugs@flussence.eu> (19 Oct 2020)
-# Never actually worked for me, and is now suffering from -fno-common failures.
-games-util/friidump
-
-# flussence <gentoo+bugs@flussence.eu> (11 Nov 2020)
-# As upstream notes, the standalone plugin is obsolete now; just `USE=openmpt`.
-media-plugins/audacious-openmpt

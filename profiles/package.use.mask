@@ -1,3 +1,0 @@
-# qt5-build.eclass::gentoo is broken and autogenerates hardcoded dependency on nonexistent ebuild
-# This line is just here for extra safety
-dev-qt/qtstyleplugins test

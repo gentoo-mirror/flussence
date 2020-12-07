@@ -11,7 +11,7 @@
 	</upstream>
 	<use>
 		<flag name="cue">Support CUE sheets using the libcue library</flag>
-		<flag name="ffmpeg">Use <pkg>virtual/ffmpeg</pkg> to play audio from most files</flag>
+		<flag name="ffmpeg">Use <pkg>media-video/ffmpeg</pkg> to play audio from most files</flag>
 		<flag name="fluidsynth">Support MIDI playback using Fluidsynth</flag>
 		<flag name="http">Support HTTP streams through <pkg>net-libs/neon</pkg></flag>
 		<flag name="hotkeys">Enable global hotkeys plugin</flag>

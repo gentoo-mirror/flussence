@@ -56,20 +56,11 @@ This list is manually maintained. Some things may be missing (accidentally or no
 `games-action/minecraft` — Java launcher for Minecraft
 : Convenience ebuild that installs the good Minecraft launcher (not the awful Electron-based one).
 
-`games-engines/odamex` — [Odamex DOOM sourceport](https://odamex.net)
-: Retro first-person shooter suited for mid-2000s desktops and low-res screens.
-  This ebuild is written from scratch.
-
 `games-*/ut2004-*` — UT2004 binaries and map packs via IPFS
 : A historical data preservation effort using IPFS, as an alternative to the Gentoo repo ebuilds.
   While those currently have a working `SRC_URI`, they've spent a lot of their life on thin ice
   and were nearly removed in 2019 (a lot of other `games-fps/*` ebuilds didn't make the cut).
   SHA1 hashes are also listed in `metadata.xml`, to facilitate in scavenging the web for copies.
-
-`games-util/friidump` — [GameCube/Wii disc ripping utility](https://github.com/bradenmcd/friidump)
-: Allows a computer with the right kind of drive to rip these discs natively.
-  Turns out I had one of those, so I made an ebuild out of it.
-  It crashes at runtime but maybe it'll work for someone else.
 
 `gnome-extra/gucharmap` — GTK+2 version of gucharmap
 : The last released GTK+2 version of gucharmap, patched to recognise new Unicode characters.
