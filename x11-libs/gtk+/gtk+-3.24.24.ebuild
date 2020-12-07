@@ -12,7 +12,7 @@ HOMEPAGE="https://www.gtk.org/"
 
 LICENSE="LGPL-2+"
 SLOT="3"
-IUSE="aqua accessibility broadway cloudprint colord cups examples gtk-doc +introspection test vim-syntax wayland +X xinerama"
+IUSE="aqua accessibility broadway cloudprint colord cups examples gtk-doc +introspection +sysprof test vim-syntax wayland +X xinerama"
 REQUIRED_USE="
 	|| ( aqua wayland X )
 	xinerama? ( X )
@@ -27,7 +27,7 @@ RESTRICT="test"
 # FIXME: introspection data is built against system installation of gtk+:3,
 # bug #????
 COMMON_DEPEND="
-	>=dev-libs/atk-2.15[introspection?,${MULTILIB_USEDEP}]
+	>=dev-libs/atk-2.32.0[introspection?,${MULTILIB_USEDEP}]
 	>=dev-libs/fribidi-0.19.7[${MULTILIB_USEDEP}]
 	>=dev-libs/glib-2.57.2:2[${MULTILIB_USEDEP}]
 	media-libs/fontconfig[${MULTILIB_USEDEP}]
@@ -45,13 +45,13 @@ COMMON_DEPEND="
 	cups? ( >=net-print/cups-2.0[${MULTILIB_USEDEP}] )
 	introspection? ( >=dev-libs/gobject-introspection-1.39:= )
 	wayland? (
-		>=dev-libs/wayland-1.9.91[${MULTILIB_USEDEP}]
-		>=dev-libs/wayland-protocols-1.14
+		>=dev-libs/wayland-1.14.91[${MULTILIB_USEDEP}]
+		>=dev-libs/wayland-protocols-1.17
 		media-libs/mesa[wayland,${MULTILIB_USEDEP}]
 		>=x11-libs/libxkbcommon-0.2[${MULTILIB_USEDEP}]
 	)
 	X? (
-		accessibility? ( >=app-accessibility/at-spi2-atk-2.5.3[${MULTILIB_USEDEP}] )
+		accessibility? ( >=app-accessibility/at-spi2-atk-2.15.1[${MULTILIB_USEDEP}] )
 		media-libs/mesa[X(+),${MULTILIB_USEDEP}]
 		x11-libs/libX11[${MULTILIB_USEDEP}]
 		>=x11-libs/libXi-1.3[${MULTILIB_USEDEP}]
@@ -71,8 +71,10 @@ DEPEND="${COMMON_DEPEND}
 	dev-libs/gobject-introspection-common
 	dev-util/glib-utils
 	>=dev-util/gtk-doc-am-1.20
-	gtk-doc? ( >=dev-util/gtk-doc-1.20 )
+	gtk-doc? ( >=dev-util/gtk-doc-1.20
+		app-text/docbook-xml-dtd:4.3 )
 	>=sys-devel/gettext-0.19.7[${MULTILIB_USEDEP}]
+	sysprof? ( >=dev-util/sysprof-capture-3.33.2:3 )
 	X? ( x11-base/xorg-proto )
 "
 # TODO probably incomplete transition from DEPEND
@@ -148,6 +150,7 @@ multilib_src_configure() {
 		"$(use_enable cups cups auto)"
 		"$(multilib_native_use_enable gtk-doc)"
 		"$(multilib_native_use_enable introspection)"
+		"$(multilib_native_use_enable sysprof profiler)"
 		"$(use_enable wayland wayland-backend)"
 		"$(use_enable X x11-backend)"
 		"$(use_enable X xcomposite)"
@@ -160,8 +163,6 @@ multilib_src_configure() {
 		# cloudprovider is not packaged in Gentoo yet
 		--disable-cloudproviders
 		--disable-papi
-		# sysprof integration needs >=sysprof-3.33.2
-		--disable-profiler
 		--enable-man
 		"--with-xml-catalog=${EPREFIX}/etc/xml/catalog"
 		# need libdir here to avoid a double slash in a path that libtool doesn't

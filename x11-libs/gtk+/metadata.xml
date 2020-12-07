@@ -2,22 +2,29 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<longdescription lang="en">
-		This is a patched version of Gentoo's gtk+:3 ebuild adding the USE=accessibility flag.
-		Disabling the flag removes a dependency on <pkg>dev-libs/atk</pkg>,
-		a transient dependency on <pkg>sys-apps/dbus</pkg>, and spawning extra runtime processes.
+		This is a patched version of Gentoo's gtk+:3 ebuild to make optional its
+		transitive dependency on <pkg>sys-apps/dbus</pkg>, by adding a
+		USE=accessibility flag. Disabling it makes <pkg>dev-libs/atk</pkg>
+		redundant, and also prevents spawning extra runtime processes for it.
+		Note that many other packages pull in ATK, so this is only of use on a
+		very minimal system.
 	</longdescription>
 	<maintainer type="person">
 		<email>gentoo+bugs@flussence.eu</email>
 	</maintainer>
-	<upstream>
-		<bugs-to>https://gitlab.gnome.org/GNOME/gtk/issues/</bugs-to>
-		<changelog>https://gitlab.gnome.org/GNOME/gtk/tags?format=atom</changelog>
-		<doc>https://www.gtk.org/documentation.php</doc>
-	</upstream>
 	<use>
 		<!-- Borrowed verbatim from ::gentoo -->
 		<flag name="broadway">Enable the GDK Broadway backend.</flag>
 		<flag name="cloudprint">Enable printing via Google Cloud Print.</flag>
-		<flag name="colord">Use <pkg>x11-misc/colord</pkg> for color management in printing</flag>
+		<flag name="colord">Use <pkg>x11-misc/colord</pkg> for color management
+			in printing</flag>
+		<flag name="sysprof">Enable profiling data capture support using
+			<pkg>dev-util/sysprof-capture</pkg></flag>
 	</use>
+	<upstream>
+		<remote-id type="cpe">cpe:/a:gtk:gtk%2B</remote-id>
+		<bugs-to>https://gitlab.gnome.org/GNOME/gtk/issues/</bugs-to>
+		<changelog>https://gitlab.gnome.org/GNOME/gtk/tags?format=atom</changelog>
+		<doc>https://www.gtk.org/documentation.php</doc>
+	</upstream>
 </pkgmetadata>
