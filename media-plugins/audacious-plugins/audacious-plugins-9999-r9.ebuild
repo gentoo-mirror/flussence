@@ -30,7 +30,7 @@ LICENSE="
 	qt5? ( || ( GPL-2 GPL-3 ) )"
 SLOT="0"
 
-USE_FRONTENDS="+qt5 +mpris"
+USE_FRONTENDS="+qt5 moonstone +mpris"
 USE_OUTPUTS="alsa encode +pulseaudio qtmedia"
 USE_CODECS="+flac lame +vorbis"
 IUSE="aac cdda cue ffmpeg fluidsynth http +hotkeys libnotify libsamplerate mms modplug
@@ -41,11 +41,12 @@ REQUIRED_USE="
 	|| ( ${USE_FRONTENDS//+/} )
 	|| ( ${USE_OUTPUTS//+/} )
 	encode? ( || ( ${USE_CODECS//+/} ) )
+	moonstone? ( qt5 )
 	!qt5? ( !hotkeys !libnotify !qtmedia !opengl !streamtuner )
 	scrobbler? ( xml )"
 
 # hotkeys currently has automagic detection
-QT_REQ="5.2:5="
+QT_REQ="5.4:5="
 RDEPEND="
 	>=dev-libs/glib-2.32
 	sys-libs/zlib
@@ -127,7 +128,7 @@ src_configure() {
 		"$(meson_use libsamplerate  speedpitch)"
 		"$(meson_use                mms)"
 		"$(meson_use                modplug)"
-		"$(meson_use qt5            moonstone)"
+		"$(meson_use                moonstone)"
 		"$(meson_use mp3            mpg123)"
 		"$(meson_use mpris          mpris2)"
 		"$(meson_use                openmpt)"

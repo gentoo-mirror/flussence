@@ -18,6 +18,7 @@
 		<flag name="lame">Enable MP3 filewriter output plugin</flag>
 		<flag name="libsamplerate">Enable <pkg>media-libs/libsamplerate</pkg> (resample, speed and pitch) plugins</flag>
 		<flag name="mp3">Enable standalone MP3 plugin using <pkg>media-sound/mpg123</pkg></flag>
+		<flag name="moonstone">Enable the minimal Moonstone frontend (experimental)</flag>
 		<flag name="mpris">Enable MPRIS2 support (dbus-based player remote control)</flag>
 		<flag name="openmpt">Enable playing module tracker files through <pkg>media-libs/libopenmpt</pkg></flag>
 		<flag name="qtmedia">Enable sound output via <pkg>dev-qt/qtmultimedia</pkg></flag>
