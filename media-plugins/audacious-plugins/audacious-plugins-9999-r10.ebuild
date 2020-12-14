@@ -27,28 +27,36 @@ LICENSE="
 	GPL-2+
 	flac? ( GPL-3+ )
 	libnotify? ( GPL-3+ )
-	qt5? ( || ( GPL-2 GPL-3 ) )"
+	gui? ( || ( GPL-2 GPL-3 ) )"
 SLOT="0"
 
-USE_FRONTENDS="+qt5 moonstone +mpris"
+USE_FRONTENDS="+dbus gtk +qt5 moonstone"
 USE_OUTPUTS="alsa encode +pulseaudio qtmedia"
 USE_CODECS="+flac lame +vorbis"
-IUSE="aac cdda cue ffmpeg fluidsynth http +hotkeys libnotify libsamplerate mms modplug
-	mp3 opengl openmpt scrobbler sid sndfile soxr streamtuner wavpack +xml
+IUSE="aac cdda cue ffmpeg fluidsynth +gui http +hotkeys libnotify
+	libsamplerate mms modplug mp3 opengl openmpt scrobbler sid sndfile soxr
+	streamtuner wavpack +xml
 	${USE_FRONTENDS} ${USE_OUTPUTS} ${USE_CODECS}"
 
+# this is verbose, but it makes user-facing errors more scrutable
+# USE=gui is a no-op for keeping dependencies in order
+NEED_GUI="fluidsynth libnotify"
+NEED_QT5="hotkeys moonstone qtmedia opengl streamtuner"
 REQUIRED_USE="
 	|| ( ${USE_FRONTENDS//+/} )
 	|| ( ${USE_OUTPUTS//+/} )
-	encode? ( || ( ${USE_CODECS//+/} ) )
-	moonstone? ( qt5 )
-	!qt5? ( !hotkeys !libnotify !qtmedia !opengl !streamtuner )
-	scrobbler? ( xml )"
+	gui?       ( || ( gtk qt5 ) )
+	encode?    ( || ( ${USE_CODECS//+/} ) )
+	scrobbler? ( xml )
+	$(for flag in $NEED_GUI; do printf '%s?\t( gui )\n' "$flag"; done)
+	$(for flag in $NEED_QT5; do printf '%s?\t( qt5 )\n' "$flag"; done)
+"
 
 # hotkeys currently has automagic detection
 QT_REQ="5.4:5="
 RDEPEND="
 	>=dev-libs/glib-2.32
+	>=media-sound/audacious-4.0:=[qt5(-)=,gtk(-)=,dbus(-)?]
 	sys-libs/zlib
 	aac? ( >=media-libs/faad2-2.7 )
 	alsa? ( >=media-libs/alsa-lib-1.0.16 )
@@ -61,11 +69,10 @@ RDEPEND="
 	ffmpeg? ( media-video/ffmpeg )
 	flac? ( >=media-libs/flac-1.2.1 )
 	fluidsynth? ( >=media-sound/fluidsynth-1.0.6:= )
+	gtk? ( >=x11-libs/gtk+-2.24:2 )
 	http? ( >=net-libs/neon-0.27 )
 	hotkeys? ( >=dev-qt/qtx11extras-${QT_REQ} )
 	!hotkeys? ( !dev-qt/qtx11extras:5 )
-	mpris? ( >=media-sound/audacious-4.0:=[qt5(-)=,dbus(-)] )
-	!mpris? ( >=media-sound/audacious-4.0:=[qt5(-)=] )
 	qt5? (
 		>=dev-qt/qtcore-${QT_REQ}
 		>=dev-qt/qtgui-${QT_REQ}
@@ -96,7 +103,7 @@ RDEPEND="
 DEPEND="${RDEPEND} virtual/pkgconfig"
 BDEPEND="
 	sys-devel/gettext
-	mpris? ( dev-util/gdbus-codegen )"
+	dbus? ( dev-util/gdbus-codegen )"
 
 PATCHES=(
 	# CVE-2017-17446; https://bitbucket.org/mpyne/game-music-emu/issues/14
@@ -113,7 +120,7 @@ src_configure() {
 		"$(meson_use fluidsynth     amidiplug)"
 		"$(meson_use cdda           cdaudio)"
 		"$(meson_use                cue)"
-		"$(meson_use mpris          dbus)"
+		"$(meson_use                dbus)"
 		"$(meson_use aac            faad)"
 		"$(meson_use encode         filewriter)"
 		"$(meson_use flac           filewriter-flac)"
@@ -121,6 +128,7 @@ src_configure() {
 		"$(meson_use vorbis         filewriter-ogg)"
 		"$(meson_use                flac)"
 		"$(meson_use opengl         gl-spectrum)"
+		"$(meson_use                gtk)"
 		"$(meson_use http           neon)"
 		"$(meson_use libnotify      notify)"
 		"$(meson_use libsamplerate  resample)"
@@ -130,7 +138,7 @@ src_configure() {
 		"$(meson_use                modplug)"
 		"$(meson_use                moonstone)"
 		"$(meson_use mp3            mpg123)"
-		"$(meson_use mpris          mpris2)"
+		"$(meson_use dbus           mpris2)"
 		"$(meson_use                openmpt)"
 		"$(meson_use pulseaudio     pulse)"
 		"$(meson_use qt5            qt)"
