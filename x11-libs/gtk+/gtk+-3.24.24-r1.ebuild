@@ -1,18 +1,17 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6 # restricted by gnome2.eclass
-GNOME2_LA_PUNT="yes"
+EAPI=7
 GNOME2_EAUTORECONF="yes"
 
-inherit flag-o-matic gnome2 multilib virtualx multilib-minimal
+inherit gnome2 multilib multilib-minimal virtualx
 
 DESCRIPTION="Gimp ToolKit +"
 HOMEPAGE="https://www.gtk.org/"
 
 LICENSE="LGPL-2+"
 SLOT="3"
-IUSE="aqua accessibility broadway cloudprint colord cups examples gtk-doc +introspection +sysprof test vim-syntax wayland +X xinerama"
+IUSE="aqua accessibility broadway cloudprint colord cups examples gtk-doc +introspection sysprof test vim-syntax wayland +X xinerama"
 REQUIRED_USE="
 	|| ( aqua wayland X )
 	xinerama? ( X )
@@ -40,10 +39,12 @@ COMMON_DEPEND="
 
 	cloudprint? (
 		>=net-libs/rest-0.7[${MULTILIB_USEDEP}]
-		>=dev-libs/json-glib-1.0[${MULTILIB_USEDEP}] )
+		>=dev-libs/json-glib-1.0[${MULTILIB_USEDEP}]
+	)
 	colord? ( >=x11-misc/colord-0.1.9:0=[${MULTILIB_USEDEP}] )
 	cups? ( >=net-print/cups-2.0[${MULTILIB_USEDEP}] )
 	introspection? ( >=dev-libs/gobject-introspection-1.39:= )
+	sysprof? ( >=dev-util/sysprof-capture-3.33.2:3[${MULTILIB_USEDEP}] )
 	wayland? (
 		>=dev-libs/wayland-1.14.91[${MULTILIB_USEDEP}]
 		>=dev-libs/wayland-protocols-1.17
@@ -65,25 +66,12 @@ COMMON_DEPEND="
 	)
 "
 DEPEND="${COMMON_DEPEND}
-	app-text/docbook-xsl-stylesheets
-	app-text/docbook-xml-dtd:4.1.2
-	dev-libs/libxslt
-	dev-libs/gobject-introspection-common
-	dev-util/glib-utils
-	>=dev-util/gtk-doc-am-1.20
-	gtk-doc? ( >=dev-util/gtk-doc-1.20
-		app-text/docbook-xml-dtd:4.3 )
 	>=sys-devel/gettext-0.19.7[${MULTILIB_USEDEP}]
-	sysprof? ( >=dev-util/sysprof-capture-3.33.2:3 )
-	X? ( x11-base/xorg-proto )
-"
-# TODO probably incomplete transition from DEPEND
-BDEPEND="
-	>=dev-util/gdbus-codegen-2.48
-	virtual/pkgconfig
 	test? (
 		media-fonts/font-misc-misc
-		media-fonts/font-cursor-misc )
+		media-fonts/font-cursor-misc
+	)
+	X? ( x11-base/xorg-proto )
 "
 # gtk+-3.2.2 breaks Alt key handling in <=x11-libs/vte-0.30.1:2.90
 # gtk+-3.3.18 breaks scrolling in <=x11-libs/vte-0.31.0:2.90
@@ -98,9 +86,35 @@ PDEPEND="
 	>=x11-themes/adwaita-icon-theme-3.14
 	vim-syntax? ( app-vim/gtk-syntax )
 "
+BDEPEND="
+	app-text/docbook-xml-dtd:4.1.2
+	app-text/docbook-xsl-stylesheets
+	dev-libs/gobject-introspection-common
+	dev-libs/libxslt
+	>=dev-util/gdbus-codegen-2.48
+	dev-util/glib-utils
+	>=dev-util/gtk-doc-am-1.20
+	virtual/pkgconfig
+	gtk-doc? (
+		app-text/docbook-xml-dtd:4.3
+		>=dev-util/gtk-doc-1.20
+	)
+"
 
 MULTILIB_CHOST_TOOLS=(
 	/usr/bin/gtk-query-immodules-3.0"$(get_exeext)"
+)
+
+PATCHES=(
+	# gtk-update-icon-cache is installed by dev-util/gtk-update-icon-cache
+	"${FILESDIR}/${PN}"-3.24.8-update-icon-cache.patch
+
+	# Fix broken autotools logic
+	"${FILESDIR}/${PN}"-3.22.20-libcloudproviders-automagic.patch
+
+	# get rid of gtk3-atk-bridge crap
+	"${FILESDIR}/${PN}"-3.22.19.atk-bridge.patch
+
 )
 
 strip_builddir() {
@@ -127,15 +141,6 @@ src_prepare() {
 		strip_builddir SRC_SUBDIRS demos Makefile.{am,in}
 		strip_builddir SRC_SUBDIRS examples Makefile.{am,in}
 	fi
-
-	# gtk-update-icon-cache is installed by dev-util/gtk-update-icon-cache
-	eapply "${FILESDIR}/${PN}"-3.24.8-update-icon-cache.patch
-
-	# Fix broken autotools logic
-	eapply "${FILESDIR}/${PN}"-3.22.20-libcloudproviders-automagic.patch
-
-	# get rid of gtk3-atk-bridge crap
-	eapply "${FILESDIR}/${PN}"-3.22.19.atk-bridge.patch
 
 	gnome2_src_prepare
 }
@@ -218,9 +223,9 @@ pkg_preinst() {
 		cache="usr/$(get_libdir)/gtk-3.0/3.0.0/immodules.cache"
 
 		if [[ -e "${EROOT}${cache}" ]]; then
-			cp "${EROOT}${cache}" "${ED}/${cache}" || die
+			cp "${EROOT}${cache}" "${ED}${cache}" || die
 		else
-			touch "${ED}/${cache}" || die
+			touch "${ED}${cache}" || die
 		fi
 	}
 	multilib_parallel_foreach_abi multilib_pkg_preinst
@@ -247,7 +252,7 @@ pkg_postrm() {
 
 	if [[ -z ${REPLACED_BY_VERSION} ]]; then
 		multilib_pkg_postrm() {
-			rm -f "${EROOT}usr/$(get_libdir)/gtk-3.0/3.0.0/immodules.cache"
+			rm -f "${EROOT}/usr/$(get_libdir)/gtk-3.0/3.0.0/immodules.cache"
 		}
 		multilib_foreach_abi multilib_pkg_postrm
 	fi
