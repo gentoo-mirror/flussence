@@ -220,7 +220,7 @@ pkg_preinst() {
 	multilib_pkg_preinst() {
 		# Make immodules.cache belongs to gtk+ alone
 		local cache
-		cache="usr/$(get_libdir)/gtk-3.0/3.0.0/immodules.cache"
+		cache="/usr/$(get_libdir)/gtk-3.0/3.0.0/immodules.cache"
 
 		if [[ -e "${EROOT}${cache}" ]]; then
 			cp "${EROOT}${cache}" "${ED}${cache}" || die
