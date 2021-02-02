@@ -1,0 +1,2 @@
+# package is only available on ~amd64 for now
+media-plugins/audacious-plugins sndio

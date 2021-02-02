@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -19,21 +19,30 @@ fi
 inherit meson xdg
 
 LICENSE="BSD-2 BSD CC-BY-SA-4.0"
-SLOT="0/5.1"
+SLOT="0/5.3.0"
 
-IUSE="+dbus +libarchive +qt5"
-REQUIRED_USE="|| ( dbus qt5 )" # audtool requires dbus, GUI requires qt5
+# libarchive is only (apparently) used for legacy winamp .wsz skins and nothing
+# else at the moment. In the future it'll probably be used for playing media
+# inside archives, but as that hasn't been coded at the time of writing there's
+# no point having it on by default.
+IUSE="+dbus gtk libarchive +qt5"
+REQUIRED_USE="|| ( dbus gtk qt5 )"
 
+QT_REQ="5.2:5="
 RDEPEND="
 	>=dev-libs/glib-2.32
 	dbus? ( sys-apps/dbus )
 	libarchive? ( app-arch/libarchive )
-	qt5? (
-		>=dev-qt/qtcore-5.2:5
-		>=dev-qt/qtgui-5.2:5
-		>=dev-qt/qtwidgets-5.2:5
+	gtk? (
+		>=x11-libs/gtk+-2.24:2
 		x11-libs/cairo
 		x11-libs/pango
+		virtual/libintl
+	)
+	qt5? (
+		>=dev-qt/qtcore-${QT_REQ}
+		>=dev-qt/qtgui-${QT_REQ}
+		>=dev-qt/qtwidgets-${QT_REQ}
 		virtual/freedesktop-icon-theme
 	)"
 DEPEND="${RDEPEND} virtual/pkgconfig"
@@ -52,9 +61,17 @@ pkg_setup() {
 src_configure() {
 	local emesonargs=(
 		"-Dauto_features=disabled"
-		"-Ddbus=$(usex dbus true false)"
-		"-Dlibarchive=$(usex libarchive true false)"
-		"-Dqt=$(usex qt5 true false)"
+		"$(meson_use dbus)"
+		"$(meson_use gtk)"
+		"$(meson_use libarchive)"
+		"$(meson_use qt5 qt)"
 	)
 	meson_src_configure
+}
+
+pkg_preinst() {
+	# make sure this matches, or else we'll create preserved-libs litter
+	for audcore in "${D}"/usr/lib*/libaudcore.so."${SLOT##*/}"; do
+		[ -e "$audcore" ] || eqawarn "Subslot in ebuild needs updating"
+	done
 }

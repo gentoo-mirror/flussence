@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -28,21 +28,21 @@ SLOT="0/5.3.0"
 IUSE="+dbus gtk libarchive +qt5"
 REQUIRED_USE="|| ( dbus gtk qt5 )"
 
-QT_REQ="5.4:5="
+QT_REQ="5.2:5="
 RDEPEND="
 	>=dev-libs/glib-2.32
 	dbus? ( sys-apps/dbus )
 	libarchive? ( app-arch/libarchive )
 	gtk? (
 		>=x11-libs/gtk+-2.24:2
+		x11-libs/cairo
+		x11-libs/pango
 		virtual/libintl
 	)
 	qt5? (
 		>=dev-qt/qtcore-${QT_REQ}
 		>=dev-qt/qtgui-${QT_REQ}
 		>=dev-qt/qtwidgets-${QT_REQ}
-		x11-libs/cairo
-		x11-libs/pango
 		virtual/freedesktop-icon-theme
 	)"
 DEPEND="${RDEPEND} virtual/pkgconfig"
@@ -61,10 +61,10 @@ pkg_setup() {
 src_configure() {
 	local emesonargs=(
 		"-Dauto_features=disabled"
-		"-Ddbus=$(usex dbus true false)"
-		"-Dgtk=$(usex gtk true false)"
-		"-Dlibarchive=$(usex libarchive true false)"
-		"-Dqt=$(usex qt5 true false)"
+		"$(meson_use dbus)"
+		"$(meson_use gtk)"
+		"$(meson_use libarchive)"
+		"$(meson_use qt5 qt)"
 	)
 	meson_src_configure
 }
