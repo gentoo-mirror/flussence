@@ -107,7 +107,7 @@ MULTILIB_CHOST_TOOLS=(
 
 PATCHES=(
 	# gtk-update-icon-cache is installed by dev-util/gtk-update-icon-cache
-	"${FILESDIR}/${PN}"-3.24.8-update-icon-cache.patch
+	"${FILESDIR}/${PN}"-3.24.26-update-icon-cache.patch
 
 	# Fix broken autotools logic
 	"${FILESDIR}/${PN}"-3.22.20-libcloudproviders-automagic.patch
