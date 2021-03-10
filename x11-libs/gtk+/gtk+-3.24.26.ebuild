@@ -77,7 +77,6 @@ DEPEND="${COMMON_DEPEND}
 # gtk+-3.3.18 breaks scrolling in <=x11-libs/vte-0.31.0:2.90
 RDEPEND="${COMMON_DEPEND}
 	>=dev-util/gtk-update-icon-cache-3
-	!<gnome-base/gail-1000
 	!<x11-libs/vte-0.31.0:2.90
 "
 # librsvg for svg icons (PDEPEND to avoid circular dep), bug #547710
