@@ -49,10 +49,6 @@ This list is manually maintained. Some things may be missing (accidentally or no
   This hasn't been maintained upstream since 2017, but surprisingly still works.
   Unfortunately lacks the pinnacle of FOSS GUI design, Keramik.
 
-`dev-vcs/src` — [Simple Revision Control](https://gitlab.com/esr/src)
-: A python wrapper around `dev-vcs/rcs` that makes it pretend it's a modern program.
-  Chances are you'd be better off using something like `dev-vcs/fossil`.
-
 `games-action/minecraft` — Java launcher for Minecraft
 : Convenience ebuild that installs the good Minecraft launcher (not the awful Electron-based one).
 
