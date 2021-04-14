@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>gentoo+bugs@flussence.eu</email>
+		<name>flussence</name>
+	</maintainer>
+	<longdescription>
+		Nimbus is the default GTK+2 style from OpenSolaris 10's GNOME2 desktop.
+		This package is OpenIndiana's fork of it, which also provides a Gtk3 theme.
+	</longdescription>
+</pkgmetadata>
