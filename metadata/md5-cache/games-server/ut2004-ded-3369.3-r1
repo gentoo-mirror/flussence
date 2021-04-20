@@ -1,0 +1,12 @@
+DEFINED_PHASES=install postinst prepare
+DEPEND=app-arch/unzip app-arch/p7zip
+DESCRIPTION=Unreal Tournament 2004 Linux Dedicated Server
+EAPI=7
+HOMEPAGE=http://www.unrealtournament.com/
+KEYWORDS=~amd64 ~x86
+LICENSE=ut2003
+RDEPEND=sys-libs/glibc games-fps/ut2004-bonuspack-ece games-fps/ut2004-bonuspack-mega
+RESTRICT=bindist mirror strip
+SLOT=0
+SRC_URI=mirror://ipfs/ipfs/QmYM5AnzgZFWHgPB17rHn7Ayxq8SqC2MD5rLZxAohaZkZ8 -> dedicatedserver3339-bonuspack.zip mirror://ipfs/ipfs/QmaaQUGbUAx1nJTuoGmmsX9Vmw55BCfRPq3v3SQuo66c8p -> ut2004-lnxpatch3369-2.tar.bz2 mirror://ipfs/ipfs/QmUe7zL7umztdNrmoNSMB6EFX4WHJWJfzxuCcqn1ZM7PhP -> ut2004-v3369-3-linux-dedicated.7z
+_md5_=ace42328c95704edc40a721aa2767e93

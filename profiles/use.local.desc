@@ -1,0 +1,59 @@
+# This file is deprecated as per GLEP 56 in favor of metadata.xml.
+# Please add your descriptions to your package's metadata.xml ONLY.
+# * generated automatically using pmaint *
+
+gnome-extra/gucharmap:gconf - Use GConf to save gucharmap settings
+gnome-extra/gucharmap:system-unicode - Regenerate unicode metadata using app-i18n/unicode-data instead of using old bundled copies
+media-libs/libopenmpt:cli - Build openmpt123, the command-line player application
+media-libs/libopenmpt:flac - Add support for FLAC file writing support in openmpt123
+media-libs/libopenmpt:sdl - Enable SDL audio output driver in openmpt123
+media-libs/libopenmpt:sdl2 - Enable SDL2 audio output driver in openmpt123
+media-libs/libopenmpt:sndfile - Add support for libsndfile file writing support in openmpt123
+media-plugins/audacious-plugins:adplug - Support MIDI playback using adplug FM synth emulation
+media-plugins/audacious-plugins:ampache - Enable ampache server browser plugin
+media-plugins/audacious-plugins:aosd - Enable On-Screen Display plugin
+media-plugins/audacious-plugins:bs2b - Enable libbs2b stereophonic-to-binaural headphone filter
+media-plugins/audacious-plugins:cue - Support CUE sheets using the libcue library
+media-plugins/audacious-plugins:ffmpeg - Use media-video/ffmpeg to play audio from most files
+media-plugins/audacious-plugins:fluidsynth - Support MIDI playback using Fluidsynth
+media-plugins/audacious-plugins:gme - Enable GME plugin (bundled, not media-libs/game-music-emu!)
+media-plugins/audacious-plugins:hotkeys - Enable global hotkeys plugin
+media-plugins/audacious-plugins:http - Support HTTP streams through net-libs/neon
+media-plugins/audacious-plugins:lame - Enable MP3 filewriter output plugin
+media-plugins/audacious-plugins:libsamplerate - Enable media-libs/libsamplerate (resample, speed and pitch) plugins
+media-plugins/audacious-plugins:moonstone - Enable the minimal Moonstone frontend (experimental)
+media-plugins/audacious-plugins:mp3 - Enable standalone MP3 plugin using media-sound/mpg123
+media-plugins/audacious-plugins:mpris2 - Enable MPRIS2 support (dbus-based player remote control)
+media-plugins/audacious-plugins:opengl - Enable the GL Spectrum visualiser
+media-plugins/audacious-plugins:openmpt - Enable playing module tracker files through media-libs/libopenmpt
+media-plugins/audacious-plugins:qtmedia - Enable sound output via dev-qt/qtmultimedia
+media-plugins/audacious-plugins:scrobbler - Build with audioscrobbler/last.fm submission support
+media-plugins/audacious-plugins:sid - Build with SID (Commodore 64 Audio) support
+media-plugins/audacious-plugins:sndio - Enable media-sound/sndio output plugin
+media-plugins/audacious-plugins:songchange - Enable the song change plugin
+media-plugins/audacious-plugins:soxr - Enable media-libs/soxr (SoX Resampler) plugin
+media-plugins/audacious-plugins:streamtuner - Enable streamtuner (internet radio browser) plugin
+media-plugins/audacious-plugins:vumeter - Enable the VU Meter visualiser
+media-plugins/audacious-plugins:xml - Enable support for XML-based playlists and APIs
+media-sound/audacious:dbus - Enable DBus support. This is used for the `audtool` CLI and the MPRIS plugin.
+media-sound/audacious:gtk - Enables the GTK+2 GUI. Old, may be removed without warning!
+media-sound/audacious:libarchive - Enable app-arch/libarchive support for compressed Winamp2 .wsz skins. With this disabled they'll be decompressed via shell commands, which may be a security hazard.
+media-sound/audacious:qt5 - Enables the Audacious GUI (both skinned and plain).
+media-video/obs-studio:decklink - Enable bundled plugin for BlackMagic DeckLink devices
+media-video/obs-studio:fdk - Use media-libs/fdk-aac for high-quality AAC encoding
+media-video/obs-studio:imagemagick - Prefer ImageMagick for image loading instead of FFmpeg
+media-video/obs-studio:libcxx - Build using libc++ instead of libstdc++ (clang only)
+media-video/obs-studio:luajit - Enable the Lua scripting API
+media-video/obs-studio:python - Enable the Python scripting API
+media-video/obs-studio:qt5 - Build the main OBS UI (you probably want this)
+media-video/obs-studio:ssl - Add RTMPS (RTMP over TLS) support
+media-video/obs-studio:vlc - Add video source plugin using media-video/vlc
+x11-libs/gtk+:broadway - Enable the GDK Broadway backend.
+x11-libs/gtk+:cloudprint - Enable printing via Google Cloud Print.
+x11-libs/gtk+:colord - Use x11-misc/colord for color management in printing
+x11-libs/gtk+:sysprof - Enable profiling data capture support using dev-util/sysprof-capture
+x11-misc/picom:doc - Installs manpages (requires app-text/asciidoc)
+x11-misc/picom:drm - Enable (deprecated) DRM VSync method
+x11-misc/picom:libconfig - Enable config file support, recommended
+x11-misc/picom:opengl - Enable OpenGL backend (requires at least OpenGL 3.0)
+x11-wm/openbox:xdg - Install support files for xdg (*.desktop file) autostart
