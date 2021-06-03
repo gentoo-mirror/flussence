@@ -81,11 +81,6 @@ This list is manually maintained. Some things may be missing (accidentally or no
 `media-plugins/lvis` — [Audacious visualiser plugin](https://git.sr.ht/~kaniini/lvis)
 : An Audacious visualiser plugin. Like Winamp AVS, but better.
 
-`media-video/obs-studio` — [OBS Studio](https://github.com/jp9000/obs-studio)
-: Builds OBS Studio from Git.
-  Probably has too many `USE` flags, but it works and does what I need from it.
-  You can even build it with no GUI at all, if you're into that sort of thing.
-
 `sys-process/runit` — [Runit PID1 and service manager](http://smarden.org/runit/)
 : An elegant init for a more civilised age. (S6 is good too)
   This package is a hard fork of whatever was in the Gentoo tree circa 2014,
