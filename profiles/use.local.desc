@@ -39,15 +39,6 @@ media-sound/audacious:dbus - Enable DBus support. This is used for the `audtool`
 media-sound/audacious:gtk - Enables the GTK+2 GUI. Old, may be removed without warning!
 media-sound/audacious:libarchive - Enable app-arch/libarchive support for compressed Winamp2 .wsz skins. With this disabled they'll be decompressed via shell commands, which may be a security hazard.
 media-sound/audacious:qt5 - Enables the Audacious GUI (both skinned and plain).
-media-video/obs-studio:decklink - Enable bundled plugin for BlackMagic DeckLink devices
-media-video/obs-studio:fdk - Use media-libs/fdk-aac for high-quality AAC encoding
-media-video/obs-studio:imagemagick - Prefer ImageMagick for image loading instead of FFmpeg
-media-video/obs-studio:libcxx - Build using libc++ instead of libstdc++ (clang only)
-media-video/obs-studio:luajit - Enable the Lua scripting API
-media-video/obs-studio:python - Enable the Python scripting API
-media-video/obs-studio:qt5 - Build the main OBS UI (you probably want this)
-media-video/obs-studio:ssl - Add RTMPS (RTMP over TLS) support
-media-video/obs-studio:vlc - Add video source plugin using media-video/vlc
 x11-libs/gtk+:broadway - Enable the GDK Broadway backend.
 x11-libs/gtk+:cloudprint - Enable printing via Google Cloud Print.
 x11-libs/gtk+:colord - Use x11-misc/colord for color management in printing

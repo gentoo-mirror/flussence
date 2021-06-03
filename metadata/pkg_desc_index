@@ -29,7 +29,6 @@ media-plugins/audacious-plugins 4.1 9999-r11: Audacious Player - Your music, you
 media-plugins/lvis 9999-r1: Programmable audio visualizer
 media-sound/audacious 4.1 9999-r6: Audacious Player - Your music, your way, no exceptions
 media-sound/regainer 9999: Multi-format ReplayGain scanner and tagger
-media-video/obs-studio 9999: Free software for video recording and live streaming
 sys-process/runit 2.1.2-r13: A UNIX init scheme with service supervision
 www-client/michabo 0.1 9999-r3: A Fediverse client written in Qt
 x11-libs/gtk+ 3.24.29: Gimp ToolKit +
