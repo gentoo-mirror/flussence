@@ -79,7 +79,7 @@ RDEPEND="
 	)
 	cue? ( >=media-libs/libcue-2.0 )
 	ffmpeg? ( media-video/ffmpeg )
-	flac? ( >=media-libs/flac-1.2.1 )
+	flac? ( >=media-libs/flac-1.2.1[ogg] )
 	fluidsynth? ( >=media-sound/fluidsynth-1.0.6:= )
 	gtk? (
 		>=x11-libs/gtk+-2.24:2
