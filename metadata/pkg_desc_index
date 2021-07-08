@@ -31,7 +31,7 @@ media-sound/audacious 4.1 9999-r6: Audacious Player - Your music, your way, no e
 media-sound/regainer 9999: Multi-format ReplayGain scanner and tagger
 sys-process/runit 2.1.2-r13: A UNIX init scheme with service supervision
 www-client/michabo 0.1 9999-r3: A Fediverse client written in Qt
-x11-libs/gtk+ 3.24.29: Gimp ToolKit +
+x11-libs/gtk+ 3.24.30: Gimp ToolKit +
 x11-misc/hsetroot 1.0.5 9999: Tool which allows you to compose wallpapers ('root pixmaps') for X
 x11-misc/picom 8.2 9999-r2: Picom is a X compositing window manager, fork of compton.
 x11-themes/nimbus 1.0 9999: The default OpenIndiana theme (GTK+ 2.x/Gtk3 engine, icon- and metacity theme)
