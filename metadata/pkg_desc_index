@@ -24,7 +24,7 @@ media-fonts/tt2020 0_p20200101: Multilingual typewriter fonts with an organic ap
 media-fonts/ubuntu-font-family 0.83-r2: A set of matching libre/open fonts funded by Canonical
 media-libs/adplug 2.3.3: Hardware-independent AdLib sound player library
 media-libs/libopenmpt 0.5.10: Cross-platform C++ and C library to decode tracked music files (modules)
-media-libs/libsidplayfp 2.2.0: A library to play Commodore 64 music
+media-libs/libsidplayfp 2.2.1: A library to play Commodore 64 music
 media-plugins/audacious-plugins 4.1-r1 9999-r12: Audacious Player - Your music, your way, no exceptions
 media-plugins/lvis 9999-r1: Programmable audio visualizer
 media-sound/audacious 4.1 9999-r6: Audacious Player - Your music, your way, no exceptions
