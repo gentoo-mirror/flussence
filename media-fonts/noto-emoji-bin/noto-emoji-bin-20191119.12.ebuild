@@ -1,1 +1,1 @@
-noto-emoji-bin-9999-r1.ebuild
+noto-emoji-bin-20200916.13.1.ebuild
