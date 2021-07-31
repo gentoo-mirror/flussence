@@ -6,7 +6,7 @@ Bug reports and feedback can be sent via whatever method you have available:
 * https://bugs.gentoo.org[Gentoo bug tracker (product “Gentoo Linux”, component “Overlays”)]
 * https://wiki.gentoo.org/wiki/User_talk:Ant_P.[Gentoo Wiki talk page (use the ｢more⏷｣ → ｢+｣ menu)]
 * Fediverse
-* E-Mail (except GMail)
+* E-Mail (address in overlay.xml)
 
 I'm also willing to adopt and look after your ebuilds if you don't feel safe dealing with Gentoo's
 https://bugs.gentoo.org/674592[deadname-outing policy] or its developer clique.
