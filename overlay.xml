@@ -9,7 +9,6 @@
       <email>gentoo+bugs@flussence.eu</email>
     </owner>
     <source type="git">https://repo.or.cz/flussence-overlay.git</source>
-    <source type="git">https://gitea.flussence.eu/flussence/flussence-overlay.git</source>
     <feed>https://repo.or.cz/flussence-overlay.git/atom</feed>
   </repo>
 </repositories>
