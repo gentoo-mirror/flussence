@@ -88,9 +88,6 @@ This list is manually maintained. Some things may be missing (accidentally or no
   It does things slightly differently, so familiarise yourself before use; `qlist` is your friend.
   There is no handholding here. There may be in future.
 
-`www-client/michabo` — [Qt5 desktop Fediverse client](https://git.pleroma.social/kaniini/michabo)
-: For when you get sick of Web 3.0 immolating your CPU to render unformatted text.
-
 `x11-libs/gtk+:3` — debloated Gtk+3
 : Contains a NetBSD patch which makes DBus (and auto-spawning of hidden DBus processes) optional.
   Patch is from [a f.g.o thread](https://forums.gentoo.org/viewtopic-p-8245612.html#8245612)
