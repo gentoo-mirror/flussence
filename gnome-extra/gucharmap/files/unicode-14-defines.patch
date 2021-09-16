@@ -1,6 +1,6 @@
 --- a/gucharmap/gucharmap-unicode-info.h	2011-01-04 16:58:25.000000000 +0000
-+++ b/gucharmap/gucharmap-unicode-info.h	2019-05-22 21:32:00.000000000 +0000
-@@ -41,7 +41,18 @@
++++ b/gucharmap/gucharmap-unicode-info.h	2021-09-16 18:00:00.000000000 +0000
+@@ -41,7 +41,19 @@
    GUCHARMAP_UNICODE_VERSION_5_1,
    GUCHARMAP_UNICODE_VERSION_5_2,
    GUCHARMAP_UNICODE_VERSION_6_0,
@@ -16,7 +16,8 @@
 +  GUCHARMAP_UNICODE_VERSION_12_0,
 +  GUCHARMAP_UNICODE_VERSION_12_1,
 +  GUCHARMAP_UNICODE_VERSION_13_0,
-+  GUCHARMAP_UNICODE_VERSION_LATEST = GUCHARMAP_UNICODE_VERSION_13_0 /* private, will move forward with each revision */
++  GUCHARMAP_UNICODE_VERSION_14_0,
++  GUCHARMAP_UNICODE_VERSION_LATEST = GUCHARMAP_UNICODE_VERSION_14_0 /* private, will move forward with each revision */
  } GucharmapUnicodeVersion;
  
  /* return values are read-only */

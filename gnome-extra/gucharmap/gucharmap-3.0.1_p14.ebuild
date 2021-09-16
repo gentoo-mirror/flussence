@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -23,6 +23,7 @@ DEPEND="${RDEPEND}"
 BDEPEND="
 	system-unicode? (
 		>=dev-lang/perl-5.28.0
+		>=app-i18n/unicode-data-${MY_UV}
 		<=app-i18n/unicode-data-${MY_UV}.9999
 	)"
 
