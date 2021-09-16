@@ -1,5 +1,5 @@
 app-crypt/signify 30 9999: Cryptographically sign and verify files
-app-i18n/unicode-data 13.0.0: Unicode data from unicode.org
+app-i18n/unicode-data 14.0.0: Unicode data from unicode.org
 app-misc/cm-rgb 0.3.4 9999-r1: Python library and CLI tools to control the RGB LEDs on the AMD Wraith heatsink
 dev-libs/libbinio 1.5: Platform-independent way to access binary data streams in C++
 dev-perl/Crypt-LE 0.38: Let's Encrypt API module and client
@@ -16,7 +16,7 @@ games-fps/ut2004-bonuspack-ece 1-r4: UT2004 Editor's Choice Edition - Editor's C
 games-fps/ut2004-bonuspack-mega 1-r3: UT2004 Megapack - Megapack bonus pack
 games-server/minecraft-server 1.12.2: Official dedicated server for Minecraft
 games-server/ut2004-ded 3369.3-r1: Unreal Tournament 2004 Linux Dedicated Server
-gnome-extra/gucharmap 3.0.1_p13: GNOME Character Map, based on the Unicode Character Database
+gnome-extra/gucharmap 3.0.1_p14: GNOME Character Map, based on the Unicode Character Database
 media-fonts/font-problems-fonts 9999: Console and framebuffer fonts, including Bizcat
 media-fonts/noto-emoji-bin 2.028 20191119.12 20200916.13.1: Google Noto Color Emoji, upstream-prebuilt version
 media-fonts/opendyslexic-bin 9999: Typeface that uses shapes & features to help offset visual symptoms of Dyslexia
