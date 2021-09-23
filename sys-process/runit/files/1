@@ -12,13 +12,18 @@ PATH=/sbin:/usr/sbin:/bin:/usr/bin
 RUNLEVEL=S /sbin/openrc sysinit
 RUNLEVEL=S /sbin/openrc boot
 
+rescue_shell() {
+    echo "Starting a rescue shell, after which the system will reboot"
+    /sbin/sulogin
+    exit 100
+}
+
 # Spawn a login prompt if "single" is passed on the boot command line.
 read -r kcmdline </proc/cmdline
 case " $kcmdline " in
     *" single "* )
         /sbin/openrc single
-        /sbin/sulogin
-        exit 100
+        rescue_shell
     ;;
 esac
 
@@ -26,33 +31,36 @@ esac
 # number of good reasons, but is hard to change due to compatibility reasons.
 # We try here to symlink the $SVDIR/**/supervise/ dirs to /run/ so that the
 # system still works if the filesystem $SVDIR's on is (or becomes) readonly.
-tmpstate="/run/runit"
+statedir="/run/runit"
 
 # This may fail if /run/ also isn't writable, but that's not a fatal error on
-# its own.
-install -m 0755 -d "$tmpstate" || exit 0
+# our part.
+install -m 0755 -d "$statedir" && exit 0
 
-# Attempt to symlink each $sv's ./supervise/ (resp. ./log/supervise/) directory
-# to /run/runit/$sv/ (resp. /run/runit/log.$sv/) in order to minimise filesystem
+# Symlink each service's supervise/ (and log/supervise/, if present) dir to
+# /run/runit/$foo/ (resp. /run/runit/log.$foo/) in order to minimise filesystem
 # writes in /etc/.
-# If the supervise directories are already symlinks, they'll be left alone.
-for sv in "$SVDIR"/*/; do
-    if [ ! -L "$sv"/supervise ]; then
-        rm -rfv "$sv"/supervise
-        ln -Trs "$tmpstate"/"${sv##*/}" "$sv"/supervise
+cd "$SVDIR" || rescue_shell
+for service_name in *; do
+    [ -d "$service_name" ] || continue # not a dir? something weird, best not touch it
+    if [ ! -L "$service_name"/supervise ]; then
+        rm -rfv "$service_name"/supervise &&
+        ln -Trs "$statedir"/"$service_name" "$service_name"/supervise
     fi
 
-    if [ -d "$sv"/log ] && [ ! -L "$sv"/log/supervise ]; then
-        rm -rfv "$sv"/log/supervise
-        ln -Trs "$tmpstate"/log."${sv##*/}" "$sv"/log/supervise
+    [ -d "$service_name"/log ] || continue # log dir not existing is fine
+    if [ ! -L "$service_name"/log/supervise ]; then
+        rm -rfv "$service_name"/log/supervise &&
+        ln -Trs "$statedir"/log."$service_name" "$service_name"/log/supervise
     fi
 done
 
 # Do the same for shutdown control files.
 # In the worst case (the filesystem these reside on being wedged read-only)
 # you'll still be able to poweroff, just not reboot.
-for fn in reboot stopit; do
-    [ -L /etc/runit/$fn ] && continue
-    rm -fv /etc/runit/$fn
-    ln -Trs "$tmpstate"/$fn /etc/runit/$fn
+cd /etc/runit || rescue_shell
+for control_file in reboot stopit; do
+    [ -L $control_file ] && continue
+    rm -fv $control_file
+    ln -Trs "$statedir"/$control_file $control_file
 done
