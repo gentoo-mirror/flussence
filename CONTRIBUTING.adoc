@@ -4,7 +4,6 @@ Contributing to `::flussence-overlay`
 Bug reports and feedback can be sent via whatever method you have available:
 
 * https://bugs.gentoo.org[Gentoo bug tracker (product “Gentoo Linux”, component “Overlays”)]
-* https://wiki.gentoo.org/wiki/User_talk:Ant_P.[Gentoo Wiki talk page (use the ｢more⏷｣ → ｢+｣ menu)]
 * Fediverse
 * E-Mail (address in overlay.xml)
 
