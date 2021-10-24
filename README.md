@@ -49,7 +49,7 @@ This list is manually maintained. Some things may be missing (accidentally or no
   This hasn't been maintained upstream since 2017, but surprisingly still works.
   Unfortunately lacks the pinnacle of FOSS GUI design, Keramik.
 
-`games-action/minecraft` — Java launcher for Minecraft
+`games-action/minecraft-launcher` — Java launcher for Minecraft
 : Convenience ebuild that installs the good Minecraft launcher (not the awful Electron-based one).
 
 `games-*/ut2004-*` — UT2004 binaries and map packs via IPFS
@@ -61,7 +61,7 @@ This list is manually maintained. Some things may be missing (accidentally or no
 `gnome-extra/gucharmap` — GTK+2 version of gucharmap
 : The last released GTK+2 version of gucharmap, patched to recognise new Unicode characters.
   Contains far fewer dependencies than the current GNOME 3 version forces upon you,
-  and is more useful than `kde-apps/kcharselect` (17.12 still doesn't support font fallbacks!)
+  and is significantly easier to navigate and less laggy than `kde-apps/kcharselect` (as of 21.08)
   Make sure to p.mask `gnome-extra/gucharmap::gentoo` if you install this,
   or else the higher version number of the GTK+3 one will override it.
 
