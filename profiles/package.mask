@@ -8,3 +8,7 @@ games-server/minecraft-server
 # These are older unnumbered versions for specific upstream unicode releases
 =media-fonts/noto-emoji-bin-20191119.12
 =media-fonts/noto-emoji-bin-20200916.13.1
+
+# flussence <gentoo+bugs@flussence.eu> (24 Oct 2021)
+# Switch to games-action/minecraft-launcher:legacy::gentoo.
+games-action/minecraft
