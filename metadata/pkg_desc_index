@@ -5,7 +5,7 @@ dev-libs/libbinio 1.5: Platform-independent way to access binary data streams in
 dev-perl/Crypt-LE 0.38: Let's Encrypt API module and client
 dev-perl/Regexp-Debugger 0.2.6: Perl module and command line tool (rxrx) to visually debug regexes in-place
 dev-python/cython-hidapi 0.10.1 9999: Python bindings to the hidapi library
-games-action/minecraft 1.6.93-r1: Official Java launcher for Minecraft
+games-action/minecraft-launcher 1.6.93-r1: Official Java launcher for Minecraft
 games-engines/dhewm3 1.5.0 9999: A cross-platform Doom 3 source port
 games-fps/freedm-data 0.12.1: Free-licensed standalone data file for playing Doom 1&2 deathmatch
 games-fps/freedoom-data 0.12.1: Free-licensed alternatives to the Doom 1 and 2 IWAD data files
