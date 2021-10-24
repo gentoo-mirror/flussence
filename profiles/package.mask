@@ -10,5 +10,5 @@ games-server/minecraft-server
 =media-fonts/noto-emoji-bin-20200916.13.1
 
 # flussence <gentoo+bugs@flussence.eu> (24 Oct 2021)
-# Switch to games-action/minecraft-launcher:legacy::gentoo.
-games-action/minecraft
+# Switch to games-action/minecraft-launcher:legacy in ::gentoo.
+games-action/minecraft-launcher
