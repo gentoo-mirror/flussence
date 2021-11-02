@@ -4,7 +4,7 @@
 EAPI=7
 
 GITHUB_USER="googlefonts"
-GITHUB_PROJ="${PN%%-bin}"
+GITHUB_PROJ="${PN%-bin}"
 
 KEYWORDS="amd64 arm arm64 mips ppc ppc64 x86"
 
@@ -14,7 +14,7 @@ DESCRIPTION="Google Noto Color Emoji, upstream-prebuilt version"
 HOMEPAGE="https://www.google.com/get/noto/ https://github.com/googlefonts/noto-emoji"
 
 if [[ ${PV} != 9999 ]]; then
-	SRC_URI="${GITHUB_HOMEPAGE}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+	SRC_URI="${GITHUB_HOMEPAGE}/archive/v${PV}.tar.gz -> ${P/-bin/}.tar.gz"
 	S="${WORKDIR}/${GITHUB_PROJ}-${PV}/fonts"
 else
 	die "No v9999 defined"
