@@ -1,11 +1,11 @@
-# Copyright 2020 Gentoo Authors
+# Copyright 2020-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
 DIST_AUTHOR="DCONWAY"
 DIST_VERSION="0.002006"
-inherit perl-module eutils
+inherit perl-module optfeature
 
 DESCRIPTION="Perl module and command line tool (rxrx) to visually debug regexes in-place"
 
@@ -19,9 +19,7 @@ RDEPEND="
 		dev-perl/TermReadKey
 		virtual/perl-Time-HiRes
 	)"
-# Module-Build is duplicated due to a perl-module.eclass bug
 DEPEND="${RDEPEND}
-	dev-perl/Module-Build
 	virtual/perl-version"
 BDEPEND="
 	dev-perl/Module-Build
