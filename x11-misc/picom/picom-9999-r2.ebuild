@@ -1,4 +1,4 @@
-# Copyright 2020 Gentoo Authors
+# Copyright 2020-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -6,7 +6,7 @@ EAPI=7
 GITHUB_USER="yshui"
 KEYWORDS="~amd64 ~x86"
 
-inherit desktop github-pkg meson xdg
+inherit github-pkg meson xdg
 
 DESCRIPTION="Picom is a X compositing window manager, fork of compton."
 

@@ -1,9 +1,9 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
-inherit desktop eutils
+inherit desktop wrapper
 
 MY_P=( ut2004-lnxpatch"${PV%.*}"-2.tar.bz2 ut2004-v"${PV/./-}"-linux-dedicated.7z )
 DESCRIPTION="Editor's Choice Edition plus Mega Pack for the well-known first-person shooter"

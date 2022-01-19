@@ -1,9 +1,3 @@
-# flussence <gentoo+bugs@flussence.eu> (15 Dec 2019)
-# This hasn't been updated in a while due to lack of tuits/spoons/etc. It may be
-# fixed later, but until then I strongly recommend using the server ebuild in
-# ::gentoo, it's far less crufty than this.
-games-server/minecraft-server
-
 # flussence <gentoo+bugs@flussence.eu> (18 Jul 2021)
 # These are older unnumbered versions for specific upstream unicode releases
 =media-fonts/noto-emoji-bin-20191119.12
