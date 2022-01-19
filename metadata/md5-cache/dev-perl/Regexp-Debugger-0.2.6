@@ -1,15 +1,15 @@
 BDEPEND=dev-perl/Module-Build virtual/perl-ExtUtils-MakeMaker dev-lang/perl
 DEFINED_PHASES=compile configure install postinst prepare test
-DEPEND=!minimal? ( dev-perl/TermReadKey virtual/perl-Time-HiRes ) dev-perl/Module-Build virtual/perl-version dev-lang/perl
+DEPEND=!minimal? ( dev-perl/TermReadKey virtual/perl-Time-HiRes ) virtual/perl-version dev-lang/perl
 DESCRIPTION=Perl module and command line tool (rxrx) to visually debug regexes in-place
 EAPI=7
 HOMEPAGE=https://metacpan.org/release/Regexp-Debugger
-INHERIT=perl-module eutils
+INHERIT=perl-module optfeature
 IUSE=minimal
 KEYWORDS=~amd64 ~arm ~arm64 ~mips ~ppc ~ppc64 ~x86
 LICENSE=|| ( Artistic GPL-1+ )
 RDEPEND=!minimal? ( dev-perl/TermReadKey virtual/perl-Time-HiRes ) dev-lang/perl:=
 SLOT=0
 SRC_URI=mirror://cpan/authors/id/D/DC/DCONWAY/Regexp-Debugger-0.002006.tar.gz
-_eclasses_=multiprocessing	61c959fc55c15c00bbb1079d6a71370b	perl-functions	fea344a91ebf37efadf172c6a3de5a72	perl-module	bd9574a79c5f0a347a9ea3db5ad9ca72	edos2unix	33e347e171066657f91f8b0c72ec8773	strip-linguas	ac3ee41ee2d31d8c41a77c0838320cc7	wrapper	4251d4c84c25f59094fd557e0063a974	eutils	dab5d8ec471d025b79c9e6906bcf3bff
-_md5_=3ef110f5ce2b2891e36f1b85872abc9d
+_eclasses_=multiprocessing	61c959fc55c15c00bbb1079d6a71370b	perl-functions	fea344a91ebf37efadf172c6a3de5a72	perl-module	bd9574a79c5f0a347a9ea3db5ad9ca72	optfeature	30ce9dec2b8943338c9b015bd32bac6a
+_md5_=d483a89720adad51b759a2cfc1508245

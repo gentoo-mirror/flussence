@@ -47,4 +47,3 @@ x11-misc/picom:doc - Installs manpages (requires app-text/asciidoc)
 x11-misc/picom:drm - Enable (deprecated) DRM VSync method
 x11-misc/picom:libconfig - Enable config file support, recommended
 x11-misc/picom:opengl - Enable OpenGL backend (requires at least OpenGL 3.0)
-x11-wm/openbox:xdg - Install support files for xdg (*.desktop file) autostart
