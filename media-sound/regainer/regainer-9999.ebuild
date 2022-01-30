@@ -1,4 +1,4 @@
-# Copyright 2020 Gentoo Authors
+# Copyright 2020-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -6,7 +6,7 @@ EAPI=7
 GITHUB_USER="kepstin"
 KEYWORDS="~amd64 ~x86"
 
-PYTHON_COMPAT=( python3_{7,8,9} )
+PYTHON_COMPAT=( python3_{7,8,9} ) # limited by media-libs/mutagen
 DISTUTILS_USE_SETUPTOOLS=pyproject.toml
 
 inherit github-pkg distutils-r1
