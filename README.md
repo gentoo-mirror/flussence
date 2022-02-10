@@ -29,10 +29,6 @@ Contents
 This list is manually maintained. Some things may be missing (accidentally or not).
 For a complete list, do `eix [-R] -c --in-overlay flussence`
 
-`app-crypt/signify` — [OpenBSD Signify](https://github.com/aperezdc/signify)
-: Signify is a strong cryptographic signature tool that fits on a floppy disk,
-  with public keys that fit in 140 characters, and a manpage that fits on one screen.
-
 `app-misc/cm-rgb` — [CLI for Wraith Prism RGB settings](https://github.com/gfduszynski/cm-rgb)
 : Allows you to tweak the LED effects on Ryzen fans, or turn them off entirely.
 
