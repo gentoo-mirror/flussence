@@ -27,6 +27,7 @@ If you know what you're doing, go right ahead. Otherwise:
 Contents
 --------
 This list is manually maintained. Some things may be missing (accidentally or not).
+For a complete list, do `eix [-R] -c --in-overlay flussence`
 
 `app-crypt/signify` — [OpenBSD Signify](https://github.com/aperezdc/signify)
 : Signify is a strong cryptographic signature tool that fits on a floppy disk,
@@ -80,6 +81,9 @@ This list is manually maintained. Some things may be missing (accidentally or no
 
 `media-plugins/lvis` — [Audacious visualiser plugin](https://git.sr.ht/~kaniini/lvis)
 : An Audacious visualiser plugin. Like Winamp AVS, but better.
+
+`net-misc/streamlink` — [Web livestream extracting tool](https://streamlink.github.io/)
+: [Outdated in ::gentoo](https://bugs.gentoo.org/800860)
 
 `sys-process/runit` — [Runit PID1 and service manager](http://smarden.org/runit/)
 : An elegant init for a more civilised age. (S6 is good too)
