@@ -46,6 +46,10 @@ For a complete list, do `eix [-R] -c --in-overlay flussence`
 `games-action/minecraft-launcher` — Java launcher for Minecraft
 : Convenience ebuild that installs the good Minecraft launcher (not the awful Electron-based one).
 
+`games-emulation/duckstation` — PlayStation 1 emulator
+: Full-featured emulator with just about everything you could ask for besides netplay.
+  (If you want that, try mednafen)
+
 `games-*/ut2004-*` — UT2004 binaries and map packs via IPFS
 : A historical data preservation effort using IPFS, as an alternative to the Gentoo repo ebuilds.
   While those currently have a working `SRC_URI`, they've spent a lot of their life on thin ice
