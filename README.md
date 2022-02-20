@@ -29,9 +29,6 @@ Contents
 This list is manually maintained. Some things may be missing (accidentally or not).
 For a complete list, do `eix [-R] -c --in-overlay flussence`
 
-`app-misc/cm-rgb` — [CLI for Wraith Prism RGB settings](https://github.com/gfduszynski/cm-rgb)
-: Allows you to tweak the LED effects on Ryzen fans, or turn them off entirely.
-
 `dev-perl/Crypt-LE` — [Crypt::LE](https://metacpan.org/pod/Crypt::LE)
 : A Perl ACME/Let's Encrypt client with lightweight dependencies.
   Not the most user-friendly option, but it has minimal dependencies,
