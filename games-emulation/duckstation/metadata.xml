@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>gentoo+bugs@flussence.eu</email>
+		<name>flussence</name>
+	</maintainer>
+	<upstream>
+		<changelog>https://github.com/stenzek/duckstation/releases.atom</changelog>
+		<doc>https://www.duckstation.org/wiki/</doc>
+		<remote-id type="github">stenzek/duckstation</remote-id>
+	</upstream>
+	<use>
+		<flag name="evdev">Enable evdev input support</flag>
+		<flag name="fbdev">Enable fbdev display backend</flag>
+		<flag name="kms">Enable kms display backend</flag>
+		<flag name="sdl2">Enable input and sound support via <pkg>media-libs/libsdl2</pkg></flag>
+	</use>
+</pkgmetadata>
