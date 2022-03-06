@@ -13,6 +13,9 @@ All commits are signed by a GPG key, available via WKD, for the email address ou
 my $name = 'flussence-overlay'.subst('-overlay', '');
 put $name ~ '@' ~ $name ~ '.eu';
 ```
+Bug reports can be sent via the [Gentoo bug tracker](https://bugs.gentoo.org): to ensure it gets
+seen in a timely manner, use product “Gentoo Linux”, component “Overlays” and prefix the subject
+line with `[flussence-overlay]`.
 
 Packages that install arch-independent stuff will be keyworded for non-exotic arches only:
 x86/amd64, arm/arm64, mips and ppc/ppc64.
