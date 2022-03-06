@@ -78,7 +78,7 @@ RDEPEND="
 		>=media-libs/libcddb-1.2.1
 	)
 	cue? ( >=media-libs/libcue-2.0 )
-	ffmpeg? ( media-video/ffmpeg )
+	ffmpeg? ( >=media-video/ffmpeg-4.2.4 )
 	flac? ( >=media-libs/flac-1.2.1[ogg] )
 	fluidsynth? ( >=media-sound/fluidsynth-1.0.6:= )
 	gtk? (
@@ -156,7 +156,7 @@ src_configure() {
 		"$(meson_use fluidsynth amidiplug)"
 		"$(meson_use cdda       cdaudio)"
 		"$(meson_use gme        console)"
-		"-Dffaudio=$(usex ffmpeg ffmpeg disabled)"
+		"$(meson_use ffmpeg     ffaudio)"
 		"$(meson_use            flac)"
 		"$(meson_use            modplug)"
 		"$(meson_use mp3        mpg123)"
