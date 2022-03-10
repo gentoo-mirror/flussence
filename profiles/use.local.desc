@@ -43,6 +43,8 @@ media-sound/audacious:dbus - Enable DBus support. This is used for the `audtool`
 media-sound/audacious:gtk - Enables the GTK+2 GUI. Old, may be removed without warning!
 media-sound/audacious:libarchive - Enable app-arch/libarchive support for compressed Winamp2 .wsz skins. With this disabled they'll be decompressed via shell commands, which may be a security hazard.
 media-sound/audacious:qt5 - Enables the Audacious GUI (both skinned and plain).
+media-sound/qpwgraph:alsa - Support routing ALSA raw midi devices
+media-sound/qpwgraph:trayicon - Enable systray icon (window close will iconify instead of exit)
 x11-libs/gtk+:broadway - Enable the GDK Broadway backend.
 x11-libs/gtk+:cloudprint - Enable printing via Google Cloud Print.
 x11-libs/gtk+:colord - Use x11-misc/colord for color management in printing
