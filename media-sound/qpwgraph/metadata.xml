@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>gentoo+bugs@flussence.eu</email>
+		<name>flussence</name>
+	</maintainer>
+	<upstream>
+		<changelog>https://gitlab.freedesktop.org/rncbc/qpwgraph/-/tags?format=atom</changelog>
+	</upstream>
+	<use>
+		<flag name="alsa">Support routing ALSA raw midi devices</flag>
+		<flag name="trayicon">Enable systray icon (window close will iconify instead of exit)</flag>
+	</use>
+</pkgmetadata>
