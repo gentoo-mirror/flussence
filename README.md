@@ -79,6 +79,10 @@ For a complete list, do `eix [-R] -c --in-overlay flussence`
 : This ebuild actively tracks upstream development. Gentoo's ebuild has half-decade open bugs.
   If you want the best possible Audacious setup on Gentoo, possibly any distro, use this.
 
+`media-sound/qpwgraph` — [PipeWire Graph Qt GUI Interface](https://gitlab.freedesktop.org/rncbc/qpwgraph)
+: The nice graph GUI from QjackCtl and ability to save/load patchbays.
+  Perfect if you aren't interested in any of the other JACK functionality.
+
 `media-plugins/lvis` — [Audacious visualiser plugin](https://git.sr.ht/~kaniini/lvis)
 : An Audacious visualiser plugin. Like Winamp AVS, but better.
 
