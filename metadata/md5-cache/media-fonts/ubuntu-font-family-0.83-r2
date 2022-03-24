@@ -9,5 +9,5 @@ KEYWORDS=amd64 arm arm64 mips ppc ppc64 x86
 LICENSE=UbuntuFontLicense-1.0
 SLOT=0
 SRC_URI=https://assets.ubuntu.com/v1/0cef8205-ubuntu-font-family-0.83.zip -> ubuntu-font-family-0.83.zip
-_eclasses_=font	0667878c2b594871023dd1833d05996f
+_eclasses_=font	b500e97c1ae30f830e84a95be6e9bd36
 _md5_=945458bbf0b9dd8ffe70f0d81cdfefb1
