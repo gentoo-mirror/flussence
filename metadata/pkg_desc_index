@@ -14,7 +14,7 @@ games-fps/ut2004-bonuspack-cbp2 1-r3: UT2004 Community Bonus Pack 2 Volume 1 and
 games-fps/ut2004-bonuspack-ece 1-r4: UT2004 Editor's Choice Edition - Editor's Choice Edition bonus pack
 games-fps/ut2004-bonuspack-mega 1-r3: UT2004 Megapack - Megapack bonus pack
 games-server/ut2004-ded 3369.3-r1: Unreal Tournament 2004 Linux Dedicated Server
-gnome-extra/gucharmap 3.0.1_p14: GNOME Character Map, based on the Unicode Character Database
+gnome-extra/gucharmap 3.0.1_p14-r1: GNOME Character Map, based on the Unicode Character Database
 media-fonts/font-problems-fonts 9999: Console and framebuffer fonts, including Bizcat
 media-fonts/noto-emoji-bin 2.034 20191119.12 20200916.13.1: Google Noto Color Emoji, upstream-prebuilt version
 media-fonts/opendyslexic-bin 9999: Typeface that uses shapes & features to help offset visual symptoms of Dyslexia

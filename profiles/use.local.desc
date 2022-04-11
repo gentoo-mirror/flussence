@@ -6,7 +6,6 @@ games-emulation/duckstation:evdev - Enable evdev input support
 games-emulation/duckstation:fbdev - Enable fbdev display backend
 games-emulation/duckstation:kms - Enable kms display backend
 games-emulation/duckstation:sdl2 - Enable input and sound support via media-libs/libsdl2
-gnome-extra/gucharmap:gconf - Use GConf to save gucharmap settings
 gnome-extra/gucharmap:system-unicode - Regenerate unicode metadata using app-i18n/unicode-data instead of using old bundled copies
 media-libs/libopenmpt:cli - Build openmpt123, the command-line player application
 media-libs/libopenmpt:flac - Add support for FLAC file writing support in openmpt123
@@ -46,7 +45,6 @@ media-sound/audacious:qt5 - Enables the Audacious GUI (both skinned and plain).
 media-sound/qpwgraph:alsa - Support routing ALSA raw midi devices
 media-sound/qpwgraph:trayicon - Enable systray icon (window close will iconify instead of exit)
 x11-libs/gtk+:broadway - Enable the GDK Broadway backend.
-x11-libs/gtk+:cloudprint - Enable printing via Google Cloud Print.
 x11-libs/gtk+:colord - Use x11-misc/colord for color management in printing
 x11-libs/gtk+:sysprof - Enable profiling data capture support using dev-util/sysprof-capture
 x11-misc/picom:doc - Installs manpages (requires app-text/asciidoc)
