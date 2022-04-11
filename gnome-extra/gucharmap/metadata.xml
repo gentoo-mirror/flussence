@@ -5,7 +5,6 @@
 		<email>gentoo+bugs@flussence.eu</email>
 	</maintainer>
 	<use>
-		<flag name="gconf">Use GConf to save gucharmap settings</flag>
 		<flag name="system-unicode">Regenerate unicode metadata using <pkg>app-i18n/unicode-data</pkg> instead of using old bundled copies</flag>
 	</use>
 </pkgmetadata>
