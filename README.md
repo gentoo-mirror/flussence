@@ -129,7 +129,7 @@ For files wholly my own work (figuring this out is on you), GPL2-or-later is gra
 
     SPDX-License-Identifier: GPL-2+
 
-    Copyright © 2012-2020 flussence <flussence+Q7diI0FN8k7o@flussence.eu>
+    Copyright © 2012-2022 flussence <flussence+KQJqCOBTGC@flussence.eu>
 
     This is free software; you can redistribute it and/or modify it
     under the terms of the GNU General Public License as published by
