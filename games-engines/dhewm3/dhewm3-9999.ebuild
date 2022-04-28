@@ -20,13 +20,13 @@ SLOT="0"
 IUSE=""
 
 DEPEND="
+	media-libs/libjpeg-turbo
 	media-libs/libogg
 	media-libs/libsdl2
 	media-libs/libvorbis
 	media-libs/openal
 	net-misc/curl
 	sys-libs/zlib
-	virtual/jpeg
 "
 RDEPEND="${DEPEND}"
 
