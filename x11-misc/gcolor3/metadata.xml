@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>gentoo+bugs@flussence.eu</email>
+		<name>flussence</name>
+	</maintainer>
+	<upstream>
+		<bugs-to>https://gitlab.gnome.org/World/gcolor3/-/issues</bugs-to>
+		<changelog>https://gitlab.gnome.org/World/gcolor3/-/tags?format=atom</changelog>
+		<maintainer><!-- sourced from file color-picker.doap -->
+			<name>Christopher Davis</name>
+			<email>christopherdavis@gnome.org</email>
+		</maintainer>
+	</upstream>
+</pkgmetadata>
