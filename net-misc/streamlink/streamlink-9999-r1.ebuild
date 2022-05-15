@@ -36,6 +36,7 @@ DEPEND="
 "
 BDEPEND="
 	$(python_gen_cond_dep "
+		dev-python/versioningit[\${PYTHON_USEDEP}]
 		test? (
 			dev-python/mock[\${PYTHON_USEDEP}]
 			dev-python/requests-mock[\${PYTHON_USEDEP}]
