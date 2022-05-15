@@ -6,8 +6,6 @@
 		<name>flussence</name>
 	</maintainer>
 	<upstream>
-		<changelog>https://github.com/streamlink/streamlink/tags.atom</changelog>
-		<doc>https://streamlink.github.io/</doc>
-		<remote-id type="github">streamlink/streamlink</remote-id>
+		<remote-id type="pypi">versioningit</remote-id>
 	</upstream>
 </pkgmetadata>
