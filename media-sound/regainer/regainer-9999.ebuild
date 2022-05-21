@@ -6,8 +6,8 @@ EAPI=7
 GITHUB_USER="kepstin"
 KEYWORDS="~amd64 ~x86"
 
-PYTHON_COMPAT=( python3_{7,8,9} ) # limited by media-libs/mutagen
-DISTUTILS_USE_SETUPTOOLS=pyproject.toml
+PYTHON_COMPAT=( python3_{8..10} )
+DISTUTILS_USE_PEP517=flit
 
 inherit github-pkg distutils-r1
 
