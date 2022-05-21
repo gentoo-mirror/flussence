@@ -4,13 +4,11 @@
 EAPI=8
 
 DISTUTILS_USE_PEP517=setuptools
-PYTHON_COMPAT=( python3_{8..10} )
+PYTHON_COMPAT=( python3_{8..11} )
 inherit distutils-r1
 
 DESCRIPTION="Determine a package's version based on its VCS tags"
-HOMEPAGE="
-	https://pypi.org/project/versioningit/
-"
+HOMEPAGE="https://pypi.org/project/versioningit/"
 SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 
 LICENSE="MIT"
