@@ -5,7 +5,7 @@
 		<email>gentoo+bugs@flussence.eu</email>
 	</maintainer>
 	<upstream>
-		<bugs-to>http://redmine.audacious-media-player.org/projects/audacious/issues</bugs-to>
+		<bugs-to>https://redmine.audacious-media-player.org/projects/audacious/issues</bugs-to>
 		<changelog>https://github.com/audacious-media-player/audacious-plugins/releases.atom</changelog>
 		<remote-id type="github">audacious-media-player/audacious-plugins</remote-id>
 	</upstream>

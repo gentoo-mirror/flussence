@@ -22,8 +22,8 @@
 	</use>
 	<upstream>
 		<remote-id type="cpe">cpe:/a:gtk:gtk%2B</remote-id>
-		<bugs-to>https://gitlab.gnome.org/GNOME/gtk/issues/</bugs-to>
-		<changelog>https://gitlab.gnome.org/GNOME/gtk/tags?format=atom</changelog>
-		<doc>https://www.gtk.org/documentation.php</doc>
+		<bugs-to>https://gitlab.gnome.org/GNOME/gtk/-/issues/</bugs-to>
+		<changelog>https://gitlab.gnome.org/GNOME/gtk/-/tags?format=atom</changelog>
+		<doc>https://www.gtk.org/docs/</doc>
 	</upstream>
 </pkgmetadata>

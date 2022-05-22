@@ -10,7 +10,7 @@
 		these can be enabled independent of each other.
 	</longdescription>
 	<upstream>
-		<bugs-to>http://redmine.audacious-media-player.org/projects/audacious/issues</bugs-to>
+		<bugs-to>https://redmine.audacious-media-player.org/projects/audacious/issues</bugs-to>
 		<changelog>https://github.com/audacious-media-player/audacious/releases.atom</changelog>
 		<remote-id type="github">audacious-media-player/audacious</remote-id>
 	</upstream>

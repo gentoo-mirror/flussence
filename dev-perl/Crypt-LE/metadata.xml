@@ -5,7 +5,7 @@
 		<email>gentoo+bugs@flussence.eu</email>
 	</maintainer>
 	<upstream>
-		<changelog>https://metacpan.org/feed/distribution/Crypt-LE</changelog>
+		<changelog>https://metacpan.org/dist/Crypt-LE/releases.rss</changelog>
 		<doc>https://metacpan.org/pod/Crypt::LE</doc>
 		<bugs-to>mailto:bug-crypt-le@rt.cpan.org</bugs-to>
 		<remote-id type="cpan-module">Crypt::LE</remote-id>

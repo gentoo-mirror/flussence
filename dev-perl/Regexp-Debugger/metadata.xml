@@ -5,7 +5,7 @@
 		<email>gentoo+bugs@flussence.eu</email>
 	</maintainer>
 	<upstream>
-		<changelog>https://metacpan.org/feed/distribution/Regexp-Debugger</changelog>
+		<changelog>https://metacpan.org/dist/Regexp-Debugger/releases.rss</changelog>
 		<doc>https://metacpan.org/pod/Regexp::Debugger</doc>
 		<bugs-to>mailto:bug-regexp-debugger@rt.cpan.org</bugs-to>
 		<remote-id type="cpan-module">Regexp::Debugger</remote-id>
