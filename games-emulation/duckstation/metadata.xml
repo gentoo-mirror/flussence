@@ -7,7 +7,7 @@
 	</maintainer>
 	<upstream>
 		<changelog>https://github.com/stenzek/duckstation/releases.atom</changelog>
-		<doc>https://www.duckstation.org/wiki/</doc>
+		<doc>https://www.duckstation.org/wiki/Main_Page</doc>
 		<remote-id type="github">stenzek/duckstation</remote-id>
 	</upstream>
 	<use>

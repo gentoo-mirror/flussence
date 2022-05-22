@@ -12,7 +12,7 @@
 		<email>gentoo+bugs@flussence.eu</email>
 	</maintainer>
 	<upstream>
-		<bugs-to>http://skarnet.org/lists/#supervision</bugs-to>
+		<bugs-to>https://skarnet.org/lists/#supervision</bugs-to>
 		<doc>http://smarden.org/runit/</doc>
 	</upstream>
 </pkgmetadata>

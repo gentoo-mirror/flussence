@@ -11,7 +11,7 @@ MY_P=(
 	ut2004-v3369-3-linux-dedicated.7z
 )
 DESCRIPTION="Unreal Tournament 2004 Linux Dedicated Server"
-HOMEPAGE="http://www.unrealtournament.com/"
+HOMEPAGE="https://liandri.beyondunreal.com/Unreal_Tournament_2004"
 SRC_URI="
 	mirror://ipfs/ipfs/QmYM5AnzgZFWHgPB17rHn7Ayxq8SqC2MD5rLZxAohaZkZ8 -> ${MY_P[0]}
 	mirror://ipfs/ipfs/QmaaQUGbUAx1nJTuoGmmsX9Vmw55BCfRPq3v3SQuo66c8p -> ${MY_P[1]}

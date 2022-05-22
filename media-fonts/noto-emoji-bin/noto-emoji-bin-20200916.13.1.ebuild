@@ -11,7 +11,7 @@ KEYWORDS="amd64 arm arm64 mips ppc ppc64 x86"
 inherit font github-pkg
 
 DESCRIPTION="Google Noto Color Emoji, upstream-prebuilt version"
-HOMEPAGE="https://www.google.com/get/noto/ https://github.com/googlefonts/noto-emoji"
+HOMEPAGE="https://fonts.google.com/noto https://github.com/googlefonts/noto-emoji"
 
 if [[ ${PV} != 9999 ]]; then
 	# 20191119.12   -> 2019-11-19-unicode12
