@@ -32,7 +32,7 @@ media-sound/regainer 9999: Multi-format ReplayGain scanner and tagger
 net-misc/streamlink 4.1.0 9999-r1: CLI for extracting streams from websites to a video player of your choice
 sys-process/runit 2.1.2-r13: A UNIX init scheme with service supervision
 x11-libs/gtk+ 3.24.34: Gimp ToolKit +
-x11-misc/gcolor3 9999: Choose colors from the picker or the screen
+x11-misc/gcolor3 2.4.0 9999: Choose colors from the picker or the screen
 x11-misc/hsetroot 1.0.5 9999: Tool which allows you to compose wallpapers ('root pixmaps') for X
 x11-misc/picom 9.1 9999-r2: Picom is a X compositing window manager, fork of compton.
 x11-themes/nimbus 1.0 9999: The default OpenIndiana theme (GTK+ 2.x/Gtk3 engine, icon- and metacity theme)
