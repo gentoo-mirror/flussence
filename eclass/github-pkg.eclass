@@ -13,19 +13,19 @@
 # Upstreams tend to use wildly inconsistent tarball naming conventions, so no SRC_URI is provided.
 # @SUPPORTED_EAPIS: 7 8
 
-# @ECLASS-VARIABLE: GITHUB_USER
+# @ECLASS_VARIABLE: GITHUB_USER
 # @PRE_INHERIT
 # @DEFAULT_UNSET
 # @DESCRIPTION:
 # Specify the owner name in the repository's URL; defaults to PN.
 
-# @ECLASS-VARIABLE: GITHUB_PROJ
+# @ECLASS_VARIABLE: GITHUB_PROJ
 # @PRE_INHERIT
 # @DEFAULT_UNSET
 # @DESCRIPTION:
 # Specify the project name in the repository's URL; defaults to PN.
 
-# @ECLASS-VARIABLE: GITHUB_HOMEPAGE
+# @ECLASS_VARIABLE: GITHUB_HOMEPAGE
 # @OUTPUT_VARIABLE
 # @DESCRIPTION:
 # Computed path to the git repository; also used to set EGIT_REPO_URI if package version is 9999.
