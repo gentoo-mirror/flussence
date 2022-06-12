@@ -9,5 +9,5 @@ KEYWORDS=amd64 arm arm64 mips ppc ppc64 x86
 LICENSE=OFL-1.1
 SLOT=0
 SRC_URI=https://github.com/googlefonts/noto-emoji/archive/v2019-11-19-unicode12.tar.gz -> noto-emoji-2019-11-19-unicode12.tar.gz
-_eclasses_=font	d31f12a0f6e13d56dc3062e76ae58a61	github-pkg	a04c2d4209ea5a25fd86f36831a29179
+_eclasses_=font	d31f12a0f6e13d56dc3062e76ae58a61	github-pkg	be43ef8f9035c6d22860d81695644024
 _md5_=49142f50617629e2804fd55d3362f867
