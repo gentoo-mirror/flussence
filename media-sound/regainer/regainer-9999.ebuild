@@ -6,7 +6,7 @@ EAPI=7
 GITHUB_USER="kepstin"
 KEYWORDS="~amd64 ~x86"
 
-PYTHON_COMPAT=( python3_{8..10} )
+PYTHON_COMPAT=( python3_{9..11} )
 DISTUTILS_USE_PEP517=flit
 
 inherit github-pkg distutils-r1
