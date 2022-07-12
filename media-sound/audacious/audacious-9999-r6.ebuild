@@ -1,7 +1,7 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 MY_P="${P/_/-}"
 S="${WORKDIR}/${MY_P}"
@@ -21,10 +21,6 @@ inherit meson xdg
 LICENSE="BSD-2 BSD CC-BY-SA-4.0"
 SLOT="0/5.3.0"
 
-# libarchive is only (apparently) used for legacy winamp .wsz skins and nothing
-# else at the moment. In the future it'll probably be used for playing media
-# inside archives, but as that hasn't been coded at the time of writing there's
-# no point having it on by default.
 IUSE="+dbus gtk libarchive +qt5"
 REQUIRED_USE="|| ( dbus gtk qt5 )"
 
@@ -51,13 +47,6 @@ BDEPEND="
 	dbus? ( dev-util/gdbus-codegen )"
 PDEPEND="~media-plugins/audacious-plugins-${PV}"
 
-pkg_setup() {
-	if ! use dbus; then
-		ewarn "You are building ${PN} without DBus support."
-		ewarn "It'll run, but a lot of functionality won't work. Proceed at your own risk."
-	fi
-}
-
 src_configure() {
 	local emesonargs=(
 		"-Dauto_features=disabled"
@@ -69,9 +58,33 @@ src_configure() {
 	meson_src_configure
 }
 
+src_install() {
+	meson_src_install
+
+	# install useful files from contrib/
+	insinto /usr/share/metainfo
+	doins contrib/audacious.appdata.xml
+
+	insinto /usr/share/Thunar/sendto/
+	newins {contrib/thunar-sendto-,}audacious-playlist.desktop
+
+	use dbus && dodoc contrib/xchat-audacious.py
+}
+
 pkg_preinst() {
+	xdg_pkg_preinst
+
 	# make sure this matches, or else we'll create preserved-libs litter
-	for audcore in "${D}"/usr/lib*/libaudcore.so."${SLOT##*/}"; do
-		[ -e "$audcore" ] || eqawarn "Subslot in ebuild needs updating"
-	done
+	test -e "${D}"/usr/lib*/libaudcore.so."${SLOT##*/}" ||
+		eqawarn "Subslot in ebuild needs updating"
+}
+
+pkg_postinst() {
+	if ! use dbus; then
+		einfo "D-Bus in ${PN} is a completely optional dependency and disabling it is supported,"
+		einfo "however you do lose the following:"
+		einfo " - Remote control (/usr/bin/audtool)"
+		einfo "If you find something broken as a result of building without it,"
+		einfo "get in touch so we can document it here. Have fun!"
+	fi
 }
