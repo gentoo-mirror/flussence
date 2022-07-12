@@ -1,0 +1,4 @@
+# libarchive code was added to Audacious in 2020 per the git log.
+# Originally it was presumed to be used for accessing zipped winamp skins;
+# on closer inspection, nothing in the codebase references it at all.
+media-sound/audacious libarchive
