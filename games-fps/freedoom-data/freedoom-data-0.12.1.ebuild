@@ -7,8 +7,7 @@ MY_P=${P/-data/}
 
 DESCRIPTION="Free-licensed alternatives to the Doom 1 and 2 IWAD data files"
 HOMEPAGE="https://freedoom.github.io/"
-SRC_URI="https://github.com/freedoom/freedoom/releases/download/v${PV}/${MY_P}.zip
-	mirror://ipfs/ipfs/QmTjtG5BqK3GRzDo5Nq6c7dBkeACoAmRLqq7PTcmPTHMxu -> ${MY_P}.zip"
+SRC_URI="https://github.com/freedoom/freedoom/releases/download/v${PV}/${MY_P}.zip"
 
 LICENSE="BSD"
 SLOT="0"

@@ -53,12 +53,6 @@ For a complete list, do `eix [-R] -c --in-overlay flussence`
 : Full-featured emulator with just about everything you could ask for besides netplay.
   (If you want that, try mednafen)
 
-`games-*/ut2004-*` — UT2004 binaries and map packs via IPFS
-: A historical data preservation effort using IPFS, as an alternative to the Gentoo repo ebuilds.
-  While those currently have a working `SRC_URI`, they've spent a lot of their life on thin ice
-  and were nearly removed in 2019 (a lot of other `games-fps/*` ebuilds didn't make the cut).
-  SHA1 hashes are also listed in `metadata.xml`, to facilitate in scavenging the web for copies.
-
 `gnome-extra/gucharmap` — GTK+2 version of gucharmap
 : The last released GTK+2 version of gucharmap, patched to recognise new Unicode characters.
   Contains far fewer dependencies than the current GNOME 3 version forces upon you,
@@ -107,22 +101,6 @@ For a complete list, do `eix [-R] -c --in-overlay flussence`
 `x11-misc/picom` — [standalone X11 compositor](https://github.com/yshui/picom)
 : This is a distant descendant of the original xcompmgr.
   Supports xrender and OpenGL 3+ with user-defined shader capabilities.
-
-IPFS mirrors
-------------
-Some of these ebuilds use [IPFS](https://ipfs.io) in addition to (or instead of) regular mirrors.
-You can use your local IPFS gateway by adding it to `/etc/portage/mirrors`, e.g.:
-
-    ipfs http://localhost:8080/
-
-*Note:* If unconfigured, the default list for `mirror://ipfs/` URLs includes CloudFlare.
-
-If you have the resources to run an IPFS node, please consider adding your own distfiles to it.
-IPFS hash URLs in this overlay were generated using go-ipfs-0.4.15 defaults, so do the same.
-
-For reference, those defaults are equivalent to:
-
-    ipfs add --hash sha2-256 --chunker size-262144 $file
 
 Copyright
 ---------
