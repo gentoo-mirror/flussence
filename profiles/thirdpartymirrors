@@ -1,2 +1,0 @@
-# You should configure your own IPFS HTTP mirror in /etc/portage/mirrors if possible.
-ipfs https://cloudflare-ipfs.com/ https://gateway.ipfs.io/
