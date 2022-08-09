@@ -80,9 +80,6 @@ For a complete list, do `eix [-R] -c --in-overlay flussence`
 `media-plugins/lvis` — [Audacious visualiser plugin](https://git.sr.ht/~kaniini/lvis)
 : An Audacious visualiser plugin. Like Winamp AVS, but better.
 
-`net-misc/streamlink` — [Web livestream extracting tool](https://streamlink.github.io/)
-: [Outdated in ::gentoo](https://bugs.gentoo.org/800860)
-
 `sys-process/runit` — [Runit PID1 and service manager](http://smarden.org/runit/)
 : An elegant init for a more civilised age. (S6 is good too)
   This package is a hard fork of whatever was in the Gentoo tree circa 2014,
