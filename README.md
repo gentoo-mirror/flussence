@@ -60,6 +60,10 @@ For a complete list, do `eix [-R] -c --in-overlay flussence`
   Make sure to p.mask `gnome-extra/gucharmap::gentoo` if you install this,
   or else the higher version number of the GTK+3 one will override it.
 
+`gui-apps/gcolor3` — [Gtk+3 colour picker](https://gitlab.gnome.org/World/gcolor3)
+: Almost drop-in replacement for gcolor2, which was sadly evicted from ::gentoo.
+  Also supports Wayland, allegedly.
+
 `media-fonts/tt2020` — [Authentic typewriter font](https://fontlibrary.org/en/font/tt2020-base-style)
 : A monospace font that uses OpenType alternate glyph tricks to give letters an analogue feel.
   This is a heavy download, but you can `USE=minimal` to get just the base font without variants.
@@ -90,10 +94,6 @@ For a complete list, do `eix [-R] -c --in-overlay flussence`
 `x11-libs/gtk+:3` — debloated Gtk+3
 : Contains a NetBSD patch which makes DBus (and auto-spawning of hidden DBus processes) optional.
   Patch is from [a f.g.o thread](https://forums.gentoo.org/viewtopic-p-8245612.html#8245612)
-
-`x11-misc/gcolor3` — [Gtk+3 colour picker](https://gitlab.gnome.org/World/gcolor3)
-: Drop-in replacement for gcolor2, which was sadly evicted from ::gentoo.
-  Also supports Wayland, allegedly.
 
 `x11-misc/picom` — [standalone X11 compositor](https://github.com/yshui/picom)
 : This is a distant descendant of the original xcompmgr.
