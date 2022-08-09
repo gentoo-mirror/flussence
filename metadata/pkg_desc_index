@@ -4,7 +4,6 @@ dev-libs/libbinio 1.5: Platform-independent way to access binary data streams in
 dev-perl/Crypt-LE 0.38: Let's Encrypt API module and client
 dev-perl/Regexp-Debugger 0.2.6: Perl module and command line tool (rxrx) to visually debug regexes in-place
 dev-python/cython-hidapi 0.10.1 9999: Python bindings to the hidapi library
-dev-python/versioningit 1.1.1: Determine a package's version based on its VCS tags
 games-action/minecraft-launcher 1.6.93-r2: Official Java launcher for Minecraft
 games-emulation/duckstation 9999: Fast PlayStation 1 emulator
 games-engines/dhewm3 1.5.0 9999: A cross-platform Doom 3 source port
@@ -23,7 +22,6 @@ media-plugins/lvis 9999-r1: Programmable audio visualizer
 media-sound/audacious 4.2 9999-r6: Audacious Player - Your music, your way, no exceptions
 media-sound/qpwgraph 0.3.2 9999: A PipeWire Graph Qt GUI Interface
 media-sound/regainer 9999: Multi-format ReplayGain scanner and tagger
-net-misc/streamlink 4.1.0 9999-r1: CLI for extracting streams from websites to a video player of your choice
 sec-keys/openpgp-keys-flussence 20220806: OpenPGP keys used by flussence (::flussence overlay)
 sys-process/runit 2.1.2-r13: A UNIX init scheme with service supervision
 x11-libs/gtk+ 3.24.34: Gimp ToolKit +
