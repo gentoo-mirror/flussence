@@ -2,7 +2,6 @@
 # Please add your descriptions to your package's metadata.xml ONLY.
 # * generated automatically using pmaint *
 
-dev-lang/zig:stage2 - Install stage2 compiler (written in Zig) alongside stage1 compiler (written in C++ and Zig)
 games-emulation/duckstation:evdev - Enable evdev input support
 games-emulation/duckstation:fbdev - Enable fbdev display backend
 games-emulation/duckstation:kms - Enable kms display backend
