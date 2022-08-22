@@ -7,12 +7,6 @@ These are my packages for things that:
 * aren't as up-to-date as I'd like there,
 * aren't maintained to a sufficient standard in the main tree.
 
-All commits are signed by a GPG key, available via WKD, for the email address output from:
-```raku
-#!/usr/bin/env rakudo
-my $name = 'flussence-overlay'.subst('-overlay', '');
-put $name ~ '@' ~ $name ~ '.eu';
-```
 Bug reports can be sent via the [Gentoo bug tracker](https://bugs.gentoo.org): to ensure it gets
 seen in a timely manner, use product “Gentoo Linux”, component “Overlays” and prefix the subject
 line with `[flussence-overlay]`.
@@ -22,10 +16,35 @@ x86/amd64, arm/arm64, mips and ppc/ppc64.
 
 Installing
 ----------
-If you know what you're doing, go right ahead. Otherwise:
-
+1. Direct setup:
+    ```
+    root # cat > /etc/portage/repos.conf/flussence.conf <<EOF
+    [flussence]
+    location = /var/db/repos/flussence
+    sync-type = git
+    sync-uri = https://repo.or.cz/flussence-overlay.git
+    EOF
+    root # emaint sync -r flussence
+    ```
+    1) Optional but strongly recommended - GPG verification:
+        ```
+        root # emerge sec-keys/openpgp-keys-flussence::flussence
+        root # cat >> /etc/portage/repos.conf/flussence.conf <<EOF
+        sync-git-verify-commit-signature = true
+        sync-openpgp-key-path = /usr/share/openpgp-keys/flussence.asc
+        sync-openpgp-key-refresh = no
+        EOF
+        ```
+       Note that Portage was never designed with a secure supply chain in mind,
+       and though everything here is done “by the book”, `emerge --sync` will still emit a warning;
+       while technically correct, removing the line it complains about will cause sync to fail.
+       You'll just have to live with it.
+3. The “walled garden” method:
+    ```
     root # emerge -n eselect-repository
     root # eselect repository enable flussence
+    root # emaint sync -r flussence
+    ```
 
 Contents
 --------
@@ -33,10 +52,7 @@ This list is manually maintained. Some things may be missing (accidentally or no
 For a complete list, do `eix [-R] -c --in-overlay flussence`
 
 `dev-perl/Crypt-LE` — [Crypt::LE](https://metacpan.org/pod/Crypt::LE)
-: A Perl ACME/Let's Encrypt client with lightweight dependencies.
-  Not the most user-friendly option, but it has minimal dependencies,
-  and unlike `app-crypt/acme-sh` it doesn't secretly require CloudFlare.
-  Current version supports ECC certs, wildcards and ACME API v2.
+: A Perl ACME/Let's Encrypt client with minimal dependencies and no surprise third-party traffic.
 
 `dev-perl/Regexp-Debugger` — [Regexp::Debugger](https://metacpan.org/pod/Regexp::Debugger)
 : The `rxrx` utility, a lifesaver when trying to figure out what a Perl regex is doing.
@@ -48,25 +64,27 @@ For a complete list, do `eix [-R] -c --in-overlay flussence`
 
 `games-action/minecraft-launcher` — Java launcher for Minecraft
 : Convenience ebuild that installs the good Minecraft launcher (not the awful Electron-based one).
+  You may be better off with `games-action/polymc` nowadays.
 
-`games-emulation/duckstation` — PlayStation 1 emulator
+`games-emulation/duckstation` — [PlayStation 1 emulator](https://github.com/stenzek/duckstation)
 : Full-featured emulator with just about everything you could ask for besides netplay.
   (If you want that, try mednafen)
 
-`gnome-extra/gucharmap` — GTK+2 version of gucharmap
+`gnome-extra/gucharmap` — [GTK+2 version of gucharmap](https://wiki.gnome.org/Apps/Gucharmap)
 : The last released GTK+2 version of gucharmap, patched to recognise new Unicode characters.
-  Contains far fewer dependencies than the current GNOME 3 version forces upon you,
-  and is significantly easier to navigate and less laggy than `kde-apps/kcharselect` (as of 21.08)
+  Strictly better than the current GNOME 3 replacement (no Javascript, supports color emoji),
+  and is significantly easier to navigate and less laggy than `kde-apps/kcharselect`.
   Make sure to p.mask `gnome-extra/gucharmap::gentoo` if you install this,
   or else the higher version number of the GTK+3 one will override it.
 
 `gui-apps/gcolor3` — [Gtk+3 colour picker](https://gitlab.gnome.org/World/gcolor3)
-: Almost drop-in replacement for gcolor2, which was sadly evicted from ::gentoo.
-  Also supports Wayland, allegedly.
+: A downgrade from for gcolor2, which was culled from ::gentoo as part of their anti-GTK+2 crusade.
+  Extremely broken on X11 and upstream refuses to respond to bugs. Use something else if possible.
 
 `media-fonts/tt2020` — [Authentic typewriter font](https://fontlibrary.org/en/font/tt2020-base-style)
 : A monospace font that uses OpenType alternate glyph tricks to give letters an analogue feel.
-  This is a heavy download, but you can `USE=minimal` to get just the base font without variants.
+  This is a heavy download (same order of magnitude as `media-fonts/noto`),
+  but you can `USE=minimal` to get just the base font without variants.
 
 `media-libs/libopenmpt` — [OpenMPT playback library](https://lib.openmpt.org)
 : A modern replacement for modplug and mikmod.
@@ -85,15 +103,15 @@ For a complete list, do `eix [-R] -c --in-overlay flussence`
 : An Audacious visualiser plugin. Like Winamp AVS, but better.
 
 `sys-process/runit` — [Runit PID1 and service manager](http://smarden.org/runit/)
-: An elegant init for a more civilised age. (S6 is good too)
+: The init system I'm using.
   This package is a hard fork of whatever was in the Gentoo tree circa 2014,
   which was full of unfixed bugs and didn't have a responsible maintainer.
-  It does things slightly differently, so familiarise yourself before use; `qlist` is your friend.
-  There is no handholding here. There may be in future.
+  Most of it has been rewritten since then and it behaves closer to vanilla.
+  Currently requires OpenRC for bringup and shutdown; long-term goal is to fix this.
 
-`x11-libs/gtk+:3` — debloated Gtk+3
+`x11-libs/gtk+:3` — [debloated Gtk+3](https://forums.gentoo.org/viewtopic-p-8245612.html#8245612)
 : Contains a NetBSD patch which makes DBus (and auto-spawning of hidden DBus processes) optional.
-  Patch is from [a f.g.o thread](https://forums.gentoo.org/viewtopic-p-8245612.html#8245612)
+  Usually has zero-day updates before ::gentoo gets them.
 
 `x11-misc/picom` — [standalone X11 compositor](https://github.com/yshui/picom)
 : This is a distant descendant of the original xcompmgr.
