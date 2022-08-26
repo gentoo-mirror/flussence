@@ -29,6 +29,7 @@ media-plugins/audacious-plugins:mp3 - Enable standalone MP3 plugin using media-s
 media-plugins/audacious-plugins:mpris2 - Enable MPRIS2 support (dbus-based player remote control)
 media-plugins/audacious-plugins:opengl - Enable the GL Spectrum visualiser
 media-plugins/audacious-plugins:openmpt - Enable playing module tracker files through media-libs/libopenmpt
+media-plugins/audacious-plugins:pipewire - Enable PipeWire output plugin
 media-plugins/audacious-plugins:qtmedia - Enable sound output via dev-qt/qtmultimedia
 media-plugins/audacious-plugins:scrobbler - Build with audioscrobbler/last.fm submission support
 media-plugins/audacious-plugins:sid - Build with SID (Commodore 64 Audio) support
