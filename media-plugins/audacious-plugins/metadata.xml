@@ -27,6 +27,7 @@
 		<flag name="mpris2">Enable MPRIS2 support (dbus-based player remote control)</flag>
 		<flag name="opengl">Enable the GL Spectrum visualiser</flag>
 		<flag name="openmpt">Enable playing module tracker files through <pkg>media-libs/libopenmpt</pkg></flag>
+		<flag name="pipewire">Enable PipeWire output plugin</flag>
 		<flag name="qtmedia">Enable sound output via <pkg>dev-qt/qtmultimedia</pkg></flag>
 		<flag name="scrobbler">Build with audioscrobbler/last.fm submission support</flag>
 		<flag name="songchange">Enable the song change plugin</flag>
