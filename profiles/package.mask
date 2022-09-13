@@ -2,3 +2,8 @@
 # These are older unnumbered versions for specific upstream unicode releases
 =media-fonts/noto-emoji-bin-20191119.12
 =media-fonts/noto-emoji-bin-20200916.13.1
+
+# flussence <gentoo+bugs@flussence.eu> (13 Sep 2022)
+# Upstream switched to Qt6 and Gentoo has not packaged that after two years.
+# This ebuild is hardcoded to use the last known-good Qt5 revision
+=games-emulation/duckstation-9999_p20220721
