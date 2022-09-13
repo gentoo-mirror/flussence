@@ -1,7 +1,7 @@
 BDEPEND=X? ( >=x11-apps/mkfontscale-1.2.0 media-fonts/encodings )
 DEFINED_PHASES=configure install postinst postrm setup
 DESCRIPTION=Multilingual typewriter fonts with an organic appearance
-EAPI=7
+EAPI=8
 HOMEPAGE=https://github.com/ctrlcctrlv/TT2020
 INHERIT=font github-pkg
 IUSE=+minimal X
@@ -10,4 +10,4 @@ LICENSE=OFL
 SLOT=0
 SRC_URI=https://github.com/ctrlcctrlv/TT2020/archive/5aeea12e5b695d85f47a5cb577a560bc50696fb9.tar.gz -> tt2020-0_p20200101.tar.gz
 _eclasses_=font	d31f12a0f6e13d56dc3062e76ae58a61	github-pkg	be43ef8f9035c6d22860d81695644024
-_md5_=4e6bdbd0666ea5bca1f43520c6303279
+_md5_=4d9780d2f0853916b9f89d92087c6b76
