@@ -11,7 +11,10 @@ inherit cmake github-pkg
 DESCRIPTION="Fast PlayStation 1 emulator"
 HOMEPAGE="https://www.duckstation.org/"
 
-if [[ ${PV} != "9999" ]]; then
+if [[ ${PV} == 9999* ]]; then
+	# last working Qt5 revision
+	EGIT_COMMIT="f6b3652ae6c2542dbac948e55d799ec273d5c9bd"
+else
 	SRC_URI="${GITHUB_HOMEPAGE}/archive/${PV}.tar.gz -> ${P}.tar.gz"
 fi
 
