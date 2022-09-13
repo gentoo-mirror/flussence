@@ -1,4 +1,4 @@
-BDEPEND=system-unicode? ( >=dev-lang/perl-5.28.0 >=app-i18n/unicode-data-14 <=app-i18n/unicode-data-14.9999 ) >=app-portage/elt-patches-20170815 app-arch/xz-utils
+BDEPEND=system-unicode? ( >=dev-lang/perl-5.28.0 >=app-i18n/unicode-data-15 <=app-i18n/unicode-data-15.9999 ) >=app-portage/elt-patches-20170815 app-arch/xz-utils
 DEFINED_PHASES=compile configure install postinst postrm preinst prepare
 DEPEND=>=dev-libs/glib-2.16.3 >=x11-libs/gtk+-2.14.0:2
 DESCRIPTION=GNOME Character Map, based on the Unicode Character Database
