@@ -1,7 +1,7 @@
-# Copyright 2020 Gentoo Authors
+# Copyright 2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 GITHUB_USER="ctrlcctrlv"
 GITHUB_PROJ="${PN^^}"
@@ -15,7 +15,7 @@ LICENSE="OFL"
 SLOT="0"
 IUSE="+minimal"
 
-if [[ ${PN} != "9999" ]]; then
+if [[ ${PV} != "9999" ]]; then
 	EGIT_COMMIT="5aeea12e5b695d85f47a5cb577a560bc50696fb9"
 	SRC_URI="${GITHUB_HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${P}.tar.gz"
 fi
