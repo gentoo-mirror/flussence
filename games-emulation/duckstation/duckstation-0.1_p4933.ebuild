@@ -3,19 +3,21 @@
 
 EAPI=8
 
-GITHUB_USER="stenzek"
-KEYWORDS="~amd64 ~x86"
-
-inherit cmake github-pkg
+inherit cmake
 
 DESCRIPTION="Fast PlayStation 1 emulator"
 HOMEPAGE="https://www.duckstation.org/"
+KEYWORDS="~amd64"
 
-if [[ ${PV} == 9999* ]]; then
+if [[ ${PV} == "0.1_p4933" ]]; then
 	# last working Qt5 revision
 	EGIT_COMMIT="f6b3652ae6c2542dbac948e55d799ec273d5c9bd"
+	EGIT_REPO_URI="https://github.com/stenzek/duckstation.git"
+	inherit git-r3
 else
 	SRC_URI="${GITHUB_HOMEPAGE}/archive/${PV}.tar.gz -> ${P}.tar.gz"
+	# don't know what to do about these yet
+	die "TODO"
 fi
 
 LICENSE="GPL-3"
@@ -94,7 +96,7 @@ src_install() {
 	# These things look for bundled libs, teach them the correct path to those
 	patchelf --set-rpath "$libdir" \
 		./duckstation-* \
-		./lib{frontend-common,common,core,libchdr,minizip,stb}.so
+		./lib{frontend-common,common,core,libchdr,minizip,stb,util}.so
 
 	dobin ./duckstation-*
 
