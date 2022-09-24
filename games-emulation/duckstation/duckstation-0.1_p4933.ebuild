@@ -15,7 +15,7 @@ if [[ ${PV} == "0.1_p4933" ]]; then
 	EGIT_REPO_URI="https://github.com/stenzek/duckstation.git"
 	inherit git-r3
 else
-	SRC_URI="${GITHUB_HOMEPAGE}/archive/${PV}.tar.gz -> ${P}.tar.gz"
+	SRC_URI="https://github.com/stenzek/duckstation/archive/${PV}.tar.gz -> ${P}.tar.gz"
 	# don't know what to do about these yet
 	die "TODO"
 fi
