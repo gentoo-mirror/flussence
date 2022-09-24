@@ -6,4 +6,4 @@
 # flussence <gentoo+bugs@flussence.eu> (13 Sep 2022)
 # Upstream switched to Qt6 and Gentoo has not packaged that after two years.
 # This ebuild is hardcoded to use the last known-good Qt5 revision
-=games-emulation/duckstation-9999_p20220721
+=games-emulation/duckstation-0.1_p4933
