@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>gentoo+bugs@flussence.eu</email>
+		<name>flussence</name>
+	</maintainer>
+	<use>
+		<flag name="filecaps">Allow non-root users to run agnos on privileged ports (i.e. 53)</flag>
+	</use>
+</pkgmetadata>
