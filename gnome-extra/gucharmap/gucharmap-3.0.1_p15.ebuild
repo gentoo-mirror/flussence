@@ -10,7 +10,7 @@ MY_UV="${PV##*_p}" # unicode major version that we support
 
 DESCRIPTION="GNOME Character Map, based on the Unicode Character Database"
 HOMEPAGE="https://wiki.gnome.org/Apps/Gucharmap"
-SRC_URI="mirror://gnome/sources/gucharmap/3.0/${MY_P}.tar.bz2"
+SRC_URI="mirror://gnome/sources/gucharmap/$(ver_cut 1-2)/${MY_P}.tar.bz2"
 
 LICENSE="GPL-3 unicode"
 SLOT="0"
