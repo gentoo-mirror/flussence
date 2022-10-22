@@ -62,9 +62,9 @@ For a complete list, do `eix [-R] -c --in-overlay flussence`
   This hasn't been maintained upstream since 2017, but surprisingly still works.
   Unfortunately lacks the pinnacle of FOSS GUI design, Keramik.
 
-`games-action/minecraft-launcher` — Java launcher for Minecraft
+`games-action/minecraft-launcher-legacy` — Old Java-based launcher for Minecraft
 : Convenience ebuild that installs the good Minecraft launcher (not the awful Electron-based one).
-  You may be better off with `games-action/polymc` nowadays.
+  You may be better off with `games-action/prismlauncher`.
 
 `games-emulation/duckstation` — [PlayStation 1 emulator](https://github.com/stenzek/duckstation)
 : Full-featured emulator with just about everything you could ask for besides netplay.
