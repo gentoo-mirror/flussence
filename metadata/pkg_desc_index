@@ -2,12 +2,9 @@ app-i18n/unicode-data 15.0.0: Unicode data from unicode.org
 dev-libs/libbinio 1.5: Platform-independent way to access binary data streams in C++
 dev-perl/Crypt-LE 0.38: Let's Encrypt API module and client
 dev-perl/Regexp-Debugger 0.2.6: Perl module and command line tool (rxrx) to visually debug regexes in-place
-dev-python/cython-hidapi 0.10.1 9999: Python bindings to the hidapi library
-games-action/minecraft-launcher 1.6.93-r2: Official Java launcher for Minecraft
+games-action/minecraft-launcher-legacy 1.6.93-r2: Old official Java launcher for Minecraft
 games-emulation/duckstation 0.1_p4933: Fast PlayStation 1 emulator
 games-engines/dhewm3 1.5.0 9999: A cross-platform Doom 3 source port
-games-fps/freedm-data 0.12.1: Free-licensed standalone data file for playing Doom 1&2 deathmatch
-games-fps/freedoom-data 0.12.1: Free-licensed alternatives to the Doom 1 and 2 IWAD data files
 gnome-extra/gucharmap 3.0.1_p15: GNOME Character Map, based on the Unicode Character Database
 gui-apps/gcolor3 2.4.0 9999: Choose colors from the picker or the screen
 media-fonts/font-problems-fonts 9999: Console and framebuffer fonts, including Bizcat
