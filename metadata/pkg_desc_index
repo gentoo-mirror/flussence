@@ -8,7 +8,7 @@ games-engines/dhewm3 1.5.0 9999: A cross-platform Doom 3 source port
 gnome-extra/gucharmap 3.0.1_p15: GNOME Character Map, based on the Unicode Character Database
 gui-apps/gcolor3 2.4.0 9999: Choose colors from the picker or the screen
 media-fonts/font-problems-fonts 9999: Console and framebuffer fonts, including Bizcat
-media-fonts/noto-emoji-bin 2.034 20191119.12 20200916.13.1: Google Noto Color Emoji, upstream-prebuilt version
+media-fonts/noto-emoji-bin 2.034 20191119.12: Google Noto Color Emoji, upstream-prebuilt version
 media-fonts/opendyslexic-bin 9999: Typeface that uses shapes & features to help offset visual symptoms of Dyslexia
 media-fonts/tt2020 0_p20200101: Multilingual typewriter fonts with an organic appearance
 media-fonts/ubuntu-font-family 0.83-r2: A set of matching libre/open fonts funded by Canonical
