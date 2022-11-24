@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<maintainer type="person">
-		<email>gentoo+bugs@flussence.eu</email>
-	</maintainer>
-	<longdescription>
+	<longdescription lang="en">
 		Audacious is a plugin-based audio player, descended from the Beep/XMMS 1.x line.
 		It supports a Qt5 GUI with optional Winamp2-based skins, a CLI mode, and MPRIS;
 		these can be enabled independent of each other.
 	</longdescription>
+	<maintainer type="person">
+		<email>gentoo+bugs@flussence.eu</email>
+		<name>flussence</name>
+	</maintainer>
+	<slots>
+		<subslots>libaudcore.so ABI - audacious-plugins needs to be rebuilt when this changes</subslots>
+	</slots>
 	<upstream>
 		<bugs-to>https://redmine.audacious-media-player.org/projects/audacious/issues</bugs-to>
 		<changelog>https://github.com/audacious-media-player/audacious/releases.atom</changelog>
 		<remote-id type="github">audacious-media-player/audacious</remote-id>
 	</upstream>
-	<slots>
-		<subslots>libaudcore.so ABI - audacious-plugins needs to be rebuilt when this changes</subslots>
-	</slots>
 	<use>
 		<flag name="dbus">Enable DBus support. This is used for the `audtool` CLI and the MPRIS plugin.</flag>
 		<flag name="gtk">Enables the GTK+2 GUI. Old, may be removed without warning!</flag>

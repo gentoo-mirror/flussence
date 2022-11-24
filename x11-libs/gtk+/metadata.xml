@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<longdescription lang="en">
 		This is a patched version of Gentoo's gtk+:3 ebuild to make optional its
@@ -11,7 +11,14 @@
 	</longdescription>
 	<maintainer type="person">
 		<email>gentoo+bugs@flussence.eu</email>
+		<name>flussence</name>
 	</maintainer>
+	<upstream>
+		<bugs-to>https://gitlab.gnome.org/GNOME/gtk/-/issues/</bugs-to>
+		<changelog>https://gitlab.gnome.org/GNOME/gtk/-/tags?format=atom</changelog>
+		<doc>https://www.gtk.org/docs/</doc>
+		<remote-id type="cpe">cpe:/a:gtk:gtk%2B</remote-id>
+	</upstream>
 	<use>
 		<!-- Borrowed verbatim from ::gentoo -->
 		<flag name="broadway">Enable the GDK Broadway backend.</flag>
@@ -20,10 +27,4 @@
 		<flag name="sysprof">Enable profiling data capture support using
 			<pkg>dev-util/sysprof-capture</pkg></flag>
 	</use>
-	<upstream>
-		<remote-id type="cpe">cpe:/a:gtk:gtk%2B</remote-id>
-		<bugs-to>https://gitlab.gnome.org/GNOME/gtk/-/issues/</bugs-to>
-		<changelog>https://gitlab.gnome.org/GNOME/gtk/-/tags?format=atom</changelog>
-		<doc>https://www.gtk.org/docs/</doc>
-	</upstream>
 </pkgmetadata>

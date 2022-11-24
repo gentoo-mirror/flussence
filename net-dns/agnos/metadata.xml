@@ -5,6 +5,11 @@
 		<email>gentoo+bugs@flussence.eu</email>
 		<name>flussence</name>
 	</maintainer>
+	<upstream>
+		<bugs-to>https://github.com/krtab/agnos/issues</bugs-to>
+		<changelog>https://github.com/krtab/agnos/releases.atom</changelog>
+		<remote-id type="github">krtab/agnos</remote-id>
+	</upstream>
 	<use>
 		<flag name="filecaps">Allow non-root users to run agnos on privileged ports (i.e. 53)</flag>
 	</use>

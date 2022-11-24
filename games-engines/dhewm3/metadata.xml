@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
+	<longdescription lang="en">
+		dhewm3 is a source port of the original Doom3 engine (not Doom3 BFG) with many bugfixes,
+		support for a wider range of platforms, and SDL2 and OpenAL to replace the old raw input and
+		OSS sound driver.
+	</longdescription>
 	<maintainer type="person">
 		<email>gentoo+bugs@flussence.eu</email>
+		<name>flussence</name>
 	</maintainer>
-	<longdescription lang="en">
-dhewm3 is a source port of the original Doom3 engine (not Doom3 BFG) with many bugfixes,
-support for a wider range of platforms, and SDL2 and OpenAL to replace the old raw input and
-OSS sound driver.
-	</longdescription>
 	<upstream>
+		<bugs-to>https://github.com/dhewm/dhewm3/issues</bugs-to>
 		<changelog>https://github.com/dhewm/dhewm3/releases.atom</changelog>
+		<remote-id type="github">dhewm/dhewm3</remote-id>
 	</upstream>
 </pkgmetadata>

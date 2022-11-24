@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer type="person">
 		<email>gentoo+bugs@flussence.eu</email>
 		<name>flussence</name>
 	</maintainer>
+	<upstream>
+		<bugs-to>https://github.com/adplug/adplug/issues</bugs-to>
+		<changelog>https://github.com/adplug/adplug/releases.atom</changelog>
+		<remote-id type="github">adplug/adplug</remote-id>
+	</upstream>
 </pkgmetadata>
