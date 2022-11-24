@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer type="person">
 		<email>gentoo+bugs@flussence.eu</email>
+		<name>flussence</name>
 	</maintainer>
 	<upstream>
+		<bugs-to>mailto:bug-crypt-le@rt.cpan.org</bugs-to>
 		<changelog>https://metacpan.org/dist/Crypt-LE/releases.rss</changelog>
 		<doc>https://metacpan.org/pod/Crypt::LE</doc>
-		<bugs-to>mailto:bug-crypt-le@rt.cpan.org</bugs-to>
 		<remote-id type="cpan-module">Crypt::LE</remote-id>
 	</upstream>
 </pkgmetadata>

@@ -7,7 +7,8 @@ inherit desktop java-pkg-2 xdg
 
 DESCRIPTION="Old official Java launcher for Minecraft"
 HOMEPAGE="https://www.minecraft.net/"
-SRC_URI="https://launcher.mojang.com/v1/objects/eabbff5ff8e21250e33670924a0c5e38f47c840b/launcher.jar -> ${P/-legacy}.jar
+MY_SHA1="eabbff5ff8e21250e33670924a0c5e38f47c840b"
+SRC_URI="https://launcher.mojang.com/v1/objects/${MY_SHA1}/launcher.jar -> ${P/-legacy}.jar
 	https://launcher.mojang.com/download/minecraft-launcher.svg"
 
 # The launcher and old versions of the game itself work fine on 32-bit x86

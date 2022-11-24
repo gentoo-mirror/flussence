@@ -9,8 +9,9 @@
 		<bugs-to>https://gitlab.gnome.org/World/gcolor3/-/issues</bugs-to>
 		<changelog>https://gitlab.gnome.org/World/gcolor3/-/tags?format=atom</changelog>
 		<maintainer><!-- sourced from file color-picker.doap -->
-			<name>Christopher Davis</name>
 			<email>christopherdavis@gnome.org</email>
+			<name>Christopher Davis</name>
 		</maintainer>
+		<remote-id type="gnome-gitlab">World/gcolor3</remote-id>
 	</upstream>
 </pkgmetadata>

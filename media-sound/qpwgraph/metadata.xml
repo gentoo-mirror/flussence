@@ -6,7 +6,9 @@
 		<name>flussence</name>
 	</maintainer>
 	<upstream>
+		<bugs-to>https://gitlab.freedesktop.org/rncbc/qpwgraph/-/issues</bugs-to>
 		<changelog>https://gitlab.freedesktop.org/rncbc/qpwgraph/-/tags?format=atom</changelog>
+		<remote-id type="freedesktop-gitlab">rncbc/qpwgraph</remote-id>
 	</upstream>
 	<use>
 		<flag name="alsa">Support routing ALSA raw midi devices</flag>
