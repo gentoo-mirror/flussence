@@ -1,7 +1,7 @@
 BDEPEND=doc? ( app-text/asciidoc ) >=dev-util/meson-0.62.2 >=dev-util/ninja-1.8.2 dev-util/meson-format-array
 DEFINED_PHASES=compile configure install postinst postrm preinst prepare test
 DEPEND=dev-libs/libev >=x11-libs/libxcb-1.9.2 x11-libs/libXext x11-libs/libXdamage x11-libs/libXrender x11-libs/libXrandr x11-libs/libXcomposite x11-libs/pixman x11-libs/xcb-util x11-libs/xcb-util-image x11-libs/xcb-util-renderutil dbus? ( sys-apps/dbus ) drm? ( x11-libs/libdrm ) libconfig? ( >=dev-libs/libconfig-1.4:= ) opengl? ( media-libs/libglvnd virtual/opengl ) pcre? ( >=dev-libs/libpcre-8.20:3 ) dev-libs/uthash dev-util/desktop-file-utils x11-misc/shared-mime-info
-DESCRIPTION=Picom is a X compositing window manager, fork of compton.
+DESCRIPTION=Picom (née Compton) is an X compositor with XRender and OpenGL/ES 3.0 support.
 EAPI=7
 HOMEPAGE=https://github.com/yshui/picom
 INHERIT=github-pkg meson xdg
@@ -12,4 +12,4 @@ RDEPEND=dev-libs/libev >=x11-libs/libxcb-1.9.2 x11-libs/libXext x11-libs/libXdam
 SLOT=0
 SRC_URI=https://github.com/yshui/picom/archive/v10.1.tar.gz -> picom-10.1.tar.gz
 _eclasses_=github-pkg	be43ef8f9035c6d22860d81695644024	multiprocessing	b4e253ab22cef7b1085e9b67c7a3b730	ninja-utils	8ed38f92fe095be374d6c4c8d4c0dda7	eapi8-dosym	cd7d420bb5be5ee079f27239ce76b8f5	toolchain-funcs	37a4612ce5522df5a100359a8dbc8491	multilib	5ca4e49abed8e3a2f7b56920eadee157	python-utils-r1	25c880c1db58e21b80b684bacc964958	meson	1994a5aef5d4f5798b92f64d6f9a6003	xdg-utils	ac0e315a3688929e34ac75b139e7349a	xdg	6024fbc93167fad782e2032933654857
-_md5_=6d8250bd638194f783952fb77c8debd6
+_md5_=fa0390dd83ee04d5349ccc26407e2227
