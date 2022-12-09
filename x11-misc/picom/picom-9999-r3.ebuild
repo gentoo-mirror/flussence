@@ -8,7 +8,7 @@ KEYWORDS="~amd64 ~x86"
 
 inherit github-pkg meson xdg
 
-DESCRIPTION="Picom is a X compositing window manager, fork of compton."
+DESCRIPTION="Picom (née Compton) is an X compositor with XRender and OpenGL/ES 3.0 support."
 
 if [[ ${PV} != "9999" ]]; then
 	MY_PV="${PV/_rc/-rc}"

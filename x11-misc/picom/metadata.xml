@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<longdescription lang="en">
-		Picom (née Compton) is an X11 compositor with support for XRender and modern OpenGL/GLES.
-	</longdescription>
 	<maintainer type="person">
 		<email>gentoo+bugs@flussence.eu</email>
 		<name>flussence</name>
