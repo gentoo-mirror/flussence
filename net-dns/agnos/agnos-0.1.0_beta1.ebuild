@@ -228,6 +228,8 @@ LICENSE="0BSD Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD Boost-1.0 ISC MIT M
 SLOT="0"
 KEYWORDS="~amd64"
 
+DEPEND="dev-libs/openssl:="
+
 FILECAPS=( -m 755 'cap_net_bind_service=+ep' "usr/bin/${PN}" )
 
 src_unpack() {
