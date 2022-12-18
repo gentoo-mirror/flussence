@@ -1,7 +1,7 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 inherit toolchain-funcs flag-o-matic
 
 DESCRIPTION="A UNIX init scheme with service supervision"
@@ -49,7 +49,7 @@ src_install() {
 
 	into /usr
 	for tty in agetty-tty{1..6}; do
-		exeinto /etc/sv/$tty/
+		exeinto /etc/sv/"${tty}"/
 		for script in run finish; do
 			newexe "${FILESDIR}"/${script}.agetty $script
 		done
