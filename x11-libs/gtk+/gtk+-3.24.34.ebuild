@@ -68,11 +68,8 @@ DEPEND="${COMMON_DEPEND}
 	)
 	X? ( x11-base/xorg-proto )
 "
-# gtk+-3.2.2 breaks Alt key handling in <=x11-libs/vte-0.30.1:2.90
-# gtk+-3.3.18 breaks scrolling in <=x11-libs/vte-0.31.0:2.90
 RDEPEND="${COMMON_DEPEND}
 	>=dev-util/gtk-update-icon-cache-3
-	!<x11-libs/vte-0.31.0:2.90
 "
 # librsvg for svg icons (PDEPEND to avoid circular dep), bug #547710
 PDEPEND="
@@ -210,30 +207,35 @@ multilib_src_install_all() {
 	einstalldocs
 }
 
+multilib_pkg_preinst() {
+	# Make immodules.cache belongs to gtk+ alone
+	local cache
+	cache="/usr/$(get_libdir)/gtk-3.0/3.0.0/immodules.cache"
+
+	if [[ -e "${EROOT}${cache}" ]]; then
+		cp "${EROOT}${cache}" "${ED}${cache}" || die
+	else
+		touch "${ED}${cache}" || die
+	fi
+}
+
+multilib_pkg_postinst() {
+	gnome2_query_immodules_gtk3 || die "Update immodules cache failed (for ${ABI})"
+}
+
+multilib_pkg_postrm() {
+	rm -f "${EROOT}/usr/$(get_libdir)/gtk-3.0/3.0.0/immodules.cache"
+}
+
 pkg_preinst() {
 	gnome2_pkg_preinst
 
-	multilib_pkg_preinst() {
-		# Make immodules.cache belongs to gtk+ alone
-		local cache
-		cache="/usr/$(get_libdir)/gtk-3.0/3.0.0/immodules.cache"
-
-		if [[ -e "${EROOT}${cache}" ]]; then
-			cp "${EROOT}${cache}" "${ED}${cache}" || die
-		else
-			touch "${ED}${cache}" || die
-		fi
-	}
 	multilib_parallel_foreach_abi multilib_pkg_preinst
 }
 
 pkg_postinst() {
 	gnome2_pkg_postinst
 
-	multilib_pkg_postinst() {
-		gnome2_query_immodules_gtk3 \
-			|| die "Update immodules cache failed (for ${ABI})"
-	}
 	multilib_parallel_foreach_abi multilib_pkg_postinst
 
 	if ! has_version "app-text/evince"; then
@@ -247,9 +249,6 @@ pkg_postrm() {
 	gnome2_pkg_postrm
 
 	if [[ -z ${REPLACED_BY_VERSION} ]]; then
-		multilib_pkg_postrm() {
-			rm -f "${EROOT}/usr/$(get_libdir)/gtk-3.0/3.0.0/immodules.cache"
-		}
 		multilib_foreach_abi multilib_pkg_postrm
 	fi
 }
