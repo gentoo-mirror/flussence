@@ -37,7 +37,7 @@ SLOT="0"
 USE_FRONTENDS="mpris2 gtk +qt5 moonstone"
 USE_CONTAINERS="cue"
 USE_TRANSPORTS="mms http"
-USE_INPUTS="aac adplug cdda ffmpeg fluidsynth +gme modplug mp3 openmpt sid sndfile wavpack"
+USE_INPUTS="aac adplug cdda ffmpeg fluidsynth +gme modplug mp3 openmpt opus sid sndfile wavpack"
 USE_CODECS="flac lame vorbis" # filewriter codecs, flac/vorbis are also input
 USE_OUTPUTS="+alsa coreaudio encode jack oss pipewire pulseaudio qtmedia sdl sndio"
 
@@ -111,6 +111,10 @@ RDEPEND="
 	modplug? ( media-libs/libmodplug )
 	mp3? ( >=media-sound/mpg123-1.12 )
 	openmpt? ( >=media-libs/libopenmpt-0.2 )
+	opus? (
+		>=media-libs/opus-1.0.1
+		>=media-libs/opusfile-0.4
+	)
 	pipewire? ( >=media-video/pipewire-0.3.26 )
 	pulseaudio? ( >=media-sound/pulseaudio-0.9.5 )
 	scrobbler? ( net-misc/curl )
@@ -162,6 +166,7 @@ src_configure() {
 		"$(meson_use            modplug)"
 		"$(meson_use mp3        mpg123)"
 		"$(meson_use            openmpt)"
+		"$(meson_use            opus)"
 		"$(meson_use            sid)"
 		"$(meson_use            sndfile)"
 		"$(meson_use            vorbis)"
