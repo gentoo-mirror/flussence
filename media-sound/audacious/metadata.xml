@@ -21,6 +21,7 @@
 	<use>
 		<flag name="dbus">Enable DBus support. This is used for the `audtool` CLI and the MPRIS plugin.</flag>
 		<flag name="gtk">Enables the GTK+2 GUI. Old, may be removed without warning!</flag>
+		<flag name="gtk3">Enables the Gtk+3 GUI. This overrules the gtk flag.</flag>
 		<flag name="libarchive">Enable <pkg>app-arch/libarchive</pkg> support for compressed Winamp2 .wsz skins. With this disabled they'll be decompressed via shell commands, which may be a security hazard.</flag>
 		<flag name="qt5">Enables the Audacious GUI (both skinned and plain).</flag>
 	</use>

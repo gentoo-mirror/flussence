@@ -21,7 +21,7 @@ inherit meson xdg
 LICENSE="BSD-2 BSD CC-BY-SA-4.0"
 SLOT="0/5.4.0"
 
-IUSE="+dbus gtk libarchive +qt5"
+IUSE="+dbus gtk gtk3 libarchive +qt5"
 REQUIRED_USE="|| ( dbus gtk qt5 )"
 
 QT_REQ="5.2:5="
@@ -31,6 +31,12 @@ RDEPEND="
 	libarchive? ( app-arch/libarchive )
 	gtk? (
 		>=x11-libs/gtk+-2.24:2
+		x11-libs/cairo
+		x11-libs/pango
+		virtual/libintl
+	)
+	gtk3? (
+		>=x11-libs/gtk+-3.22:3
 		x11-libs/cairo
 		x11-libs/pango
 		virtual/libintl
@@ -49,11 +55,13 @@ PDEPEND="~media-plugins/audacious-plugins-${PV}"
 
 src_configure() {
 	local emesonargs=(
-		"-Dauto_features=disabled"
+		"--auto-features=disabled"
 		"$(meson_use dbus)"
-		"$(meson_use gtk)"
+		"$(meson_use "$(usex gtk3 gtk3 gtk)" gtk)"
+		"$(meson_use gtk3)"
 		"$(meson_use libarchive)"
 		"$(meson_use qt5 qt)"
+		"-Dqt6=false" # soon
 	)
 	meson_src_configure
 }
