@@ -1,17 +1,17 @@
 BDEPEND=sys-devel/gettext dbus? ( dev-util/gdbus-codegen ) >=dev-vcs/git-1.8.2.1[curl] >=dev-util/meson-0.62.2 >=dev-util/ninja-1.8.2 dev-util/meson-format-array
 DEFINED_PHASES=compile configure install postinst postrm preinst test unpack
-DEPEND=>=dev-libs/glib-2.32 dbus? ( sys-apps/dbus ) libarchive? ( app-arch/libarchive ) gtk? ( >=x11-libs/gtk+-2.24:2 x11-libs/cairo x11-libs/pango virtual/libintl ) qt5? ( >=dev-qt/qtcore-5.2:5= >=dev-qt/qtgui-5.2:5= >=dev-qt/qtwidgets-5.2:5= virtual/freedesktop-icon-theme ) virtual/pkgconfig
+DEPEND=>=dev-libs/glib-2.32 dbus? ( sys-apps/dbus ) libarchive? ( app-arch/libarchive ) gtk? ( >=x11-libs/gtk+-2.24:2 x11-libs/cairo x11-libs/pango virtual/libintl ) gtk3? ( >=x11-libs/gtk+-3.22:3 x11-libs/cairo x11-libs/pango virtual/libintl ) qt5? ( >=dev-qt/qtcore-5.2:5= >=dev-qt/qtgui-5.2:5= >=dev-qt/qtwidgets-5.2:5= virtual/freedesktop-icon-theme ) virtual/pkgconfig
 DESCRIPTION=Audacious Player - Your music, your way, no exceptions
 EAPI=8
 HOMEPAGE=https://audacious-media-player.org/
 IDEPEND=dev-util/desktop-file-utils x11-misc/shared-mime-info
 INHERIT=git-r3 meson xdg
-IUSE=+dbus gtk libarchive +qt5
+IUSE=+dbus gtk gtk3 libarchive +qt5
 LICENSE=BSD-2 BSD CC-BY-SA-4.0
 PDEPEND=~media-plugins/audacious-plugins-9999
 PROPERTIES=live
-RDEPEND=>=dev-libs/glib-2.32 dbus? ( sys-apps/dbus ) libarchive? ( app-arch/libarchive ) gtk? ( >=x11-libs/gtk+-2.24:2 x11-libs/cairo x11-libs/pango virtual/libintl ) qt5? ( >=dev-qt/qtcore-5.2:5= >=dev-qt/qtgui-5.2:5= >=dev-qt/qtwidgets-5.2:5= virtual/freedesktop-icon-theme )
+RDEPEND=>=dev-libs/glib-2.32 dbus? ( sys-apps/dbus ) libarchive? ( app-arch/libarchive ) gtk? ( >=x11-libs/gtk+-2.24:2 x11-libs/cairo x11-libs/pango virtual/libintl ) gtk3? ( >=x11-libs/gtk+-3.22:3 x11-libs/cairo x11-libs/pango virtual/libintl ) qt5? ( >=dev-qt/qtcore-5.2:5= >=dev-qt/qtgui-5.2:5= >=dev-qt/qtwidgets-5.2:5= virtual/freedesktop-icon-theme )
 REQUIRED_USE=|| ( dbus gtk qt5 )
 SLOT=0/5.4.0
 _eclasses_=git-r3	2347f8fe2d392b2a091191f94be37e6f	multiprocessing	b4e253ab22cef7b1085e9b67c7a3b730	ninja-utils	8ed38f92fe095be374d6c4c8d4c0dda7	toolchain-funcs	37a4612ce5522df5a100359a8dbc8491	multilib	5ca4e49abed8e3a2f7b56920eadee157	python-utils-r1	6a75203e8a499f0fb42971452ce15388	meson	1994a5aef5d4f5798b92f64d6f9a6003	xdg-utils	ac0e315a3688929e34ac75b139e7349a	xdg	6024fbc93167fad782e2032933654857
-_md5_=db734ceced8bf5d1ced2003bdd8b4917
+_md5_=2beaf8eb9ac745e85257c711be01c8f2
