@@ -29,12 +29,13 @@ LICENSE="
 	ampache? ( GPL-3 )
 	flac? ( GPL-3+ )
 	gtk? ( GPL-3 )
+	gtk3? ( GPL-3 )
 	libnotify? ( GPL-3+ )
 	qt5? ( GPL-3 )"
 SLOT="0"
 
 # These are split up roughly by how upstream organises them, except the NEED_* lists
-USE_FRONTENDS="mpris2 gtk +qt5 moonstone"
+USE_FRONTENDS="mpris2 gtk gtk3 +qt5 moonstone"
 USE_CONTAINERS="cue"
 USE_TRANSPORTS="mms http"
 USE_INPUTS="aac adplug cdda ffmpeg fluidsynth +gme modplug mp3 openmpt opus sid sndfile wavpack"
@@ -65,7 +66,7 @@ REQUIRED_USE="
 QT_REQ="5.4:5="
 RDEPEND="
 	>=dev-libs/glib-2.32
-	>=media-sound/audacious-4.1:=[qt5(-)=,gtk(-)=]
+	>=media-sound/audacious-4.1:=[qt5(-)=,gtk(-)=,gtk3(-)=]
 	sys-libs/zlib
 	aac? ( >=media-libs/faad2-2.7 )
 	adplug? ( media-libs/adplug )
@@ -83,6 +84,15 @@ RDEPEND="
 	fluidsynth? ( >=media-sound/fluidsynth-1.0.6:= )
 	gtk? (
 		>=x11-libs/gtk+-2.24:2
+		aosd? (
+			x11-libs/libXrender
+			x11-libs/libXcomposite
+		)
+		lirc? ( app-misc/lirc )
+		opengl? ( virtual/opengl )
+	)
+	gtk3? (
+		>=x11-libs/gtk+-3.22:3
 		aosd? (
 			x11-libs/libXrender
 			x11-libs/libXcomposite
@@ -145,7 +155,8 @@ src_configure() {
 	# As above for IUSE, grouped by how upstream organises them
 	local emesonargs=(
 		# GUI toolkits
-		"$(meson_use            gtk)"
+		"$(meson_use "$(usex gtk3 gtk3 gtk)" gtk)"
+		"$(meson_use            gtk3)"
 		"$(meson_use qt5        qt)"
 
 		# container plugins
