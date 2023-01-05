@@ -9,13 +9,14 @@ CRATES="
 	acme2-0.5.1
 	addr2line-0.17.0
 	adler-1.0.2
-	agnos-0.1.0-beta.1
+	agnos-0.1.0-beta.2
 	ansi_term-0.12.1
 	async-trait-0.1.57
 	atty-0.2.14
 	autocfg-1.1.0
 	backtrace-0.3.66
 	base64-0.13.0
+	base64-0.20.0
 	bitflags-1.3.2
 	block-buffer-0.10.3
 	bumpalo-3.11.0
@@ -194,14 +195,14 @@ CRATES="
 inherit cargo fcaps
 
 # LOUD EXASPERATED SIGH. cargo.eclass sucks
-MY_PV="${PV/_beta1/-beta.1}"
+MY_PV="${PV/_beta/-beta.}"
 S="${WORKDIR}/${PN}-${MY_PV}"
 
 DESCRIPTION="A self-hosted ACME dns-01 challenge responder"
 HOMEPAGE="https://github.com/krtab/agnos"
 SRC_URI="
 	$(cargo_crate_uris)
-	https://raw.githubusercontent.com/krtab/${PN}/v.${MY_PV}/config_example.toml -> ${P}_example.toml
+	https://raw.githubusercontent.com/krtab/${PN}/v${MY_PV}/config_example.toml -> ${P}_example.toml
 "
 
 # cargo-license output (abridged)
