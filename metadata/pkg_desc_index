@@ -13,7 +13,7 @@ media-fonts/opendyslexic-bin 9999: Typeface that uses shapes & features to help 
 media-fonts/tt2020 0_p20200101: Multilingual typewriter fonts with an organic appearance
 media-fonts/ubuntu-font-family 0.83-r2: A set of matching libre/open fonts funded by Canonical
 media-libs/adplug 2.3.3: Hardware-independent AdLib sound player library
-media-libs/libopenmpt 0.6.7: Cross-platform C++ and C library to decode tracked music files (modules)
+media-libs/libopenmpt 0.6.8: Cross-platform C++ and C library to decode tracked music files (modules)
 media-plugins/audacious-plugins 4.2 9999-r13 9999-r14: Audacious Player - Your music, your way, no exceptions
 media-plugins/lvis 9999-r1: Programmable audio visualizer
 media-sound/audacious 4.2 9999-r6 9999-r7: Audacious Player - Your music, your way, no exceptions
