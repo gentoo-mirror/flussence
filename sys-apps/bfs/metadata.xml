@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>gentoo+bugs@flussence.eu</email>
+		<name>flussence</name>
+	</maintainer>
+	<upstream>
+		<bugs-to>https://github.com/tavianator/bfs/issues</bugs-to>
+		<changelog>https://github.com/tavianator/bfs/releases.atom</changelog>
+		<remote-id type="github">tavianator/bfs</remote-id>
+	</upstream>
+	<use>
+		<flag name="acl">Add flag "-acl" via <pkg>sys-apps/acl</pkg></flag>
+		<flag name="caps">Add flag "-capable" via <pkg>sys-libs/libcap</pkg></flag>
+		<flag name="oniguruma">Add -regextype values "emacs" and "grep" via <pkg>dev-libs/oniguruma</pkg></flag>
+		<flag name="xattr">Add flags "-xattr" and "-xattrname" via <pkg>sys-apps/attr</pkg></flag>
+	</use>
+</pkgmetadata>
