@@ -1,7 +1,7 @@
-From 325e590b6c401d340db07f26b5bf092610db4463 Mon Sep 17 00:00:00 2001
+From 122eb59b31368fd1bc077dc066e3abefb1ee6c6e Mon Sep 17 00:00:00 2001
 From: Enne Eziarc <flussence+git@flussence.eu>
 Date: Fri, 3 Mar 2023 21:07:28 +0000
-Subject: [PATCH 2/2] Don't build or use bundled gtk-update-icon-cache
+Subject: [PATCH 1/2] Don't build or use bundled gtk-update-icon-cache
 
 ---
  docs/reference/gtk/meson.build |  1 -
