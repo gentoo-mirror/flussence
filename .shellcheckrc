@@ -1,0 +1,4 @@
+# too many false positives from ebuild magic vars
+disable=SC2034
+# ebuilds are bash scripts
+shell=bash
