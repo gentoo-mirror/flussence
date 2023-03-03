@@ -53,6 +53,7 @@ sys-apps/bfs:caps - Add flag "-capable" via sys-libs/libcap
 sys-apps/bfs:oniguruma - Add -regextype values "emacs" and "grep" via dev-libs/oniguruma
 sys-apps/bfs:xattr - Add flags "-xattr" and "-xattrname" via sys-apps/attr
 x11-libs/gtk+:broadway - Enable the GDK Broadway backend.
+x11-libs/gtk+:cloudproviders - Enable GtkPlacesSidebar to access cloud services
 x11-libs/gtk+:colord - Use x11-misc/colord for color management in printing
 x11-libs/gtk+:sysprof - Enable profiling data capture support using dev-util/sysprof-capture
 x11-misc/picom:doc - Installs manpages (requires app-text/asciidoc)
