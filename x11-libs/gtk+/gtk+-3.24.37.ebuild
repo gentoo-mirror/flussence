@@ -4,7 +4,7 @@
 
 EAPI=8
 
-inherit gnome2 meson-multilib multilib
+inherit gnome2 meson-multilib multilib virtualx
 
 DESCRIPTION="Gimp ToolKit +"
 HOMEPAGE="https://www.gtk.org/"
@@ -16,12 +16,9 @@ REQUIRED_USE="
 	|| ( aqua wayland X )
 	xinerama? ( X )
 "
+RESTRICT="!test? ( test )"
 
 KEYWORDS="~amd64 ~x86"
-
-# Upstream wants us to do their job:
-# https://bugzilla.gnome.org/show_bug.cgi?id=768662#c1
-RESTRICT="test"
 
 COMMON_DEPEND="
 	>=dev-libs/fribidi-0.19.7[${MULTILIB_USEDEP}]
@@ -127,7 +124,7 @@ multilib_src_configure() {
 		# user overridden GTK_IM_MODULE envvar
 		-Dbuiltin_immodules=backend
 		-Dman=true
-		-Dtests=false
+		"$(meson_use test tests)"
 		-Dtracker3=false
 	)
 	meson_src_configure
@@ -135,6 +132,10 @@ multilib_src_configure() {
 
 multilib_src_compile() {
 	meson_src_compile
+}
+
+multilib_src_test() {
+	virtx meson_src_test
 }
 
 multilib_src_install() {
