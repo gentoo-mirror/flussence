@@ -1,6 +1,6 @@
 app-i18n/unicode-data 15.0.0: Unicode data from unicode.org
 dev-libs/libbinio 1.5: Platform-independent way to access binary data streams in C++
-dev-perl/Crypt-LE 0.38: Let's Encrypt API module and client
+dev-perl/Crypt-LE 0.39: Let's Encrypt API module and client
 dev-perl/Regexp-Debugger 0.2.6: Perl module and command line tool (rxrx) to visually debug regexes in-place
 games-action/minecraft-launcher-legacy 1.6.93-r2: Old official Java launcher for Minecraft
 games-emulation/duckstation 0.1_p4933: Fast PlayStation 1 emulator
