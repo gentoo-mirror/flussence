@@ -9,5 +9,5 @@ KEYWORDS=amd64 arm arm64 mips ppc ppc64 x86
 LICENSE=OFL-1.1
 SLOT=0
 SRC_URI=https://github.com/googlefonts/noto-emoji/archive/v2.034.tar.gz -> noto-emoji-2.034.tar.gz
-_eclasses_=font	5e03cb70902daa9ff8967c61130f0f60	github-pkg	be43ef8f9035c6d22860d81695644024
+_eclasses_=font	aa113a3df9cd0a9693a1c1ee7c34a6eb	github-pkg	be43ef8f9035c6d22860d81695644024
 _md5_=7b53a4dad52a45373953d0e812d139c4

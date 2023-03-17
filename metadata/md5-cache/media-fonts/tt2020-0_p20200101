@@ -9,5 +9,5 @@ KEYWORDS=amd64 arm arm64 mips ppc ppc64 x86
 LICENSE=OFL
 SLOT=0
 SRC_URI=https://github.com/ctrlcctrlv/TT2020/archive/5aeea12e5b695d85f47a5cb577a560bc50696fb9.tar.gz -> tt2020-0_p20200101.tar.gz
-_eclasses_=font	5e03cb70902daa9ff8967c61130f0f60	github-pkg	be43ef8f9035c6d22860d81695644024
+_eclasses_=font	aa113a3df9cd0a9693a1c1ee7c34a6eb	github-pkg	be43ef8f9035c6d22860d81695644024
 _md5_=4d9780d2f0853916b9f89d92087c6b76

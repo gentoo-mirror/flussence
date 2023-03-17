@@ -8,5 +8,5 @@ IUSE=X
 LICENSE=CC-BY-4.0
 PROPERTIES=live
 SLOT=0
-_eclasses_=font	5e03cb70902daa9ff8967c61130f0f60	git-r3	2347f8fe2d392b2a091191f94be37e6f	github-pkg	be43ef8f9035c6d22860d81695644024
+_eclasses_=font	aa113a3df9cd0a9693a1c1ee7c34a6eb	git-r3	c57c50c922e121043788de0b40ada60a	github-pkg	be43ef8f9035c6d22860d81695644024
 _md5_=fc5058ba9b7aff31445bbb84eb40353c
