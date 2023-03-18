@@ -68,7 +68,7 @@ src_configure() {
 	# Fixing these is non-trivial (hardcoded header paths and cmake superfund site):
 	#  zlib rapidjson minizip vulkan-loader glslang xxhash libchdr lzma libFLAC
 	for bundled in libsamplerate tinyxml2 cubeb; do
-		cmake_run_in "dep" cmake_comment_add_subdirectory "$bundled"
+		cmake_run_in "dep" cmake_comment_add_subdirectory "${bundled}"
 	done
 
 	local mycmakeargs=(
@@ -94,13 +94,13 @@ src_install() {
 	rm -f common-tests libgtest{,_main}.so
 
 	# These things look for bundled libs, teach them the correct path to those
-	patchelf --set-rpath "$libdir" \
+	patchelf --set-rpath "${libdir}" \
 		./duckstation-* \
 		./lib{frontend-common,common,core,libchdr,minizip,stb,util}.so
 
 	dobin ./duckstation-*
 
-	insinto "$libdir"
+	insinto "${libdir}"
 	doins ./lib*.so
 
 	insinto "/usr/share/${PN}"

@@ -51,7 +51,7 @@ src_install() {
 	for tty in agetty-tty{1..6}; do
 		exeinto /etc/sv/"${tty}"/
 		for script in run finish; do
-			newexe "${FILESDIR}"/${script}.agetty $script
+			newexe "${FILESDIR}/${script}".agetty "${script}"
 		done
 	done
 
@@ -73,7 +73,7 @@ pkg_postinst() {
 	elog "/etc/service/ to have console logins available at boot."
 	elog "The supplied startup scripts will run up to OpenRC's 'boot' runlevel"
 	elog "and then start runit's services."
-	if [[ ${REPLACING_VERSIONS} ]] ; then
+	if [[ -n ${REPLACING_VERSIONS} ]] ; then
 		echo
 		ewarn "A pre-existing runit version was detected."
 		ewarn "You may want to verify your /etc/service setup is sane."

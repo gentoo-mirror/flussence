@@ -60,7 +60,7 @@ src_install() {
 }
 
 pkg_postinst() {
-	if [[ ${REPLACING_VERSIONS} ]]; then
+	if [[ -n ${REPLACING_VERSIONS} ]]; then
 		ewarn "${PF} now installs the application as /usr/bin/gucharmap-legacy"
 		ewarn "to avoid file collisions with ${PN}:2.90. Please verify your shortcuts still work."
 	fi

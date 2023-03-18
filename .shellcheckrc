@@ -1,4 +1,6 @@
-# too many false positives from ebuild magic vars
-disable=SC2034
+# SC2034: don't complain about writing ebuild magic vars
+# SC2154: don't complain about reading ebuild magic vars
+# SC2312: don't complain about ebuild helper funcs
+disable=SC2034,SC2154,SC2312
 # ebuilds are bash scripts
 shell=bash
