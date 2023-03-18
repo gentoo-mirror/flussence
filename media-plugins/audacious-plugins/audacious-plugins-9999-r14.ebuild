@@ -57,9 +57,9 @@ REQUIRED_USE="
 	|| ( ${USE_OUTPUTS//+/} )
 	encode?    ( || ( ${USE_CODECS//+/} ) )
 	scrobbler? ( xml )
-	$(for flag in ${NEED_GUI//+/}; do printf '%s?\t( || ( gtk qt5 ) )\n' "$flag"; done)
-	$(for flag in ${NEED_GTK//+/}; do printf '%s?\t( gtk )\n' "$flag"; done)
-	$(for flag in ${NEED_QT5//+/}; do printf '%s?\t( qt5 )\n' "$flag"; done)
+	$(for flag in ${NEED_GUI//+/}; do printf '%s?\t( || ( gtk qt5 ) )\n' "${flag}"; done)
+	$(for flag in ${NEED_GTK//+/}; do printf '%s?\t( gtk )\n' "${flag}"; done)
+	$(for flag in ${NEED_QT5//+/}; do printf '%s?\t( qt5 )\n' "${flag}"; done)
 "
 
 # hotkeys currently has automagic detection
