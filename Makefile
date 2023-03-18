@@ -2,9 +2,14 @@
 test: shellcheck pkgcheck
 
 shellcheck:
-	shellcheck --format=gcc */*/*.ebuild
+	shellcheck */*/*.ebuild
 
 pkgcheck:
 	pkgcheck scan --staged --exit error,warning
 
-.PHONY: test shellcheck pkgcheck
+nitpick:
+	shellcheck --enable=all --exclude=SC2154 */*/*.ebuild
+	pkgcheck scan --exit error,warning
+
+.PHONY: test nitpick shellcheck pkgcheck
+.IGNORE: nitpick
