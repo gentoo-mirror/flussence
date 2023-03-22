@@ -12,7 +12,7 @@
 	</maintainer>
 	<upstream>
 		<bugs-to>https://launchpad.net/ubuntu-font-family</bugs-to>
-		<doc>https://wiki.ubuntu.com/Ubuntu_Font_Family</doc>
+		<doc>https://wiki.ubuntu.com/UbuntuFontFamily</doc>
 		<remote-id type="launchpad">ubuntu-font-family</remote-id>
 	</upstream>
 </pkgmetadata>
