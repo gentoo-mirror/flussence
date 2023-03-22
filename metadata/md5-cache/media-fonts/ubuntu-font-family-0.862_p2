@@ -1,0 +1,13 @@
+BDEPEND=X? ( >=x11-apps/mkfontscale-1.2.0 media-fonts/encodings )
+DEFINED_PHASES=install postinst postrm setup
+DESCRIPTION=A set of matching libre/open fonts funded by Canonical
+EAPI=8
+HOMEPAGE=https://design.ubuntu.com/font/ https://launchpad.net/ubuntu-font-family
+INHERIT=font
+IUSE=X
+KEYWORDS=amd64 arm arm64 mips ppc ppc64 x86
+LICENSE=UbuntuFontLicense-1.0
+SLOT=0
+SRC_URI=https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/fonts-ubuntu/0.862-0ubuntu2/fonts-ubuntu_0.862.orig.tar.gz -> ubuntu-font-family-0.862_p2.tar.gz
+_eclasses_=font	aa113a3df9cd0a9693a1c1ee7c34a6eb
+_md5_=e49267e7fe59bf78c5434098d0f07558
