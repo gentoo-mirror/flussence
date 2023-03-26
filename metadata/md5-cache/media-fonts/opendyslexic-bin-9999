@@ -8,5 +8,5 @@ IUSE=X
 LICENSE=OFL
 PROPERTIES=live
 SLOT=0
-_eclasses_=font	aa113a3df9cd0a9693a1c1ee7c34a6eb	git-r3	c57c50c922e121043788de0b40ada60a	github-pkg	be43ef8f9035c6d22860d81695644024
+_eclasses_=font	aa113a3df9cd0a9693a1c1ee7c34a6eb	git-r3	27e13c09a4c7e4c78ac812f74727e676	github-pkg	be43ef8f9035c6d22860d81695644024
 _md5_=e630a6ea1160f459b49504290c49f598
