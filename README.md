@@ -36,9 +36,14 @@ Installing
         EOF
         ```
        Note that Portage was never designed with a secure supply chain in mind,
-       and though everything here is done “by the book”, `emerge --sync` will still emit a warning;
-       while technically correct, removing the line it complains about will cause sync to fail.
-       You'll just have to live with it.
+       and `emerge --sync` will emit the following scary message (which you should ignore):
+        > ```
+        >  * Using keys from /usr/share/openpgp-keys/flussence.asc
+        >  * Key refresh is disabled via a repos.conf sync-openpgp-key-refresh
+        >  * setting, and this is a security vulnerability because it prevents
+        >  * detection of revoked keys!
+        >  * Trusted signature found on top commit
+        > ```
 3. The “walled garden” method:
     ```
     root # emerge -n eselect-repository
