@@ -6,3 +6,7 @@
 # Upstream switched to Qt6 and Gentoo has not packaged that after two years.
 # This ebuild is hardcoded to use the last known-good Qt5 revision
 =games-emulation/duckstation-0.1_p4933
+
+# flussence <gentoo+bugs@flussence.eu> (29 Apr 2023)
+# Condolences but this no longer seems to work. Use games-action/prismlauncher.
+games-action/minecraft-launcher-legacy
