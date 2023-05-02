@@ -1,9 +1,7 @@
-# Copyright 2021-2022 Gentoo Authors
+# Copyright 2021-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
-
-inherit flag-o-matic
 
 DESCRIPTION="Cross-platform C++ and C library to decode tracked music files (modules)"
 HOMEPAGE="https://lib.openmpt.org/libopenmpt/"
@@ -47,8 +45,6 @@ BDEPEND=""
 S="${WORKDIR}/${P}+release.autotools"
 
 src_configure() {
-	append-cxxflags "-std=c++17"
-
 	econf \
 		"$(use_enable cli openmpt123)" \
 			"$(use_with flac)" \
