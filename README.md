@@ -82,10 +82,6 @@ For a complete list, do `eix [-R] -c --in-overlay flussence`
   Make sure to p.mask `gnome-extra/gucharmap::gentoo` if you install this,
   or else the higher version number of the GTK+3 one will override it.
 
-`gui-apps/gcolor3` — [Gtk+3 colour picker](https://gitlab.gnome.org/World/gcolor3)
-: A downgrade from for gcolor2, which was culled from ::gentoo as part of their anti-GTK+2 crusade.
-  Extremely broken on X11 and upstream refuses to respond to bugs. Use something else if possible.
-
 `media-fonts/tt2020` — [Authentic typewriter font](https://fontlibrary.org/en/font/tt2020-base-style)
 : A monospace font that uses OpenType alternate glyph tricks to give letters an analogue feel.
   This is a heavy download (same order of magnitude as `media-fonts/noto`),
@@ -124,6 +120,10 @@ For a complete list, do `eix [-R] -c --in-overlay flussence`
 `x11-libs/gtk+:3` — [debloated Gtk+3](https://forums.gentoo.org/viewtopic-p-8245612.html#8245612)
 : Contains a NetBSD patch which makes DBus (and auto-spawning of hidden DBus processes) optional.
   Usually has zero-day updates before ::gentoo gets them.
+
+`x11-misc/gcolor2` — [GTK+2 colour picker](https://gcolor2.sourceforge.net)
+: Culled from ::gentoo in 2022 as part of their crusade to rid the world of stable software.
+  The replacement, GColor3, which they didn't even package as a courtesy, is extremely bad.
 
 `x11-misc/picom` — [standalone X11 compositor](https://github.com/yshui/picom)
 : This is a distant descendant of the original xcompmgr.
