@@ -208,7 +208,7 @@ DESCRIPTION="A self-hosted ACME dns-01 challenge responder"
 HOMEPAGE="https://github.com/krtab/agnos"
 SRC_URI="
 	$(cargo_crate_uris)
-	https://github.com/krtab/agnos/archive/refs/tags/v0.1.0-beta.3.tar.gz -> ${PN}-${MY_PV}.tar.gz
+	https://github.com/krtab/${PN}/archive/refs/tags/v${MY_PV}.tar.gz -> ${PN}-${MY_PV}.tar.gz
 	https://raw.githubusercontent.com/krtab/${PN}/v${MY_PV}/config_example.toml -> ${P}_example.toml
 "
 
