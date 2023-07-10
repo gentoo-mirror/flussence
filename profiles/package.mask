@@ -10,3 +10,7 @@
 # flussence <gentoo+bugs@flussence.eu> (29 Apr 2023)
 # Condolences but this no longer seems to work. Use games-action/prismlauncher.
 games-action/minecraft-launcher-legacy
+
+# flussence <gentoo+bugs@flussence.eu> (10 Jul 2023)
+# This doesn't run for me, and upstream doesn't seem to have a pulse.
+media-sound/regainer
