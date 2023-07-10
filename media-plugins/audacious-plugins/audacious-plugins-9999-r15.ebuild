@@ -126,7 +126,7 @@ RDEPEND="
 		>=media-libs/opusfile-0.4
 	)
 	pipewire? ( >=media-video/pipewire-0.3.26 )
-	pulseaudio? ( >=media-sound/pulseaudio-0.9.5 )
+	pulseaudio? ( media-libs/libpulse )
 	scrobbler? ( net-misc/curl )
 	sdl? ( media-libs/libsdl2 )
 	sid? ( >=media-libs/libsidplayfp-2.0 )
