@@ -27,7 +27,7 @@ DEPEND="
 	cli? (
 		flac? ( >=media-libs/flac-1.3.0 )
 		portaudio? ( media-libs/portaudio[cxx] )
-		pulseaudio? ( media-sound/pulseaudio )
+		pulseaudio? ( media-libs/libpulse )
 		sdl? ( media-libs/libsdl )
 		sdl2? ( media-libs/libsdl2 )
 		sndfile? ( media-libs/libsndfile )
