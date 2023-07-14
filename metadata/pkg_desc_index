@@ -20,7 +20,7 @@ media-sound/qpwgraph 0.4.5 9999: A PipeWire Graph Qt GUI Interface
 media-sound/regainer 9999: Multi-format ReplayGain scanner and tagger
 net-dns/agnos 0.1.0_beta3: A self-hosted ACME dns-01 challenge responder
 sec-keys/openpgp-keys-flussence 20220806: OpenPGP keys used by flussence (::flussence overlay)
-sys-apps/bfs 2.6.3 9999: A breadth-first version of the UNIX find command
+sys-apps/bfs 3.0 9999: A breadth-first version of the UNIX find command
 sys-process/runit 2.1.2-r13: A UNIX init scheme with service supervision
 x11-libs/gtk+ 3.24.38: Gimp ToolKit +
 x11-misc/gcolor2 0.4-r4: A GTK+ color selector
