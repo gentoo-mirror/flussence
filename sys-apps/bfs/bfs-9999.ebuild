@@ -30,8 +30,8 @@ RDEPEND="${DEPEND}"
 src_compile() {
 	# the makefile tests these with "ifdef", so simply changing them to "n" won't work.
 	emake \
-		WITH_ACL="$(usex acl y '')" \
-		WITH_ATTR="$(usex xattr y '')" \
-		WITH_LIBCAP="$(usex caps y '')" \
-		WITH_ONIGURUMA="$(usex oniguruma y '')"
+		USE_ACL="$(usex acl y '')" \
+		USE_ATTR="$(usex xattr y '')" \
+		USE_LIBCAP="$(usex caps y '')" \
+		USE_ONIGURUMA="$(usex oniguruma y '')"
 }
