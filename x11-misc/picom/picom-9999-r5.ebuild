@@ -1,12 +1,12 @@
-# Copyright 2020-2022 Gentoo Authors
+# Copyright 2020-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 GITHUB_USER="yshui"
 KEYWORDS="~amd64 ~x86"
 
-inherit github-pkg meson xdg
+inherit fcaps github-pkg meson xdg
 
 DESCRIPTION="Picom (née Compton) is an X compositor with XRender and OpenGL/ES 3.0 support."
 
@@ -44,6 +44,8 @@ DEPEND="${RDEPEND}
 	dev-libs/uthash"
 BDEPEND="doc? ( app-text/asciidoc )"
 
+FILECAPS=( -m 755 cap_sys_nice+ep "usr/bin/${PN}" )
+
 src_configure() {
 	# TODO: support FEATURES=test properly
 	local emesonargs=(
@@ -68,4 +70,9 @@ src_install() {
 	fi
 
 	meson_src_install
+}
+
+pkg_postinst() {
+	xdg_pkg_postinst
+	fcaps_pkg_postinst
 }

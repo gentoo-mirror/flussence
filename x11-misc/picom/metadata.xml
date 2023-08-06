@@ -13,6 +13,7 @@
 	<use>
 		<flag name="doc">Installs manpages (requires <pkg>app-text/asciidoc</pkg>)</flag>
 		<flag name="drm">Enable (deprecated) DRM VSync method</flag>
+		<flag name="filecaps">Allow picom to assign itself realtime (SCHED_RR) priority</flag>
 		<flag name="libconfig">Enable config file support, recommended</flag>
 		<flag name="opengl">Enable OpenGL backend (requires at least OpenGL 3.0)</flag>
 	</use>
