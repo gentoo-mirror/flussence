@@ -31,7 +31,6 @@ DEPEND="
 	trayicon? ( dev-qt/qtnetwork:5 )
 "
 RDEPEND="${DEPEND}"
-BDEPEND=""
 
 src_configure() {
 	local mycmakeargs=(
