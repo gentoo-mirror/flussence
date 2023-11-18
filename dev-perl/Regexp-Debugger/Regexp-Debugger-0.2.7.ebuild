@@ -1,10 +1,10 @@
-# Copyright 2020-2022 Gentoo Authors
+# Copyright 2020-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
 DIST_AUTHOR="DCONWAY"
-DIST_VERSION="0.002006"
+DIST_VERSION="0.002007"
 inherit perl-module optfeature
 
 DESCRIPTION="Perl module and command line tool (rxrx) to visually debug regexes in-place"
