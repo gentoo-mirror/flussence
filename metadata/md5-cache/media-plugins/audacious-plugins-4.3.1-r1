@@ -12,5 +12,5 @@ RDEPEND=>=dev-libs/glib-2.32 >=media-sound/audacious-4.1:=[qt5(-)=,gtk(-)=,gtk3(
 REQUIRED_USE=|| ( mpris2 gtk gtk3 qt5 moonstone ) || ( alsa coreaudio encode jack oss pipewire pulseaudio qtmedia sdl sndio ) encode? ( || ( flac lame vorbis ) ) scrobbler? ( xml ) hotkeys? ( || ( gtk qt5 ) ) libnotify? ( || ( gtk qt5 ) ) opengl? ( || ( gtk qt5 ) ) aosd? ( gtk ) lirc? ( gtk ) ampache? ( qt5 ) moonstone? ( qt5 ) qtmedia? ( qt5 ) streamtuner? ( qt5 ) vumeter? ( qt5 )
 SLOT=0
 SRC_URI=https://distfiles.audacious-media-player.org/audacious-plugins-4.3.1.tar.bz2
-_eclasses_=multiprocessing	30ead54fa2e2b5f9cd4e612ffc34d0fe	ninja-utils	39e7a84b06eff4efd9f2e0c3d1668b98	toolchain-funcs	eed10cf5e5a06916e654d31f5a1925cc	multilib	c19072c3cd7ac5cb21de013f7e9832e0	python-utils-r1	e989dbdcbb647bd8655857c1f95be244	meson	576e6bbef90e9753368f8b4ad0bd5383
+_eclasses_=multiprocessing	30ead54fa2e2b5f9cd4e612ffc34d0fe	ninja-utils	39e7a84b06eff4efd9f2e0c3d1668b98	toolchain-funcs	eed10cf5e5a06916e654d31f5a1925cc	multilib	c19072c3cd7ac5cb21de013f7e9832e0	python-utils-r1	474cb53a7d1b62721a91809a1d702661	meson	576e6bbef90e9753368f8b4ad0bd5383
 _md5_=7eda9aaa6f2cb04ffbcf6f2a05a68d36
