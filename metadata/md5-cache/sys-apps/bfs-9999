@@ -10,5 +10,5 @@ LICENSE=0BSD
 PROPERTIES=live
 RDEPEND=acl? ( sys-apps/acl ) caps? ( sys-libs/libcap ) oniguruma? ( dev-libs/oniguruma ) xattr? ( sys-apps/attr )
 SLOT=0
-_eclasses_=git-r3	5133e393e8717a3a093660f990801dc1	github-pkg	be43ef8f9035c6d22860d81695644024
+_eclasses_=git-r3	86fa1f157b70b9d2ff340c4633b1cf4b	github-pkg	be43ef8f9035c6d22860d81695644024
 _md5_=9e01841222ffffa3dc9e4788c96f7a73
