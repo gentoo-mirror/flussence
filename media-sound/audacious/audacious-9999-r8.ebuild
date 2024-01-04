@@ -19,7 +19,7 @@ fi
 inherit meson xdg
 
 LICENSE="BSD-2 BSD CC-BY-SA-4.0"
-SLOT="0/5.4.0"
+SLOT="0/5.5.0"
 
 IUSE="+dbus gtk gtk3 libarchive +qt5"
 REQUIRED_USE="|| ( dbus gtk qt5 )"
