@@ -1,4 +1,4 @@
-# Copyright 2023 Gentoo Authors
+# Copyright 2023-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -17,11 +17,12 @@ fi
 
 LICENSE="0BSD"
 SLOT="0"
-IUSE="acl caps oniguruma xattr"
+IUSE="acl caps +io-uring oniguruma xattr"
 
 DEPEND="
 	acl? ( sys-apps/acl )
 	caps? ( sys-libs/libcap )
+	io-uring? ( sys-libs/liburing )
 	oniguruma? ( dev-libs/oniguruma )
 	xattr? ( sys-apps/attr )
 "
@@ -33,5 +34,6 @@ src_compile() {
 		USE_ACL="$(usex acl y '')" \
 		USE_ATTR="$(usex xattr y '')" \
 		USE_LIBCAP="$(usex caps y '')" \
+		USE_LIBURING="$(usex io-uring y '')" \
 		USE_ONIGURUMA="$(usex oniguruma y '')"
 }
