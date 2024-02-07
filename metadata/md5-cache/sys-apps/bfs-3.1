@@ -1,14 +1,14 @@
-BDEPEND=>=dev-vcs/git-1.8.2.1[curl]
-DEFINED_PHASES=compile unpack
+DEFINED_PHASES=compile
 DEPEND=acl? ( sys-apps/acl ) caps? ( sys-libs/libcap ) io-uring? ( sys-libs/liburing ) oniguruma? ( dev-libs/oniguruma ) xattr? ( sys-apps/attr )
 DESCRIPTION=A breadth-first version of the UNIX find command
 EAPI=8
 HOMEPAGE=https://tavianator.com/projects/bfs.html
 INHERIT=github-pkg
 IUSE=acl caps +io-uring oniguruma xattr
+KEYWORDS=~amd64 ~x86
 LICENSE=0BSD
-PROPERTIES=live
 RDEPEND=acl? ( sys-apps/acl ) caps? ( sys-libs/libcap ) io-uring? ( sys-libs/liburing ) oniguruma? ( dev-libs/oniguruma ) xattr? ( sys-apps/attr )
 SLOT=0
-_eclasses_=git-r3	86fa1f157b70b9d2ff340c4633b1cf4b	github-pkg	be43ef8f9035c6d22860d81695644024
+SRC_URI=https://github.com/tavianator/bfs/archive/refs/tags/3.1.tar.gz -> bfs-3.1.tar.gz
+_eclasses_=github-pkg	be43ef8f9035c6d22860d81695644024
 _md5_=bedaa7688c31fa60fe3890fd88b9e3c3
