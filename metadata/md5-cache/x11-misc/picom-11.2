@@ -1,6 +1,6 @@
 BDEPEND=doc? ( app-text/asciidoc ) >=dev-build/meson-1.2.1 app-alternatives/ninja dev-build/meson-format-array
 DEFINED_PHASES=compile configure install postinst postrm preinst test
-DEPEND=dev-libs/libev >=x11-libs/libxcb-1.9.2 x11-libs/libXext x11-libs/libXdamage x11-libs/libXrender x11-libs/libXrandr x11-libs/libXcomposite x11-libs/pixman x11-libs/xcb-util x11-libs/xcb-util-image x11-libs/xcb-util-renderutil dbus? ( sys-apps/dbus ) drm? ( x11-libs/libdrm ) libconfig? ( >=dev-libs/libconfig-1.4:= ) opengl? ( media-libs/libglvnd virtual/opengl ) pcre? ( dev-libs/libpcre2:= ) dev-libs/uthash
+DEPEND=dev-libs/libev >=x11-libs/libxcb-1.9.2 x11-libs/libXext x11-libs/libXdamage x11-libs/libXrender x11-libs/libXrandr x11-libs/libXcomposite x11-libs/pixman x11-libs/xcb-util x11-libs/xcb-util-image x11-libs/xcb-util-renderutil dbus? ( sys-apps/dbus ) drm? ( x11-libs/libdrm ) libconfig? ( >=dev-libs/libconfig-1.4:= ) opengl? ( media-libs/libepoxy ) pcre? ( dev-libs/libpcre2:= ) dev-libs/uthash
 DESCRIPTION=Picom (née Compton) is an X compositor with XRender and OpenGL/ES 3.0 support.
 EAPI=8
 HOMEPAGE=https://github.com/yshui/picom
@@ -9,8 +9,8 @@ INHERIT=fcaps github-pkg meson xdg
 IUSE=dbus drm +doc +libconfig +opengl +pcre +filecaps
 KEYWORDS=~amd64 ~x86
 LICENSE=MPL-2.0 MIT
-RDEPEND=dev-libs/libev >=x11-libs/libxcb-1.9.2 x11-libs/libXext x11-libs/libXdamage x11-libs/libXrender x11-libs/libXrandr x11-libs/libXcomposite x11-libs/pixman x11-libs/xcb-util x11-libs/xcb-util-image x11-libs/xcb-util-renderutil dbus? ( sys-apps/dbus ) drm? ( x11-libs/libdrm ) libconfig? ( >=dev-libs/libconfig-1.4:= ) opengl? ( media-libs/libglvnd virtual/opengl ) pcre? ( dev-libs/libpcre2:= )
+RDEPEND=dev-libs/libev >=x11-libs/libxcb-1.9.2 x11-libs/libXext x11-libs/libXdamage x11-libs/libXrender x11-libs/libXrandr x11-libs/libXcomposite x11-libs/pixman x11-libs/xcb-util x11-libs/xcb-util-image x11-libs/xcb-util-renderutil dbus? ( sys-apps/dbus ) drm? ( x11-libs/libdrm ) libconfig? ( >=dev-libs/libconfig-1.4:= ) opengl? ( media-libs/libepoxy ) pcre? ( dev-libs/libpcre2:= )
 SLOT=0
-SRC_URI=https://github.com/yshui/picom/archive/v11.1.tar.gz -> picom-11.1.tar.gz
+SRC_URI=https://github.com/yshui/picom/archive/v11.2.tar.gz -> picom-11.2.tar.gz
 _eclasses_=fcaps	c0a086b957a1b183a8d136eabf02f191	github-pkg	be43ef8f9035c6d22860d81695644024	multiprocessing	30ead54fa2e2b5f9cd4e612ffc34d0fe	ninja-utils	2df4e452cea39a9ec8fb543ce059f8d6	toolchain-funcs	e56c7649b804f051623c8bc1a1c44084	multilib	c19072c3cd7ac5cb21de013f7e9832e0	python-utils-r1	042f4cc53680245bf99a84669b94155a	meson	e322276188f86eacb29ae081ba5485c8	xdg-utils	baea6080dd821f5562d715887954c9d3	xdg	4a14c5c24f121e7da66e5aab4a168c6e
-_md5_=23be4866b8009b223da03fdb4c35f751
+_md5_=d86194f5bbb2f80e55ccb8e7762e7256
