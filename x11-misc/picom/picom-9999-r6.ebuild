@@ -35,10 +35,7 @@ RDEPEND="
 	dbus? ( sys-apps/dbus )
 	drm? ( x11-libs/libdrm )
 	libconfig? ( >=dev-libs/libconfig-1.4:= )
-	opengl? (
-		media-libs/libglvnd
-		virtual/opengl
-	)
+	opengl? ( media-libs/libepoxy )
 	pcre? ( dev-libs/libpcre2:= )"
 DEPEND="${RDEPEND}
 	dev-libs/uthash"
