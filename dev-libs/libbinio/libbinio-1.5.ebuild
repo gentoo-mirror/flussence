@@ -1,7 +1,7 @@
-# Copyright 2021 Gentoo Authors
+# Copyright 2021-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 GITHUB_USER="adplug"
 KEYWORDS="~amd64 ~x86"
@@ -16,6 +16,3 @@ fi
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-
-RDEPEND=""
-DEPEND="${RDEPEND}"
