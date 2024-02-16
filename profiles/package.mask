@@ -1,12 +1,3 @@
 # flussence <gentoo+bugs@flussence.eu> (18 Jul 2021)
 # These are older unnumbered versions for specific upstream unicode releases
 =media-fonts/noto-emoji-bin-20191119.12
-
-# flussence <gentoo+bugs@flussence.eu> (13 Sep 2022)
-# Upstream switched to Qt6 and Gentoo has not packaged that after two years.
-# This ebuild is hardcoded to use the last known-good Qt5 revision
-=games-emulation/duckstation-0.1_p4933
-
-# flussence <gentoo+bugs@flussence.eu> (29 Apr 2023)
-# Condolences but this no longer seems to work. Use games-action/prismlauncher.
-games-action/minecraft-launcher-legacy
