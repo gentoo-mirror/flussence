@@ -71,10 +71,6 @@ For a complete list, do `eix [-R] -c --in-overlay flussence`
 : Convenience ebuild that installs the good Minecraft launcher (not the awful Electron-based one).
   You may be better off with `games-action/prismlauncher`.
 
-`games-emulation/duckstation` — [PlayStation 1 emulator](https://github.com/stenzek/duckstation)
-: Full-featured emulator with just about everything you could ask for besides netplay.
-  (If you want that, try mednafen)
-
 `gnome-extra/gucharmap` — [GTK+2 version of gucharmap](https://wiki.gnome.org/Apps/Gucharmap)
 : The last released GTK+2 version of gucharmap, patched to recognise new Unicode characters.
   Strictly better than the current GNOME 3 replacement (no Javascript, supports color emoji),
