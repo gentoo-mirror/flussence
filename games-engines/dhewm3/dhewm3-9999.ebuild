@@ -3,22 +3,21 @@
 
 EAPI=8
 
+MY_PV="${PV^^}" # rc->RC
 GITHUB_USER="dhewm"
-KEYWORDS="~amd64 ~x86"
-
-inherit cmake github-pkg
 
 DESCRIPTION="A cross-platform Doom 3 source port"
 HOMEPAGE="https://dhewm3.org"
+S="${WORKDIR}/${PN}-${MY_PV}/neo"
+LICENSE="GPL-3"
+SLOT="0"
 
-MY_PV="${PV^^}" # rc->RC
+inherit cmake github-pkg
 
 if [[ ${PV} != "9999" ]]; then
 	SRC_URI="${GITHUB_HOMEPAGE}/archive/refs/tags/${MY_PV}.tar.gz -> ${P}.tar.gz"
+	KEYWORDS="~amd64 ~x86"
 fi
-
-LICENSE="GPL-3"
-SLOT="0"
 
 DEPEND="
 	media-libs/libjpeg-turbo
@@ -30,5 +29,3 @@ DEPEND="
 	sys-libs/zlib
 "
 RDEPEND="${DEPEND}"
-
-S="${WORKDIR}/${PN}-${MY_PV}/neo"

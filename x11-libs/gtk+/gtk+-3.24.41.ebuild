@@ -8,17 +8,16 @@ inherit gnome2 meson-multilib multilib virtualx
 
 DESCRIPTION="Gimp ToolKit +"
 HOMEPAGE="https://www.gtk.org/"
-
 LICENSE="LGPL-2+"
 SLOT="3"
+KEYWORDS="~amd64 ~x86"
 IUSE="aqua accessibility broadway cloudproviders colord cups examples gtk-doc +introspection sysprof test vim-syntax wayland +X xinerama"
+RESTRICT="!test? ( test )"
+
 REQUIRED_USE="
 	|| ( aqua wayland X )
 	xinerama? ( X )
 "
-RESTRICT="!test? ( test )"
-
-KEYWORDS="~amd64 ~x86"
 
 COMMON_DEPEND="
 	>=dev-libs/fribidi-0.19.7[${MULTILIB_USEDEP}]

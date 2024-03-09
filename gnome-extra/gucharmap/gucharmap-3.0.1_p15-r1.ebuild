@@ -13,7 +13,7 @@ MY_UV="${PV##*_p}" # unicode major version that we support. "15", not "15.1".
 DESCRIPTION="GNOME Character Map, based on the Unicode Character Database"
 HOMEPAGE="https://wiki.gnome.org/Apps/Gucharmap"
 SRC_URI="mirror://gnome/sources/gucharmap/$(ver_cut 1-2)/${MY_P}.tar.bz2"
-
+S="${WORKDIR}/${MY_P}"
 LICENSE="GPL-3 unicode"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
@@ -30,7 +30,6 @@ BDEPEND="
 	)"
 
 PATCHES=( "${FILESDIR}"/unicode-"${MY_UV}"-defines.patch )
-S="${WORKDIR}/${MY_P}"
 
 src_prepare() {
 	gnome2_src_prepare

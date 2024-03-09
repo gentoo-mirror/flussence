@@ -6,7 +6,7 @@ EAPI=8
 DESCRIPTION="Cross-platform C++ and C library to decode tracked music files (modules)"
 HOMEPAGE="https://lib.openmpt.org/libopenmpt/"
 SRC_URI="https://lib.openmpt.org/files/${PN}/src/${P}+release.autotools.tar.gz"
-
+S="${WORKDIR}/${P}+release.autotools"
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
@@ -40,8 +40,6 @@ DEPEND="
 	zlib? ( sys-libs/zlib )
 "
 RDEPEND="${DEPEND}"
-
-S="${WORKDIR}/${P}+release.autotools"
 
 src_configure() {
 	econf \

@@ -4,20 +4,19 @@
 EAPI=8
 
 GITHUB_USER="tavianator"
-KEYWORDS="~amd64 ~x86"
-
-inherit github-pkg
 
 DESCRIPTION="A breadth-first version of the UNIX find command"
 HOMEPAGE="https://tavianator.com/projects/bfs.html"
-
-if [[ ${PV} != "9999" ]]; then
-	SRC_URI="${GITHUB_HOMEPAGE}/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
-fi
-
 LICENSE="0BSD"
 SLOT="0"
 IUSE="acl caps +io-uring oniguruma xattr"
+
+inherit github-pkg
+
+if [[ ${PV} != "9999" ]]; then
+	SRC_URI="${GITHUB_HOMEPAGE}/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
+	KEYWORDS="~amd64 ~x86"
+fi
 
 DEPEND="
 	acl? ( sys-apps/acl )

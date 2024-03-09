@@ -4,21 +4,20 @@
 EAPI=8
 
 GITHUB_USER="yshui"
-KEYWORDS="~amd64 ~x86"
-
-inherit fcaps github-pkg meson xdg
 
 DESCRIPTION="Picom (née Compton) is an X compositor with XRender and OpenGL/ES 3.0 support."
+LICENSE="MPL-2.0 MIT"
+SLOT="0"
+KEYWORDS="~amd64 ~x86"
+IUSE="dbus drm +doc +libconfig +opengl +pcre"
+
+inherit fcaps github-pkg meson xdg
 
 if [[ ${PV} != "9999" ]]; then
 	MY_PV="${PV/_rc/-rc}"
 	SRC_URI="${GITHUB_HOMEPAGE}/archive/v${MY_PV}.tar.gz -> ${P}.tar.gz"
 	S="${WORKDIR}/${PN}-${MY_PV}"
 fi
-
-LICENSE="MPL-2.0 MIT"
-SLOT="0"
-IUSE="dbus drm +doc +libconfig +opengl +pcre"
 
 RDEPEND="
 	dev-libs/libev
