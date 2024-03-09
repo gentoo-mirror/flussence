@@ -7,4 +7,4 @@ KEYWORDS=~amd64 ~x86
 LICENSE=unicode
 SLOT=0
 SRC_URI=https://www.unicode.org/Public/zipped/15.0.0/UCD.zip -> unicode-data-15.0.0-UCD.zip https://www.unicode.org/Public/zipped/15.0.0/Unihan.zip -> unicode-data-15.0.0-Unihan.zip
-_md5_=fd77b10509e903634f7b5e6e31c3b401
+_md5_=9e991b629f5ccd7141c65c8c9d2df688

@@ -1,7 +1,7 @@
 BDEPEND=X? ( >=x11-apps/mkfontscale-1.2.0 media-fonts/encodings )
 DEFINED_PHASES=install postinst postrm setup
 DESCRIPTION=Google Noto Color Emoji, upstream-prebuilt version
-EAPI=7
+EAPI=8
 HOMEPAGE=https://fonts.google.com/noto https://github.com/googlefonts/noto-emoji
 INHERIT=font github-pkg
 IUSE=X
@@ -9,5 +9,5 @@ KEYWORDS=amd64 arm arm64 mips ppc ppc64 x86
 LICENSE=OFL-1.1
 SLOT=0
 SRC_URI=https://github.com/googlefonts/noto-emoji/archive/v2.034.tar.gz -> noto-emoji-2.034.tar.gz
-_eclasses_=font	aa113a3df9cd0a9693a1c1ee7c34a6eb	github-pkg	be43ef8f9035c6d22860d81695644024
-_md5_=7b53a4dad52a45373953d0e812d139c4
+_eclasses_=font	aa113a3df9cd0a9693a1c1ee7c34a6eb	github-pkg	05c44661573cfd67f81e222a0da4dad1
+_md5_=61a36aa4c4146f4c94ecac7751ad0284

@@ -10,4 +10,4 @@ LICENSE=UbuntuFontLicense-1.0
 SLOT=0
 SRC_URI=https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/fonts-ubuntu/0.862-0ubuntu2/fonts-ubuntu_0.862.orig.tar.gz -> ubuntu-font-family-0.862_p2.tar.gz
 _eclasses_=font	aa113a3df9cd0a9693a1c1ee7c34a6eb
-_md5_=e49267e7fe59bf78c5434098d0f07558
+_md5_=7ca86a36a722a27e00c73ae2b3770844
