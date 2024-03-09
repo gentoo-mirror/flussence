@@ -7,14 +7,12 @@ DESCRIPTION="Unicode data from unicode.org"
 HOMEPAGE="https://www.unicode.org/ucd/"
 SRC_URI="https://www.unicode.org/Public/zipped/${PV}/UCD.zip -> ${P}-UCD.zip
 	https://www.unicode.org/Public/zipped/${PV}/Unihan.zip -> ${P}-Unihan.zip"
-
+S="${WORKDIR}"
 LICENSE="unicode"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
 BDEPEND="app-arch/unzip"
-
-S="${WORKDIR}"
 
 src_unpack() {
 	# Unihan.zip needs to be installed as-is (as a zip) for reverse deps

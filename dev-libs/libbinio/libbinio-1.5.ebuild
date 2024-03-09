@@ -4,15 +4,14 @@
 EAPI=8
 
 GITHUB_USER="adplug"
-KEYWORDS="~amd64 ~x86"
+
+DESCRIPTION="Platform-independent way to access binary data streams in C++"
+LICENSE="LGPL-2.1"
+SLOT="0"
 
 inherit github-pkg
 
-DESCRIPTION="Platform-independent way to access binary data streams in C++"
-
 if [[ ${PV} != "9999" ]]; then
 	SRC_URI="${GITHUB_HOMEPAGE}/releases/download/${P}/${P}.tar.bz2"
+	KEYWORDS="~amd64 ~x86"
 fi
-
-LICENSE="LGPL-2.1"
-SLOT="0"

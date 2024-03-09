@@ -1,21 +1,20 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 GITHUB_USER="OpenIndiana"
-KEYWORDS="~amd64 ~x86"
+
+DESCRIPTION="The default OpenIndiana theme (GTK+ 2.x/Gtk3 engine, icon- and metacity theme)"
+LICENSE="GPL-2"
+SLOT="0"
 
 inherit autotools github-pkg xdg
 
-DESCRIPTION="The default OpenIndiana theme (GTK+ 2.x/Gtk3 engine, icon- and metacity theme)"
-
 if [[ ${PV} != 9999 ]]; then
 	SRC_URI="${GITHUB_HOMEPAGE}/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
+	KEYWORDS="~amd64 ~x86"
 fi
-
-LICENSE="GPL-2"
-SLOT="0"
 
 DEPEND="
 	x11-libs/gtk+:2

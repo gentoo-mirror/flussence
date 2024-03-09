@@ -1,13 +1,14 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
+
 inherit toolchain-funcs flag-o-matic
 
 DESCRIPTION="A UNIX init scheme with service supervision"
 HOMEPAGE="http://smarden.org/runit/"
 SRC_URI="http://smarden.org/runit/${P}.tar.gz"
-
+S=${WORKDIR}/admin/${P}/src
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
@@ -20,7 +21,6 @@ RDEPEND="
 "
 
 PATCHES=( "${FILESDIR}"/bug721880-dont-hardcode-ar-ranlib.patch )
-S=${WORKDIR}/admin/${P}/src
 
 src_prepare() {
 	# we either build everything or nothing static

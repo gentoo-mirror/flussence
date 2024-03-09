@@ -1,23 +1,13 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
 
 MY_P="${P/_/-}"
-S="${WORKDIR}/${MY_P}"
+
 DESCRIPTION="Audacious Player - Your music, your way, no exceptions"
 HOMEPAGE="https://audacious-media-player.org/"
-
-if [[ ${PV} == "9999" ]]; then
-	EGIT_REPO_URI="https://github.com/audacious-media-player/${PN}.git"
-	inherit git-r3
-else
-	KEYWORDS="~amd64 ~x86"
-	SRC_URI="https://distfiles.audacious-media-player.org/${MY_P}.tar.bz2"
-fi
-
-inherit meson
-
+S="${WORKDIR}/${MY_P}"
 # build system: BSD-2
 # embedded libgme, adplug: LGPL-2.1
 # other internal console players, most plugins: GPL-2+
@@ -33,6 +23,16 @@ LICENSE="
 	libnotify? ( GPL-3+ )
 	qt5? ( GPL-3 )"
 SLOT="0"
+
+if [[ ${PV} == "9999" ]]; then
+	EGIT_REPO_URI="https://github.com/audacious-media-player/${PN}.git"
+	inherit git-r3
+else
+	KEYWORDS="~amd64 ~x86"
+	SRC_URI="https://distfiles.audacious-media-player.org/${MY_P}.tar.bz2"
+fi
+
+inherit meson
 
 # These are split up roughly by how upstream organises them, except the NEED_* lists
 USE_FRONTENDS="mpris2 gtk gtk3 +qt5 moonstone"

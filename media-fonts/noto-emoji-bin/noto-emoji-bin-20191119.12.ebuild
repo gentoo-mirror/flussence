@@ -1,17 +1,20 @@
-# Copyright 2021 Gentoo Authors
+# Copyright 2021-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 GITHUB_USER="googlefonts"
 GITHUB_PROJ="${PN%%-bin}"
 
-KEYWORDS="amd64 arm arm64 mips ppc ppc64 x86"
-
-inherit font github-pkg
-
 DESCRIPTION="Google Noto Color Emoji, upstream-prebuilt version"
 HOMEPAGE="https://fonts.google.com/noto https://github.com/googlefonts/noto-emoji"
+LICENSE="OFL-1.1"
+SLOT="0/legacy"
+KEYWORDS="amd64 arm arm64 mips ppc ppc64 x86"
+
+FONT_SUFFIX="ttf"
+
+inherit font github-pkg
 
 if [[ ${PV} != 9999 ]]; then
 	# 20191119.12   -> 2019-11-19-unicode12
@@ -24,8 +27,3 @@ if [[ ${PV} != 9999 ]]; then
 else
 	die "No v9999 defined"
 fi
-
-LICENSE="OFL-1.1"
-SLOT="0/legacy"
-
-FONT_SUFFIX="ttf"

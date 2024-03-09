@@ -33,13 +33,12 @@
 case ${EAPI:-0} in
 	7|8)
 		GITHUB_HOMEPAGE="https://github.com/${GITHUB_USER:-${PN}}/${GITHUB_PROJ:-${PN}}"
-		: ${KEYWORDS:?"Must be defined before inheriting github-pkg.eclass"}
 		: ${HOMEPAGE:=$GITHUB_HOMEPAGE}
 
 		if [[ ${PV} == "9999" ]]; then
 			: ${EGIT_REPO_URI:=${HOMEPAGE}.git}
 			inherit git-r3
-			KEYWORDS="" # gentoo's docs doesn't say it can't be *re*-defined
+			KEYWORDS=""
 		fi
 		;;
 	*)
