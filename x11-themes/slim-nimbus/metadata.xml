@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<longdescription lang="en">
+		Nimbus was the default GTK+2 style from OpenSolaris 10's GNOME2 desktop.
+		OpenIndiana forked it to add Gtk3 support, and this package is a fork of that,
+		adding Gtk4 and slimmer CSD header bars.
+	</longdescription>
+	<maintainer type="person">
+		<email>gentoo+bugs@flussence.eu</email>
+		<name>flussence</name>
+	</maintainer>
+	<upstream>
+		<!-- no bugs-to -->
+		<changelog>https://github.com/RocketMan/slim-nimbus/releases.atom</changelog>
+		<remote-id type="github">RocketMan/slim-nimbus</remote-id>
+	</upstream>
+</pkgmetadata>
