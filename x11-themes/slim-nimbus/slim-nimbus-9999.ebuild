@@ -40,3 +40,14 @@ src_install() {
 	default
 	find "${ED}" -name '*.la' -delete || die
 }
+
+pkg_postinst() {
+	einfo "To set ${PN} as your desktop-wide GTK theme:"
+	einfo " - GTK+ 2: edit ~/.gtkrc-2.0 and set gtk-theme-name=\"${PN}\""
+	einfo " - Newer versions: edit ~/.config/gtk-X.0/settings.ini or use dconf-editor"
+	if has_version gui-libs/gtk; then
+		ewarn "Gtk4 requires a patched libadwaita to use custom themes."
+		ewarn "You can obtain the patch here (put in /etc/portage/patches/gui-libs/libadwaita/):"
+		ewarn "https://aur.archlinux.org/packages/libadwaita-without-adwaita-git"
+	fi
+}
