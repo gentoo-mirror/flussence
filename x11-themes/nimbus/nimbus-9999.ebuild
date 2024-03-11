@@ -16,9 +16,7 @@ if [[ ${PV} != 9999 ]]; then
 	KEYWORDS="~amd64 ~x86"
 fi
 
-DEPEND="
-	x11-libs/gtk+:2
-	x11-libs/gtk+:3"
+DEPEND="x11-libs/gtk+:2"
 RDEPEND="
 	${DEPEND}
 	virtual/freedesktop-icon-theme"
