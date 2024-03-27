@@ -16,6 +16,7 @@ media-plugins/audacious-plugins:cue - Support CUE sheets using the libcue librar
 media-plugins/audacious-plugins:ffmpeg - Use media-video/ffmpeg to play audio from most files
 media-plugins/audacious-plugins:fluidsynth - Support MIDI playback using Fluidsynth
 media-plugins/audacious-plugins:gme - Enable GME plugin (bundled, not media-libs/game-music-emu!)
+media-plugins/audacious-plugins:gtk2 - Enables the GTK+2 GUI. Must match the setting on media-sound/audacious.
 media-plugins/audacious-plugins:gtk3 - Enables the Gtk+3 GUI. Must match the setting on media-sound/audacious.
 media-plugins/audacious-plugins:hotkeys - Enable global hotkeys plugin
 media-plugins/audacious-plugins:http - Support HTTP streams through net-libs/neon
@@ -37,10 +38,11 @@ media-plugins/audacious-plugins:streamtuner - Enable streamtuner (internet radio
 media-plugins/audacious-plugins:vumeter - Enable the VU Meter visualiser
 media-plugins/audacious-plugins:xml - Enable support for XML-based playlists and APIs
 media-sound/audacious:dbus - Enable DBus support. This is used for the `audtool` CLI and the MPRIS plugin.
-media-sound/audacious:gtk - Enables the GTK+2 GUI. Old, may be removed without warning!
-media-sound/audacious:gtk3 - Enables the Gtk+3 GUI. This overrules the gtk flag.
+media-sound/audacious:gtk2 - Enables the GTK+2 GUI. Old, may be removed without warning!
+media-sound/audacious:gtk3 - Enables the Gtk+3 GUI, same caveats as GTK+2. This overrules the gtk2 flag.
 media-sound/audacious:libarchive - Enable app-arch/libarchive support for compressed Winamp2 .wsz skins. With this disabled they'll be decompressed via shell commands, which may be a security hazard.
-media-sound/audacious:qt5 - Enables the Audacious GUI (both skinned and plain).
+media-sound/audacious:qt5 - Enables the Qt5 Audacious GUI (both skinned and plain).
+media-sound/audacious:qt6 - Enables the Qt6 Audacious GUI. This cannot be enabled alongside Qt5.
 media-sound/qpwgraph:alsa - Support routing ALSA raw midi devices
 media-sound/qpwgraph:trayicon - Enable systray icon (window close will iconify instead of exit)
 net-dns/agnos:filecaps - Allow non-root users to run agnos on privileged ports (i.e. 53)
