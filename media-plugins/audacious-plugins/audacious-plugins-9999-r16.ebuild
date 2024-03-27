@@ -21,7 +21,8 @@ LICENSE="
 	gtk2? ( GPL-3 )
 	gtk3? ( GPL-3 )
 	libnotify? ( GPL-3+ )
-	qt5? ( GPL-3 )"
+	qt5? ( GPL-3 )
+	qt6? ( GPL-3 )"
 SLOT="0"
 
 if [[ ${PV} == "9999" ]]; then
