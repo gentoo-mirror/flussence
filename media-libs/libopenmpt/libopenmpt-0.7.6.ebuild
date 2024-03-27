@@ -12,7 +12,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 # mp3, vorbis and zlib are enabled by default, because if you're installing this you probably want
 # better compatiblity than libmodplug.
-IUSE="cli examples flac +mp3 portaudio pulseaudio sdl sdl2 sndfile +vorbis +zlib"
+IUSE="+cli examples flac +mp3 portaudio pulseaudio sdl sdl2 sndfile +vorbis +zlib"
 
 REQUIRED_USE="
 	flac? ( cli )
