@@ -16,7 +16,7 @@ if [[ "${PV}" != 9999 ]]; then
 	KEYWORDS="~amd64 ~x86"
 fi
 
-DEPEND="dev-qt/qtbase:6 x11-libs/gtk+:2 x11-libs/libX11"
+DEPEND="dev-qt/qtbase:6= x11-libs/gtk+:2 x11-libs/libX11"
 RDEPEND="${DEPEND}"
 
 src_configure() {
