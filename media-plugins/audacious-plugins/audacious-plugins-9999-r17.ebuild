@@ -26,7 +26,7 @@ LICENSE="
 SLOT="0"
 
 if [[ ${PV} == "9999" ]]; then
-	# This ebuild revision is for c1dcb94b32 or later
+	# This ebuild revision is for 79901d197b or later
 	EGIT_REPO_URI="https://github.com/audacious-media-player/${PN}.git"
 	inherit git-r3
 else
@@ -37,7 +37,7 @@ fi
 inherit meson
 
 # These are split up roughly by how upstream organises them, except the NEED_* lists
-USE_FRONTENDS="mpris2 gtk2 gtk3 qt5 +qt6 moonstone"
+USE_FRONTENDS="mpris2 gtk2 gtk3 +qt5 qt6 moonstone"
 USE_CONTAINERS="cue"
 USE_TRANSPORTS="mms http"
 USE_INPUTS="aac adplug cdda ffmpeg fluidsynth +gme modplug mp3 openmpt opus sid sndfile wavpack"
@@ -165,7 +165,7 @@ src_configure() {
 		# GUI toolkits
 		"$(meson_use "$(usex gtk3 gtk3 gtk2)" gtk)"
 		"$(meson_use "$(usex qt6 qt6 qt5)" qt)"
-		"$(meson_use gtk3)"
+		"$(meson_use gtk2)"
 		"$(meson_use qt5)"
 
 		# container plugins

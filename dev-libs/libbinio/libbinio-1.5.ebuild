@@ -13,5 +13,5 @@ inherit github-pkg
 
 if [[ ${PV} != "9999" ]]; then
 	SRC_URI="${GITHUB_HOMEPAGE}/releases/download/${P}/${P}.tar.bz2"
-	KEYWORDS="~amd64 ~x86"
+	KEYWORDS="amd64 x86"
 fi
