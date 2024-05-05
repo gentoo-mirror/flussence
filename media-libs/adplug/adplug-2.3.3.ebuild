@@ -8,7 +8,7 @@ GITHUB_USER="adplug"
 DESCRIPTION="Hardware-independent AdLib sound player library"
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 
 inherit github-pkg
 

@@ -10,10 +10,10 @@ HOMEPAGE="https://audacious-media-player.org/"
 S="${WORKDIR}/${MY_P}"
 LICENSE="BSD-2 BSD CC-BY-SA-4.0"
 SLOT="0/5.5.0"
-IUSE="+dbus gtk2 gtk3 libarchive qt5 +qt6"
+IUSE="+dbus gtk2 gtk3 libarchive +qt5 qt6"
 
 if [[ ${PV} == "9999" ]]; then
-	# This ebuild revision is for 784d518581 or later
+	# This ebuild revision is for c7539c5bba or later
 	EGIT_REPO_URI="https://github.com/audacious-media-player/${PN}.git"
 	inherit git-r3
 else
@@ -62,7 +62,7 @@ src_configure() {
 		"$(meson_use "$(usex gtk3 gtk3 gtk2)" gtk)"
 		"$(meson_use "$(usex qt6 qt6 qt5)" qt)"
 		"$(meson_use dbus)"
-		"$(meson_use gtk3)"
+		"$(meson_use gtk2)"
 		"$(meson_use libarchive)"
 		"$(meson_use qt5)"
 	)
