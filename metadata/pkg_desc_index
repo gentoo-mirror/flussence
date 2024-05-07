@@ -17,6 +17,7 @@ net-dns/agnos 0.1.0_beta3: A self-hosted ACME dns-01 challenge responder
 sec-keys/openpgp-keys-flussence 20220806: OpenPGP keys used by flussence (::flussence overlay)
 sys-apps/bfs 3.1.3 9999: A breadth-first version of the UNIX find command
 sys-apps/udev-hid-bpf 1.0.0_p20240417: An automatic HID-BPF loader based on udev events
+sys-firmware/ath6kl-firmware 9999: ath6kl firmware images (AR6004)
 sys-process/runit 2.1.2-r13: A UNIX init scheme with service supervision
 x11-libs/gtk+ 3.24.41: Gimp ToolKit +
 x11-misc/gcolor2 0.4-r4: A GTK+ color selector

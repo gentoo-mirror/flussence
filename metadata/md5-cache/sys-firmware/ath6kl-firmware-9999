@@ -1,0 +1,11 @@
+BDEPEND=>=dev-vcs/git-1.8.2.1[curl]
+DEFINED_PHASES=install unpack
+DESCRIPTION=ath6kl firmware images (AR6004)
+EAPI=8
+HOMEPAGE=https://github.com/qca/ath6kl-firmware
+INHERIT=github-pkg
+LICENSE=qca-firmware
+PROPERTIES=live
+SLOT=0
+_eclasses_=git-r3	fbb2889c81f3a05910c1524db69425c1	github-pkg	05c44661573cfd67f81e222a0da4dad1
+_md5_=812260ba0bb021e1d1d16c1b0251d071
