@@ -11,7 +11,7 @@ DESCRIPTION="Perl module and command line tool (rxrx) to visually debug regexes 
 
 LICENSE="|| ( Artistic GPL-1+ )"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~arm64 ~mips ~ppc ~ppc64 ~x86"
+KEYWORDS="~amd64 ~arm ~arm64 ~x86"
 IUSE="minimal"
 
 RDEPEND="

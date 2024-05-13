@@ -9,7 +9,8 @@ pkgcheck:
 
 nitpick:
 	shellcheck --enable=all --exclude=SC2154 */*/*.ebuild
-	pkgcheck scan --exit error,warning
+	# AcctCheck just breaks without manual configuration
+	pkgcheck scan --exit error,warning --checksets all --checks=-AcctCheck
 
 .PHONY: test nitpick shellcheck pkgcheck
 .IGNORE: nitpick
