@@ -12,7 +12,7 @@ seen in a timely manner, use product “Gentoo Linux”, component “Overlays�
 line with `[flussence-overlay]`.
 
 Packages that install arch-independent stuff will be keyworded for non-exotic arches only:
-x86/amd64, arm/arm64, mips and ppc/ppc64.
+x86, arm and their 64-bit versions.
 
 Installing
 ----------

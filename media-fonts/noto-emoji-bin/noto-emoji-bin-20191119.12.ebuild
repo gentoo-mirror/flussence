@@ -10,7 +10,7 @@ DESCRIPTION="Google Noto Color Emoji, upstream-prebuilt version"
 HOMEPAGE="https://fonts.google.com/noto https://github.com/googlefonts/noto-emoji"
 LICENSE="OFL-1.1"
 SLOT="0/legacy"
-KEYWORDS="amd64 arm arm64 mips ppc ppc64 x86"
+KEYWORDS="amd64 arm arm64 x86"
 
 FONT_SUFFIX="ttf"
 

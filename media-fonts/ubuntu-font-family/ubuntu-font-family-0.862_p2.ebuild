@@ -12,7 +12,7 @@ SRC_URI="https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/${MY_PN}/${M
 S="${WORKDIR}/${MY_PN}-${PV/_p*}"
 LICENSE="UbuntuFontLicense-1.0"
 SLOT="0"
-KEYWORDS="amd64 arm arm64 mips ppc ppc64 x86"
+KEYWORDS="amd64 arm arm64 x86"
 
 DOCS=( CONTRIBUTING.txt FONTLOG.txt README.txt )
 FONT_SUFFIX="ttf"
