@@ -46,11 +46,6 @@ media-sound/audacious:qt6 - Enables the Qt6 Audacious GUI. This cannot be enable
 media-sound/qpwgraph:alsa - Support routing ALSA raw midi devices
 media-sound/qpwgraph:trayicon - Enable systray icon (window close will iconify instead of exit)
 net-dns/agnos:filecaps - Allow non-root users to run agnos on privileged ports (i.e. 53)
-sys-apps/bfs:acl - Add flag "-acl" via sys-apps/acl
-sys-apps/bfs:caps - Add flag "-capable" via sys-libs/libcap
-sys-apps/bfs:io-uring - Enable efficient I/O via sys-libs/liburing
-sys-apps/bfs:oniguruma - Add -regextype values "emacs" and "grep" via dev-libs/oniguruma
-sys-apps/bfs:xattr - Add flags "-xattr" and "-xattrname" via sys-apps/attr
 x11-libs/gtk+:broadway - Enable the GDK Broadway backend.
 x11-libs/gtk+:cloudproviders - Enable GtkPlacesSidebar to access cloud services
 x11-libs/gtk+:colord - Use x11-misc/colord for color management in printing
