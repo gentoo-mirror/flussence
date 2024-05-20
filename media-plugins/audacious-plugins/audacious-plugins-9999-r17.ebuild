@@ -36,33 +36,44 @@ fi
 
 inherit meson
 
-# These are split up roughly by how upstream organises them, except the NEED_* lists
-USE_FRONTENDS="mpris2 gtk2 gtk3 +qt5 qt6 moonstone"
-USE_CONTAINERS="cue"
-USE_TRANSPORTS="mms http"
-USE_INPUTS="aac adplug cdda ffmpeg fluidsynth +gme modplug mp3 openmpt opus sid sndfile wavpack"
-USE_CODECS="flac lame vorbis" # filewriter codecs, flac/vorbis are also input
-USE_OUTPUTS="+alsa coreaudio encode jack oss pipewire pulseaudio qtmedia sdl sndio"
+# These are listed in mostly the same order meson_options.txt presents them
+declare -A USE_CATEGORIES=(
+	[gui]="gtk2 gtk3 +qt5 qt6 moonstone"
+	[container]="cue"
+	[transport]="mms http"
 
-NEED_GUI="+hotkeys libnotify opengl"
-NEED_GTK="aosd lirc" # XXX 2021-02-02 lirc's dep is currently automagic
-NEED_QT="ampache moonstone qtmedia streamtuner +vumeter"
+	[input]="aac adplug cdda ffmpeg fluidsynth +gme modplug mp3 openmpt opus sid sndfile wavpack"
+	# At least one output must be enabled:
+	[output]="+alsa coreaudio encode jack oss pipewire pulseaudio qtmedia sdl sndio"
+	# flac and vorbis are also input plugins:
+	[filewriter]="flac lame vorbis"
 
-IUSE="bs2b libsamplerate scrobbler +songchange soxr xml
-	${USE_FRONTENDS} ${USE_CONTAINERS} ${USE_TRANSPORTS}
-	${USE_INPUTS} ${USE_OUTPUTS} ${USE_CODECS}
-	${NEED_GUI} ${NEED_GTK} ${NEED_QT}"
+	# general plugins without specific handling. USE=xml enables several playlist formats
+	[general]="scrobbler +songchange xml"
 
-# this is verbose, but it makes user-facing errors more scrutable
+	# GUI is optional but you need at least one frontend type. The secret third option is audtool
+	# (in the main package), but both that and mpris need DBus
+	[frontend]="mpris2 +gui"
+
+	[effect]="bs2b libsamplerate soxr"
+
+	# gui_* are general plugins that require a GUI, handled specially below
+	[gui_base]="+hotkeys libnotify opengl"
+	[gui_gtk]="aosd lirc"
+	[gui_qt]="ampache moonstone qtmedia streamtuner +vumeter"
+)
+
+IUSE="${USE_CATEGORIES[*]}"
+# shellcheck disable=SC2086 #(word splitting in the printfs is intentional)
 REQUIRED_USE="
-	|| ( ${USE_FRONTENDS//+/} )
-	|| ( ${USE_OUTPUTS//+/} )
-	^^ ( qt5 qt6 )
-	encode?    ( || ( ${USE_CODECS//+/} ) )
+	|| ( ${USE_CATEGORIES[output]//+/} )
+	|| ( ${USE_CATEGORIES[frontend]//+/} )
+	encode?    ( || ( ${USE_CATEGORIES[filewriter]//+/} ) )
+	gui?       ( ?? ( gtk2 gtk3 ) ?? ( qt5 qt6 ) )
 	scrobbler? ( xml )
-	$(for flag in ${NEED_GUI//+/}; do printf '%s?\t( || ( gtk2 gtk3 qt5 qt6 ) )\n' "${flag}"; done)
-	$(for flag in ${NEED_GTK//+/}; do printf '%s?\t( || ( gtk2 gtk3 ) )\n'         "${flag}"; done)
-	$(for flag in ${NEED_QT//+/};  do printf '%s?\t( || ( qt5 qt6 ) )\n'           "${flag}"; done)
+	$(printf '\n\t%s?\t( gui )'              ${USE_CATEGORIES[gui_base]//+/})
+	$(printf '\n\t%s?\t( ^^ ( gtk2 gtk3 ) )' ${USE_CATEGORIES[gui_gtk]//+/})
+	$(printf '\n\t%s?\t( ^^ ( qt5 qt6 ) )'   ${USE_CATEGORIES[gui_qt]//+/})
 "
 
 # hotkeys currently has automagic detection
@@ -74,6 +85,10 @@ RDEPEND="
 	adplug? ( media-libs/adplug )
 	alsa? ( >=media-libs/alsa-lib-1.0.16 )
 	ampache? ( media-libs/ampache_browser )
+	aosd? (
+		x11-libs/libXrender
+		x11-libs/libXcomposite
+	)
 	bs2b? ( >=media-libs/libbs2b-3.0.0 )
 	cdda? (
 		>=dev-libs/libcdio-0.70:=
@@ -84,26 +99,11 @@ RDEPEND="
 	ffmpeg? ( >=media-video/ffmpeg-4.2.4 )
 	flac? ( >=media-libs/flac-1.2.1[ogg] )
 	fluidsynth? ( >=media-sound/fluidsynth-1.0.6:= )
-	gtk2? (
-		>=x11-libs/gtk+-2.24:2
-		aosd? (
-			x11-libs/libXrender
-			x11-libs/libXcomposite
-		)
-		lirc? ( app-misc/lirc )
-		opengl? ( virtual/opengl )
-	)
-	gtk3? (
-		>=x11-libs/gtk+-3.22:3
-		aosd? (
-			x11-libs/libXrender
-			x11-libs/libXcomposite
-		)
-		lirc? ( app-misc/lirc )
-		opengl? ( virtual/opengl )
-	)
+	gtk2? ( >=x11-libs/gtk+-2.24:2 )
+	gtk3? ( >=x11-libs/gtk+-3.22:3 )
 	http? ( >=net-libs/neon-0.27 )
 	jack? ( virtual/jack )
+	lirc? ( app-misc/lirc )
 	qt5? (
 		dev-qt/qtcore:5
 		dev-qt/qtgui:5
@@ -128,6 +128,7 @@ RDEPEND="
 	mms? ( >=media-libs/libmms-0.3 )
 	modplug? ( media-libs/libmodplug )
 	mp3? ( >=media-sound/mpg123-1.12 )
+	opengl? ( virtual/opengl )
 	openmpt? ( >=media-libs/libopenmpt-0.2 )
 	opus? (
 		>=media-libs/opus-1.0.1
@@ -160,7 +161,7 @@ PATCHES=(
 )
 
 src_configure() {
-	# As above for IUSE, grouped by how upstream organises them
+	# USE-to-meson map, same general ordering as the array above
 	local emesonargs=(
 		# GUI toolkits
 		"$(meson_use "$(usex gtk3 gtk3 gtk2)" gtk)"
