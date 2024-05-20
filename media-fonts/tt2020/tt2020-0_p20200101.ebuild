@@ -7,7 +7,7 @@ GITHUB_USER="ctrlcctrlv"
 GITHUB_PROJ="${PN^^}"
 
 DESCRIPTION="Multilingual typewriter fonts with an organic appearance"
-LICENSE="OFL"
+LICENSE="OFL-1.1"
 SLOT="0"
 KEYWORDS="amd64 arm arm64 x86"
 IUSE="+minimal"

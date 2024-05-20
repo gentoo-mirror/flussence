@@ -99,9 +99,6 @@ For a complete list, do `eix [-R] -c --in-overlay flussence`
 : A mostly automated tool to get subdomain wildcard certificates (using an internal dns-01 server),
   only needing a minor static addition to your server's main DNS zone.
 
-`sys-apps/bfs` — [Alternative to `find`](https://github.com/tavianator/bfs)
-: Mostly a drop in replacement for the system `find` command but much more user-friendly.
-
 `sys-process/runit` — [Runit PID1 and service manager](http://smarden.org/runit/)
 : The init system I'm using.
   This package is a hard fork of whatever was in the Gentoo tree circa 2014,
