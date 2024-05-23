@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit gnome2
+inherit flag-o-matic gnome2
 
 MY_P="${P%%_p*}" # package without patchlevel
 MY_UV="${PV##*_p}" # unicode major version that we support. "15", not "15.1".
@@ -42,6 +42,8 @@ src_prepare() {
 }
 
 src_configure() {
+	# gucharmap-chartable-cell-accessible.h needs fixing but I don't know how
+	append-cflags "-Wno-incompatible-pointer-types"
 	gnome2_src_configure --with-gtk=2.0 --disable-gconf "$(use_enable nls)"
 }
 
