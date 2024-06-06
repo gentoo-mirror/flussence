@@ -45,10 +45,12 @@ RDEPEND="
 		dev-qt/qtcore:5
 		dev-qt/qtgui:5
 		dev-qt/qtwidgets:5
+		dev-qt/qtsvg:5
 		virtual/freedesktop-icon-theme
 	)
 	qt6? (
 		dev-qt/qtbase:6[gui,widgets]
+		dev-qt/qtsvg:6
 	)"
 DEPEND="${RDEPEND} virtual/pkgconfig"
 BDEPEND="
