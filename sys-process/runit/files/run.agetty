@@ -1,5 +1,9 @@
 #!/bin/sh
+# This will autodetect which tty to run on based on the service dir name, e.g.
+# to run on tty2, this file should be "$SVDIR/agetty-tty2/run". You may symlink
+# this (and the corresponding `finish`) into multiple service instances to run
+# on several terminals, but the service directories must be real and separate.
 tty=${PWD##*getty-}
-[ -c "/dev/$tty" ] || tty=tty1
+[ -c "/dev/$tty" ] || tty=tty1 #default
 
 exec chpst -P /sbin/agetty 38400 $tty linux

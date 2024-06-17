@@ -1,0 +1,8 @@
+Runit can be used as PID 1 on a Gentoo system, but manual configuration is
+required.
+
+This package provides runit-init stages that will run OpenRC's 'boot' runlevel
+and then start runsvdir in /etc/service/. A getty, graphical display manager,
+and/or sshd needs to be set up to log in. Example scripts may be found under
+/usr/share/doc/runit-*/. To make the boot debugging process easier, add a
+/etc/init.d/agetty* service to OpenRC's boot runlevel.

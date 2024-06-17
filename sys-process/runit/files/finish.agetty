@@ -1,4 +1,6 @@
 #!/bin/sh
+# This records logout in the standard wtmp(5) file when a getty login session
+# exits. While not essential to system operation, it's considered good form.
 tty=${PWD##*getty-}
 [ -c "/dev/$tty" ] || tty=tty1
 

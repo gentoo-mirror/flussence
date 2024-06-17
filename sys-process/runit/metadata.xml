@@ -3,10 +3,14 @@
 <pkgmetadata>
 	<longdescription lang="en">
 		runit is a process supervision suite with a focus on being usable as a sysvinit replacement.
-		It provides similar functionality to other packages like <pkg>sys-apps/s6</pkg> and
+		It provides similar functionality to packages like <pkg>sys-apps/s6</pkg> and
 		<pkg>sys-process/daemontools</pkg>, and a compatibility/migration path for the latter.
 		As this package only provides an init and service manager, it still depends on
 		<pkg>sys-apps/openrc</pkg> for the rc layer inbetween.
+
+		This package installs the Void Linux fork of runit, which contains a few maintenance patches
+		on top of vanilla. By contrast, the package in the ::gentoo repository gives you Debian's
+		patchset which diverges significantly from the original.
 	</longdescription>
 	<maintainer type="person">
 		<email>gentoo+bugs@flussence.eu</email>
@@ -15,5 +19,6 @@
 	<upstream>
 		<bugs-to>https://skarnet.org/lists/#supervision</bugs-to>
 		<doc>http://smarden.org/runit/</doc>
+		<remote-id type="github">void-linux/runit</remote-id>
 	</upstream>
 </pkgmetadata>
