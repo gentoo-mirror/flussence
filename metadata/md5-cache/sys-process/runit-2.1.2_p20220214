@@ -9,5 +9,5 @@ LICENSE=BSD
 RDEPEND=sys-apps/openrc sys-process/psmisc
 SLOT=0
 SRC_URI=https://github.com/void-linux/runit/archive/2b8000f1ebd07fd68ee0e3c32737d97bcd1687fb.tar.gz -> runit-2.1.2_p20220214.tar.gz
-_eclasses_=toolchain-funcs	e56c7649b804f051623c8bc1a1c44084	multilib	c19072c3cd7ac5cb21de013f7e9832e0	flag-o-matic	d309b9713dfc18e754cba88d3ba69653	github-pkg	05c44661573cfd67f81e222a0da4dad1	readme.gentoo-r1	204091a2cde6179cd9d3db26d09412d3	bash-completion-r1	f5e7a020fd9c741740756aac61bf75ff	shell-completion	bb7eb6bc232cd6c4bf8af739cdd2ee14
+_eclasses_=toolchain-funcs	e56c7649b804f051623c8bc1a1c44084	multilib	c19072c3cd7ac5cb21de013f7e9832e0	flag-o-matic	d309b9713dfc18e754cba88d3ba69653	github-pkg	05c44661573cfd67f81e222a0da4dad1	readme.gentoo-r1	b8c7a61664027641d79dcfc04bd366f4	bash-completion-r1	f5e7a020fd9c741740756aac61bf75ff	shell-completion	bb7eb6bc232cd6c4bf8af739cdd2ee14
 _md5_=603fe3f61f0614b7c70fa48d365d3ca7
