@@ -3,27 +3,16 @@
 
 EAPI=8
 
-GITHUB_USER="void-linux"
+inherit flag-o-matic readme.gentoo-r1 toolchain-funcs
 
-DESCRIPTION="The fork of runit used as Void Linux's primary init system"
+DESCRIPTION="A UNIX init scheme with service supervision"
+HOMEPAGE="http://smarden.org/runit/"
+SRC_URI="http://smarden.org/runit/${P}.tar.gz"
+S="${WORKDIR}/admin/${P}/src"
 LICENSE="BSD"
-SLOT="0/void"
+SLOT="0/vanilla"
+KEYWORDS="~amd64 ~x86"
 IUSE="static"
-
-inherit flag-o-matic github-pkg readme.gentoo-r1 shell-completion toolchain-funcs
-
-if [[ ${PV} == "9999" ]]; then
-	S="${WORKDIR}/${P}/src"
-else
-	KEYWORDS="~amd64 ~x86"
-	declare -A commit_map=(
-		# current HEAD in upstream as of 2024-06-17
-		[20220214]="2b8000f1ebd07fd68ee0e3c32737d97bcd1687fb"
-	)
-	EGIT_COMMIT="${commit_map[${PV##*_p}]}"
-	SRC_URI="${GITHUB_HOMEPAGE}/archive/${EGIT_COMMIT}.tar.gz -> ${P}.tar.gz"
-	S="${WORKDIR}/${PN}-${EGIT_COMMIT}/src"
-fi
 
 # runtime dependencies of /etc/runit/{1,3}
 RDEPEND="
@@ -38,9 +27,6 @@ src_prepare() {
 
 	# No half measures: USE=static determines whether everything or nothing is built static.
 	sed -i -e 's:-static: :' Makefile
-
-	# Fix completion to actually respect SVDIR
-	sed -i -e 's@/var/service@$''{SVDIR:-/var/service}@' ../completions/sv.bash
 }
 
 src_configure() {
@@ -63,8 +49,6 @@ src_install() {
 	einstalldocs
 	doman man/*.[18]
 	readme.gentoo_create_doc
-	newbashcomp completions/sv.bash sv
-	newzshcomp completions/sv.zsh sv
 
 	# Install OpenRC runit-init stages.
 	stage_dir=/lib/runit/stages/openrc
