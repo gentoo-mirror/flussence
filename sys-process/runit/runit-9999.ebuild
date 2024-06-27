@@ -7,7 +7,7 @@ GITHUB_USER="void-linux"
 
 DESCRIPTION="The fork of runit used as Void Linux's primary init system"
 LICENSE="BSD"
-SLOT="0"
+SLOT="0/void"
 IUSE="static"
 
 inherit flag-o-matic github-pkg readme.gentoo-r1 shell-completion toolchain-funcs

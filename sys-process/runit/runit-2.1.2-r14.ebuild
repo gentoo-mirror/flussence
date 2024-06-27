@@ -10,7 +10,7 @@ HOMEPAGE="http://smarden.org/runit/"
 SRC_URI="http://smarden.org/runit/${P}.tar.gz"
 S="${WORKDIR}/admin/${P}/src"
 LICENSE="BSD"
-SLOT="0"
+SLOT="0/vanilla"
 KEYWORDS="~amd64 ~x86"
 IUSE="static"
 
