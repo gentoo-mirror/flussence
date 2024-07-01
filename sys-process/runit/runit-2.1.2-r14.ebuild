@@ -32,7 +32,7 @@ src_prepare() {
 src_configure() {
 	use static && append-ldflags "-static"
 	# GCC≥14 workaround. It's a really bad one, but the only one currently within my ability.
-	append-cflags "-Wno-implicit-function-declaration -Wno-incompatible-pointer-types"
+	append-cflags "-fpermissive"
 
 	echo "$(tc-getCC) ${CFLAGS}"  > conf-cc
 	echo "$(tc-getCC) ${LDFLAGS}" > conf-ld # [sic]
