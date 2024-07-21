@@ -7,5 +7,5 @@ INHERIT=github-pkg
 LICENSE=qca-firmware
 PROPERTIES=live
 SLOT=0
-_eclasses_=git-r3	875eb471682d3e1f18da124be97dcc81	github-pkg	05c44661573cfd67f81e222a0da4dad1
+_eclasses_=git-r3	875eb471682d3e1f18da124be97dcc81	github-pkg	5ba984b8fcae68bf6b73604371980a1e
 _md5_=812260ba0bb021e1d1d16c1b0251d071
