@@ -17,6 +17,7 @@ Installing
    # eselect repository enable flussence
    # emaint sync -r flussence
    ```
+
 2. Direct setup:
    ```sh-session
    # cat > /etc/portage/repos.conf/flussence.conf <<EOF
@@ -31,18 +32,20 @@ Installing
    # emaint sync -r flussence
    # emerge sec-keys/openpgp-keys-flussence::flussence
    ```
+
    The last 3 config lines are optional and grant TOFU-level security, which is better than nothing.
    You should be suspicious of any `sec-keys` package or dependency change, and not just mine.
 
    `emerge --sync` will emit the following scary message each time because `emerge` does not
    understand that system-wide signing keys can be provisioned by `emerge`. You can ignore it:
-   > ```
-   >  * Using keys from /usr/share/openpgp-keys/flussence.asc
-   >  * Key refresh is disabled via a repos.conf sync-openpgp-key-refresh
-   >  * setting, and this is a security vulnerability because it prevents
-   >  * detection of revoked keys!
-   >  * Trusted signature found on top commit
-   > ```
+   ```
+    * Using keys from /usr/share/openpgp-keys/flussence.asc
+    * Key refresh is disabled via a repos.conf sync-openpgp-key-refresh
+    * setting, and this is a security vulnerability because it prevents
+    * detection of revoked keys!
+    * Trusted signature found on top commit
+   ```
+
    **Do not** set `sync-openpgp-key-refresh=yes`. It adds no meaningful security, will slow down the
    sync process while it times out, and will also allow me to remotely detect your use of `emerge
    --sync` in realtime as a side effect.
