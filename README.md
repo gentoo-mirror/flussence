@@ -158,6 +158,4 @@ but for files wholly my own work, GPL2-or-later is granted:
 
 Reach heaven through violence 💚🏳️‍⚧️
 
-<!--
-This markdown file uses extensions in Forgejo's implementation and may not look correct elsewhere.
--->
+(This markdown file uses extensions in Forgejo's implementation and may not look correct elsewhere.)
