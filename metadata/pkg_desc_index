@@ -2,7 +2,7 @@ app-i18n/unicode-data 15.0.0: Unicode data from unicode.org
 dev-libs/libbinio 1.5: Platform-independent way to access binary data streams in C++
 dev-perl/Crypt-LE 0.39: Let's Encrypt API module and client
 dev-perl/Regexp-Debugger 0.2.7: Perl module and command line tool (rxrx) to visually debug regexes in-place
-games-engines/dhewm3 1.5.3 9999: A cross-platform Doom 3 source port
+games-engines/dhewm3 1.5.4 9999: A cross-platform Doom 3 source port
 gnome-extra/gucharmap 3.0.1_p15-r1: GNOME Character Map, based on the Unicode Character Database
 media-fonts/noto-emoji-bin 2.034 20191119.12: Google Noto Color Emoji, upstream-prebuilt version
 media-fonts/tt2020 0_p20200101: Multilingual typewriter fonts with an organic appearance
