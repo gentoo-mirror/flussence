@@ -26,6 +26,5 @@ DEPEND="
 	media-libs/libvorbis
 	media-libs/openal
 	net-misc/curl
-	sys-libs/zlib
 "
 RDEPEND="${DEPEND}"
