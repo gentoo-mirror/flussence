@@ -5,5 +5,5 @@ media-sound/audacious libarchive
 
 # picom uses this to renice itself to a lower number. As of v11, upstream
 # recommends not doing this, although I couldn't find a clear rationale for
-# doing so. In any case it doesn't really need it.
+# doing so. In any case it doesn't really need it. v12 prefers rtkit.
 x11-misc/picom filecaps
