@@ -1,3 +1,7 @@
 # flussence <gentoo+bugs@flussence.eu> (18 Jul 2021)
 # These are older unnumbered versions for specific upstream unicode releases
 =media-fonts/noto-emoji-bin-20191119.12
+
+# flussence <gentoo+bugs@flussence.eu> (12 Aug 2024)
+# Broken, wait for RC2 (https://github.com/yshui/picom/issues/1311)
+=x11-misc/picom-12_rc1

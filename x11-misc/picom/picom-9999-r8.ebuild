@@ -11,8 +11,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="dbus drm +doc +opengl +pcre"
 
-# This ebuild revision is for 79901d197b or later
-inherit fcaps github-pkg meson xdg
+# This ebuild revision is for c3e18a6e7a or later
+inherit fcaps github-pkg meson optfeature xdg
 
 if [[ ${PV} != "9999" ]]; then
 	MY_PV="${PV/_rc/-rc}"
@@ -22,14 +22,10 @@ fi
 
 RDEPEND="
 	dev-libs/libev
-	>=dev-libs/libconfig-1.4:=
+	>=dev-libs/libconfig-1.7:=
 	>=x11-libs/libxcb-1.9.2
-	x11-libs/libXext
-	x11-libs/libXdamage
-	x11-libs/libXrender
-	x11-libs/libXrandr
-	x11-libs/libXcomposite
 	x11-libs/pixman
+	x11-libs/libX11
 	x11-libs/xcb-util
 	x11-libs/xcb-util-image
 	x11-libs/xcb-util-renderutil
@@ -39,7 +35,7 @@ RDEPEND="
 	pcre? ( dev-libs/libpcre2:= )"
 DEPEND="${RDEPEND}
 	dev-libs/uthash"
-BDEPEND="doc? ( app-text/asciidoc )"
+BDEPEND="doc? ( dev-ruby/asciidoctor )"
 
 FILECAPS=( -m 755 cap_sys_nice+ep "usr/bin/${PN}" )
 
@@ -71,4 +67,7 @@ src_install() {
 pkg_postinst() {
 	xdg_pkg_postinst
 	fcaps_pkg_postinst
+
+	use dbus && ! use filecaps &&
+		optfeature "restricted realtime capabilities via D-Bus" "sys-auth/rtkit"
 }
