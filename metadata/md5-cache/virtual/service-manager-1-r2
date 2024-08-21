@@ -1,0 +1,7 @@
+DEFINED_PHASES=-
+DESCRIPTION=Virtual for various service managers
+EAPI=8
+KEYWORDS=amd64 x86
+RDEPEND=|| ( || ( sys-apps/openrc sys-apps/openrc-navi ) kernel_linux? ( || ( sys-apps/s6-rc sys-apps/systemd sys-process/runit virtual/daemontools ) ) )
+SLOT=0
+_md5_=8f07d50a2171e90dd95c7a6b99f58e51
