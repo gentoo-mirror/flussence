@@ -10,4 +10,5 @@
 		<changelog>https://github.com/ctrlcctrlv/TT2020/commits/master.atom</changelog>
 		<remote-id type="github">ctrlcctrlv/TT2020</remote-id>
 	</upstream>
+	<stabilize-allarches/>
 </pkgmetadata>
