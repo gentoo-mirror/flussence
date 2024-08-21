@@ -5,7 +5,5 @@
 		<email>gentoo+bugs@flussence.eu</email>
 		<name>flussence</name>
 	</maintainer>
-	<upstream>
-		<doc>https://www.unicode.org/standard/versions/#Contributory_Data_Files</doc>
-	</upstream>
+	<stabilize-allarches/>
 </pkgmetadata>
