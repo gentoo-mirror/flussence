@@ -1,2 +1,2 @@
 >=gnome-extra/gucharmap-3.0.1_p6:0
-x11-themes/nimbus
+sys-process/runit
