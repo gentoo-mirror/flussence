@@ -26,29 +26,29 @@ LICENSE="
 SLOT="0"
 
 if [[ ${PV} == "9999" ]]; then
-	# This ebuild revision is for 79901d197b or later
+	# This ebuild revision is for 0ffe6d8b43 or later
 	EGIT_REPO_URI="https://github.com/audacious-media-player/${PN}.git"
 	inherit git-r3
 else
-	KEYWORDS="amd64 x86"
+	KEYWORDS="~amd64 ~x86"
 	SRC_URI="https://distfiles.audacious-media-player.org/${MY_P}.tar.bz2"
 fi
 
 inherit meson
 
-# These are listed in mostly the same order meson_options.txt presents them
+# These are arranged in the order meson_options.txt presents them
 declare -A USE_CATEGORIES=(
 	[gui]="gtk2 gtk3 +qt5 qt6 moonstone"
 	[container]="cue"
 	[transport]="mms http"
 
-	[input]="aac adplug cdda ffmpeg fluidsynth +gme modplug mp3 openmpt opus sid sndfile wavpack"
+	[input]="aac adplug cdda cddb ffmpeg fluidsynth +gme modplug mp3 openmpt opus sid sndfile wavpack"
 	# At least one output must be enabled:
 	[output]="+alsa coreaudio encode jack oss pipewire pulseaudio qtmedia sdl sndio"
 	# flac and vorbis are also input plugins:
 	[filewriter]="flac lame vorbis"
 
-	# general plugins without specific handling. USE=xml enables several playlist formats
+	# plugins without specific handling. USE=xml enables several playlist formats
 	[general]="scrobbler +songchange xml"
 
 	# GUI is optional but you need at least one frontend type. The secret third option is audtool
@@ -57,7 +57,7 @@ declare -A USE_CATEGORIES=(
 
 	[effect]="bs2b libsamplerate soxr"
 
-	# gui_* are general plugins that require a GUI, handled specially below
+	# gui_* are plugins that require a GUI, handled specially below
 	[gui_base]="+hotkeys libnotify opengl"
 	[gui_gtk]="aosd lirc"
 	[gui_qt]="ampache moonstone qtmedia streamtuner +vumeter"
@@ -70,6 +70,7 @@ REQUIRED_USE="
 	|| ( ${USE_CATEGORIES[frontend]//+/} )
 	encode?    ( || ( ${USE_CATEGORIES[filewriter]//+/} ) )
 	gui?       ( ?? ( gtk2 gtk3 ) ?? ( qt5 qt6 ) )
+	cddb?      ( cdda )
 	scrobbler? ( xml )
 	$(printf '\n\t%s?\t( gui )'              ${USE_CATEGORIES[gui_base]//+/})
 	$(printf '\n\t%s?\t( ^^ ( gtk2 gtk3 ) )' ${USE_CATEGORIES[gui_gtk]//+/})
@@ -93,7 +94,7 @@ RDEPEND="
 	cdda? (
 		>=dev-libs/libcdio-0.70:=
 		>=dev-libs/libcdio-paranoia-0.70:=
-		>=media-libs/libcddb-1.2.1
+		cddb? ( >=media-libs/libcddb-1.2.1 )
 	)
 	cue? ( >=media-libs/libcue-2.0 )
 	ffmpeg? ( >=media-video/ffmpeg-4.2.4 )
@@ -161,7 +162,7 @@ PATCHES=(
 )
 
 src_configure() {
-	# USE-to-meson map, same general ordering as the array above
+	# USE-to-meson map, mostly grouped in the same way as the array above
 	local emesonargs=(
 		# GUI toolkits
 		"$(meson_use "$(usex gtk3 gtk3 gtk2)" gtk)"
@@ -181,6 +182,7 @@ src_configure() {
 		"$(meson_use            adplug)"
 		"$(meson_use fluidsynth amidiplug)"
 		"$(meson_use cdda       cdaudio)"
+		"$(meson_use cddb       cdaudio-cddb)"
 		"$(meson_use gme        console)"
 		"$(meson_use ffmpeg     ffaudio)"
 		"$(meson_use            flac)"
