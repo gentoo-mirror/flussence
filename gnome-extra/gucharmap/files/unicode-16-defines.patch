@@ -1,8 +1,8 @@
 diff --git a/gucharmap/gucharmap-unicode-info.h b/gucharmap/gucharmap-unicode-info.h
-index 5b086c285..9d07c5cfd 100644
+index 5b086c285..cdb3fe396 100644
 --- a/gucharmap/gucharmap-unicode-info.h
 +++ b/gucharmap/gucharmap-unicode-info.h
-@@ -41,7 +41,21 @@ typedef enum {
+@@ -41,7 +41,22 @@ typedef enum {
    GUCHARMAP_UNICODE_VERSION_5_1,
    GUCHARMAP_UNICODE_VERSION_5_2,
    GUCHARMAP_UNICODE_VERSION_6_0,
@@ -21,7 +21,8 @@ index 5b086c285..9d07c5cfd 100644
 +  GUCHARMAP_UNICODE_VERSION_14_0,
 +  GUCHARMAP_UNICODE_VERSION_15_0,
 +  GUCHARMAP_UNICODE_VERSION_15_1,
-+  GUCHARMAP_UNICODE_VERSION_LATEST = GUCHARMAP_UNICODE_VERSION_15_1 /* private, will move forward with each revision */
++  GUCHARMAP_UNICODE_VERSION_16_0,
++  GUCHARMAP_UNICODE_VERSION_LATEST = GUCHARMAP_UNICODE_VERSION_16_0 /* private, will move forward with each revision */
  } GucharmapUnicodeVersion;
  
  /* return values are read-only */

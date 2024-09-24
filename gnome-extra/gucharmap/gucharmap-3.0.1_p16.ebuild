@@ -6,9 +6,9 @@ EAPI=8
 inherit flag-o-matic gnome2
 
 MY_P="${P%%_p*}" # package without patchlevel
-MY_UV="${PV##*_p}" # unicode major version that we support. "15", not "15.1".
-# for an upstream ".1" just -r bump this file and edit the defines patch
-# i am aware this sucks but playing version parsing tricks is even worse
+MY_UV="${PV##*_p}" # app-i18n/unicode-data major version that we support.
+# N.B. "15", not "15.1". For an upstream ".1" just -r bump this file and edit
+# the defines patch. i'm aware this sucks but version parsing tricks is worse
 
 DESCRIPTION="GNOME Character Map, based on the Unicode Character Database"
 HOMEPAGE="https://wiki.gnome.org/Apps/Gucharmap"
