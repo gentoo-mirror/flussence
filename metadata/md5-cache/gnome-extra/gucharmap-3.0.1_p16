@@ -1,4 +1,4 @@
-BDEPEND=system-unicode? ( >=dev-lang/perl-5.28.0 =app-i18n/unicode-data-15* ) >=app-portage/elt-patches-20240116 app-arch/xz-utils
+BDEPEND=system-unicode? ( >=dev-lang/perl-5.28.0 =app-i18n/unicode-data-16* ) >=app-portage/elt-patches-20240116 app-arch/xz-utils
 DEFINED_PHASES=compile configure install postinst postrm preinst prepare
 DEPEND=>=dev-libs/glib-2.16.3 >=x11-libs/gtk+-2.14.0:2
 DESCRIPTION=GNOME Character Map, based on the Unicode Character Database
@@ -13,4 +13,4 @@ RDEPEND=>=dev-libs/glib-2.16.3 >=x11-libs/gtk+-2.14.0:2
 SLOT=0
 SRC_URI=mirror://gnome/sources/gucharmap/3.0/gucharmap-3.0.1.tar.bz2
 _eclasses_=toolchain-funcs	948855ec7ad9f11351edf9066708dfa9	multilib	7e1347c006a76bb812f3a9f663b79991	flag-o-matic	fa33e3696fe4689dda7e9affe92e2c94	libtool	f9e6905c12590c1cac06d85371a0819a	gnome.org	e1b4f392dbfedfb8974b71b017937f08	xdg-utils	5465aed08f1dfc2a75f14cbea4272961	gnome2-utils	a8cf148ec7f5ae0b1f1d33ae5f7f9e88	xdg	8d7d90c01b1b1c2602dab6fc6b177097	gnome2	26fd01914b36038dc8e964ff4bd03a95
-_md5_=8459333ed3f4f7ad16652e99ff767fdf
+_md5_=1c13da1d97af9250d62ac4aea7d222e9
