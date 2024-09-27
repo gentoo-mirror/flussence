@@ -18,12 +18,12 @@ if [[ ${PV} == "9999" ]]; then
 	inherit git-r3
 else
 	SRC_URI="https://distfiles.audacious-media-player.org/${MY_P}.tar.bz2"
-	KEYWORDS="amd64 x86"
+	KEYWORDS="~amd64 ~x86"
 fi
 
 inherit meson xdg
 
-REQUIRED_USE="|| ( cli gtk2 gtk3 qt5 qt6 ) ?? ( gtk2 gtk3 ) ?? ( qt5 qt6 )"
+REQUIRED_USE="|| ( cli gtk2 gtk3 qt5 qt6 )"
 
 RDEPEND="
 	>=dev-libs/glib-2.32
@@ -36,10 +36,12 @@ RDEPEND="
 		virtual/libintl
 	)
 	gtk3? (
-		>=x11-libs/gtk+-3.22:3
-		x11-libs/cairo
-		x11-libs/pango
-		virtual/libintl
+		!gtk2? (
+			>=x11-libs/gtk+-3.22:3
+			x11-libs/cairo
+			x11-libs/pango
+			virtual/libintl
+		)
 	)
 	qt5? (
 		dev-qt/qtcore:5
@@ -49,8 +51,10 @@ RDEPEND="
 		virtual/freedesktop-icon-theme
 	)
 	qt6? (
-		dev-qt/qtbase:6[gui,widgets]
-		dev-qt/qtsvg:6
+		!qt5? (
+			dev-qt/qtbase:6[gui,widgets]
+			dev-qt/qtsvg:6
+		)
 	)"
 DEPEND="${RDEPEND} virtual/pkgconfig"
 BDEPEND="
@@ -61,8 +65,8 @@ PDEPEND="~media-plugins/audacious-plugins-${PV}[gtk2(-)?,gtk3(-)?,qt5(-)?,qt6(-)
 src_configure() {
 	local emesonargs=(
 		"--auto-features=disabled"
-		"$(meson_use "$(usex gtk3 gtk3 gtk2)" gtk)"
-		"$(meson_use "$(usex qt6 qt6 qt5)" qt)"
+		"$(meson_use "$(usex gtk2 gtk2 gtk3)" gtk)"
+		"$(meson_use "$(usex qt5 qt5 qt6)" qt)"
 		"$(meson_use cli dbus)"
 		"$(meson_use gtk2)"
 		"$(meson_use libarchive)"

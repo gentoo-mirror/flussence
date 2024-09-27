@@ -19,7 +19,7 @@ LICENSE="
 	ampache? ( GPL-3 )
 	flac? ( GPL-3+ )
 	gtk2? ( GPL-3 )
-	gtk3? ( GPL-3 )
+	gtk3? ( !gtk2? ( GPL-3 ) )
 	libnotify? ( GPL-3+ )
 	qt5? ( GPL-3 )
 	qt6? ( GPL-3 )"
@@ -38,7 +38,7 @@ inherit meson
 
 # These are arranged in the order meson_options.txt presents them
 declare -A USE_CATEGORIES=(
-	[gui]="gtk2 gtk3 +qt5 qt6 moonstone"
+	[gui]="gtk2 gtk3 +qt5 qt6"
 	[container]="cue"
 	[transport]="mms http"
 
@@ -66,15 +66,15 @@ declare -A USE_CATEGORIES=(
 IUSE="${USE_CATEGORIES[*]}"
 # shellcheck disable=SC2086 #(word splitting in the printfs is intentional)
 REQUIRED_USE="
-	|| ( ${USE_CATEGORIES[output]//+/} )
-	|| ( ${USE_CATEGORIES[frontend]//+/} )
-	encode?    ( || ( ${USE_CATEGORIES[filewriter]//+/} ) )
-	gui?       ( ?? ( gtk2 gtk3 ) ?? ( qt5 qt6 ) )
+	|| ( ${USE_CATEGORIES[output]//[+-]/} )
+	|| ( ${USE_CATEGORIES[frontend]//[+-]/} )
+	encode?    ( || ( ${USE_CATEGORIES[filewriter]//[+-]/} ) )
+	gui?       ( || ( ${USE_CATEGORIES[gui]//[+-]/} ) )
 	cddb?      ( cdda )
 	scrobbler? ( xml )
-	$(printf '\n\t%s?\t( gui )'              ${USE_CATEGORIES[gui_base]//+/})
-	$(printf '\n\t%s?\t( ^^ ( gtk2 gtk3 ) )' ${USE_CATEGORIES[gui_gtk]//+/})
-	$(printf '\n\t%s?\t( ^^ ( qt5 qt6 ) )'   ${USE_CATEGORIES[gui_qt]//+/})
+	$(printf '\n\t%s?\t( gui )'              ${USE_CATEGORIES[gui_base]//[+-]/})
+	$(printf '\n\t%s?\t( || ( gtk2 gtk3 ) )' ${USE_CATEGORIES[gui_gtk]//[+-]/})
+	$(printf '\n\t%s?\t( || ( qt5 qt6 ) )'   ${USE_CATEGORIES[gui_qt]//[+-]/})
 "
 
 # hotkeys currently has automagic detection
@@ -115,10 +115,12 @@ RDEPEND="
 		streamtuner? ( dev-qt/qtnetwork:5 )
 	)
 	qt6? (
-		dev-qt/qtbase:6[gui,widgets]
-		opengl? ( dev-qt/qtbase:6[opengl] )
-		qtmedia? ( dev-qt/qtmultimedia:6 )
-		streamtuner? ( dev-qt/qtbase:6[network] )
+		!qt5? (
+			dev-qt/qtbase:6[gui,widgets]
+			opengl? ( dev-qt/qtbase:6[opengl] )
+			qtmedia? ( dev-qt/qtmultimedia:6 )
+			streamtuner? ( dev-qt/qtbase:6[network] )
+		)
 	)
 	lame? ( media-sound/lame )
 	libnotify? (
@@ -165,8 +167,8 @@ src_configure() {
 	# USE-to-meson map, mostly grouped in the same way as the array above
 	local emesonargs=(
 		# GUI toolkits
-		"$(meson_use "$(usex gtk3 gtk3 gtk2)" gtk)"
-		"$(meson_use "$(usex qt6 qt6 qt5)" qt)"
+		"$(meson_use "$(usex gtk2 gtk2 gtk3)" gtk)"
+		"$(meson_use "$(usex qt5 qt5 qt6)" qt)"
 		"$(meson_use gtk2)"
 		"$(meson_use qt5)"
 
@@ -247,7 +249,7 @@ pkg_postinst() {
 		einfo "Beware that this is abandonware, and it's possible to get stuck without settings."
 		einfo "If that happens, run 'audacious -G' or 'audtool preferences-show'."
 	fi
-	if use qt6; then
+	if use qt6 && ! use qt5; then
 		einfo "The Winamp skin frontend does not play nice with Qt6's high-DPI support,"
 		einfo "especially with fractional scaling. See https://doc.qt.io/qt-6/highdpi.html for"
 		einfo "a list of environment variables you can tweak to work around this."
