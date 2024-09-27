@@ -16,8 +16,8 @@ media-plugins/audacious-plugins:cue - Support CUE sheets using the libcue librar
 media-plugins/audacious-plugins:ffmpeg - Use media-video/ffmpeg to play audio from most files
 media-plugins/audacious-plugins:fluidsynth - Support MIDI playback using Fluidsynth
 media-plugins/audacious-plugins:gme - Enable GME plugin (bundled, not media-libs/game-music-emu!)
-media-plugins/audacious-plugins:gtk2 - Enables the GTK+2 GUI. Must match the setting on media-sound/audacious.
-media-plugins/audacious-plugins:gtk3 - Enables the Gtk+3 GUI. Must match the setting on media-sound/audacious.
+media-plugins/audacious-plugins:gtk2 - Enables GTK+2 support for plugins that need it
+media-plugins/audacious-plugins:gtk3 - Enables Gtk+3 support for plugins that need it
 media-plugins/audacious-plugins:hotkeys - Enable global hotkeys plugin
 media-plugins/audacious-plugins:http - Support HTTP streams through net-libs/neon
 media-plugins/audacious-plugins:lame - Enable MP3 filewriter output plugin
@@ -28,6 +28,8 @@ media-plugins/audacious-plugins:mpris2 - Enable MPRIS2 support (generic DBus-bas
 media-plugins/audacious-plugins:opengl - Enable the GL Spectrum visualiser
 media-plugins/audacious-plugins:openmpt - Enable playing module tracker files through media-libs/libopenmpt
 media-plugins/audacious-plugins:pipewire - Enable PipeWire output plugin
+media-plugins/audacious-plugins:qt5 - Enables Qt5 support for plugins that need it
+media-plugins/audacious-plugins:qt6 - Enables Qt6 support for plugins that need it
 media-plugins/audacious-plugins:qtmedia - Enable sound output via dev-qt/qtmultimedia
 media-plugins/audacious-plugins:scrobbler - Build with audioscrobbler/last.fm submission support
 media-plugins/audacious-plugins:sid - Build with SID (Commodore 64 Audio) support
@@ -38,11 +40,11 @@ media-plugins/audacious-plugins:streamtuner - Enable streamtuner (internet radio
 media-plugins/audacious-plugins:vumeter - Enable the VU Meter visualiser
 media-plugins/audacious-plugins:xml - Enable support for XML-based playlists and APIs
 media-sound/audacious:cli - Enable `audtool` CLI (via application-specific DBus interface).
-media-sound/audacious:gtk2 - Enables the GTK+2 GUI. Old, may be removed without warning!
-media-sound/audacious:gtk3 - Enables the Gtk+3 GUI, same caveats as GTK+2. This overrules the gtk2 flag.
+media-sound/audacious:gtk2 - Enables the GTK+2 Audacious GUI. This takes precedence over Gtk+3.
+media-sound/audacious:gtk3 - Enables the Gtk+3 Audacious GUI.
 media-sound/audacious:libarchive - Enable app-arch/libarchive support for compressed Winamp2 .wsz skins. With this disabled they'll be decompressed via shell commands, which may be a security hazard.
-media-sound/audacious:qt5 - Enables the Qt5 Audacious GUI (both skinned and plain).
-media-sound/audacious:qt6 - Enables the Qt6 Audacious GUI. This cannot be enabled alongside Qt5.
+media-sound/audacious:qt5 - Enables the Qt5 Audacious GUI. This takes precedence over Qt6.
+media-sound/audacious:qt6 - Enables the Qt6 Audacious GUI.
 media-sound/qpwgraph:alsa - Support routing ALSA raw midi devices
 media-sound/qpwgraph:trayicon - Enable systray icon (window close will iconify instead of exit)
 net-dns/agnos:filecaps - Allow non-root users to run agnos on privileged ports (i.e. 53)
