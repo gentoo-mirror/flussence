@@ -9,9 +9,9 @@ DESCRIPTION="Picom (née Compton) is an X compositor with XRender and OpenGL/ES 
 LICENSE="MPL-2.0 MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="dbus drm +doc +opengl +pcre"
+IUSE="dbus +doc +opengl +pcre"
 
-# This ebuild revision is for c3e18a6e7a or later
+# This ebuild revision is for a54adb62da or later
 inherit fcaps github-pkg meson optfeature xdg
 
 if [[ ${PV} != "9999" ]]; then
@@ -30,7 +30,6 @@ RDEPEND="
 	x11-libs/xcb-util-image
 	x11-libs/xcb-util-renderutil
 	dbus? ( sys-apps/dbus )
-	drm? ( x11-libs/libdrm )
 	opengl? ( media-libs/libepoxy )
 	pcre? ( dev-libs/libpcre2:= )"
 DEPEND="${RDEPEND}
@@ -44,7 +43,6 @@ src_configure() {
 	local emesonargs=(
 		"$(meson_use dbus)"
 		"$(meson_use doc with_docs)"
-		"$(meson_use drm vsync_drm)"
 		"$(meson_use opengl)"
 		"$(meson_use pcre regex)"
 		"-Dcompton=false"
