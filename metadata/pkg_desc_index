@@ -12,7 +12,7 @@ media-plugins/audacious-plugins 4.4.1 9999-r18: Audacious Player - Your music, y
 media-plugins/lvis 9999-r3: Programmable audio visualizer
 media-plugins/obs-pipewire-audio-capture 1.1.5 9999: PipeWire application audio capture plugin for OBS Studio
 media-sound/audacious 4.4.1 9999-r10: Audacious Player - Your music, your way, no exceptions
-media-sound/qpwgraph 0.7.8 9999: A PipeWire Graph Qt GUI Interface
+media-sound/qpwgraph 0.7.9 9999: A PipeWire Graph Qt GUI Interface
 net-dns/agnos 0.1.0_beta3: A self-hosted ACME dns-01 challenge responder
 sec-keys/openpgp-keys-flussence 20220806: OpenPGP keys used by flussence (::flussence overlay)
 sec-keys/openpgp-keys-gerritpape 20240930: OpenPGP keys used by Gerrit Pape
