@@ -2,7 +2,7 @@
 # /etc/runit/3 - system shutdown tasks
 
 SVDIR=/etc/service
-PATH=/sbin:/usr/sbin:/bin:/usr/bin
+PATH=/usr/sbin:/sbin:/usr/bin:/bin
 
 # Make a best effort to put all our output on tty1.
 chvt 1
@@ -10,31 +10,32 @@ exec >/dev/tty1 2>&1
 stty sane
 
 # If you're logged in on a tty somewhere this will return false,
-# giving you some extra time to finish whatever you were doing.
+# giving you a few moments to finish whatever you were doing.
 # (This will work for any service with "getty" in its name,
 # in case you decide not to use the provided agetty scripts.)
 echo 'Shutting down login consoles...'
-sv -w 5 shutdown "$SVDIR"/*getty*
+sv -w 5 shutdown "${SVDIR}"/*getty*
 
 echo 'Stopping remaining services...'
-sv -w 10 shutdown "$SVDIR"/* || {
+sv -w 10 shutdown "${SVDIR}"/* || {
     echo 'Some services refused to stop. Killing them in 15 seconds:'
     pstree -a
-    sv -w 15 force-shutdown "$SVDIR"/*
+    sv -w 15 force-shutdown "${SVDIR}"/*
 }
 
 # This looks messy, but `test -x` doesn't work on symlinks.
 # runit itself already handles symlinks robustly.
 case "$(stat -Lc '%A' /etc/runit/reboot 2>/dev/null)" in
     ???x?????? )
-        # If kexec is in a runnable state, this will cause it to do the reboot.
+        # If kexec is in a runnable state and openrc's kexec service is enabled,
+        # this should cause it to reboot immediately.
         # If not, it'll just fall through here and runit will do so itself.
         echo 'Doing OpenRC reboot sequence...'
-        RUNLEVEL=6 /sbin/openrc reboot
+        RUNLEVEL=6 openrc reboot
         kexec -e
         ;;
     * )
         echo 'Doing OpenRC shutdown sequence...'
-        RUNLEVEL=0 /sbin/openrc shutdown
+        RUNLEVEL=0 openrc shutdown
         ;;
 esac

@@ -7,60 +7,67 @@
 # of editing this file, as it will be overwritten on upgrades.
 
 SVDIR=/etc/service
-PATH=/sbin:/usr/sbin:/bin:/usr/bin
+PATH=/usr/sbin:/sbin:/usr/bin:/bin
+export PATH
 
-RUNLEVEL=S /sbin/openrc sysinit
-RUNLEVEL=S /sbin/openrc boot
-
-rescue_shell() {
-    echo "Starting a rescue shell, after which the system will reboot"
-    /sbin/sulogin
-    exit 100
-}
-
-# Spawn a login prompt if "single" is passed on the boot command line.
-read -r kcmdline </proc/cmdline
-case " $kcmdline " in
-    *" single "* )
-        /sbin/openrc single
-        rescue_shell
-    ;;
-esac
+# Assume openrc will put the system into a sane state
+RUNLEVEL=S openrc sysinit
+RUNLEVEL=S openrc boot
 
 # Runit expects $SVDIR to be mutable, which isn't good to do in /etc/ for a
 # number of good reasons, but is hard to change due to compatibility reasons.
 # We try here to symlink the $SVDIR/**/supervise/ dirs to /run/ so that the
 # system still works if the filesystem $SVDIR's on is (or becomes) readonly.
-statedir="/run/runit"
+# This is a hacky solution, and the right one would be to put SVDIR in /run/.
+runtime_dir="/run/runit"
 
 # This may fail if /run/ also isn't writable, but that's not a fatal error on
 # our part.
-install -m 0755 -d "$statedir" && exit 0
+install -m 0755 -d "${runtime_dir}"
 
-# Symlink each service's supervise/ (and log/supervise/, if present) dir to
-# /run/runit/$foo/ (resp. /run/runit/log.$foo/) in order to minimise filesystem
-# writes in /etc/.
-cd "$SVDIR" || rescue_shell
-for service_name in *; do
-    [ -d "$service_name" ] || continue # not a dir? something weird, best not touch it
-    if [ ! -L "$service_name"/supervise ]; then
-        rm -rfv "$service_name"/supervise &&
-        ln -Trs "$statedir"/"$service_name" "$service_name"/supervise
-    fi
+rescue_shell() {
+    install -m 0100 /dev/null "${runtime_dir}"/reboot
+    cat <<EOF
+***
+Starting a root rescue shell. After exit, the system will attempt to reboot.
+To skip that reboot and attempt to resume the normal boot process,
+delete the file '${runtime_dir}/reboot' before exiting the shell.
+***
+EOF
+    /sbin/sulogin
+    [ -f "${runtime_dir}"/reboot ] && exit 100
+}
 
-    [ -d "$service_name"/log ] || continue # log dir not existing is fine
-    if [ ! -L "$service_name"/log/supervise ]; then
-        rm -rfv "$service_name"/log/supervise &&
-        ln -Trs "$statedir"/log."$service_name" "$service_name"/log/supervise
-    fi
+# Create shutdown control files (i.e. ln /etc/runit/{reboot,stopit} to /run/)
+# In the unlikely event of /run/ being wedged readonly, you'll still be able to
+# poweroff, just not reboot.
+for control_file in reboot stopit; do
+    [ -L "/etc/runit/${control_file}" ] && continue
+    rm -fv "/etc/runit/${control_file}"
+    ln -Trs "${runtime_dir}/${control_file}" "/etc/runit/${control_file}"
 done
 
-# Do the same for shutdown control files.
-# In the worst case (the filesystem these reside on being wedged read-only)
-# you'll still be able to poweroff, just not reboot.
-cd /etc/runit || rescue_shell
-for control_file in reboot stopit; do
-    [ -L $control_file ] && continue
-    rm -fv $control_file
-    ln -Trs "$statedir"/$control_file $control_file
+# Spawn a login prompt now if "single" is passed on the boot command line.
+read -r boot_cmdline </proc/cmdline
+case " ${boot_cmdline} " in
+    *" single "* )
+        RUNLEVEL=S openrc single
+        rescue_shell
+    ;;
+esac
+
+# Transplant each service's ./supervise/ to /run/runit/{,log.}${sv_name}/ to
+# avoid filesystem writes in /etc/. On subsequent boots this should be a no-op.
+for sv_name in "${SVDIR}"/*; do
+    [ -d "${sv_name}" ] || continue # not a dir? weird, best not to touch it
+    if [ ! -L "${sv_name}"/supervise ]; then
+        rm -rfv "${sv_name}"/supervise &&
+        ln -Trs "${runtime_dir}/${sv_name}" "${sv_name}"/supervise
+    fi
+
+    [ -d "${sv_name}"/log ] || continue # log dir is optional
+    if [ ! -L "${sv_name}"/log/supervise ]; then
+        rm -rfv "${sv_name}"/log/supervise &&
+        ln -Trs "${runtime_dir}"/log."${sv_name}" "${sv_name}"/log/supervise
+    fi
 done
