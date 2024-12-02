@@ -137,7 +137,7 @@ RDEPEND="
 		>=media-libs/opus-1.0.1
 		>=media-libs/opusfile-0.4
 	)
-	pipewire? ( >=media-video/pipewire-0.3.26 )
+	pipewire? ( >=media-video/pipewire-0.3.33 )
 	pulseaudio? ( media-libs/libpulse )
 	scrobbler? ( net-misc/curl )
 	sdl? ( media-libs/libsdl2 )
