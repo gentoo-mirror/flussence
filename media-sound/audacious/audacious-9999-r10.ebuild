@@ -63,7 +63,12 @@ BDEPEND="
 PDEPEND="~media-plugins/audacious-plugins-${PV}[gtk2(-)?,gtk3(-)?,qt5(-)?,qt6(-)?]"
 
 src_configure() {
-	local emesonargs=(
+	local repository emesonargs
+
+	# i quote from ebuild(5): "You may use this for whatever you like."
+	repository="$(sed -nE '/Repository: \w+$/ { s/.*\s(\w+)$/\1/p;q }' "${T}/build.log" || true)"
+	emesonargs=(
+		"-Dbuildstamp='${CATEGORY}/${PF}${repository:+::}$repository'"
 		"--auto-features=disabled"
 		"$(meson_use "$(usex gtk2 gtk2 gtk3)" gtk)"
 		"$(meson_use "$(usex qt5 qt5 qt6)" qt)"
