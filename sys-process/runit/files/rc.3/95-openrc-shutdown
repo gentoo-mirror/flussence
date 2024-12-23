@@ -1,0 +1,20 @@
+#!/bin/sh
+# Tell OpenRC to shut down or reboot. This file should come last in the ordering
+# because if it works, nothing else will run anyway.
+
+# This looks messy, but `test -x` doesn't work on symlinks.
+# runit itself already handles symlinks robustly.
+case "$(stat -Lc "%A" /etc/runit/reboot 2>/dev/null)" in
+    ???x?????? )
+        # If kexec is in a runnable state and openrc"s kexec service is enabled,
+        # this should cause it to reboot immediately.
+        # If not, it"ll just fall through here and runit will do so itself.
+        echo "Doing OpenRC reboot sequence..."
+        RUNLEVEL=6 openrc reboot
+        kexec -e
+        ;;
+    * )
+        echo "Doing OpenRC shutdown sequence..."
+        RUNLEVEL=0 openrc shutdown
+        ;;
+esac

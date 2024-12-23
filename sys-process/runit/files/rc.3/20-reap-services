@@ -1,0 +1,9 @@
+#!/bin/sh
+# Clean up any processes from stage 2 that didn't exit when told to.
+
+echo "Stopping remaining services..."
+sv -w 10 shutdown "${SVDIR}"/* && exit 0
+
+echo "Some processes refused to stop. Waiting 15 more seconds for them:"
+pstree -a
+sv -w 15 force-shutdown "${SVDIR}"/* && exit 0
