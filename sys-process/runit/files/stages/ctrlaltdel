@@ -1,0 +1,9 @@
+#!/bin/sh
+# /etc/runit/ctrlaltdel - process SIGINT/three-finger-salute sent to PID 1
+#
+# This simply tells runit-init to reboot the system.
+
+PATH="/usr/bin:/bin"
+
+touch /etc/runit/stopit /etc/runit/reboot
+chmod 100 /etc/runit/stopit /etc/runit/reboot

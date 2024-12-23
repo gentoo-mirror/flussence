@@ -1,0 +1,23 @@
+#!/bin/sh
+# Spawn a login prompt now if "single" is passed on the boot command line.
+
+read -r boot_cmdline </proc/cmdline
+case " ${boot_cmdline} " in
+    *" single "* ) : ;; # proceed
+    * ) exit 0 ;;
+esac
+
+cat <<EOF
+***
+Starting an emergency shell. After exit, the system will attempt to reboot.
+To skip that reboot and attempt to resume the normal boot process,
+delete the file "${runsv_runtime_dir}/reboot" before exiting the shell.
+***
+EOF
+
+RUNLEVEL=S openrc single
+
+install -m 0100 /dev/null "${runsv_runtime_dir}/reboot"
+/sbin/sulogin --timeout=600
+
+[ -f "${runsv_runtime_dir}/reboot" ] && exit 100

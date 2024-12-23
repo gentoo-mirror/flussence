@@ -1,0 +1,22 @@
+#!/bin/sh
+# Transplant each service's ./supervise/ to /run/runit/${sv_name}/, to avoid
+# filesystem writes in /etc/. This only needs to happen once per service.
+
+runsv_runtime_dir="/run/runit"
+SVDIR="/etc/service"
+
+for sv_name in "${SVDIR}"/*; do
+    test -d "${sv_name}" || continue # not a dir? weird, best not to touch it
+
+    if [ ! -L "${sv_name}/supervise" ]; then
+        rm -rfv "${sv_name}/supervise" &&
+        ln -Trs "${runsv_runtime_dir}/${sv_name}" "${sv_name}/supervise"
+    fi
+
+    test -d "${sv_name}/log" || continue # log dir is optional
+
+    if [ ! -L "${sv_name}/log/supervise" ]; then
+        rm -rfv "${sv_name}/log/supervise" &&
+        ln -Trs "${runsv_runtime_dir}/log.${sv_name}" "${sv_name}/log/supervise"
+    fi
+done
