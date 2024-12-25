@@ -27,10 +27,14 @@ for $repo-root.dir(test => $cat-dir) -> $cat {
     my Bool $has-contents = False; #= Don't create empty folders
 
     for $cat.map(*.dir(test => $pkg-dir)).flat -> $pkg {
-        with $pkg.child('metadata.xml').slurp ~~ /'<changelog>' <(.*?)> '</changelog>'/ -> $uri {
+        with $pkg.add('metadata.xml').slurp ~~ /'<changelog>' <(.*?)> '</changelog>'/ -> $uri {
             put qq{<outline type="folder" text="$cat">}.indent(6) unless $has-contents;
             $has-contents = True;
             put qq{<outline type="rss" text="$pkg.basename()" xmlUrl="$uri"/>}.indent(8);
+        }
+        CATCH {
+            note "<!-- $_ -->";
+            next;
         }
     }
 
