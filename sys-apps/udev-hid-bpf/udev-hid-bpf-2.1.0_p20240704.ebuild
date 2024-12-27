@@ -135,7 +135,7 @@ KEYWORDS="~amd64"
 
 DEPEND="virtual/libudev virtual/libelf"
 RDEPEND="${DEPEND}"
-BDEPEND="sys-devel/clang[llvm_targets_BPF]"
+BDEPEND="llvm-core/clang[llvm_targets_BPF]"
 
 QA_FLAGS_IGNORED="usr/bin/${PN}"
 
