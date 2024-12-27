@@ -1,9 +1,0 @@
-#!/bin/sh -eu
-
-PATH=/bin:/usr/bin
-
-# /etc/runit/1 will make these dangling symlinks to /run/runit/*, so create them now.
-# touch should be equally as safe as chmod here, which is required to reboot anyway.
-cd /etc/runit
-touch stopit reboot
-chmod 100 stopit reboot
