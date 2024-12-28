@@ -118,7 +118,7 @@ For a complete list, do `eix [-R] -c --in-overlay flussence`
 
 `sys-process/runit` — [Runit PID1 and service manager](http://smarden.org/runit/)
 : The init system I'm using since 2014.
-  This package tracks Void Linux's fork of runit now that upstream appears abandoned.
+  This package tracks vanilla upstream as of 2.2.0, previously Void Linux.
   By default requires OpenRC for bringup and shutdown, but this is easily swappable by the sysadmin.
 
 `x11-libs/gtk+:3` — [debloated Gtk+3](https://forums.gentoo.org/viewtopic-p-8245612.html#8245612)
