@@ -1,0 +1,11 @@
+BDEPEND=>=dev-vcs/git-1.8.2.1[curl]
+DEFINED_PHASES=install postinst unpack
+DESCRIPTION=Recreations of the Windows XP .msstyle-engine themes
+EAPI=8
+HOMEPAGE=https://github.com/B00merang-Project/Windows-XP
+INHERIT=github-pkg optfeature
+LICENSE=GPL-3
+PROPERTIES=live
+SLOT=0
+_eclasses_=git-r3	875eb471682d3e1f18da124be97dcc81	github-pkg	5ba984b8fcae68bf6b73604371980a1e	optfeature	222cb475c5a4f7ae7cfb0bf510a6fe54
+_md5_=94e095a04130a9a2f0ea5a47206fea89

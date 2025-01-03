@@ -26,3 +26,4 @@ x11-misc/picom 12.5 9999-r9: Picom (née Compton) is an X compositor with XRende
 x11-themes/nimbus 1.0 9999: The default OpenIndiana theme (GTK+ 2.x/Gtk3 engine, icon- and metacity theme)
 x11-themes/qt6gtk2 0.3 9999: GTK+2.0 integration plugins for Qt6
 x11-themes/slim-nimbus 1.1.12.1 9999: Variant of the OpenIndiana theme with slim window borders and Gtk4 support
+x11-themes/windows-xp-gtk 3.1 9999: Recreations of the Windows XP .msstyle-engine themes
