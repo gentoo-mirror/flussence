@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<longdescription lang="en">
+		Gtk replicas of the various official Windows XP styles - default, Zune, MCE, Embedded
+	</longdescription>
+	<maintainer type="person">
+		<email>gentoo+bugs@flussence.eu</email>
+		<name>flussence</name>
+	</maintainer>
+	<upstream>
+		<bugs-to>https://github.com/B00merang-Project/Windows-XP/issues</bugs-to>
+		<changelog>https://github.com/B00merang-Project/Windows-XP/releases.atom</changelog>
+		<remote-id type="github">B00merang-Project/Windows-XP</remote-id>
+	</upstream>
+</pkgmetadata>
