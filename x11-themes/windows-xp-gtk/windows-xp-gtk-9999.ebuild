@@ -28,7 +28,7 @@ pkg_postinst() {
 	optfeature_header "Themes for the following (not installed) packages are also provided:"
 	optfeature "GTK+2" "x11-libs/gtk+:2"
 	optfeature "Gtk+3" "x11-libs/gtk+:3"
-	optfeature "Gtk 4" "gui-libs/gtk:4"
+	[[ ${PV} == 9999 ]] && optfeature "Gtk 4" "gui-libs/gtk:4"
 	optfeature "Cinnamon" "gnome-extra/cinnamon"
 	optfeature "GNOME 3" "gnome-base/gnome-shell"
 	optfeature "Metacity" "x11-wm/metacity"
