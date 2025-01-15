@@ -7,5 +7,5 @@ INHERIT=github-pkg optfeature
 LICENSE=GPL-3
 PROPERTIES=live
 SLOT=0
-_eclasses_=git-r3	875eb471682d3e1f18da124be97dcc81	github-pkg	5ba984b8fcae68bf6b73604371980a1e	optfeature	222cb475c5a4f7ae7cfb0bf510a6fe54
+_eclasses_=git-r3	875eb471682d3e1f18da124be97dcc81	github-pkg	5ba984b8fcae68bf6b73604371980a1e	optfeature	538bce96e5589935b57e178e8635f301
 _md5_=888793d2ada194d6762684e81ab734af
