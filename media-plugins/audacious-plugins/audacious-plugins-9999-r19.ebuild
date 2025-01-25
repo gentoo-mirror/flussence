@@ -26,7 +26,7 @@ LICENSE="
 SLOT="0"
 
 if [[ ${PV} == "9999" ]]; then
-	# This ebuild revision is for 626836d625 or later
+	# This ebuild revision is for 0f726d98e2 or later
 	EGIT_REPO_URI="https://github.com/audacious-media-player/${PN}.git"
 	inherit git-r3
 else
@@ -60,7 +60,7 @@ declare -A USE_CATEGORIES=(
 	# gui_* are plugins that require a GUI, handled specially below
 	[gui_base]="+hotkeys +vumeter libnotify opengl"
 	[gui_gtk]="aosd lirc"
-	[gui_qt]="ampache moonstone qtmedia streamtuner"
+	[gui_qt]="ampache qtmedia streamtuner"
 )
 
 IUSE="${USE_CATEGORIES[*]}"
@@ -231,9 +231,6 @@ src_configure() {
 		# visualisation plugins
 		"$(meson_use opengl     gl-spectrum)"
 		"$(meson_use            vumeter)"
-
-		# interface plugins
-		"$(meson_use            moonstone)"
 	)
 	meson_src_configure
 }
@@ -243,11 +240,6 @@ pkg_postinst() {
 		einfo "For full winamp2 .wsz skin support either install app-arch/unzip,"
 		einfo "or set the environment variable UNZIPCMD to a drop-in replacement"
 		einfo "(e.g. 'busybox unzip')"
-	fi
-	if use moonstone; then
-		einfo "You may activate the Moonstone UI in the options 'Appearance' tab."
-		einfo "Beware that this is abandonware, and it's possible to get stuck without settings."
-		einfo "If that happens, run 'audacious -G' or 'audtool preferences-show'."
 	fi
 	if use qt6 && ! use qt5; then
 		einfo "The Winamp skin frontend does not play nice with Qt6's high-DPI support,"
