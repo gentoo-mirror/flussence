@@ -101,9 +101,6 @@ For a complete list, do `eix [-R] -c --in-overlay flussence`
   : Module playback library and standalone player.
     Better accuracy and format support than libmodplug.
 
-  `media-plugins/lvis` — [Audacious visualiser plugin](https://git.sr.ht/~kaniini/lvis)
-  : A visualiser with presets written in Javascript. Only requires base Qt5 libraries.
-
 `media-sound/qpwgraph` — [PipeWire Graph Qt GUI Interface](https://gitlab.freedesktop.org/rncbc/qpwgraph)
 : Graphical patchbay for PipeWire, directly descended from QJackCtl.
   Allows you to connect inputs and outputs manually and save/restore connection sets.
