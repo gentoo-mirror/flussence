@@ -81,7 +81,7 @@ REQUIRED_USE="
 RDEPEND="
 	>=dev-libs/glib-2.32
 	~media-sound/audacious-${PV}:=[gtk2(-)?,gtk3(-)?,qt5(-)?,qt6(-)?]
-	sys-libs/zlib
+	sys-libs/zlib:=
 	aac? ( >=media-libs/faad2-2.7 )
 	adplug? ( media-libs/adplug )
 	alsa? ( >=media-libs/alsa-lib-1.0.16 )
@@ -97,12 +97,12 @@ RDEPEND="
 		cddb? ( >=media-libs/libcddb-1.2.1 )
 	)
 	cue? ( >=media-libs/libcue-2.0 )
-	ffmpeg? ( >=media-video/ffmpeg-4.2.4 )
-	flac? ( >=media-libs/flac-1.2.1[ogg] )
+	ffmpeg? ( >=media-video/ffmpeg-4.2.4:= )
+	flac? ( >=media-libs/flac-1.2.1:=[ogg] )
 	fluidsynth? ( >=media-sound/fluidsynth-1.0.6:= )
 	gtk2? ( >=x11-libs/gtk+-2.24:2 )
 	gtk3? ( >=x11-libs/gtk+-3.22:3 )
-	http? ( >=net-libs/neon-0.27 )
+	http? ( >=net-libs/neon-0.27:= )
 	jack? ( virtual/jack )
 	lirc? ( app-misc/lirc )
 	qt5? (
@@ -141,9 +141,9 @@ RDEPEND="
 	pulseaudio? ( media-libs/libpulse )
 	scrobbler? ( net-misc/curl )
 	sdl? ( media-libs/libsdl2 )
-	sid? ( >=media-libs/libsidplayfp-2.0 )
+	sid? ( >=media-libs/libsidplayfp-2.0:= )
 	sndfile? ( >=media-libs/libsndfile-1.0.19 )
-	sndio? ( media-sound/sndio )
+	sndio? ( media-sound/sndio:= )
 	soxr? ( media-libs/soxr )
 	vorbis? (
 		>=media-libs/libogg-1.0
