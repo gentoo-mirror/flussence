@@ -113,6 +113,11 @@ For a complete list, do `eix [-R] -c --in-overlay flussence`
 : Enables loading user-specified BPF blobs into the kernel to work around bugs in HID devices.
   Very niche purpose, but it's here for those who need it.
 
+`sys-kernel/zenergy` — [Ryzen power hwmon driver](https://github.com/BoukeHaarsma23/zenergy)
+: This is a fork of the old `amd_energy` driver, which was removed from the kernel in a hurry after
+  someone realised having joule-accurate counters made a Meltdown-like attack possible. This version
+  fuzzes the numbers just enough to stymie that while allowing mundane meter-reading to still work.
+
 `sys-process/runit` — [Runit PID1 and service manager](http://smarden.org/runit/)
 : The init system I'm using since 2014.
   This package tracks vanilla upstream as of 2.2.0, previously Void Linux.
