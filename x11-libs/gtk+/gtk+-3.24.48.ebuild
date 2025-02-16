@@ -1,9 +1,10 @@
-# Copyright 1999-2024 Gentoo Authors
+# Copyright 1999-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # shellcheck disable=SC2317
 
 EAPI=8
 
+GNOME_ORG_MODULE="gtk"
 inherit gnome2 meson-multilib multilib virtualx
 
 DESCRIPTION="Gimp ToolKit +"
@@ -16,6 +17,7 @@ RESTRICT="!test? ( test )"
 
 REQUIRED_USE="
 	|| ( aqua wayland X )
+	test? ( X )
 	xinerama? ( X )
 "
 
@@ -24,7 +26,7 @@ COMMON_DEPEND="
 	>=dev-libs/glib-2.57.2:2[${MULTILIB_USEDEP}]
 	media-libs/fontconfig[${MULTILIB_USEDEP}]
 	>=media-libs/harfbuzz-2.2.0:=
-	>=media-libs/libepoxy-1.4[X(+)?,${MULTILIB_USEDEP}]
+	>=media-libs/libepoxy-1.4[X(+)?,egl(+),${MULTILIB_USEDEP}]
 	virtual/libintl[${MULTILIB_USEDEP}]
 	>=x11-libs/cairo-1.14[aqua?,glib,svg(+),X?,${MULTILIB_USEDEP}]
 	>=x11-libs/gdk-pixbuf-2.30:2[introspection?,${MULTILIB_USEDEP}]
@@ -35,15 +37,14 @@ COMMON_DEPEND="
 	colord? ( >=x11-misc/colord-0.1.9:0=[${MULTILIB_USEDEP}] )
 	cups? ( >=net-print/cups-2.0[${MULTILIB_USEDEP}] )
 	introspection? ( >=dev-libs/gobject-introspection-1.39:= )
-	sysprof? ( >=dev-util/sysprof-capture-3.33.2:3[${MULTILIB_USEDEP}] )
 	wayland? (
 		>=dev-libs/wayland-1.14.91[${MULTILIB_USEDEP}]
-		>=dev-libs/wayland-protocols-1.21
+		>=dev-libs/wayland-protocols-1.32
 		media-libs/mesa[wayland,${MULTILIB_USEDEP}]
 		>=x11-libs/libxkbcommon-0.2[${MULTILIB_USEDEP}]
 	)
 	X? (
-		accessibility? ( >=app-accessibility/at-spi2-core-2.15.1[${MULTILIB_USEDEP}] )
+		accessibility? ( >=app-accessibility/at-spi2-core-2.46.0[${MULTILIB_USEDEP}] )
 		media-libs/libglvnd[X(+),${MULTILIB_USEDEP}]
 		x11-libs/libX11[${MULTILIB_USEDEP}]
 		x11-libs/libXcomposite[${MULTILIB_USEDEP}]
@@ -61,6 +62,7 @@ DEPEND="${COMMON_DEPEND}
 		media-fonts/font-cursor-misc
 		media-fonts/font-misc-misc
 	)
+	sysprof? ( >=dev-util/sysprof-capture-3.33.2:3[${MULTILIB_USEDEP}] )
 	X? ( x11-base/xorg-proto )
 "
 RDEPEND="${COMMON_DEPEND}
@@ -88,6 +90,7 @@ BDEPEND="
 		app-text/docbook-xml-dtd:4.3
 		>=dev-util/gtk-doc-1.20
 	)
+	test? ( sys-apps/dbus )
 "
 
 MULTILIB_CHOST_TOOLS=(
@@ -134,7 +137,7 @@ multilib_src_compile() {
 }
 
 multilib_src_test() {
-	virtx meson_src_test
+	virtx dbus-run-session meson test -C "${BUILD_DIR}" --timeout-multiplier 4 || die
 }
 
 multilib_src_install() {
