@@ -17,6 +17,7 @@ sec-keys/openpgp-keys-flussence 20220806: OpenPGP keys used by flussence (::flus
 sec-keys/openpgp-keys-gerritpape 20240930: OpenPGP keys used by Gerrit Pape
 sys-apps/udev-hid-bpf 2.1.0_p20240704: An automatic HID-BPF loader based on udev events
 sys-firmware/ath6kl-firmware 9999: ath6kl firmware images (AR6004)
+sys-kernel/zenergy 9999: AMD Zen CPU RAPL power meter hwmon driver
 sys-process/runit 2.2.0-r2: A UNIX init scheme with service supervision
 virtual/service-manager 1-r2: Virtual for various service managers
 x11-libs/gtk+ 3.24.43: Gimp ToolKit +
