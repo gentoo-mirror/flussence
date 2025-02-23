@@ -149,7 +149,7 @@ but for files wholly my own work, GPL2-or-later is granted:
 
     SPDX-License-Identifier: GPL-2+
 
-    Copyright © 2012-<current year> flussence <flussence+KQJqCOBTGC@flussence.eu>
+    Copyright © 2012-<current year> flussence <flussence+K.bE3w31BjB8@flussence.eu>
 
     This is free software; you can redistribute it and/or modify it
     under the terms of the GNU General Public License as published by
