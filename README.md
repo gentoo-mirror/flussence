@@ -123,6 +123,10 @@ For a complete list, do `eix [-R] -c --in-overlay flussence`
   This package tracks vanilla upstream as of 2.2.0, previously Void Linux.
   By default requires OpenRC for bringup and shutdown, but this is easily swappable by the sysadmin.
 
+`www-plugins/passff-host` — [PassFF host application](https://codeberg.org/PassFF/passff#readme)
+: Installs a python script necessary for PassFF to work.
+  Updated fork of the unmaintained 1.2.4 found in `::gentoo` with added support for LibreWolf.
+
 `x11-libs/gtk+:3` — [debloated Gtk+3](https://forums.gentoo.org/viewtopic-p-8245612.html#8245612)
 : Contains a NetBSD patch which makes DBus (and auto-spawning of hidden DBus processes) optional.
   This ebuild usually has zero-day updates before ::gentoo gets them.
