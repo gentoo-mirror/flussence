@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>gentoo+bugs@flussence.eu</email>
+		<name>flussence</name>
+	</maintainer>
+	<upstream>
+		<remote-id type="codeberg">PassFF/passff-host</remote-id>
+	</upstream>
+	<longdescription>
+		This package installs a bridge component required for the PassFF addon
+		(https://codeberg.org/PassFF/passff#readme) to be able to talk to
+		<pkg>app-admin/pass</pkg>. Most of the documentation can be found at that URL.
+	</longdescription>
+</pkgmetadata>
