@@ -1,4 +1,4 @@
-app-office/libreoffice 25.2.1.1: A full office productivity suite
+app-office/libreoffice 25.2.1.2: A full office productivity suite
 dev-libs/libbinio 1.5: Platform-independent way to access binary data streams in C++
 dev-perl/Crypt-LE 0.39: Let's Encrypt API module and client
 dev-perl/Regexp-Debugger 0.2.7: Perl module and command line tool (rxrx) to visually debug regexes in-place
@@ -16,6 +16,7 @@ media-sound/qpwgraph 0.8.1 9999: A PipeWire Graph Qt GUI Interface
 net-dns/agnos 0.1.0: A self-hosted ACME dns-01 challenge responder
 sec-keys/openpgp-keys-flussence 20220806: OpenPGP keys used by flussence (::flussence overlay)
 sec-keys/openpgp-keys-gerritpape 20240930: OpenPGP keys used by Gerrit Pape
+sec-keys/openpgp-keys-libreoffice 20101011: OpenPGP keys used to sign LibreOffice source tar.xz files
 sys-apps/udev-hid-bpf 2.1.0_p20240704: An automatic HID-BPF loader based on udev events
 sys-firmware/ath6kl-firmware 9999: ath6kl firmware images (AR6004)
 sys-kernel/zenergy 9999: AMD Zen CPU RAPL power meter hwmon driver
