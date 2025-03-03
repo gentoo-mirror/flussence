@@ -22,7 +22,7 @@ BRANDING="${PN}-branding-gentoo-0.8.tar.xz"
 
 [[ ${MY_PV} == *9999* ]] && inherit git-r3
 inherit autotools bash-completion-r1 check-reqs flag-o-matic java-pkg-opt-2 multiprocessing \
-	python-single-r1 qmake-utils toolchain-funcs xdg-utils
+	python-single-r1 qmake-utils toolchain-funcs verify-sig xdg-utils
 
 DESCRIPTION="A full office productivity suite"
 HOMEPAGE="https://www.libreoffice.org"
@@ -36,6 +36,10 @@ if [[ ${MY_PV} != *9999* ]]; then
 	for i in ${DEV_URI}; do
 		SRC_URI+=" ${i}/${PN}-${MY_PV}.tar.xz"
 		SRC_URI+=" ${i}/${PN}-help-${MY_PV}.tar.xz"
+		SRC_URI+=" verify-sig? (
+			${i}/${PN}-${MY_PV}.tar.xz.asc
+			${i}/${PN}-help-${MY_PV}.tar.xz.asc
+		)"
 	done
 	unset i
 fi
@@ -304,6 +308,7 @@ BDEPEND="
 			=llvm-core/lld-15*	)
 	) )
 	odk? ( >=app-text/doxygen-1.8.4 )
+	verify-sig? ( sec-keys/openpgp-keys-libreoffice )
 "
 if [[ ${MY_PV} != *9999* ]] && [[ ${PV} != *_* ]]; then
 	PDEPEND="=app-office/libreoffice-l10n-$(ver_cut 1-2)*"
@@ -353,6 +358,17 @@ pkg_setup() {
 }
 
 src_unpack() {
+	if use verify-sig; then
+		pushd "${DISTDIR}" || die
+		for tarball_base in "${PN}-${MY_PV}" "${PN}-help-${MY_PV}"; do
+			verify-sig_verify_detached \
+				"${tarball_base}.tar.xz" \
+				"${tarball_base}.tar.xz.asc" \
+				"/usr/share/openpgp-keys/${PN}.asc"
+		done
+		popd || die
+	fi
+
 	default
 
 	if [[ ${MY_PV} = *9999* ]]; then
