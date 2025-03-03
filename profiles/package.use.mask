@@ -7,3 +7,6 @@ media-sound/audacious libarchive
 # recommends not doing this, although I couldn't find a clear rationale for
 # doing so. In any case it doesn't really need it. v12 prefers rtkit.
 x11-misc/picom filecaps
+
+# Gtk4 is not ready for use, and forcing it on has caused users unnecessary grief.
+app-office/libreoffice gtk4

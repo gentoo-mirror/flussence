@@ -55,6 +55,12 @@ Contents
 This list is manually maintained. Some things may be missing (accidentally or not).
 For a complete list, do `eix [-R] -c --in-overlay flussence`
 
+`app-office/libreoffice` — [LibreOffice 25 with `USE=gtk3` restored](https://bugs.gentoo.org/950270)
+: Take a shot every time asturm@ deliberately breaks something then jumps into 15 different forum
+  threads/bugs to attack users that point out the emperor is naked without receiving so much as a
+  slap on the wrist for being a gigantic missing stair serial abuser.
+  This took me less than an hour to fix AND compile AND fix all the shellcheck warnings.
+
 `dev-perl/Crypt-LE` — [Crypt::LE](https://metacpan.org/pod/Crypt::LE)
 : A Perl ACME/Let's Encrypt client with minimal dependencies and no surprise third-party traffic.
 
