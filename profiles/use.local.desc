@@ -2,16 +2,6 @@
 # Please add your descriptions to your package's metadata.xml ONLY.
 # * generated automatically using pmaint *
 
-app-office/libreoffice:base - Enable full support for LibreOffice Base databases (involves additional bundled libs)
-app-office/libreoffice:clang - Use Clang compiler instead of GCC
-app-office/libreoffice:coinmp - Use sci-libs/coinor-mp as alternative solver
-app-office/libreoffice:googledrive - Enable support for remote files on Google Drive
-app-office/libreoffice:gtk3 - Enable Gtk+3 GUI (recommended)
-app-office/libreoffice:gtk4 - Enable Gtk4 GUI (unstable and in development)
-app-office/libreoffice:mariadb - Prefer mariadb connector over mysql connector
-app-office/libreoffice:odk - Build the Office Development Kit
-app-office/libreoffice:pdfimport - Enable PDF import via the Poppler library
-app-office/libreoffice:vulkan - Enable Vulkan usage via the skia library (clang recommended)
 gnome-extra/gucharmap:system-unicode - Regenerate unicode metadata using app-i18n/unicode-data instead of using old bundled copies
 media-libs/libopenmpt:cli - Build openmpt123, the command-line player application
 media-libs/libopenmpt:flac - Add support for FLAC file writing support in openmpt123
