@@ -8,11 +8,11 @@ PYTHON_COMPAT=( python3_{{10..13},13t} )
 inherit python-single-r1
 
 DESCRIPTION="Native Messaging Host app for the PassFF WebExtension"
-HOMEPAGE="https://codeberg.com/PassFF/passff-host"
+HOMEPAGE="https://codeberg.org/PassFF/passff-host"
 
 SRC_URI="
-	https://codeberg.com/PassFF/passff-host/releases/download/${PV}/passff.py -> ${P}.py
-	https://codeberg.com/PassFF/passff-host/releases/download/${PV}/passff.json -> ${P}.json
+	https://codeberg.org/PassFF/passff-host/releases/download/${PV}/passff.py -> ${P}.py
+	https://codeberg.org/PassFF/passff-host/releases/download/${PV}/passff.json -> ${P}.json
 "
 S="${WORKDIR}"
 LICENSE="GPL-2"
