@@ -5,10 +5,11 @@
 EAPI=8
 
 GNOME_ORG_MODULE="gtk"
-inherit gnome2 meson-multilib multilib virtualx
+inherit gnome2 meson-multilib multilib verify-sig virtualx
 
 DESCRIPTION="Gimp ToolKit +"
 HOMEPAGE="https://www.gtk.org/"
+SRC_URI+=" verify-sig? ( ${SRC_URI%%.tar*}.sha256sum )"
 LICENSE="LGPL-2+"
 SLOT="3"
 KEYWORDS="~amd64 ~x86"
@@ -103,6 +104,16 @@ PATCHES=(
 	# gtk-update-icon-cache is installed by dev-util/gtk-update-icon-cache
 	"${FILESDIR}"/update-icon-cache.patch
 )
+
+src_unpack() {
+	if use verify-sig; then
+		pushd "${DISTDIR}" || die
+		verify-sig_verify_unsigned_checksums "${A##* }" sha256 "${A%% *}"
+		popd || die
+	fi
+
+	default
+}
 
 multilib_src_configure() {
 	local emesonargs
