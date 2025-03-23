@@ -1,4 +1,4 @@
-# Copyright 1999-2024 Gentoo Authors
+# Copyright 1999-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -17,8 +17,10 @@ if [[ ${PV} == "9999" ]]; then
 	EGIT_REPO_URI="https://github.com/audacious-media-player/${PN}.git"
 	inherit git-r3
 else
-	SRC_URI="https://distfiles.audacious-media-player.org/${MY_P}.tar.bz2"
 	KEYWORDS="~amd64 ~x86"
+	SRC_URI="https://distfiles.audacious-media-player.org/${MY_P}.tar.bz2"
+	inherit verify-sig
+	SRC_URI+=" verify-sig? ( ${SRC_URI%%.tar*}.sha256sum )"
 fi
 
 inherit meson xdg
@@ -61,6 +63,16 @@ BDEPEND="
 	sys-devel/gettext
 	cli? ( dev-util/gdbus-codegen )"
 PDEPEND="~media-plugins/audacious-plugins-${PV}[gtk2(-)?,gtk3(-)?,qt5(-)?,qt6(-)?]"
+
+src_unpack() {
+	if [[ ${PV} != "9999" ]] && use verify-sig; then
+		pushd "${DISTDIR}" || die
+		verify-sig_verify_unsigned_checksums "${A##* }" sha256 "${A%% *}"
+		popd || die
+	fi
+
+	default
+}
 
 src_configure() {
 	local repository emesonargs

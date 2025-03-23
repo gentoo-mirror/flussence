@@ -1,19 +1,20 @@
-# Copyright 1999-2024 Gentoo Authors
+# Copyright 1999-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
 
-inherit flag-o-matic gnome2
+GNOME_ORG_MODULE="gucharmap"
+GNOME_ORG_PV="${PV%%_p*}"
+GNOME_TARBALL_SUFFIX="bz2"
+inherit flag-o-matic gnome2 verify-sig
 
-MY_P="${P%%_p*}" # package without patchlevel
 MY_UV="${PV##*_p}" # app-i18n/unicode-data major version that we support.
 # N.B. "15", not "15.1". For an upstream ".1" just -r bump this file and edit
 # the defines patch. i'm aware this sucks but version parsing tricks is worse
 
 DESCRIPTION="GNOME Character Map, based on the Unicode Character Database"
 HOMEPAGE="https://wiki.gnome.org/Apps/Gucharmap"
-SRC_URI="mirror://gnome/sources/gucharmap/$(ver_cut 1-2)/${MY_P}.tar.bz2"
-S="${WORKDIR}/${MY_P}"
+SRC_URI+=" verify-sig? ( ${SRC_URI%%.tar*}.sha256sum )"
 LICENSE="GPL-3 unicode"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
@@ -30,6 +31,16 @@ BDEPEND="
 	)"
 
 PATCHES=( "${FILESDIR}"/unicode-"${MY_UV}"-defines.patch )
+
+src_unpack() {
+	if use verify-sig; then
+		pushd "${DISTDIR}" || die
+		verify-sig_verify_unsigned_checksums "${A##* }" sha256 "${A%% *}"
+		popd || die
+	fi
+
+	default
+}
 
 src_prepare() {
 	gnome2_src_prepare

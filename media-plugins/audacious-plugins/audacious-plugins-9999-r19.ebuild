@@ -1,4 +1,4 @@
-# Copyright 1999-2024 Gentoo Authors
+# Copyright 1999-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -32,6 +32,8 @@ if [[ ${PV} == "9999" ]]; then
 else
 	KEYWORDS="~amd64 ~x86"
 	SRC_URI="https://distfiles.audacious-media-player.org/${MY_P}.tar.bz2"
+	inherit verify-sig
+	SRC_URI+=" verify-sig? ( ${SRC_URI%%.tar*}.sha256sum )"
 fi
 
 inherit meson
@@ -162,6 +164,16 @@ PATCHES=(
 	"${FILESDIR}"/0001-nsfe-Sanity-check-block-header-size-before-reading.patch
 	"${FILESDIR}"/0002-nsfe-Add-some-additional-hardening-and-sanity-checks.patch
 )
+
+src_unpack() {
+	if [[ ${PV} != "9999" ]] && use verify-sig; then
+		pushd "${DISTDIR}" || die
+		verify-sig_verify_unsigned_checksums "${A##* }" sha256 "${A%% *}"
+		popd || die
+	fi
+
+	default
+}
 
 src_configure() {
 	# USE-to-meson map, mostly grouped in the same way as the array above
