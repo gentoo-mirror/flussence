@@ -11,7 +11,7 @@ media-libs/libopenmpt 0.7.13: Cross-platform C++ and C library to decode tracked
 media-plugins/audacious-plugins 4.4.2 9999-r18 9999-r19: Audacious Player - Your music, your way, no exceptions
 media-plugins/obs-pipewire-audio-capture 1.1.5 9999: PipeWire application audio capture plugin for OBS Studio
 media-sound/audacious 4.4.2 9999-r10: Audacious Player - Your music, your way, no exceptions
-media-sound/qpwgraph 0.8.2 9999: A PipeWire Graph Qt GUI Interface
+media-sound/qpwgraph 0.8.3 9999: A PipeWire Graph Qt GUI Interface
 net-dns/agnos 0.1.0: A self-hosted ACME dns-01 challenge responder
 sec-keys/openpgp-keys-flussence 20220806: OpenPGP keys used by flussence (::flussence overlay)
 sec-keys/openpgp-keys-gerritpape 20240930: OpenPGP keys used by Gerrit Pape
