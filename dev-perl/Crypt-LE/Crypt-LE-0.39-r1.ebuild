@@ -30,8 +30,7 @@ RDEPEND="
 	>=virtual/perl-Module-Load-0.280
 	>=dev-perl/Net-SSLeay-1.550
 	virtual/perl-Scalar-List-Utils
-	virtual/perl-Storable
-	>=virtual/perl-Time-Piece-1.270"
+	virtual/perl-Storable"
 BDEPEND="
 	>=virtual/perl-ExtUtils-Install-1.460
 	virtual/perl-ExtUtils-MakeMaker
