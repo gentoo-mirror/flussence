@@ -12,3 +12,7 @@ Changelog URLs in ``metadata.xml`` always point to an upstream RSS/Atom list of 
 wilful violation of Gentoo's spec, which has no way to specify machine-readable update URLs, because
 I find it uselessly stiff. Running ``scripts/dump-feeds.raku`` will spit out an OPML list of these.
 (OPML is an awful format, but nobody seems to have the will to promote an alternative.)
+
+Updating live ebuilds: revbump if the upstream build system changed, add a comment documenting the
+git commit where the change happened (or *some* kind of date anchor that can be referenced).
+Gentoo does not have any codified mechanism for this, and as a result gets things like Bug 953081.
