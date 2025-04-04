@@ -65,7 +65,9 @@ BDEPEND="
 PDEPEND="~media-plugins/audacious-plugins-${PV}[gtk2(-)?,gtk3(-)?,qt5(-)?,qt6(-)?]"
 
 src_unpack() {
-	if [[ ${PV} != "9999" ]] && use verify-sig; then
+	if [[ ${PV} == "9999" ]]; then
+		git-r3_src_unpack
+	elif use verify-sig; then
 		pushd "${DISTDIR}" || die
 		verify-sig_verify_unsigned_checksums "${A##* }" sha256 "${A%% *}"
 		popd || die
