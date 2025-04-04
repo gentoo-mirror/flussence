@@ -26,7 +26,7 @@ LICENSE="
 SLOT="0"
 
 if [[ ${PV} == "9999" ]]; then
-	# This ebuild revision is for 0f726d98e2 or later
+	# This ebuild revision is for d43986cfec or later
 	EGIT_REPO_URI="https://github.com/audacious-media-player/${PN}.git"
 	inherit git-r3
 else
@@ -142,7 +142,7 @@ RDEPEND="
 	pipewire? ( >=media-video/pipewire-0.3.33 )
 	pulseaudio? ( media-libs/libpulse )
 	scrobbler? ( net-misc/curl )
-	sdl? ( media-libs/libsdl2 )
+	sdl? ( >=media-libs/libsdl3-3.2.0 )
 	sid? ( >=media-libs/libsidplayfp-2.0:= )
 	sndfile? ( >=media-libs/libsndfile-1.0.19 )
 	sndio? ( media-sound/sndio:= )
@@ -166,7 +166,9 @@ PATCHES=(
 )
 
 src_unpack() {
-	if [[ ${PV} != "9999" ]] && use verify-sig; then
+	if [[ ${PV} == "9999" ]]; then
+		git-r3_src_unpack
+	elif use verify-sig; then
 		pushd "${DISTDIR}" || die
 		verify-sig_verify_unsigned_checksums "${A##* }" sha256 "${A%% *}"
 		popd || die
