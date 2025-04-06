@@ -7,9 +7,12 @@
 LC_ALL="C.UTF-8"
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/sbin:/usr/bin:/bin"
 SVDIR="/etc/service"
-export LC_ALL PATH SVDIR
+RC_PID="$$"
+export LC_ALL PATH SVDIR RC_PID
 
-# Make a best effort to put all our output on tty1.
+test -c /dev/kmsg && echo "Entering stage 3 at PID ${RC_PID}" | tee /dev/kmsg
+
+# Make a best effort to put the shutdown process on the screen.
 chvt 1
 exec >/dev/tty1 2>&1
 stty sane

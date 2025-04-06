@@ -9,11 +9,16 @@
 LC_ALL="C.UTF-8"
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/sbin:/usr/bin:/bin"
 SVDIR="/etc/service"
-export LC_ALL PATH SVDIR
+RC_PID="$$"
+export LC_ALL PATH SVDIR RC_PID
+
+# Purely for informational purposes; will be skipped if devtmpfs is absent.
+# The PID is exported so this process tree can be moved into a cgroup.
+test -c /dev/kmsg && echo "Entering stage 1 at PID ${RC_PID}" | tee /dev/kmsg
 
 # Only items with the execute bit set will be run; chmod u-x is the intended way
 # to disable them. Files in directories like these should follow the traditional
-# convention of a 2-digit numeric prefix for ordering, and will be ASCII-sorted.
+# convention of a 2-digit numeric prefix for ordering.
 for f in /etc/runit/rc.1/*; do
     test -x "${f}" || continue
     "${f}"
