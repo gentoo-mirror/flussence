@@ -10,5 +10,5 @@ LICENSE=BSD
 RDEPEND=sys-apps/openrc sys-process/psmisc
 SLOT=0/vanilla
 SRC_URI=http://smarden.org/runit/runit-2.2.0.tar.gz verify-sig? ( https://smarden.org/runit/sha256sum.asc -> runit-2.2.0.sha256sum.asc )
-_eclasses_=toolchain-funcs	6afdb6107430c1832ca7e16aacbf8fa1	multilib	b2a329026f2e404e9e371097dda47f96	flag-o-matic	16d3941ed2dc39f4819368ae51bc0b72	readme.gentoo-r1	b045f3acf546393ab6b3170781875358	eapi9-pipestatus	d2c134036ac31c3085aebc9147f572bd	verify-sig	7433426b6b28bf2737ba4b82c8aa8c53
+_eclasses_=toolchain-funcs	6afdb6107430c1832ca7e16aacbf8fa1	multilib	b2a329026f2e404e9e371097dda47f96	flag-o-matic	e8de74bac929ba17427e740e95707d00	readme.gentoo-r1	b045f3acf546393ab6b3170781875358	eapi9-pipestatus	d2c134036ac31c3085aebc9147f572bd	verify-sig	7433426b6b28bf2737ba4b82c8aa8c53
 _md5_=5aa81e3271ffc9bfeb96ffaeed01051e
