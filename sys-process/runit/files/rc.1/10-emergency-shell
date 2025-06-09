@@ -21,7 +21,7 @@ delete the file "${runsv_runtime_dir}/reboot" before exiting the shell.
 ***
 EOF
 
-RUNLEVEL=S openrc single
+openrc single
 
 install -m 0100 /dev/null "${runsv_runtime_dir}/reboot"
 /sbin/sulogin --timeout=100

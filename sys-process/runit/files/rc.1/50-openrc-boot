@@ -1,5 +1,5 @@
 #!/bin/sh
 # Hand off mounting and other basic tasks to OpenRC.
 
-RUNLEVEL=S openrc sysinit
-RUNLEVEL=S openrc boot
+openrc sysinit
+openrc boot
