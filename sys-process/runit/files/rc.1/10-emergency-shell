@@ -10,7 +10,7 @@ if mountpoint -q /proc; then
             exit 0 ;;
     esac
 else
-    echo "/proc was not mounted when it should be"
+    echo "/proc was not mounted when it was expected"
 fi
 
 cat <<EOF
