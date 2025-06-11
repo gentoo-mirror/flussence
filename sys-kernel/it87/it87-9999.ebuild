@@ -5,7 +5,7 @@ EAPI=8
 
 GITHUB_USER="frankcrawford"
 
-DESCRIPTION="it87.ko"
+DESCRIPTION="Fork of the kernel's it87.ko with support for more chips"
 LICENSE="GPL-2"
 SLOT="0"
 
