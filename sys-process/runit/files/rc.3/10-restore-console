@@ -1,0 +1,6 @@
+#!/bin/sh
+# Make a best effort to put the shutdown process on the screen.
+
+chvt 1
+exec >/dev/tty1 2>&1
+stty sane

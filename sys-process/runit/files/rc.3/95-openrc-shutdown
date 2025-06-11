@@ -10,11 +10,11 @@ case "$(stat -Lc "%A" /etc/runit/reboot 2>/dev/null)" in
         # this should cause it to reboot immediately.
         # If not, it"ll just fall through here and runit will do so itself.
         echo "Doing OpenRC reboot sequence..."
-        RUNLEVEL=6 openrc reboot
+        openrc reboot
         kexec -e
         ;;
     * )
         echo "Doing OpenRC shutdown sequence..."
-        RUNLEVEL=0 openrc shutdown
+        openrc shutdown
         ;;
 esac
