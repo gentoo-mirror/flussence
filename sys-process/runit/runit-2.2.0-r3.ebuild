@@ -45,6 +45,8 @@ src_prepare() {
 }
 
 src_configure() {
+	# build failures with gcc15 (std=gnu23)
+	append-cflags "-std=gnu11"
 	use static && append-ldflags "-static"
 
 	echo "$(tc-getCC) ${CFLAGS}"  > conf-cc
@@ -66,7 +68,7 @@ src_install() {
 	# Install runit-init stages
 	exeinto "/etc/runit"
 	doexe "${FILESDIR}/stages/"*
-	for rc_dir in rc.{1,3}; do
+	for rc_dir in rc.{1..3}; do
 		exeinto "/etc/runit/${rc_dir}"
 		doexe "${FILESDIR}/${rc_dir}/"*
 	done

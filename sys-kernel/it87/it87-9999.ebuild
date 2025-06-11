@@ -3,19 +3,18 @@
 
 EAPI=8
 
-GITHUB_USER="BoukeHaarsma23"
+GITHUB_USER="frankcrawford"
 
-DESCRIPTION="AMD Zen CPU RAPL power meter hwmon driver"
-
+DESCRIPTION="Fork of the kernel's it87.ko with support for more chips"
 LICENSE="GPL-2"
 SLOT="0"
 
 inherit github-pkg linux-mod-r1
 
-CONFIG_CHECK="HWMON PCI AMD_NB"
+CONFIG_CHECK="HWMON PCI"
 
 src_compile() {
-	local modlist=(zenergy)
-	local modargs=(KDIR="${KV_OUT_DIR}")
+	local modlist=(it87)
+	local modargs=( KERNEL_BUILD="${KV_OUT_DIR}" )
 	linux-mod-r1_src_compile
 }

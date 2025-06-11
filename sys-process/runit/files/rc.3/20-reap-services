@@ -1,9 +1,14 @@
 #!/bin/sh
 # Clean up any processes from stage 2 that didn't exit when told to.
 
-echo "Stopping remaining services..."
-sv -w 10 shutdown "${SVDIR}"/* && exit 0
+echo "Stopping remaining services (soft)..."
+sv shutdown "${SVDIR}"/* && exit 0
 
-echo "Some processes refused to stop. Waiting 15 more seconds for them:"
+echo "Some processes are still running:"
 pstree -a
-sv -w 15 force-shutdown "${SVDIR}"/* && exit 0
+sv force-shutdown "${SVDIR}"/* && exit 0
+
+# This will only catch processes in these two groups.
+echo "Cleaning up runit cgroups..."
+cd /sys/fs/cgroup &&
+    echo 1 | tee runit.1/cgroup.kill runit.2/cgroup.kill

@@ -1,0 +1,11 @@
+#!/bin/sh
+# Early mount some virtual filesystems we use:
+# /proc/cmdline is needed to check for the boot param "single".
+# /sys/fs/cgroup/runit.{1..3} is for organisation and cleanup.
+while read -r src tgt type; do
+    mount --source "${src}" --target "${tgt}" --type "${type}"
+done <<FSTAB
+proc /proc proc nodev,noexec,nosuid
+sysfs /sys sysfs nodev,noexec,nosuid
+cgroup2 /sys/fs/cgroup cgroup2
+FSTAB

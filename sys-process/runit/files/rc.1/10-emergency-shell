@@ -1,11 +1,17 @@
 #!/bin/sh
-# Spawn a login prompt now if "single" is passed on the boot command line.
+# Spawn a recovery shell if the situation calls for it.
 
-read -r boot_cmdline </proc/cmdline
-case " ${boot_cmdline} " in
-    *" single "* ) : ;; # proceed
-    * ) exit 0 ;;
-esac
+if mountpoint -q /proc; then
+    read -r boot_cmdline </proc/cmdline
+    case " ${boot_cmdline} " in
+        *" single "* )
+            echo "'single' keyword present in boot params" ;;
+        * )
+            exit 0 ;;
+    esac
+else
+    echo "/proc was not mounted when it was expected"
+fi
 
 cat <<EOF
 ***
@@ -15,9 +21,9 @@ delete the file "${runsv_runtime_dir}/reboot" before exiting the shell.
 ***
 EOF
 
-RUNLEVEL=S openrc single
+openrc single
 
 install -m 0100 /dev/null "${runsv_runtime_dir}/reboot"
-/sbin/sulogin --timeout=600
+/sbin/sulogin --timeout=100
 
 [ -f "${runsv_runtime_dir}/reboot" ] && exit 100

@@ -5,5 +5,6 @@
 
 PATH="/usr/bin:/bin"
 
-touch /etc/runit/stopit /etc/runit/reboot
-chmod 100 /etc/runit/stopit /etc/runit/reboot
+cd /etc/runit
+touch stopit reboot
+chmod 100 stopit reboot

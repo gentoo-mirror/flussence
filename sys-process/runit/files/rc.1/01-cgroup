@@ -1,0 +1,10 @@
+#!/bin/sh
+# Assign all of the stage to a cgroup by default. This is useful for identifying
+# strays left over from stage 1, setting default resource limits in stage 2 for
+# processes not further classified, and is done in stage 3 just for consistency.
+
+[ "0${RC_PID}" -gt 0 ] || exit
+
+RC_CGROUP="/sys/fs/cgroup/runit.${RC_STAGE}"
+mkdir "${RC_CGROUP}" &&
+    echo "${RC_PID}" >| "${RC_CGROUP}/cgroup.procs"
