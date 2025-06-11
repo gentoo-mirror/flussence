@@ -16,5 +16,6 @@ CONFIG_CHECK="HWMON PCI AMD_NB"
 
 src_compile() {
 	local modlist=(zenergy)
+	local modargs=(KDIR="${KV_OUT_DIR}")
 	linux-mod-r1_src_compile
 }
