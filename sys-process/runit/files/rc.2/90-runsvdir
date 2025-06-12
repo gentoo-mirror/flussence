@@ -7,6 +7,7 @@
 # here in the first place, but doing so isn't always practical.
 for console_device in /dev/tty12 /dev/ttyS1 /dev/kmsg; do
     if [ -c "${console_device}" ]; then
+        echo "Redirecting runsvdir output to ${console_device}" >&2
         # shellcheck disable=SC2094
         exec <>"${console_device}" >"${console_device}" 2>"${console_device}"
         break
