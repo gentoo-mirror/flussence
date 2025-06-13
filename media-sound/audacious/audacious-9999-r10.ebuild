@@ -17,7 +17,12 @@ if [[ ${PV} == "9999" ]]; then
 	EGIT_REPO_URI="https://github.com/audacious-media-player/${PN}.git"
 	inherit git-r3
 else
-	KEYWORDS="~amd64 ~x86"
+	# reusing one ebuild for 4.4.* and 4.5-beta*
+	if [[ ${PV} == *beta* ]]; then
+		KEYWORDS="~amd64 ~x86"
+	else
+		KEYWORDS="amd64 x86"
+	fi
 	SRC_URI="https://distfiles.audacious-media-player.org/${MY_P}.tar.bz2"
 	inherit verify-sig
 	SRC_URI+=" verify-sig? ( ${SRC_URI%%.tar*}.sha256sum )"

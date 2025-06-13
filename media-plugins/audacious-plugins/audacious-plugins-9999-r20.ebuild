@@ -10,11 +10,15 @@ HOMEPAGE="https://audacious-media-player.org/"
 S="${WORKDIR}/${MY_P}"
 # build system: BSD-2
 # embedded libgme, adplug: LGPL-2.1
+# winamp2 "Glare" skin: CC-BY-SA-4.0
+# WinAmp™ 2.9 skin: 🤷
 # other internal console players, most plugins: GPL-2+
 # GUI is GPL-3 only: src/skins/main.h is explicit about it.
 LICENSE="
 	BSD-2
 	LGPL-2.1
+	CC-BY-SA-4.0
+	all-rights-reserved
 	GPL-2+
 	ampache? ( GPL-3 )
 	flac? ( GPL-3+ )
@@ -26,7 +30,7 @@ LICENSE="
 SLOT="0"
 
 if [[ ${PV} == "9999" ]]; then
-	# This ebuild revision is for d43986cfec or later
+	# This ebuild revision is for 367e7a3810 or later
 	EGIT_REPO_URI="https://github.com/audacious-media-player/${PN}.git"
 	inherit git-r3
 else
