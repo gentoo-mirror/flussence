@@ -25,12 +25,12 @@ LICENSE="
 	qt6? ( GPL-3 )"
 SLOT="0"
 
+# This ebuild revision is for v4.4* only (commits before 367e7a3810) due to licensing concerns
 if [[ ${PV} == "9999" ]]; then
-	# This ebuild revision is for 0ffe6d8b43 or later
 	EGIT_REPO_URI="https://github.com/audacious-media-player/${PN}.git"
 	inherit git-r3
 else
-	KEYWORDS="~amd64 ~x86"
+	KEYWORDS="amd64 x86"
 	SRC_URI="https://distfiles.audacious-media-player.org/${MY_P}.tar.bz2"
 	inherit verify-sig
 	SRC_URI+=" verify-sig? ( ${SRC_URI%%.tar*}.sha256sum )"
