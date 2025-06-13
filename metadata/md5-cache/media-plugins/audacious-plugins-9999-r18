@@ -12,4 +12,4 @@ RDEPEND=>=dev-libs/glib-2.32 ~media-sound/audacious-9999:=[gtk2(-)?,gtk3(-)?,qt5
 REQUIRED_USE=|| ( alsa coreaudio encode jack oss pipewire pulseaudio qtmedia sdl sndio ) || ( mpris2 gui ) encode? ( || ( flac lame vorbis ) ) gui? ( || ( gtk2 gtk3 qt5 qt6 ) ) cddb? ( cdda ) scrobbler? ( xml ) hotkeys? ( gui ) libnotify? ( gui ) opengl? ( gui ) aosd? ( || ( gtk2 gtk3 ) ) lirc? ( || ( gtk2 gtk3 ) ) ampache? ( || ( qt5 qt6 ) ) moonstone? ( || ( qt5 qt6 ) ) qtmedia? ( || ( qt5 qt6 ) ) streamtuner? ( || ( qt5 qt6 ) ) vumeter? ( || ( qt5 qt6 ) )
 SLOT=0
 _eclasses_=git-r3	875eb471682d3e1f18da124be97dcc81	toolchain-funcs	f9d71a6efe9d083aec750dd13968e169	flag-o-matic	b892042b2667b8ac69ec8a2571dc290a	multiprocessing	1e32df7deee68372153dca65f4a7c21f	ninja-utils	2df4e452cea39a9ec8fb543ce059f8d6	python-utils-r1	b043191f3a82642545249acea7318e03	meson	99466844dd8d4fcfb07578a76f5a9922
-_md5_=89e99a00568fa5442779f0a36949923d
+_md5_=5ebd76cf9221fd8671f16d06a41d51ca
