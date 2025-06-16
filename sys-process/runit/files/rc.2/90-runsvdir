@@ -14,4 +14,7 @@ for console_device in /dev/tty12 /dev/ttyS1 /dev/kmsg; do
     fi
 done
 
-exec runsvdir -P "${SVDIR:-/etc/service}"
+# Needs to be set so services can use implicit-path dependencies without breaking
+export SVDIR="/etc/service"
+
+exec runsvdir -P "${SVDIR}"
