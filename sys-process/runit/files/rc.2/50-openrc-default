@@ -1,0 +1,6 @@
+#!/bin/sh
+# Run OpenRC's "default" runlevel in the background.
+# This allows an easy transition from or to an OpenRC-based system, as services
+# can be moved between it and runsvdir when convenient.
+
+openrc default

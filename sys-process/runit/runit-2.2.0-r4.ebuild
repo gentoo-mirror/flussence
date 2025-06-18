@@ -85,13 +85,11 @@ src_install() {
 		dodoc "${T}/agetty/${script}"
 	done
 
-	# Tell runit programs and shell completions where our services live.
-	# The "standard" dir is /service, and every distro rightfully ignores it.
-	dodir /etc/service
-	newenvd - "99${PN}" <<- EOF
-		# /etc/env.d/99${PN}
-		SVDIR="/etc/service"
-	EOF
+	# Set up symlinks for normal operation (all of these are runtime-created tmpfs)
+	keepdir /etc/runit/runsvdir
+	dosym -r /etc/runit/runsvdir/current /service
+	dosym -r /run/runit.reboot /etc/runit/reboot
+	dosym -r /run/runit.stopit /etc/runit/stopit
 
 	cd "${S}" || die
 
@@ -105,9 +103,9 @@ pkg_postinst() {
 	readme.gentoo_print_elog
 
 	if [[ -n ${REPLACING_VERSIONS} ]] ; then
-		ewarn "A pre-existing runit version was detected."
-		ewarn "This package no longer installs agetty scripts to /etc/sv/"
-		ewarn "You may want to verify your /etc/service setup is sane."
+		einfo "A pre-existing runit version was detected."
+		ewarn "This package has changed significantly as of runit-2.2.0-r4."
+		ewarn "Check the README.gentoo file for details."
 	fi
 }
 

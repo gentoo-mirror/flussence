@@ -1,11 +1,16 @@
-#!/bin/sh
-# Early mount some virtual filesystems we use:
+#!/bin/mount -aT
+# Early mount fstab for some virtual filesystems we use later:
+
+# /run/runit.{reboot,stopit} are symlink targets for the corresponding
+# files in /etc/runit. Putting them here ensures no disk writes need happen.
+tmpfs /run tmpfs size=16M,X-mount.mkdir=1777
+
 # /proc/cmdline is needed to check for the boot param "single".
-# /sys/fs/cgroup/runit.{1..3} is for organisation and cleanup.
-while read -r src tgt type opts; do
-    mount --source "${src}" --target "${tgt}" --type "${type}" --options "${opts}"
-done <<FSTAB
 proc /proc proc gid=10,hidepid=invisible
-sysfs /sys sysfs defaults
+
+# /sys/fs/cgroup/runit.{1..3} is for organisation and cleanup.
+sysfs /sys sysfs
 cgroup2 /sys/fs/cgroup cgroup2 memory_recursiveprot,memory_hugetlb_accounting
-FSTAB
+
+# The stage 2 runsvdir service tree is copied to here.
+tmpfs /etc/runit/runsvdir tmpfs size=16M,X-mount.mkdir
