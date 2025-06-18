@@ -13,17 +13,20 @@ else
     echo "/proc was not mounted when it was expected"
 fi
 
+# Give kernel output time to pipe down so the login prompt doesn't get lost.
+sleep 2
+
 cat <<EOF
 ***
 Starting an emergency shell. After exit, the system will attempt to reboot.
 To skip that reboot and attempt to resume the normal boot process,
-delete the file "${runsv_runtime_dir}/reboot" before exiting the shell.
+delete the file "/etc/runit/reboot" before exiting the shell.
 ***
 EOF
 
 openrc single
 
-install -m 0100 /dev/null "${runsv_runtime_dir}/reboot"
+install -m 0100 /dev/null /etc/runit/reboot
 /sbin/sulogin --timeout=100
 
-[ -f "${runsv_runtime_dir}/reboot" ] && exit 100
+[ -f /etc/runit/reboot ] && exit 100
