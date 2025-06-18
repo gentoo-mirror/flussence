@@ -11,4 +11,4 @@ RDEPEND=sys-apps/openrc sys-process/psmisc
 SLOT=0/vanilla
 SRC_URI=http://smarden.org/runit/runit-2.2.0.tar.gz verify-sig? ( https://smarden.org/runit/sha256sum.asc -> runit-2.2.0.sha256sum.asc )
 _eclasses_=toolchain-funcs	f9d71a6efe9d083aec750dd13968e169	flag-o-matic	b892042b2667b8ac69ec8a2571dc290a	readme.gentoo-r1	b045f3acf546393ab6b3170781875358	eapi9-pipestatus	d2c134036ac31c3085aebc9147f572bd	verify-sig	7433426b6b28bf2737ba4b82c8aa8c53
-_md5_=8655af02864a499aed7539439d3210c3
+_md5_=0b25476dcc58c77d8d8902441a21146d
