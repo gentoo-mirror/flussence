@@ -1,0 +1,229 @@
+From c9d154271041c4ee115bed9ef40fd387268c4a06 Mon Sep 17 00:00:00 2001
+From: Jonas Fassbender <jonas@fassbender.dev>
+Date: Fri, 11 Apr 2025 18:16:51 +0200
+Subject: [PATCH 1/3] Removed build script from xee
+
+---
+ Cargo.lock      | 89 ++-----------------------------------------------
+ xee/Cargo.toml  |  4 ---
+ xee/build.rs    |  5 ---
+ xee/src/main.rs | 11 ++----
+ xee/src/repl.rs |  3 +-
+ 5 files changed, 5 insertions(+), 107 deletions(-)
+ delete mode 100644 xee/build.rs
+
+diff --git a/Cargo.lock b/Cargo.lock
+index 714685c3e..ef8167700 100644
+--- a/Cargo.lock
++++ b/Cargo.lock
+@@ -244,16 +244,6 @@ dependencies = [
+  "serde",
+ ]
+ 
+-[[package]]
+-name = "build-data"
+-version = "0.2.1"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "eda20fcece9c23f3c3f4c2751a8a5ca9491c05fa7a69920af65953c3b39b7ce4"
+-dependencies = [
+- "chrono",
+- "safe-regex",
+-]
+-
+ [[package]]
+ name = "bumpalo"
+ version = "3.16.0"
+@@ -430,26 +420,6 @@ dependencies = [
+  "windows-sys 0.52.0",
+ ]
+ 
+-[[package]]
+-name = "const_format"
+-version = "0.2.34"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "126f97965c8ad46d6d9163268ff28432e8f6a1196a55578867832e3049df63dd"
+-dependencies = [
+- "const_format_proc_macros",
+-]
+-
+-[[package]]
+-name = "const_format_proc_macros"
+-version = "0.2.34"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "1d57c2eccfb16dbac1f4e61e206105db5820c9d26c3c472bc17c774259ef7744"
+-dependencies = [
+- "proc-macro2 1.0.86",
+- "quote 1.0.40",
+- "unicode-xid 0.2.6",
+-]
+-
+ [[package]]
+ name = "core-foundation-sys"
+ version = "0.8.6"
+@@ -1755,7 +1725,7 @@ version = "0.4.30"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "cf3d2011ab5c909338f7887f4fc896d35932e29146c12c8d01da6b22a80ba759"
+ dependencies = [
+- "unicode-xid 0.1.0",
++ "unicode-xid",
+ ]
+ 
+ [[package]]
+@@ -2148,53 +2118,6 @@ version = "1.0.18"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "f3cb5ba0dc43242ce17de99c180e96db90b235b8a9fdc9543c96d2209116bd9f"
+ 
+-[[package]]
+-name = "safe-proc-macro2"
+-version = "1.0.67"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "7fd85be67db87168aa3c13fd0da99f48f2ab005dccad5af5626138dc1df20eb6"
+-dependencies = [
+- "unicode-ident",
+-]
+-
+-[[package]]
+-name = "safe-quote"
+-version = "1.0.15"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "77e530f7831f3feafcd5f1aae406ac205dd998436b4007c8e80f03eca78a88f7"
+-dependencies = [
+- "safe-proc-macro2",
+-]
+-
+-[[package]]
+-name = "safe-regex"
+-version = "0.3.0"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "5194fafa3cb9da89e0cab6dffa1f3fdded586bd6396d12be11b4cae0c7ee45c2"
+-dependencies = [
+- "safe-regex-macro",
+-]
+-
+-[[package]]
+-name = "safe-regex-compiler"
+-version = "0.3.0"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "e822ae1e61251bcfd698317c237cf83f7c57161a5dc24ee609a85697f1ed15b3"
+-dependencies = [
+- "safe-proc-macro2",
+- "safe-quote",
+-]
+-
+-[[package]]
+-name = "safe-regex-macro"
+-version = "0.3.0"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "2768de7e6ef19f59c5fd3c3ac207ef12b68a49f95e3172d67e4a04cfd992ca06"
+-dependencies = [
+- "safe-proc-macro2",
+- "safe-regex-compiler",
+-]
+-
+ [[package]]
+ name = "same-file"
+ version = "1.0.6"
+@@ -2381,7 +2304,7 @@ checksum = "9ca4b3b69a77cbe1ffc9e198781b7acb0c7365a883670e8f1c1bc66fba79a5c5"
+ dependencies = [
+  "proc-macro2 0.4.30",
+  "quote 0.6.13",
+- "unicode-xid 0.1.0",
++ "unicode-xid",
+ ]
+ 
+ [[package]]
+@@ -2599,12 +2522,6 @@ version = "0.1.0"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "fc72304796d0818e357ead4e000d19c9c174ab23dc11093ac919054d20a6a7fc"
+ 
+-[[package]]
+-name = "unicode-xid"
+-version = "0.2.6"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "ebc1c04c71510c7f702b52b7c350734c9ff1295c464a03335b00bb84fc54f853"
+-
+ [[package]]
+ name = "unwind_safe"
+ version = "0.1.0"
+@@ -2912,9 +2829,7 @@ dependencies = [
+  "ahash 0.8.11",
+  "anyhow",
+  "ariadne",
+- "build-data",
+  "clap",
+- "const_format",
+  "regex",
+  "rustyline",
+  "xee-xpath",
+diff --git a/xee/Cargo.toml b/xee/Cargo.toml
+index 4c19d3338..0b015370a 100644
+--- a/xee/Cargo.toml
++++ b/xee/Cargo.toml
+@@ -20,9 +20,5 @@ anyhow.workspace = true
+ regex = { workspace = true }
+ rustyline = "15.0.0"
+ ahash = { workspace = true }
+-const_format = "0.2.34"
+-
+-[build-dependencies]
+-build-data = "0"
+ 
+ [dev-dependencies]
+diff --git a/xee/build.rs b/xee/build.rs
+deleted file mode 100644
+index b8417c524..000000000
+--- a/xee/build.rs
++++ /dev/null
+@@ -1,5 +0,0 @@
+-fn main() {
+-    build_data::set_GIT_COMMIT();
+-    build_data::set_SOURCE_TIMESTAMP();
+-    build_data::no_debug_rebuilds();
+-}
+diff --git a/xee/src/main.rs b/xee/src/main.rs
+index 9cef57374..4c0a023c6 100644
+--- a/xee/src/main.rs
++++ b/xee/src/main.rs
+@@ -6,17 +7,9 @@ mod repl_cmd;
+ mod xpath;
+ 
+ use clap::{Parser, Subcommand};
+-use const_format::formatcp;
+-
+-pub(crate) const VERSION: &str = formatcp!(
+-    "{} ({}, {})",
+-    clap::crate_version!(),
+-    env!("SOURCE_TIMESTAMP"),
+-    env!("GIT_COMMIT")
+-);
+ 
+ #[derive(Parser)]
+-#[command(author, about,  version = VERSION, long_about)]
++#[command(author, about, version, long_about)]
+ struct Cli {
+     #[command(subcommand)]
+     command: Commands,
+diff --git a/xee/src/repl.rs b/xee/src/repl.rs
+index 0994930fa..e785f8291 100644
+--- a/xee/src/repl.rs
++++ b/xee/src/repl.rs
+@@ -12,7 +12,6 @@ use xee_xpath::{DocumentHandle, Documents, Itemable, Query};
+ use crate::{
+     error::{render_error, render_parse_error},
+     repl_cmd::{ArgumentDefinition, CommandDefinition, CommandDefinitions},
+-    VERSION,
+ };
+ 
+ #[derive(Debug, Parser)]
+@@ -200,7 +199,7 @@ impl Repl {
+             ),
+         ]);
+ 
+-        println!("Xee XPath REPL {}", VERSION);
++        println!("Xee XPath REPL {}", clap::crate_version!());
+         println!("Type !help for more information.");
+         let mut rl = rustyline::DefaultEditor::new()?;
+         loop {
+-- 
+2.50.0
+
