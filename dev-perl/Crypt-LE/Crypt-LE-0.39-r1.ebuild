@@ -1,4 +1,4 @@
-# Copyright 2016-2024 Gentoo Authors
+# Copyright 2016-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -32,7 +32,6 @@ RDEPEND="
 	virtual/perl-Scalar-List-Utils
 	virtual/perl-Storable"
 BDEPEND="
-	>=virtual/perl-ExtUtils-Install-1.460
 	virtual/perl-ExtUtils-MakeMaker
 	>=dev-perl/Module-Build-0.422
 	test? (
