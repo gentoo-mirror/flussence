@@ -19,6 +19,7 @@ RDEPEND="
 	>=dev-perl/Convert-ASN1-0.200
 	>=dev-perl/Crypt-OpenSSL-Bignum-0.60
 	>=dev-perl/Crypt-OpenSSL-RSA-0.280
+	<dev-perl/Crypt-OpenSSL-RSA-0.350
 	virtual/perl-Digest-SHA
 	virtual/perl-Encode
 	>=virtual/perl-Getopt-Long-2.330
