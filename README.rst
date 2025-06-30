@@ -141,6 +141,10 @@ For a complete list, do ``eix [-R] -c --in-overlay flussence``
   Installs a python script necessary for PassFF to work.
   Updated fork of the unmaintained 1.2.4 found in ``::gentoo`` with added support for LibreWolf.
 
+``x11-base/wayback`` — `A simple and modern X11 server <https://github.com/kaniini/wayback>`_
+  This runs Xwayland with full privileges on a bare wlroots compositor.
+  It is intended to be a replacement for ``x11-base/xorg-server``.
+
 ``x11-libs/gtk+:3`` — `debloated Gtk+3 <https://forums.gentoo.org/viewtopic-p-8245612.html#8245612>`_
   Contains a NetBSD patch which makes DBus (and auto-spawning of hidden DBus processes) optional.
   This ebuild usually has zero-day updates before ::gentoo gets them.
