@@ -7,7 +7,7 @@ HOMEPAGE=https://github.com/kaniini/wayback
 INHERIT=github-pkg meson
 LICENSE=MIT
 PROPERTIES=live
-RDEPEND=dev-libs/wayland >=dev-libs/wayland-protocols-1.14 x11-libs/libxkbcommon >=gui-libs/wlroots-0.19
+RDEPEND=dev-libs/wayland >=dev-libs/wayland-protocols-1.14 x11-libs/libxkbcommon >=gui-libs/wlroots-0.19 x11-base/xwayland
 SLOT=0
 _eclasses_=git-r3	875eb471682d3e1f18da124be97dcc81	github-pkg	5ba984b8fcae68bf6b73604371980a1e	toolchain-funcs	f9d71a6efe9d083aec750dd13968e169	flag-o-matic	b892042b2667b8ac69ec8a2571dc290a	multiprocessing	1e32df7deee68372153dca65f4a7c21f	ninja-utils	2df4e452cea39a9ec8fb543ce059f8d6	python-utils-r1	5ffe8ec396a751540949b565de0f048c	meson	99466844dd8d4fcfb07578a76f5a9922
-_md5_=f920f90c965d06f3eaed8d5ff8b899d0
+_md5_=c3cce38946566e074e410d8e7ddeab34
