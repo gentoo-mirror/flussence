@@ -12,5 +12,5 @@ LICENSE=GPL-3 unicode
 RDEPEND=>=dev-libs/glib-2.16.3 >=x11-libs/gtk+-2.14.0:2
 SLOT=0
 SRC_URI=mirror://gnome/sources/gucharmap/3.0/gucharmap-3.0.1.tar.bz2 verify-sig? ( mirror://gnome/sources/gucharmap/3.0/gucharmap-3.0.1.sha256sum )
-_eclasses_=toolchain-funcs	f9d71a6efe9d083aec750dd13968e169	flag-o-matic	b892042b2667b8ac69ec8a2571dc290a	libtool	c81bd096be5f4c82f4e8f156ef112402	gnome.org	e1b4f392dbfedfb8974b71b017937f08	xdg-utils	42869b3c8d86a70ef3cf75165a395e09	gnome2-utils	a8cf148ec7f5ae0b1f1d33ae5f7f9e88	xdg	3ef49a87c52c8b77c476351195dfe575	gnome2	26fd01914b36038dc8e964ff4bd03a95	eapi9-pipestatus	d2c134036ac31c3085aebc9147f572bd	verify-sig	7433426b6b28bf2737ba4b82c8aa8c53
+_eclasses_=toolchain-funcs	f9d71a6efe9d083aec750dd13968e169	flag-o-matic	b892042b2667b8ac69ec8a2571dc290a	libtool	c81bd096be5f4c82f4e8f156ef112402	gnome.org	e1b4f392dbfedfb8974b71b017937f08	xdg-utils	42869b3c8d86a70ef3cf75165a395e09	gnome2-utils	a8cf148ec7f5ae0b1f1d33ae5f7f9e88	xdg	3ef49a87c52c8b77c476351195dfe575	gnome2	26fd01914b36038dc8e964ff4bd03a95	eapi9-pipestatus	d2c134036ac31c3085aebc9147f572bd	verify-sig	4e83419d7fb5d336f6a4de8193968319
 _md5_=b0969f0db2da0529d8c8e2ff34d167f6
