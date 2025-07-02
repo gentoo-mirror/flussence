@@ -22,4 +22,5 @@ DEPEND="
 	x11-libs/libxkbcommon
 	>=gui-libs/wlroots-0.19
 "
-RDEPEND="${DEPEND}"
+RDEPEND="${DEPEND}
+	x11-base/xwayland"
