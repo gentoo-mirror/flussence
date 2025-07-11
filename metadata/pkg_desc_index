@@ -1,6 +1,6 @@
 app-text/xee 0.1.5: Xee CLI. Swiss Army knife for XML. XPath and XSLT
 dev-libs/libbinio 1.5: Platform-independent way to access binary data streams in C++
-dev-perl/Crypt-LE 0.39-r2: Let's Encrypt API module and client
+dev-perl/Crypt-LE 0.39-r3: Let's Encrypt API module and client
 dev-perl/Regexp-Debugger 0.2.7: Perl module and command line tool (rxrx) to visually debug regexes in-place
 games-engines/dhewm3 1.5.4 9999: A cross-platform Doom 3 source port
 gnome-extra/gucharmap 3.0.1_p16: GNOME Character Map, based on the Unicode Character Database
