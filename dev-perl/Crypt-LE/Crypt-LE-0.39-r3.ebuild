@@ -23,7 +23,6 @@ RDEPEND="
 	virtual/perl-Digest-SHA
 	virtual/perl-Encode
 	>=virtual/perl-Getopt-Long-2.330
-	>=virtual/perl-HTTP-Tiny-0.42
 	>=dev-perl/IO-Socket-SSL-1.420
 	>=dev-perl/JSON-MaybeXS-1.3.5
 	>=dev-perl/Log-Log4perl-1.270
@@ -35,7 +34,4 @@ RDEPEND="
 BDEPEND="
 	virtual/perl-ExtUtils-MakeMaker
 	>=dev-perl/Module-Build-0.422
-	test? (
-		virtual/perl-File-Temp
-		virtual/perl-Test-Simple
-	)"
+	test? ( virtual/perl-File-Temp )"
