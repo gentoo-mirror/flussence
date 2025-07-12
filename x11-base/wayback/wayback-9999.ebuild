@@ -3,18 +3,21 @@
 
 EAPI=8
 
-GITHUB_USER="kaniini"
+inherit meson
 
 DESCRIPTION="Wayland compositor that runs full X11 WMs"
+HOMEPAGE="https://gitlab.freedesktop.org/wayback/wayback"
+
+if [[ ${PV} == 9999 ]]; then
+	inherit git-r3
+	EGIT_REPO_URI="https://gitlab.freedesktop.org/wayback/wayback.git"
+else
+	KEYWORDS="~amd64 ~x86"
+	eerror "no releases yet"
+fi
+
 LICENSE="MIT"
 SLOT="0"
-
-inherit github-pkg meson
-
-if [[ ${PV} != 9999 ]]; then
-	eerror "no releases yet"
-	KEYWORDS="~amd64 ~x86"
-fi
 
 DEPEND="
 	dev-libs/wayland
