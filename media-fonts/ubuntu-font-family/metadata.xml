@@ -14,5 +14,6 @@
 		<bugs-to>https://launchpad.net/ubuntu-font-family</bugs-to>
 		<doc>https://wiki.ubuntu.com/UbuntuFontFamily</doc>
 		<remote-id type="launchpad">ubuntu-font-family</remote-id>
+		<remote-id type="github">canonical/Ubuntu-Sans-fonts</remote-id>
 	</upstream>
 </pkgmetadata>
