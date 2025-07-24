@@ -10,8 +10,7 @@
 		<name>flussence</name>
 	</maintainer>
 	<upstream>
-		<bugs-to>https://github.com/trialuser02/qt6gtk2/issues</bugs-to>
-		<changelog>https://github.com/trialuser02/qt6gtk2/releases.atom</changelog>
-		<remote-id type="github">trialuser02/qt6gtk2</remote-id>
+		<bugs-to>https://www.opencode.net/trialuser/qt6gtk2/-/issues/</bugs-to>
+		<changelog>https://www.opencode.net/trialuser/qt6gtk2/-/releases.atom</changelog>
 	</upstream>
 </pkgmetadata>

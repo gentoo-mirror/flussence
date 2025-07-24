@@ -1,8 +1,3 @@
 # flussence <gentoo+bugs@flussence.eu> (18 Jul 2021)
 # These are older unnumbered versions for specific upstream unicode releases
 =media-fonts/noto-emoji-bin-20191119.12
-
-# flussence <gentoo+bugs@flussence.eu> (30 Jun 2025)
-# No longer builds, upstream marked abandoned. Requires the code removed here:
-# https://code.qt.io/cgit/qt/qtbase.git/commit/src/widgets/styles?h=6.9.1&id=16ed137ef4dee63ee6f6c4af9ca96c4538b9f61c
-x11-themes/qt6gtk2
