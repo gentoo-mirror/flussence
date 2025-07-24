@@ -3,20 +3,22 @@
 
 EAPI=8
 
-GITHUB_USER="trialuser02"
-
 DESCRIPTION="GTK+2.0 integration plugins for Qt6"
-LICENSE="GPL-2"
+HOMEPAGE="https://www.opencode.net/trialuser/qt6gtk2"
+LICENSE="GPL-2+"
 SLOT="0"
 
-inherit github-pkg qmake-utils
+inherit qmake-utils
 
-if [[ "${PV}" != 9999 ]]; then
-	SRC_URI="${GITHUB_HOMEPAGE}/releases/download/${PV}/${P}.tar.xz"
+if [[ "${PV}" == 9999 ]]; then
+	EGIT_SRC_URI="https://www.opencode.net/trialuser/qt6gtk2.git"
+	inherit git-r3
+else
+	SRC_URI="https://www.opencode.net/api/v4/projects/5460/packages/generic/${PN}/${PV}/${P}.tar.xz"
 	KEYWORDS="~amd64 ~x86"
 fi
 
-DEPEND="dev-qt/qtbase:6= x11-libs/gtk+:2 x11-libs/libX11"
+DEPEND=">=dev-qt/qtbase-6.2.0:6=[dbus] x11-libs/gtk+:2 x11-libs/libX11"
 RDEPEND="${DEPEND}"
 
 src_configure() {

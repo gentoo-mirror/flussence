@@ -12,9 +12,9 @@ Goals
 
 **Supply chain security**
   The repository itself has GPG signatures on all commits, and ``verify-sig.eclass`` is used
-  whenever upstream provides anything to work with. The current hall of fame as of 2025:
+  whenever upstream provides anything to work with. The current hall of fame as of August 2025:
 
-  * ``sys-process/runit`` (GPG signatures)
+  * ``sys-process/runit`` (GPG signatures on SHA256 checksums)
 
   🙃
 
@@ -22,7 +22,7 @@ Feedback
 --------
 
 Send bug reports via the `Gentoo bug tracker <https://bugs.gentoo.org>`_ -
-use product “Gentoo Linux”, component “Overlays” and prefix the subject line with ``[flussence]``.
+use product ｢Gentoo Linux｣, component ｢Overlays｣ and prefix the subject line with ``[flussence]``.
 
 Installing
 ----------
@@ -62,12 +62,14 @@ Installing
    **Do not** set ``sync-openpgp-key-refresh=yes``. It adds no meaningful security, will slow down
    the sync process while it times out, and will also allow me to remotely detect your use of
    ``emerge --sync`` in realtime as a side effect.
+   If this sounds insane it's because it is.
 
 Contents
 --------
 
 This list is manually maintained. Some things may be missing (accidentally or not).
-For a complete list, do ``eix [-R] -c --in-overlay flussence``
+For a complete, unopinionated table of contents, incant ``eix [-R] -c --in-overlay flussence``
+In cat-pkg alphabetical order:
 
 ``dev-perl/Crypt-LE`` — `Crypt::LE <https://metacpan.org/pod/Crypt::LE>`_
   A Perl ACME/Let's Encrypt client with minimal dependencies and no surprise third-party traffic.
@@ -75,11 +77,6 @@ For a complete list, do ``eix [-R] -c --in-overlay flussence``
 ``dev-perl/Regexp-Debugger`` — `Regexp::Debugger <https://metacpan.org/pod/Regexp::Debugger>`_
   The ``rxrx`` utility is an entire interactive TUI for watching a regex go through the motions.
   Also works as a perl module so you can drop into an interactive debugger mid-program.
-
-``dev-qt/qtstyleplugins`` — `Qt5 Themes <https://code.qt.io/cgit/qt/qtstyleplugins.git/>`_
-  Includes the old Qt4 default “Plastique”, and a mostly-working GTK+2 theme engine.
-  This hasn't been maintained upstream since 2017, but surprisingly still works.
-  Unfortunately it lacks the pinnacle of FOSS GUI design, Keramik.
 
 ``games-engines/dhewm3`` — `Doom 3 sourceport <https://dhewm3.org>`_
   Adds a bunch of modern QoL features - SDL2 joypad support, widescreen, etc.
@@ -98,8 +95,9 @@ For a complete list, do ``eix [-R] -c --in-overlay flussence``
   but you can ``USE=minimal`` to get just the base font without variants.
 
 ``media-fonts/ubuntu-font-family`` — `The complete Ubuntu font <https://design.ubuntu.com/font/>`_
-  Installs the most up-to-date version of Ubuntu, Ubuntu Mono, and Ubuntu Italic.
-  These are modern variable fonts supporting arbitrary widths and weights.
+  Modern variable fonts supporting arbitrary widths and weights.
+  This is here because the ::gentoo ebuild is outdated but also inexplicably deletes random files,
+  breaking websites and apps that expect unmutilated fonts.
 
 ``media-sound/audacious``, ``media-libs/audacious-plugins`` — `Audacious Media Player <https://audacious-media-player.org/>`_
   Actively tracks upstream development, supports all features from GTK+2 to Qt6, and does it right.
@@ -118,6 +116,7 @@ For a complete list, do ``eix [-R] -c --in-overlay flussence``
 ``media-sound/qpwgraph`` — `PipeWire Graph Qt GUI Interface <https://gitlab.freedesktop.org/rncbc/qpwgraph>`_
   Graphical patchbay for PipeWire, directly descended from QJackCtl.
   Allows you to connect inputs and outputs manually and save/restore connection sets.
+  (Updates annoyingly frequently for micro features, maybe stick to ::gentoo for this one.)
 
 ``net-dns/agnos`` — `ACME client in Rust <https://github.com/krtab/agnos>`_
   A mostly automated tool to get subdomain wildcard certificates (using an internal dns-01 server),
@@ -128,14 +127,16 @@ For a complete list, do ``eix [-R] -c --in-overlay flussence``
   Very niche purpose, but it's here for those who need it.
 
 ``sys-kernel/zenergy`` — `Ryzen power hwmon driver <https://github.com/BoukeHaarsma23/zenergy>`_
-  This is a fork of the old ``amd_energy`` driver, which was removed from the kernel in a hurry after
-  someone realised having joule-accurate counters made a Meltdown-like attack possible. This version
-  fuzzes the numbers just enough to stymie that while allowing mundane meter-reading to still work.
+  This is a fork of the old ``amd_energy`` driver, which was removed from the kernel in a hurry
+  after someone realised having joule-accurate counters made a Meltdown-like attack possible.
+  This version allegedly fuzzes the numbers just enough to stymie that while allowing mundane
+  meter-reading to still work.
 
 ``sys-process/runit`` — `Runit PID1 and service manager <http://smarden.org/runit/>`_
   The init system I'm using since 2014.
-  This package tracks vanilla upstream as of 2.2.0, previously Void Linux.
-  By default requires OpenRC for bringup and shutdown, but this is easily swappable by the sysadmin.
+  This package provides the vanilla, unadulterated upstream version of runit.
+  Provides a small stage framework in ``/etc/runit/`` to make customisation easier.
+  By default, it passes through to OpenRC so you can use it as a drop-in replacement.
 
 ``www-plugins/passff-host`` — `PassFF host application <https://codeberg.org/PassFF/passff#readme>`_
   Installs a python script necessary for PassFF to work.
