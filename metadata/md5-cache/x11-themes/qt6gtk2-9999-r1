@@ -1,0 +1,13 @@
+BDEPEND=>=dev-vcs/git-1.8.2.1[curl]
+DEFINED_PHASES=configure install unpack
+DEPEND=>=dev-qt/qtbase-6.2.0:6=[dbus] x11-libs/gtk+:2 x11-libs/libX11
+DESCRIPTION=GTK+2.0 integration plugins for Qt6
+EAPI=8
+HOMEPAGE=https://www.opencode.net/trialuser/qt6gtk2
+INHERIT=qmake-utils git-r3
+LICENSE=GPL-2+
+PROPERTIES=live
+RDEPEND=>=dev-qt/qtbase-6.2.0:6=[dbus] x11-libs/gtk+:2 x11-libs/libX11
+SLOT=0
+_eclasses_=toolchain-funcs	a0b29008c671a362b505f96fa80ce9c0	qmake-utils	a8dd17b1d94586164f5e3fc12b1c6b81	git-r3	875eb471682d3e1f18da124be97dcc81
+_md5_=0749b93091510312d82a4853a69e91d4

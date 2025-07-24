@@ -1,0 +1,13 @@
+BDEPEND=app-arch/unzip X? ( >=x11-apps/mkfontscale-1.2.0 media-fonts/encodings )
+DEFINED_PHASES=install postinst postrm setup
+DESCRIPTION=A set of matching libre/open fonts funded by Canonical
+EAPI=8
+HOMEPAGE=https://design.ubuntu.com/font/ https://launchpad.net/ubuntu-font-family
+INHERIT=font github-pkg
+IUSE=X
+KEYWORDS=amd64 arm arm64 x86
+LICENSE=UbuntuFontLicense-1.0
+SLOT=0
+SRC_URI=https://github.com/canonical/Ubuntu-Sans-fonts/releases/download/v1.006/UbuntuSans-fonts-1.006.zip https://github.com/canonical/Ubuntu-Sans-Mono-fonts/releases/download/v1.006/UbuntuSansMono-fonts-1.006.zip
+_eclasses_=font	aa113a3df9cd0a9693a1c1ee7c34a6eb	github-pkg	5ba984b8fcae68bf6b73604371980a1e
+_md5_=09fc17686d0ed1b6a86a5d32ac2bbe9d
