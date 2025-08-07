@@ -166,6 +166,7 @@ multilib_src_install_all() {
 pkg_preinst() {
 	gnome2_pkg_preinst
 
+	# shellcheck disable=SC2329
 	multilib_pkg_preinst() {
 		# Make immodules.cache belongs to gtk+ alone
 		local cache
@@ -183,6 +184,7 @@ pkg_preinst() {
 pkg_postinst() {
 	gnome2_pkg_postinst
 
+	# shellcheck disable=SC2329
 	multilib_pkg_postinst() {
 		gnome2_query_immodules_gtk3 ||
 			die "Update immodules cache failed (for ${ABI})"
@@ -200,6 +202,7 @@ pkg_postrm() {
 	gnome2_pkg_postrm
 
 	if [[ -z ${REPLACED_BY_VERSION} ]]; then
+		# shellcheck disable=SC2329
 		multilib_pkg_postrm() {
 			rm -f "${EROOT}/usr/$(get_libdir)/gtk-3.0/3.0.0/immodules.cache"
 		}
