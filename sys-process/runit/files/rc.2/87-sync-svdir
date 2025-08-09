@@ -1,0 +1,10 @@
+#!/bin/sh
+# Seed runsvdir (mounted as tmpfs in rc.1) with the contents of /etc/service.
+
+# This is a separate file for the convenience of the system owner; re-run it
+# after changing the contents of /etc/service/ to make those changes live.
+
+# --copy-dirlinks is necessary because /etc/service/* may all be symlinks.
+# We don't want to copy *all* links as their contents though.
+exec rsync --archive --no-D --copy-dirlinks --exclude="supervise" \
+    /etc/service/ "/etc/runit/runsvdir/default/"

@@ -1,20 +1,8 @@
 #!/bin/sh
 # Invoke runsvdir, the normal runit stage 2.
 
-# Seed runsvdir (mounted as tmpfs in rc.1) with the contents of /etc/service.
-# N.B. Previously we had a complex dance spread over multiple rc files to
-# surgically graft /etc/service/**/supervise directory symlinks to /run/runit/
-# to reduce disk writes. This is much simpler.
-
-runlevel_name="default"
-
-# --copy-dirlinks is necessary because /etc/service/* may all be symlinks.
-# We don't want to copy *all* links as their contents though.
-rsync --archive --no-D --copy-dirlinks --exclude="supervise" \
-    /etc/service/ "/etc/runit/runsvdir/${runlevel_name}/"
-
-# Calling `runsvchdir ${runlevel_name}` here doesn't do this, unfortunately.
-ln -s "./${runlevel_name}" /etc/runit/runsvdir/current
+# Calling `runsvchdir default` here doesn't do this, unfortunately.
+ln -s "./default" /etc/runit/runsvdir/current
 
 # Try to avoid supervised services flooding the active tty with their stdout by
 # redirecting it elsewhere. The right thing to do instead of relying on this is
