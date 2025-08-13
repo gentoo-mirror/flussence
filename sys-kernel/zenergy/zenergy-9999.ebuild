@@ -3,7 +3,7 @@
 
 EAPI=8
 
-GITHUB_USER="BoukeHaarsma23"
+GITHUB_USER="fraz0815"
 
 DESCRIPTION="AMD Zen CPU RAPL power meter hwmon driver"
 
