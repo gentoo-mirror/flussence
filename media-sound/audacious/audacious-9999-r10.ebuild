@@ -10,7 +10,7 @@ HOMEPAGE="https://audacious-media-player.org/"
 S="${WORKDIR}/${MY_P}"
 LICENSE="BSD-2 BSD CC-BY-SA-4.0"
 SLOT="0/5.5.0"
-IUSE="+cli gtk2 gtk3 libarchive +qt5 qt6"
+IUSE="+cli gtk2 gtk3 libarchive +qt6"
 
 if [[ ${PV} == "9999" ]]; then
 	# This ebuild revision is for c7539c5bba or later
@@ -25,7 +25,7 @@ fi
 
 inherit meson xdg
 
-REQUIRED_USE="|| ( cli gtk2 gtk3 qt5 qt6 )"
+REQUIRED_USE="|| ( cli gtk2 gtk3 qt6 )"
 
 RDEPEND="
 	>=dev-libs/glib-2.32
@@ -45,24 +45,15 @@ RDEPEND="
 			virtual/libintl
 		)
 	)
-	qt5? (
-		dev-qt/qtcore:5
-		dev-qt/qtgui:5
-		dev-qt/qtwidgets:5
-		dev-qt/qtsvg:5
-		virtual/freedesktop-icon-theme
-	)
 	qt6? (
-		!qt5? (
-			dev-qt/qtbase:6[gui,widgets]
-			dev-qt/qtsvg:6
-		)
+		dev-qt/qtbase:6[gui,widgets]
+		dev-qt/qtsvg:6
 	)"
 DEPEND="${RDEPEND} virtual/pkgconfig"
 BDEPEND="
 	sys-devel/gettext
 	cli? ( dev-util/gdbus-codegen )"
-PDEPEND="~media-plugins/audacious-plugins-${PV}[gtk2(-)?,gtk3(-)?,qt5(-)?,qt6(-)?]"
+PDEPEND="~media-plugins/audacious-plugins-${PV}[gtk2(-)?,gtk3(-)?,qt6(-)?]"
 
 src_unpack() {
 	if [[ ${PV} == "9999" ]]; then
@@ -85,11 +76,10 @@ src_configure() {
 		"-Dbuildstamp='${CATEGORY}/${PF}${repository:+::}${repository}'"
 		"--auto-features=disabled"
 		"$(meson_use "$(usex gtk2 gtk2 gtk3)" gtk)"
-		"$(meson_use "$(usex qt5 qt5 qt6)" qt)"
+		"$(meson_use qt6 qt)"
 		"$(meson_use cli dbus)"
 		"$(meson_use gtk2)"
 		"$(meson_use libarchive)"
-		"$(meson_use qt5)"
 	)
 	meson_src_configure
 }

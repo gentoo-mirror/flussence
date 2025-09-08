@@ -25,13 +25,11 @@
 		<flag name="hotkeys">Enable global hotkeys plugin</flag>
 		<flag name="lame">Enable MP3 filewriter output plugin</flag>
 		<flag name="libsamplerate">Enable <pkg>media-libs/libsamplerate</pkg> (resample, speed and pitch) plugins</flag>
-		<flag name="moonstone">Enable the minimal Moonstone frontend (experimental)</flag>
 		<flag name="mp3">Enable standalone MP3 plugin using <pkg>media-sound/mpg123</pkg></flag>
 		<flag name="mpris2">Enable MPRIS2 support (generic DBus-based player remote control)</flag>
 		<flag name="opengl">Enable the GL Spectrum visualiser</flag>
 		<flag name="openmpt">Enable playing module tracker files through <pkg>media-libs/libopenmpt</pkg></flag>
 		<flag name="pipewire">Enable PipeWire output plugin</flag>
-		<flag name="qt5">Enables Qt5 support for plugins that need it</flag>
 		<flag name="qt6">Enables Qt6 support for plugins that need it</flag>
 		<flag name="qtmedia">Enable sound output via <pkg>dev-qt/qtmultimedia</pkg></flag>
 		<flag name="scrobbler">Build with audioscrobbler/last.fm submission support</flag>
