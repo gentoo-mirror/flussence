@@ -23,7 +23,6 @@
 		<flag name="gtk2">Enables the GTK+2 Audacious GUI. This takes precedence over Gtk+3.</flag>
 		<flag name="gtk3">Enables the Gtk+3 Audacious GUI.</flag>
 		<flag name="libarchive">Enable <pkg>app-arch/libarchive</pkg> support for compressed Winamp2 .wsz skins. With this disabled they'll be decompressed via shell commands, which may be a security hazard.</flag>
-		<flag name="qt5">Enables the Qt5 Audacious GUI. This takes precedence over Qt6.</flag>
 		<flag name="qt6">Enables the Qt6 Audacious GUI.</flag>
 	</use>
 </pkgmetadata>

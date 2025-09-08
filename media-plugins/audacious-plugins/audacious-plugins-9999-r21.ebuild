@@ -10,27 +10,30 @@ HOMEPAGE="https://audacious-media-player.org/"
 S="${WORKDIR}/${MY_P}"
 # build system: BSD-2
 # embedded libgme, adplug: LGPL-2.1
+# winamp2 "Glare" skin: CC-BY-SA-4.0
+# WinAmp™ 2.9 skin: 🤷
 # other internal console players, most plugins: GPL-2+
 # GUI is GPL-3 only: src/skins/main.h is explicit about it.
 LICENSE="
 	BSD-2
 	LGPL-2.1
+	CC-BY-SA-4.0
+	all-rights-reserved
 	GPL-2+
 	ampache? ( GPL-3 )
 	flac? ( GPL-3+ )
 	gtk2? ( GPL-3 )
 	gtk3? ( !gtk2? ( GPL-3 ) )
 	libnotify? ( GPL-3+ )
-	qt5? ( GPL-3 )
 	qt6? ( GPL-3 )"
 SLOT="0"
 
-# This ebuild revision is for v4.4* only (commits before 367e7a3810) due to licensing concerns
 if [[ ${PV} == "9999" ]]; then
+	# This ebuild revision is for 367e7a3810 or later
 	EGIT_REPO_URI="https://github.com/audacious-media-player/${PN}.git"
 	inherit git-r3
 else
-	KEYWORDS="amd64 x86"
+	KEYWORDS="~amd64 ~x86"
 	SRC_URI="https://distfiles.audacious-media-player.org/${MY_P}.tar.bz2"
 	inherit verify-sig
 	SRC_URI+=" verify-sig? ( ${SRC_URI%%.tar*}.sha256sum )"
@@ -40,7 +43,7 @@ inherit meson
 
 # These are arranged in the order meson_options.txt presents them
 declare -A USE_CATEGORIES=(
-	[gui]="gtk2 gtk3 +qt5 qt6"
+	[gui]="gtk2 gtk3 +qt6"
 	[container]="cue"
 	[transport]="mms http"
 
@@ -60,9 +63,9 @@ declare -A USE_CATEGORIES=(
 	[effect]="bs2b libsamplerate soxr"
 
 	# gui_* are plugins that require a GUI, handled specially below
-	[gui_base]="+hotkeys libnotify opengl"
+	[gui_base]="+hotkeys +vumeter libnotify opengl"
 	[gui_gtk]="aosd lirc"
-	[gui_qt]="ampache moonstone qtmedia streamtuner +vumeter"
+	[gui_qt]="ampache qtmedia streamtuner"
 )
 
 IUSE="${USE_CATEGORIES[*]}"
@@ -76,14 +79,14 @@ REQUIRED_USE="
 	scrobbler? ( xml )
 	$(printf '\n\t%s?\t( gui )'              ${USE_CATEGORIES[gui_base]//[+-]/})
 	$(printf '\n\t%s?\t( || ( gtk2 gtk3 ) )' ${USE_CATEGORIES[gui_gtk]//[+-]/})
-	$(printf '\n\t%s?\t( || ( qt5 qt6 ) )'   ${USE_CATEGORIES[gui_qt]//[+-]/})
+	$(printf '\n\t%s?\t( qt6 )'              ${USE_CATEGORIES[gui_qt]//[+-]/})
 "
 
 # hotkeys currently has automagic detection
 RDEPEND="
 	>=dev-libs/glib-2.32
-	~media-sound/audacious-${PV}:=[gtk2(-)?,gtk3(-)?,qt5(-)?,qt6(-)?]
-	sys-libs/zlib
+	~media-sound/audacious-${PV}:=[gtk2(-)?,gtk3(-)?,qt6(-)?]
+	sys-libs/zlib:=
 	aac? ( >=media-libs/faad2-2.7 )
 	adplug? ( media-libs/adplug )
 	alsa? ( >=media-libs/alsa-lib-1.0.16 )
@@ -99,30 +102,19 @@ RDEPEND="
 		cddb? ( >=media-libs/libcddb-1.2.1 )
 	)
 	cue? ( >=media-libs/libcue-2.0 )
-	ffmpeg? ( >=media-video/ffmpeg-4.2.4 )
-	flac? ( >=media-libs/flac-1.2.1[ogg] )
+	ffmpeg? ( >=media-video/ffmpeg-4.2.4:= )
+	flac? ( >=media-libs/flac-1.2.1:=[ogg] )
 	fluidsynth? ( >=media-sound/fluidsynth-1.0.6:= )
 	gtk2? ( >=x11-libs/gtk+-2.24:2 )
 	gtk3? ( >=x11-libs/gtk+-3.22:3 )
-	http? ( >=net-libs/neon-0.27 )
+	http? ( >=net-libs/neon-0.27:= )
 	jack? ( virtual/jack )
 	lirc? ( app-misc/lirc )
-	qt5? (
-		dev-qt/qtcore:5
-		dev-qt/qtgui:5
-		dev-qt/qtwidgets:5
-		hotkeys? ( dev-qt/qtx11extras:5 )
-		opengl? ( dev-qt/qtopengl:5 )
-		qtmedia? ( dev-qt/qtmultimedia:5 )
-		streamtuner? ( dev-qt/qtnetwork:5 )
-	)
 	qt6? (
-		!qt5? (
-			dev-qt/qtbase:6[gui,widgets]
-			opengl? ( dev-qt/qtbase:6[opengl] )
-			qtmedia? ( dev-qt/qtmultimedia:6 )
-			streamtuner? ( dev-qt/qtbase:6[network] )
-		)
+		dev-qt/qtbase:6[gui,widgets]
+		opengl? ( dev-qt/qtbase:6[opengl] )
+		qtmedia? ( dev-qt/qtmultimedia:6 )
+		streamtuner? ( dev-qt/qtbase:6[network] )
 	)
 	lame? ( media-sound/lame )
 	libnotify? (
@@ -142,10 +134,10 @@ RDEPEND="
 	pipewire? ( >=media-video/pipewire-0.3.33 )
 	pulseaudio? ( media-libs/libpulse )
 	scrobbler? ( net-misc/curl )
-	sdl? ( media-libs/libsdl2 )
-	sid? ( >=media-libs/libsidplayfp-2.0 )
+	sdl? ( >=media-libs/libsdl3-3.2.0 )
+	sid? ( >=media-libs/libsidplayfp-2.0:= )
 	sndfile? ( >=media-libs/libsndfile-1.0.19 )
-	sndio? ( media-sound/sndio )
+	sndio? ( media-sound/sndio:= )
 	soxr? ( media-libs/soxr )
 	vorbis? (
 		>=media-libs/libogg-1.0
@@ -182,9 +174,8 @@ src_configure() {
 	local emesonargs=(
 		# GUI toolkits
 		"$(meson_use "$(usex gtk2 gtk2 gtk3)" gtk)"
-		"$(meson_use "$(usex qt5 qt5 qt6)" qt)"
+		"$(meson_use qt6 qt)"
 		"$(meson_use gtk2)"
-		"$(meson_use qt5)"
 
 		# container plugins
 		"$(meson_use            cue)"
@@ -245,9 +236,6 @@ src_configure() {
 		# visualisation plugins
 		"$(meson_use opengl     gl-spectrum)"
 		"$(meson_use            vumeter)"
-
-		# interface plugins
-		"$(meson_use            moonstone)"
 	)
 	meson_src_configure
 }
@@ -258,12 +246,7 @@ pkg_postinst() {
 		einfo "or set the environment variable UNZIPCMD to a drop-in replacement"
 		einfo "(e.g. 'busybox unzip')"
 	fi
-	if use moonstone; then
-		einfo "You may activate the Moonstone UI in the options 'Appearance' tab."
-		einfo "Beware that this is abandonware, and it's possible to get stuck without settings."
-		einfo "If that happens, run 'audacious -G' or 'audtool preferences-show'."
-	fi
-	if use qt6 && ! use qt5; then
+	if use qt6; then
 		einfo "The Winamp skin frontend does not play nice with Qt6's high-DPI support,"
 		einfo "especially with fractional scaling. See https://doc.qt.io/qt-6/highdpi.html for"
 		einfo "a list of environment variables you can tweak to work around this."
