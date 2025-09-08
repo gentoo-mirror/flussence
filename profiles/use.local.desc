@@ -22,13 +22,11 @@ media-plugins/audacious-plugins:hotkeys - Enable global hotkeys plugin
 media-plugins/audacious-plugins:http - Support HTTP streams through net-libs/neon
 media-plugins/audacious-plugins:lame - Enable MP3 filewriter output plugin
 media-plugins/audacious-plugins:libsamplerate - Enable media-libs/libsamplerate (resample, speed and pitch) plugins
-media-plugins/audacious-plugins:moonstone - Enable the minimal Moonstone frontend (experimental)
 media-plugins/audacious-plugins:mp3 - Enable standalone MP3 plugin using media-sound/mpg123
 media-plugins/audacious-plugins:mpris2 - Enable MPRIS2 support (generic DBus-based player remote control)
 media-plugins/audacious-plugins:opengl - Enable the GL Spectrum visualiser
 media-plugins/audacious-plugins:openmpt - Enable playing module tracker files through media-libs/libopenmpt
 media-plugins/audacious-plugins:pipewire - Enable PipeWire output plugin
-media-plugins/audacious-plugins:qt5 - Enables Qt5 support for plugins that need it
 media-plugins/audacious-plugins:qt6 - Enables Qt6 support for plugins that need it
 media-plugins/audacious-plugins:qtmedia - Enable sound output via dev-qt/qtmultimedia
 media-plugins/audacious-plugins:scrobbler - Build with audioscrobbler/last.fm submission support
@@ -43,7 +41,6 @@ media-sound/audacious:cli - Enable `audtool` CLI (via application-specific DBus 
 media-sound/audacious:gtk2 - Enables the GTK+2 Audacious GUI. This takes precedence over Gtk+3.
 media-sound/audacious:gtk3 - Enables the Gtk+3 Audacious GUI.
 media-sound/audacious:libarchive - Enable app-arch/libarchive support for compressed Winamp2 .wsz skins. With this disabled they'll be decompressed via shell commands, which may be a security hazard.
-media-sound/audacious:qt5 - Enables the Qt5 Audacious GUI. This takes precedence over Qt6.
 media-sound/audacious:qt6 - Enables the Qt6 Audacious GUI.
 media-sound/qpwgraph:alsa - Support routing ALSA raw midi devices
 media-sound/qpwgraph:trayicon - Enable systray icon (window close will iconify instead of exit)
